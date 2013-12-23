@@ -1,0 +1,59 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require simpletextrotator
+ *= require_tree .
+ */
+
+@import 'semantic-ui';
+
+body {
+  background-color: rgba(238,238,238,0.6);
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.ui.menu .brand i {
+  font-size: 0.80em;
+  opacity: 1;
+  position: relative;
+  left: -0.15em;
+  top: -0.02em;
+}
+
+.slogan p {
+  font-size: 42px;
+  line-height: 50px;
+  margin: auto auto 0em;
+}
+
+.slogan p span {
+  color: #ff7038;
+  font-weight: bold;
+  font-size: 48px;
+}
+
+.ui.table td {
+  padding: 0.5em 0.8em;
+  vertical-align: middle;
+}
+
+.ui.menu .brand {
+  font-size: 2.4rem;
+}
+
+.right.menu {
+  padding: 10px;
+}

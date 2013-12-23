@@ -1,0 +1,13 @@
+<div class="ui one column page grid">
+  <div class="ui column">
+    <% flash.each do |name, msg| %>
+      <div class="ui message large floating icon <%= name == :notice ? 'blue' : 'red' %> ">
+        <i class="ok sign teal icon"></i>
+        <div class="header">
+          <%= name == :notice ? 'Success!' : 'Error!' %>
+        </div>
+        <%= content_tag :p,  msg %>
+      </div>
+    <% end %>
+  </div>
+</div>

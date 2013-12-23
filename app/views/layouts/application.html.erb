@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= content_for?(:title) ? yield(:title) : "Agile2Go - Project Managment" %></title>
+   <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+   <![endif]-->
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= yield(:head) %>
+</head>
+<body>
+  <%= render 'layouts/menu' %>
+  <%= render 'layouts/messages' %>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+</body>
+  <%= javascript_include_tag "application" %>
+</html>
