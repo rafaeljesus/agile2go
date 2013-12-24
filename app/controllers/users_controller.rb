@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  respond_to :js
+  respond_to :json, :html
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index

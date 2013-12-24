@@ -1,6 +1,7 @@
 class UserSession
   include ActiveModel::Validations
   include ActiveModel::Conversion
+
   extend ActiveModel::Translation
   extend ActiveModel::Naming
 
@@ -43,5 +44,4 @@ class UserSession
   def destroy
     @session[:user_id] = nil
   end
-end
 end

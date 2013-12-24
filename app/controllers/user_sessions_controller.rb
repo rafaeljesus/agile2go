@@ -1,5 +1,5 @@
 class UserSessionsController < ApplicationController
-  respond_to :js
+  respond_to :json, :html
 
   def new
     @session = UserSession.new(session)
