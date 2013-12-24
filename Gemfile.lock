@@ -190,7 +190,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   capybara (>= 2.0.2)
   database_cleaner
-  factory_girl_rails
+  factory_girl_rails (~> 4.0)
   handlebars_assets
   jasmine
   jquery-rails

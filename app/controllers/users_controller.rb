@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
+  respond_to :js
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  respond_to :json
 
   def index
     @users = User.all
@@ -18,19 +18,18 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    flash[:notice] = 'User was successfully created' if @user.save
-    respond_with @user, location: users_path
+    @user = User.new user_params
+    @user.save
+    respond_with @user
   end
 
   def update
-    flash[:notice] = 'User was successfully updated' if @user.update(user_params)
-    respond_with @user, location: edit_user_path
+    @user.update user_params
+    respond_with @user
   end
 
   def destroy
     @user.destroy
-    flash[:notice] = 'User was successfully destroyed.'
     respond_with @user
   end
 

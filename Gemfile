@@ -19,14 +19,14 @@ group :production do
 end
 
 group :test do
-  gem "capybara", ">= 2.0.2"
-  gem "shoulda-matchers"
-  gem "factory_girl_rails"
-  gem "database_cleaner"
+  gem 'capybara', '>= 2.0.2'
+  gem 'shoulda-matchers'
+  gem 'database_cleaner'
 end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'
   gem 'jasmine'
 end

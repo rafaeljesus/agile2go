@@ -1,4 +1,4 @@
-Agile2goNew::Application.routes.draw do
+Agile2go::Application.routes.draw do
   resources :users
 
   get "home/index"

@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Agile2goNew::Application.config.secret_key_base = '2618d9ebe60ebad3476feeb04e78021317d9285989f6047de6bf9d0e96ef481abe9384304f454508ecb64d0423efc8c1fa655c4b31f236417d40c228b8aff237'
+Agile2go::Application.config.secret_key_base = '2618d9ebe60ebad3476feeb04e78021317d9285989f6047de6bf9d0e96ef481abe9384304f454508ecb64d0423efc8c1fa655c4b31f236417d40c228b8aff237'
