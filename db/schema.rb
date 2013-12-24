@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131224021030) do
+ActiveRecord::Schema.define(version: 20131224211858) do
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20131224021030) do
     t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "confirmed_at"
+    t.string   "confirmation_token"
   end
 
   create_table "users_roles", id: false, force: true do |t|

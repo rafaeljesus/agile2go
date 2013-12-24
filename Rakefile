@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Agile2goNew::Application.load_tasks
+Agile2go::Application.load_tasks
