@@ -11,6 +11,7 @@ gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'active_model_serializers'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'puma'
+gem "rolify"
 
 group :production do
   gem 'pg'
