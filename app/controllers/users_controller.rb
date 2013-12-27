@@ -20,12 +20,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     @user.save
-    respond_with @user
+    respond_with @user, location: root_path
   end
 
   def update
     @user.update user_params
-    respond_with @user
+    respond_with @user, location: users_path
   end
 
   def destroy
@@ -39,6 +39,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end

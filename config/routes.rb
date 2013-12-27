@@ -1,9 +1,8 @@
 Agile2go::Application.routes.draw do
-  get "user_sessions/new"
-  get "user_sessions/create"
-  get "user_sessions/destroy"
-  resources :users
+  resources :projects
 
-  get "home/index"
+  resources :users
+  resource :user_sessions, only: [:create, :new, :destroy]
+
   root to: 'home#index'
 end

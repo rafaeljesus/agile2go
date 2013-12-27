@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
 
-  scope :confirmed, -> { where('confirmed_at IS NOT NULL') }
-
   validates_presence_of :email, :name
   validates_format_of :email, with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   validates_uniqueness_of :email
@@ -9,8 +7,15 @@ class User < ActiveRecord::Base
   has_secure_password
   before_create :generate_token
 
+  scope :confirmed, -> { where('confirmed_at IS NOT NULL') }
+
   def self.authenticate(email, password)
-    confirmed.find_by_email(email).try(:authenticate, password)
+    #confirmed.
+    find_by_email(email).try(:authenticate, password)
+  end
+
+  def active_model_serializer
+    UserSerializer
   end
 
   def generate_token
