@@ -3,9 +3,8 @@ window.App = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function(collection) {
-    // new App.Utils();
-    new App.Routers.Projects(collection);
+  initialize: function() {
+    new App.Routers.Projects();
     if (!Backbone.history.started) {
       Backbone.history.start({ pushState: true });
       Backbone.history.started = true;
@@ -13,7 +12,5 @@ window.App = {
   }
 }
 $(function(){
-  $.getJSON('/projects').done(function(data){
-    App.initialize(data);
-  });
+  App.initialize();
 });

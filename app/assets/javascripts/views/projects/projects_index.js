@@ -5,7 +5,10 @@ App.Views.ProjectsIndex = Support.CompositeView.extend({
   },
 
   render : function(){
-    this.$el.html(JST['projects/index'](this.collection));
+    var self = this;
+    self.collection.fetch().done(function(data){
+      self.$el.html(JST['projects/index'](data));
+    });
     return this;
   },
 

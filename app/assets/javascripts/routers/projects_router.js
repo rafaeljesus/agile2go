@@ -1,7 +1,7 @@
 App.Routers.Projects = Support.SwappingRouter.extend({
-  initialize : function(collection){
+  initialize : function(){
     this.el = $('#projects');
-    this.collection = collection;
+    this.collection = new App.Collections.Projects();
   },
 
   routes : {
