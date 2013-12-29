@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  respond_to :json, :html
+  respond_to :html, :json
 
   def index
     @projects = Project.all
@@ -19,17 +19,17 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new project_params
-    flash[:notice] = 'Project was successfully created' if @project.save
+    @project.save
     respond_with @project
   end
 
   def update
-    flash[:notice] = 'Project was successfully updated' if @project.update project_params
+    @project.update project_params
     respond_with @project
   end
 
   def destroy
-    flash[:notice] = 'Project was successfully destroyed' if @project.destroy
+    @project.destroy
     respond_with @project
   end
 

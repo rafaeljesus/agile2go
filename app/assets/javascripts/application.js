@@ -5,6 +5,7 @@
 //= require backbone-support
 //= require handlebars
 //= require app
+//= require utils
 //= require jquery.simple-text-rotator
 //= require_tree ../templates
 //= require_tree ./models
@@ -13,12 +14,3 @@
 //= require_tree ./routers
 //= require_tree .
 //= require semantic-ui
-
-$('.ui.dropdown').dropdown();
-$('.ui.checkbox').checkbox();
-$('.ui.popup').popup();
-$(".rotate").textrotator({
-  animation: "dissolve",
-  separator: ",",
-  speed: 6000
-});

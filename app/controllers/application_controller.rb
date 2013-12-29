@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
   def require_no_authentication
     redirect_to root_path if user_signed_in?
   end
+
+  def default_serializer_options
+    {root: false}
+  end
 end

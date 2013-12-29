@@ -1,0 +1,54 @@
+<div class="ui one column page grid">
+  <div class="ui grid">
+    <div class="row">
+      <div class="four wide column"></div>
+      <div class="eight wide column">
+        <div class="ui attached info message">
+          <div class="header">
+            Have you heard about our mailing list?
+          </div>
+          <p>Get all the best inventions in your e-mail every day. Register your company now!</p>
+        </div>
+        <div class="ui form attached fluid segment">
+          <form accept-charset="UTF-8" action="/projects" method="post">
+            <div class="field">
+              <label>Name</label>
+              <div class="ui left labeled icon input">
+                <input type="text" name="project[name]" placeholder="Name">
+                <div class="ui corner label">
+                  <i class="icon asterisk"></i>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label>Company</label>
+              <div class="ui left labeled icon input">
+                <input type="text" name="project[company]" placeholder="Company">
+                <div class="ui corner label">
+                  <i class="icon asterisk"></i>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label>Description</label>
+              <div class="ui left labeled icon input">
+                <textarea cols="40" rows="20" name="project[description]" placeholder="Description"></textarea>
+                <div class="ui corner label">
+                  <i class="icon asterisk"></i>
+                </div>
+              </div>
+            </div>
+            <div class="inline field">
+              <div class="ui checkbox">
+                <input type="checkbox">
+                <label>I agree to the Terms and Conditions</label>
+              </div>
+            </div>
+            <input class="ui green submit button large right floated" type="submit" value="Submit">
+            <a href="/projects" class="ui right large floated button">Back</a>
+          <form>
+        <div>
+      </div>
+    </div>
+  </div>
+</div>
