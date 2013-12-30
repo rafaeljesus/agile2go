@@ -1,10 +1,10 @@
 App.Utils = (function(){
 
-  Utils = function(){
-    Utils.prototype.initialize();
+  function Utils(){
+    initialize();
   }
 
-  Utils.prototype.initialize = function(){
+  var initialize = function(){
     $('.ui.dropdown').dropdown();
     $('.ui.checkbox').checkbox();
     $('.ui.popup').popup();
@@ -14,5 +14,7 @@ App.Utils = (function(){
       speed: 6000
     });
   };
+
+  return Utils;
 
 })();

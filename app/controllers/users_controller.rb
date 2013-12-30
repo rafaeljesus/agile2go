@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  respond_to :json, :html
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  respond_to :json, :html
 
   def index
     @users = User.all

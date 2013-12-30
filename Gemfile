@@ -7,6 +7,7 @@ gem 'backbone-on-rails'
 gem 'backbone-support'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
+gem "select2-rails"
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'active_model_serializers'
 gem 'bcrypt-ruby', '~> 3.0.0'

@@ -19,8 +19,13 @@ App.Routers.Projects = Support.SwappingRouter.extend({
   },
 
   new : function(){
-    var view = new App.Views.ProjectForm();
-    this.swap(view);
+    var self = this,
+        users = new App.Collections.Users();
+    users.fetch().done(function(resp){
+      users.reset(resp);
+      var view = new App.Views.ProjectForm({ users: users });
+      self.swap(view);
+    });
   },
 
   edit : function(id){

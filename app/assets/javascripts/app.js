@@ -4,7 +4,8 @@ window.App = {
   Views: {},
   Routers: {},
   initialize: function() {
-    new App.Routers.Projects();
+    new this.Utils();
+    new this.Routers.Projects();
     if (!Backbone.history.started) {
       Backbone.history.start({ pushState: true });
       Backbone.history.started = true;

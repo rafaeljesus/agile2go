@@ -1,6 +1,7 @@
 /*
  *= require_self
  *= require simpletextrotator
+ *= require select2
  *= require_tree .
  */
 
@@ -14,6 +15,12 @@ body {
 a {
   color: white;
   text-decoration: none;
+}
+
+.select2-input {
+  width: 475px !important;
+  margin: 5px 0 !important;
+  background-color: #FFFFFF !important;
 }
 
 .edit-button {

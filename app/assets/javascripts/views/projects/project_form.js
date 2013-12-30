@@ -1,8 +1,9 @@
 App.Views.ProjectForm = Backbone.View.extend({
   el: '#form-project',
 
-  initialize: function(){
+  initialize: function(options){
     _.bindAll(this, 'render', 'saved');
+    this.users = (options.users === undefined) ? this.users = this.model.user : this.users = options.users;
     if (this.model === undefined) this.newTask();
   },
 
@@ -11,8 +12,13 @@ App.Views.ProjectForm = Backbone.View.extend({
   },
 
   render: function(){
-    this.$el.html(JST['projects/new'](this.model.toJSON()));
+    this.renderTemplate();
+    this.$('select').select2({ placeholder: "Select a User" });
     return this;
+  },
+
+  renderTemplate: function(){
+    this.$el.html(JST['projects/form']({ self: this.model.toJSON(), users: this.users.toJSON() }));
   },
 
   newTask: function(){
