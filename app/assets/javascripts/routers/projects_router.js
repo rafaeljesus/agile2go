@@ -11,21 +11,25 @@ App.Routers.Projects = Support.SwappingRouter.extend({
   },
 
   index : function(){
-    var view = new App.Views.ProjectsIndex({ collection : this.collection });
-    this.swap(view);
+    var self = this;
+    self.collection.fetch().done(function(data){
+      var view = new App.Views.ProjectsIndex({ collection : data });
+      self.swap(view);
+    });
   },
 
   new : function(){
-    var view = new App.Views.ProjectsNew();
+    var view = new App.Views.ProjectForm();
     this.swap(view);
   },
 
   edit : function(id){
-    // var collection = new App.Collections.Projects();
-    // collection.reset(collection);
-    // project = collection.get(id);
-    var view = new App.Views.ProjectEdit({ id : id });
-    this.swap(view);
+    var self = this;
+    self.collection.fetch().done(function(project){
+      var model = self.collection.findWhere({ id: project[0].id }),
+          view = new App.Views.ProjectForm({ model: model });
+      self.swap(view);
+    });
   }
 
 });

@@ -1,12 +1,13 @@
 App.Views.ProjectEdit = Backbone.View.extend({
-  el : '#edit-project',
+  el : '#new-project',
+
+  initialize : function(){
+    _.bindAll(this, 'render')
+  },
 
   events : {
     'submit' : 'update'
   },
 
-  initialize : function(){
-    _.bindAll(this, 'render')
-  }
 
 });
