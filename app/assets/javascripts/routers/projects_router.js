@@ -12,8 +12,8 @@ App.Routers.Projects = Support.SwappingRouter.extend({
 
   index : function(){
     var self = this;
-    self.collection.fetch().done(function(data){
-      var view = new App.Views.ProjectsIndex({ collection : data });
+    self.collection.fetch().done(function(resp){
+      var view = new App.Views.ProjectsIndex({ collection : resp });
       self.swap(view);
     });
   },
@@ -23,16 +23,18 @@ App.Routers.Projects = Support.SwappingRouter.extend({
         users = new App.Collections.Users();
     users.fetch().done(function(resp){
       users.reset(resp);
-      var view = new App.Views.ProjectForm({ users: users });
+      var view = new App.Views.ProjectNew({ users: users });
       self.swap(view);
     });
   },
 
   edit : function(id){
     var self = this;
-    self.collection.fetch().done(function(project){
-      var model = self.collection.findWhere({ id: project[0].id }),
-          view = new App.Views.ProjectForm({ model: model });
+    $.getJSON("/projects/" + id  + "/edit").done(function(json){
+      var users = new App.Collections.Users(),
+          model = new App.Models.Project(json[0]);
+      users.reset(json[1]);
+      var view = new App.Views.ProjectEdit({ model: model, users: users });
       self.swap(view);
     });
   }

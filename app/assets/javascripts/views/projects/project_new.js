@@ -1,10 +1,10 @@
-App.Views.ProjectForm = Backbone.View.extend({
+App.Views.ProjectNew = Backbone.View.extend({
   el: '#form-project',
 
   initialize: function(options){
     _.bindAll(this, 'render', 'saved');
-    this.users = (options.users === undefined) ? this.users = this.model.user : this.users = options.users;
-    if (this.model === undefined) this.newTask();
+    this.users = options.users;
+    this.newTask();
   },
 
   events: {
@@ -13,7 +13,7 @@ App.Views.ProjectForm = Backbone.View.extend({
 
   render: function(){
     this.renderTemplate();
-    this.$('select').select2({ placeholder: "Select a User" });
+    this.select2();
     return this;
   },
 
@@ -45,8 +45,12 @@ App.Views.ProjectForm = Backbone.View.extend({
      this.savedMsg();
   },
 
+  select2: function(){
+    this.$('select').select2({ placeholder: 'Select a User' });
+  },
+
   savedMsg: function(){
-     var text = 'Project was successfully saved';
+     var text = 'Project was successfully created';
      $('#messages')
        .show()
        .html(JST['messages']({ type : 'Success', color : 'blue', text : text }))

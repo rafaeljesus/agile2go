@@ -14,6 +14,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @project = Project.find(params[:id])
+    @users = User.all
+    respond_with @project do |format|
+      format.json { render json: [@project, @users] }
+    end
   end
 
   def create
