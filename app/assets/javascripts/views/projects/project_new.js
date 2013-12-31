@@ -36,7 +36,16 @@ App.Views.ProjectNew = Backbone.View.extend({
     var name = this.$("input[name='project[name]']").val(),
         description = this.$("textarea[name='project[description]']").val(),
         company = this.$("input[name='project[company]']").val();
-    this.model.set({ name: name, description: description, company: company });
+    this.model.set({ name: name, description: description, company: company, users: this._selectedUsers() });
+  },
+
+  _selectedUsers: function(){
+    var userIds = [],
+        users = this.$('select').find('option:selected');
+    $.each(users, function(i, user){
+        userIds.push(user.value);
+    });
+    return userIds;
   },
 
   saved: function() {
@@ -50,11 +59,9 @@ App.Views.ProjectNew = Backbone.View.extend({
   },
 
   savedMsg: function(){
-     var text = 'Project was successfully created';
-     $('#messages')
-       .show()
-       .html(JST['messages']({ type : 'Success', color : 'blue', text : text }))
-       .fadeOut(4000);
+     var message = 'Project was successfully created',
+         flash = new FlashMessages({ message: message });
+     flash.success();
   }
 
 });

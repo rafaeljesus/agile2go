@@ -2,7 +2,7 @@ App.Views.ProjectEdit = Backbone.View.extend({
   el: '#form-project',
 
   initialize : function(options){
-    _.bindAll(this, 'render');
+    _.bindAll(this, 'render', 'saved');
     this.model = options.model;
     this.users = options.users;
   },
@@ -36,25 +36,22 @@ App.Views.ProjectEdit = Backbone.View.extend({
   },
 
   saved: function() {
-     this.newTask();
-     this.render();
-     this.updatedMsg();
+     this.projectsPath();
   },
 
-  newTask: function(){
-    this.model = new App.Models.Project();
+  projectsPath: function(){
+    window.location.href = '/projects';
   },
 
   addSelect2: function(){
     this.$('select').select2({ placeholder: 'Select a User' });
   },
 
+  // not used yet
   updatedMsg: function(){
-     var text = 'Project was successfully updated';
-     $('#messages')
-       .show()
-       .html(JST['messages']({ type : 'Success', color : 'blue', text : text }))
-       .fadeOut(4000);
+     var message = 'Project was successfully updated',
+         flash = new App.Views.FlashMessages({ message: message });
+     flash.success();
   }
 
 });

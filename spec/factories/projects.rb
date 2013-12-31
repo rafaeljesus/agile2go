@@ -3,8 +3,7 @@
 FactoryGirl.define do
   factory :project do
     name "MyString"
-    description "MyString"
     company "MyString"
-    user nil
+    description "MyText"
   end
 end
