@@ -5,31 +5,30 @@ App.Views.ProjectsIndex = Support.CompositeView.extend({
   },
 
   events: {
-    'click .remove' : 'remove',
+    'click .remove' : 'delete',
   },
 
   render: function(){
-    this.$el.html(JST['projects/index'](this.collection));
+    this.$el.append(JST['projects/index'](this.collection.toJSON()));
     return this;
   },
 
-  remove: function(el){
-    var $i = $(el.target),
+  delete: function(e){
+    e.preventDefault();
+    var $i = $(e.target),
         id = $i.closest('a').attr('id'),
-        self = this;
+        self = this,
+        model;
     $i.closest('tr').remove();
-    var model = self.collection.get({ id: id });
+    model = self.collection.get({ id: id });
     model.destroy().done(function(){
       self.deleted();
     });
   },
 
   deleted: function(){
-     var text = 'Project was successfully deleted';
-     $('#messages')
-       .show()
-       .html(JST['messages']({ type : 'Success', color : 'blue', text : text }))
-       .fadeOut(4000);
+     var message = 'Project was successfully deleted';
+     new FlashMessages({ message: message }).success();
   },
 
   addPrettyDateHelper: function() {

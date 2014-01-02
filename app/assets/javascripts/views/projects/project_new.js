@@ -1,6 +1,4 @@
 App.Views.ProjectNew = Backbone.View.extend({
-  el: '#form-project',
-
   initialize: function(options){
     _.bindAll(this, 'render', 'saved');
     this.users = options.users;
@@ -8,7 +6,7 @@ App.Views.ProjectNew = Backbone.View.extend({
   },
 
   events: {
-    'submit' : 'save'
+    'submit': 'save'
   },
 
   render: function(){
@@ -39,6 +37,7 @@ App.Views.ProjectNew = Backbone.View.extend({
     this.model.set({ name: name, description: description, company: company, users: this._selectedUsers() });
   },
 
+  // FIXME
   _selectedUsers: function(){
     var userIds = [],
         users = this.$('select').find('option:selected');
@@ -59,9 +58,8 @@ App.Views.ProjectNew = Backbone.View.extend({
   },
 
   savedMsg: function(){
-     var message = 'Project was successfully created',
-         flash = new FlashMessages({ message: message });
-     flash.success();
+     var message = 'Project was successfully created';
+     new FlashMessages({ message: message }).success();
   }
 
 });

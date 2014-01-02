@@ -7,7 +7,7 @@ window.App = {
     new this.Utils();
     new this.Routers.Projects();
     if (!Backbone.history.started) {
-      Backbone.history.start({ pushState: true });
+      Backbone.history.start();
       Backbone.history.started = true;
     }
   }

@@ -1,19 +1,20 @@
 App.Routers.Projects = Support.SwappingRouter.extend({
   initialize : function(){
-    this.el = $('#projects');
+    this.el = $('#container');
     this.collection = new App.Collections.Projects();
   },
 
   routes : {
     "projects" : "index",
-    "projects/new" : "new",
+    "new" : "new",
     "projects/:id/edit" : 'edit'
   },
 
   index : function(){
     var self = this;
     self.collection.fetch().done(function(resp){
-      var view = new App.Views.ProjectsIndex({ collection : resp });
+      self.collection.reset(resp);
+      var view = new App.Views.ProjectsIndex({ collection : self.collection });
       self.swap(view);
     });
   },

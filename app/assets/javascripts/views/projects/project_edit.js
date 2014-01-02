@@ -1,6 +1,4 @@
 App.Views.ProjectEdit = Backbone.View.extend({
-  el: '#form-project',
-
   initialize : function(options){
     _.bindAll(this, 'render', 'saved');
     this.model = options.model;
@@ -13,7 +11,7 @@ App.Views.ProjectEdit = Backbone.View.extend({
 
   render: function(){
     this.renderTemplate();
-    this.addSelect2();
+    this.select2();
     return this;
   },
 
@@ -40,18 +38,11 @@ App.Views.ProjectEdit = Backbone.View.extend({
   },
 
   projectsPath: function(){
-    window.location.href = '/projects';
+    window.location.href = '/#projects';
   },
 
-  addSelect2: function(){
+  select2: function(){
     this.$('select').select2({ placeholder: 'Select a User' });
-  },
-
-  // not used yet
-  updatedMsg: function(){
-     var message = 'Project was successfully updated',
-         flash = new App.Views.FlashMessages({ message: message });
-     flash.success();
   }
 
-});
+ });
