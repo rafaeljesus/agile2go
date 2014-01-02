@@ -1,3 +1,12 @@
-App.Models.Project = Backbone.Model.extend({
-  urlRoot: '/projects'
+App.Models.Project = Backbone.RelationalModel.extend({
+  urlRoot: '/projects',
+
+  relations: [{
+    type: Backbone.HasMany,
+    key: 'users',
+    relatedModel: 'App.Models.User',
+    reverseRelation: {
+      key: 'project'
+    }
+  }]
 });

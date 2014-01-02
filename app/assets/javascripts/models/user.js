@@ -1,3 +1,3 @@
-App.Models.User = Backbone.Model.extend({
+App.Models.User = Backbone.RelationalModel.extend({
   urlRoot: '/users'
 });

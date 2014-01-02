@@ -3,9 +3,9 @@
 //= require underscore
 //= require backbone
 //= require backbone-support
+//= require backbone-relational
 //= require handlebars
 //= require app
-//= require utils
 //= require semantic-ui
 //= require select2
 //= require jquery.simple-text-rotator

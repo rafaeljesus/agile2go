@@ -34,17 +34,17 @@ App.Views.ProjectNew = Backbone.View.extend({
     var name = this.$("input[name='project[name]']").val(),
         description = this.$("textarea[name='project[description]']").val(),
         company = this.$("input[name='project[company]']").val();
-    this.model.set({ name: name, description: description, company: company, users: this._selectedUsers() });
+    this.model.get('users').add(this._selectedUsers());
+    this.model.set({ name: name, description: description, company: company });
   },
 
-  // FIXME
   _selectedUsers: function(){
-    var userIds = [],
-        users = this.$('select').find('option:selected');
-    $.each(users, function(i, user){
-        userIds.push(user.value);
+    var users = [],
+        elem = this.$('select').find('option:selected');
+    _.each(elem, function(el, i){
+        users.push({ id: el.value, name: el.text });
     });
-    return userIds;
+    return users;
   },
 
   saved: function() {
