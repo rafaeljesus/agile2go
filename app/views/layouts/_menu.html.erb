@@ -20,13 +20,15 @@
     <% unless user_signed_in? %>
       <div class="item">
         <div class="ui teal button">
-          <i class="sign in icon"></i><%= link_to 'Sign In', new_user_sessions_path %>
+          <i class="sign in icon"></i>
+          <a href="#auth/sign_in">Sign In</a>
         </div>
       </div>
     <% else %>
       <div class="item">
         <div class="ui red button">
-          <i class="sign out icon"></i><%= link_to 'Logout', user_sessions_path, method: :delete %>
+          <i class="sign out icon"></i>
+          <%= link_to 'Logout', user_sessions_path, method: :delete %>
         </div>
       </div>
     <% end %>
