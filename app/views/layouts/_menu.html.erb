@@ -1,7 +1,7 @@
 <div class="ui large menu inverted">
   <div class="item">
     <div class="brand">
-      <a href="/">Agile2G<i class="time icon"></i>
+      <a href="#">Agile2G<i class="time icon"></i>
       </a>
     </div>
   </div>
@@ -21,14 +21,14 @@
       <div class="item">
         <div class="ui teal button">
           <i class="sign in icon"></i>
-          <a href="#auth/sign_in">Sign In</a>
+          <%= link_to 'SIGN IN', new_user_sessions_path %>
         </div>
       </div>
     <% else %>
       <div class="item">
         <div class="ui red button">
           <i class="sign out icon"></i>
-          <%= link_to 'Logout', user_sessions_path, method: :delete %>
+          <%= link_to 'SIGN OUT', user_sessions_path, method: :delete %>
         </div>
       </div>
     <% end %>

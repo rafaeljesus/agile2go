@@ -1,7 +1,7 @@
 App.Views.ProjectsIndex = Support.CompositeView.extend({
   initialize: function(){
-   _.bindAll(this, 'render');
-   this.addPrettyDateHelper();
+    _.bindAll(this, 'render', 'deleted');
+    this.addPrettyDateHelper();
   },
 
   events: {
@@ -16,19 +16,16 @@ App.Views.ProjectsIndex = Support.CompositeView.extend({
   delete: function(e){
     e.preventDefault();
     var $i = $(e.target),
-        id = $i.closest('a').attr('id'),
-        self = this,
-        model;
+        id = $i.closest('a').attr('id');
     $i.closest('tr').remove();
-    model = self.collection.get({ id: id });
-    model.destroy().done(function(){
-      self.deleted();
-    });
+    this.model = this.collection.get({ id: id });
+    this.model.destroy({ success: this.deleted() });
+    return false;
   },
 
   deleted: function(){
-     var message = 'Project was successfully deleted';
-     new FlashMessages({ message: message }).success();
+    var message = 'Project was successfully deleted';
+    new FlashMessages({ message: message }).success();
   },
 
   addPrettyDateHelper: function() {

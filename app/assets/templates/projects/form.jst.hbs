@@ -40,7 +40,7 @@
             </div>
             <div class="field">
               <label>Users</label>
-              <select multiple>
+              <select multiple name="project[user_ids][]">
                 {{#each users}}
                   <option value="{{this.id}}">{{this.name}}</opition>
                 {{/each}}

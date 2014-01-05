@@ -1,16 +1,10 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  respond_to :json, :html
+  respond_to :json
 
   def index
     @projects = Project.all
     respond_with @projects
-  end
-
-  def show
-  end
-
-  def new
   end
 
   def edit

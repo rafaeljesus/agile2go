@@ -1,4 +1,4 @@
-App.Routers.Projects = Support.SwappingRouter.extend({
+App.Routers.Site = Support.SwappingRouter.extend({
   initialize: function(){
     this.el = $('#container');
   },
@@ -8,8 +8,8 @@ App.Routers.Projects = Support.SwappingRouter.extend({
   },
 
   index: function(){
-    var view = new App.Views.SiteIndex();
-    this.swap(view);
+    // var view = new App.Views.SiteIndex();
+    // this.swap(view);
   }
 
 });
