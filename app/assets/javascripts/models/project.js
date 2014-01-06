@@ -1,13 +1,24 @@
-App.Models.Project = Backbone.RelationalModel.extend({
+App.Models.Project = Backbone.Model.extend({
   urlRoot: '/projects',
-  // idAttribute: '_id',
 
-  relations: [{
-    type: Backbone.HasMany,
-    key: 'users',
-    relatedModel: 'App.Models.User',
-    // includeInJSON: Backbone.Model.prototype.idAttribute,
-    collectionType: 'App.Collections.Users'
-  }]
+  initialize: function(){
+    this.on('change:assigned_users', this.parseUsers());
+    this.parseUsers();
+  },
+
+  parseUsers: function(){
+    var assignedAttr = this.get('assigned_users');
+    this.assignedUsers = new App.Collections.Users(assignedAttr);
+  },
+
+  assignments_attributes: function(){
+    return this.assignedUsers.map(function(user) { return { user_id: user.id } });
+  },
+
+  toJSON: function() {
+    var json = _.clone(this.attributes);
+    json.assignments_attributes = this.assignments_attributes();
+    return json;
+  }
 
 });

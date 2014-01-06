@@ -34,7 +34,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project)
-      .permit(:name, :description, :company, user_ids: [])
+    params.require(:project).permit(:name, :description, :company).merge(assignments_attributes: params[:assignments_attributes])
   end
 end

@@ -1,11 +1,4 @@
-App.Models.User = Backbone.RelationalModel.extend({
+App.Models.User = Backbone.Model.extend({
   urlRoot: '/users',
-  // idAttribute: '_id',
-
-  relations: [{
-    type: Backbone.HasOne,
-    key: 'project',
-    relatedModel: 'App.Models.Project'
-  }]
 
 });

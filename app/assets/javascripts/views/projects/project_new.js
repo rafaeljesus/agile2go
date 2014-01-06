@@ -34,8 +34,8 @@ App.Views.ProjectNew = Backbone.View.extend({
     var name = this.$("input[name='project[name]']").val(),
         description = this.$("textarea[name='project[description]']").val(),
         company = this.$("input[name='project[company]']").val();
-    this.model.get('users').add(this.assignedUsers());
     this.model.set({ name: name, description: description, company: company });
+    this.model.assignedUsers = new App.Collections.Users(this.assignedUsers());
   },
 
   assignedUsers: function(){

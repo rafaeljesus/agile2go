@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
 
-  belongs_to :project
+  has_many :assignments
+  has_many :projects, through: :assignments
+  has_many :assigned_projects, through: :assignments, class_name: "Project", source: :project
 
   validates_presence_of :email, :name
   validates_format_of :email, with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
