@@ -7,14 +7,8 @@ class ApplicationController < ActionController::Base
     UserSession.new(session)
   end
 
-  def require_authentication
-    unless user_signed_in?
-      redirect_to new_user_sessions_path, alert: t('flash.alert.needs_login')
-    end
-  end
-
-  def require_no_authentication
-    redirect_to root_path if user_signed_in?
+  def authorize
+    redirect_to new_user_sessions_path unless user_signed_in?
   end
 
   def default_serializer_options

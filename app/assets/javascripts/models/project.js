@@ -2,12 +2,12 @@ App.Models.Project = Backbone.Model.extend({
   urlRoot: '/projects',
 
   initialize: function(){
-    this.on('change:assigned_users', this.parseUsers());
+    this.on('change:assignedUsers', this.parseUsers());
     this.parseUsers();
   },
 
   parseUsers: function(){
-    var assignedAttr = this.get('assigned_users');
+    var assignedAttr = this.get('assignedUsers');
     this.assignedUsers = new App.Collections.Users(assignedAttr);
   },
 

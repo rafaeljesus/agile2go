@@ -1,4 +1,5 @@
 class UserSessionsController < ApplicationController
+  before_filter authorize: [:destroy]
   respond_to :json, :html
 
   def new
@@ -13,6 +14,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     user_session.destroy
-    respond_with user_session, location: '/'
+    respond_with user_session, location: root_path
   end
 end

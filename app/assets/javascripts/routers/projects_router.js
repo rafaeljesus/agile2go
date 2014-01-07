@@ -6,7 +6,7 @@ App.Routers.Projects = Support.SwappingRouter.extend({
 
   routes : {
     "projects" : "index",
-    "new" : "new",
+    "project/new" : "new",
     "projects/:id/edit" : 'edit'
   },
 
@@ -14,7 +14,7 @@ App.Routers.Projects = Support.SwappingRouter.extend({
     var self = this;
     self.collection.fetch().done(function(resp){
       self.collection.reset(resp);
-      if (self.collection.length == 0) { window.location.hash = '#new'; return; }
+      if (self.collection.length == 0) { window.location.hash = '#/project/new'; return; }
       var view = new App.Views.ProjectsIndex({ collection : self.collection });
       self.swap(view);
     });

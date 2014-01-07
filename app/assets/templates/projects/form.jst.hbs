@@ -40,20 +40,14 @@
             </div>
             <div class="field">
               <label>Users</label>
-              <select multiple name="users[][id]">
+              <select multiple>
                 {{#each users}}
                   <option value="{{this.id}}">{{this.name}}</opition>
                 {{/each}}
               </select>
             </div>
-            <div class="inline field">
-              <div class="ui checkbox">
-                <input type="checkbox">
-                <label>I agree to the Terms and Conditions</label>
-              </div>
-            </div>
             <input class="ui green submit button large right floated" type="submit" value="Submit">
-            <a href="#projects" class="ui right large floated button">Back</a>
+            <a href="#/projects" class="ui right large floated button">Back</a>
           <form>
         <div>
       </div>
