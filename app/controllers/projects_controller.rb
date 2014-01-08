@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
 
   def edit
     @users = User.all
-    respond_with [@project, @users]
+    respond_with [@project, @users], root: false
   end
 
   def create

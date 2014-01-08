@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     redirect_to new_user_sessions_path unless user_signed_in?
   end
 
-  def default_serializer_options
-    {root: false}
-  end
+  # def default_serializer_options
+  #   {root: false}
+  # end
 end
