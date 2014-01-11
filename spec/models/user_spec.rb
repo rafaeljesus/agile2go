@@ -8,18 +8,10 @@ describe User do
     is_master = ability.can? :manage, :all
     expect(is_master).to be true
   end
-
-  it 'should be a po' do
-    pending
-  end
-
-  it 'should be a team' do
-    pending
-  end
 end
 
 describe User do
-  context 'name' do
+  context '#name' do
     it { should validate_uniqueness_of(:name) }
     it { should validate_presence_of(:name) }
     it { should ensure_length_of(:name)
@@ -29,7 +21,7 @@ describe User do
       .with_long_message(/maximum/) }
   end
 
-  context 'email' do
+  context '#email' do
     it { should validate_uniqueness_of(:email) }
     it { should validate_presence_of(:email) }
     it { should allow_value("a@b.com").for(:email) }
@@ -40,9 +32,10 @@ describe User do
     it { should_not allow_value("blah.user@bla.").for(:email) }
   end
 
-  context 'password' do
+  context '#password' do
     it { should validate_presence_of(:password) }
     it { should validate_confirmation_of(:password) }
+    it { should have_secure_password }
     it { should ensure_length_of(:password).is_at_least(8).with_short_message(/8 is the minimum allowed/) }
   end
 end

@@ -1,8 +1,6 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :assignment do
-    project nil
-    user nil
+    association :project, factory: :project, strategy: :build
+    association :user, factory: :user, strategy: :build
   end
 end
