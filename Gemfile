@@ -7,12 +7,13 @@ gem 'backbone-on-rails'
 gem 'backbone-support'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
-gem "select2-rails"
+gem 'select2-rails'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'active_model_serializers'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'puma'
-gem "rolify"
+gem 'rolify'
+gem 'cancan'
 
 group :production do
   gem 'pg'
@@ -20,12 +21,12 @@ group :production do
 end
 
 group :test do
-  gem 'capybara', '>= 2.0.2'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
 end
 
 group :development, :test do
+  gem 'capybara', '>= 2.0.2'
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'

@@ -1,6 +1,6 @@
 App.Views.ProjectEdit = Backbone.View.extend({
   initialize : function(options){
-    _.bindAll(this, 'render', 'saved');
+    _.bindAll(this, 'render', 'saved', 'notSaved');
     this.model = options.model;
     this.users = options.users;
   },
@@ -30,7 +30,7 @@ App.Views.ProjectEdit = Backbone.View.extend({
   update: function(e){
     e.preventDefault();
     this.commit();
-    this.model.save({}, { success: this.saved });
+    this.model.save({}, { success: this.saved, error: this.notSaved });
     return false;
   },
 
@@ -55,13 +55,23 @@ App.Views.ProjectEdit = Backbone.View.extend({
     });
   },
 
-
-  saved: function() {
+  saved: function(model, response, options) {
      this.projectsPath();
+     this.savedMsg();
+  },
+
+  notSaved: function(model, xhr, options){
+    var errors = JSON.parse(xhr.responseText).errors;
+    new FlashMessages({ message: errors }).error();
   },
 
   projectsPath: function(){
     window.location.href = '/#/projects';
+  },
+
+  savedMsg: function(){
+     var message = 'Project was successfully updated';
+     new FlashMessages({ message: message }).success();
   },
 
   select2: function(){

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  rolify
 
   has_many :assignments
   has_many :projects, through: :assignments

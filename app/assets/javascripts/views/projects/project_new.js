@@ -1,6 +1,6 @@
 App.Views.ProjectNew = Backbone.View.extend({
   initialize: function(options){
-    _.bindAll(this, 'render', 'saved');
+    _.bindAll(this, 'render', 'saved', 'notSaved');
     this.users = options.users;
     this.newTask();
   },
@@ -26,7 +26,7 @@ App.Views.ProjectNew = Backbone.View.extend({
   save: function(e){
     e.preventDefault();
     this.commit();
-    this.model.save({}, { success: this.saved });
+    this.model.save({}, { success: this.saved, error: this.notSaved });
     return false;
   },
 
@@ -51,14 +51,22 @@ App.Views.ProjectNew = Backbone.View.extend({
     });
   },
 
-  saved: function() {
-     this.newTask();
-     this.render();
+  saved: function(model, response, options) {
+     this.projectsPath();
      this.savedMsg();
+  },
+
+  notSaved: function(model, xhr, options){
+    var errors = JSON.parse(xhr.responseText).errors;
+    new FlashMessages({ message: errors }).error();
   },
 
   select2: function(){
     this.$('select').select2({ placeholder: 'Select a User' });
+  },
+
+  projectsPath: function(){
+    window.location.href = '/#/projects';
   },
 
   savedMsg: function(){
