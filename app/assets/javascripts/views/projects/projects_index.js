@@ -15,12 +15,16 @@ App.Views.ProjectsIndex = Support.CompositeView.extend({
 
   delete: function(e){
     e.preventDefault();
-    var $i = $(e.target),
-        id = $i.closest('a').attr('id');
-    $i.closest('tr').remove();
+    this.removeDom(e, id);
     this.model = this.collection.get({ id: id });
     this.model.destroy({ success: this.deleted() });
     return false;
+  },
+
+  removeDom: function(e, id){
+    var $i = $(e.target),
+        id = $i.closest('a').attr('id');
+    $i.closest('tr').remove();
   },
 
   deleted: function(){
