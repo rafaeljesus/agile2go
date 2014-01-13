@@ -1,4 +1,4 @@
-App.Views.ProjectEdit = Backbone.View.extend({
+App.Views.ProjectEdit = Support.CompositeView.extend({
   initialize : function(options){
     _.bindAll(this, 'render', 'saved', 'notSaved');
     this.model = options.model;

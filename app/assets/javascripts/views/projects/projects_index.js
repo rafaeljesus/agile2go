@@ -1,6 +1,7 @@
 App.Views.ProjectsIndex = Support.CompositeView.extend({
   initialize: function(){
     _.bindAll(this, 'render', 'deleted');
+    this.bindTo(this.collection, 'add', this.render);
     this.addPrettyDateHelper();
   },
 
@@ -9,7 +10,7 @@ App.Views.ProjectsIndex = Support.CompositeView.extend({
   },
 
   render: function(){
-    this.$el.append(JST['projects/index'](this.collection.toJSON()));
+    this.$el.html(JST['projects/index'](this.collection.toJSON()));
     return this;
   },
 
@@ -34,6 +35,7 @@ App.Views.ProjectsIndex = Support.CompositeView.extend({
 
   addPrettyDateHelper: function() {
     Handlebars.registerHelper('prettyDate', function(created_at) {
+      if (created_at == undefined) return;
         return $.timeago(created_at);
     });
   }

@@ -3,7 +3,7 @@
     <div class="row">
       <div class="six wide column"></div>
       <div class="eight wide column" style="margin-top: 20px;">
-        <a class="ui teal icon huge button" href="#/project/new">Add New Project</a>
+        <a class="ui teal icon huge button" href="#/projects/new">Add New Project</a>
       </div>
     </div>
     <div class="row">
@@ -21,15 +21,15 @@
       <tbody>
       {{#each this}}
         <tr>
-          <td>{{name}}</td>
-          <td>{{company}}</td>
-          <td>{{description}}</td>
-          <td>{{prettyDate created_at}}</td>
+          <td>{{ name }}</td>
+          <td>{{ company }}</td>
+          <td>{{ description }}</td>
+          <td>{{ prettyDate created_a t}}</td>
           <td>
-            <a class="edit-button" href="#/projects/{{id}}/edit">
+            <a class="edit-button" href="#/projects/{{ id }}/edit">
               <i class="edit large icon"></i>
             </a>
-            <a id="{{id}}" class="edit-button" href="#">
+            <a id="{{ id }}" class="edit-button" href="#">
               <i class="icon large remove"></i>
             </a>
           </td>

@@ -1,8 +1,9 @@
-App.Views.ProjectNew = Backbone.View.extend({
+App.Views.ProjectNew = Support.CompositeView.extend({
   initialize: function(options){
     _.bindAll(this, 'render', 'saved', 'notSaved');
     this.users = options.users;
     this.newTask();
+    this.bindTo(this.users, 'add', this.render);
   },
 
   events: {
