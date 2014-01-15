@@ -1,0 +1,36 @@
+<div class="ui large menu inverted">
+  <div class="item">
+    <div class="brand">
+      <a href="#/">Agile2G<i class="time icon"></i>
+      </a>
+    </div>
+  </div>
+  {{#if user_signed_in}}
+    <div class="item">
+      <a href="#/projects">Projects</a>
+    </div>
+  {{/if}}
+  <div class="right menu">
+    <div class="item">
+      <div class="ui icon input">
+        <input type="text" placeholder="Search">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+    {{#if user_signed_in}}
+      <div class="item">
+        <div class="ui red button">
+          <i class="sign out icon"></i>
+          <a href="#/user_sessions/destroy">SIGN OUT</a>
+        </div>
+      </div>
+     {{else}}
+     <div class="item">
+        <div class="ui teal button">
+          <i class="sign in icon"></i>
+          <a href="/user_sessions/new">SIGN IN</a>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+</div>

@@ -9,7 +9,7 @@ class UserSessionsController < ApplicationController
   def create
     @session = UserSession.new(session, params[:user_session])
     @session.authenticate
-    respond_with @session
+    respond_with @session, location: root_path
   end
 
   def destroy

@@ -20,14 +20,13 @@ var App = new (Backbone.View.extend({
     }
   },
 
-  init: function() {
-    new App.semanticUI();
+  init: function(user_session) {
+    var user_session = new App.Models.UserSession(user_session)
+    if (user_session.get('user_signed_in')) new App.Routers.UserSessions({ model: user_session });
+    new App.Views.Menu({ user_session: user_session });
     new App.Routers.Projects({});
+    new App.semanticUI();
     new App.start();
   }
 
 }))({ el: document.body });
-
-$(function(){
-  App.init();
-});

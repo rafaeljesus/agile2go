@@ -4,7 +4,7 @@ App.Views.SiteIndex = Support.CompositeView.extend({
   },
 
   render: function(){
-    this.$el.append(JST['site/index']);
+    this.$el.html(JST['site/index']);
     return this;
   }
 });
