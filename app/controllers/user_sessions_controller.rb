@@ -1,15 +1,11 @@
 class UserSessionsController < ApplicationController
   before_filter authorize: [:destroy]
-  respond_to :json, :html
-
-  def new
-    @session = UserSession.new(session)
-  end
+  respond_to :json
 
   def create
     @session = UserSession.new(session, params[:user_session])
     @session.authenticate
-    respond_with @session, location: root_path
+    respond_with @session
   end
 
   def destroy

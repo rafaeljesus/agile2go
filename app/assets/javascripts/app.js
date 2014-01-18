@@ -4,13 +4,11 @@ var App = new (Backbone.View.extend({
   Views: {},
   Routers: {},
 
-  events: {},
-
   semanticUI: function(){
     $('.ui.dropdown').dropdown();
     $('.ui.checkbox').checkbox();
     $('.ui.popup').popup();
-    $(".rotate").textrotator({ animation: "dissolve", separator: ",", speed: 6000 });
+    $('.rotate').textrotator({ animation: "dissolve", separator: ",", speed: 6000 });
   },
 
   start: function(){
@@ -22,13 +20,12 @@ var App = new (Backbone.View.extend({
 
   init: function() {
     var current_user = new App.Models.CurrentUser({});
-    current_user.fetch({});
     new App.Views.Menu({ current_user: current_user });
     new App.Routers.Site({});
-    new App.Routers.UserRegistrations({});
+    new App.Routers.UserRegistrations({ current_user: current_user });
     new App.Routers.Projects({});
-    new App.semanticUI();
     new App.start();
+    new App.semanticUI();
  }
 
 }))({ el: document.body });

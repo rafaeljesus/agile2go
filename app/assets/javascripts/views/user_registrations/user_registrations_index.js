@@ -1,8 +1,7 @@
 App.Views.UserRegistrations = Support.CompositeView.extend({
-  el: '#container',
-
-  initialize: function(){
-    _.bindAll(this, 'render');
+  initialize: function(options){
+    _.bindAll(this, 'render', 'saved', 'notSaved');
+    this.current_user = options.current_user;
     this.model = new App.Models.UserRegistration({});
   },
 
@@ -31,7 +30,8 @@ App.Views.UserRegistrations = Support.CompositeView.extend({
   },
 
   saved: function(model, response, options) {
-     this.projectsPath();
+     this.current_user.set(model.attributes, { signed_in: true });
+     this.rootPath();
      this.savedMsg();
   },
 
@@ -40,8 +40,8 @@ App.Views.UserRegistrations = Support.CompositeView.extend({
     new FlashMessages({ message: errors }).error();
   },
 
-  projectsPath: function(){
-    window.location.href = '/#/';
+  rootPath: function(){
+    window.location.hash = '/';
   },
 
   savedMsg: function(){

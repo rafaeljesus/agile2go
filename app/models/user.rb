@@ -6,10 +6,10 @@ class User < ActiveRecord::Base
   has_many :assigned_projects, through: :assignments, class_name: "Project", source: :project
 
   validates :email, presence: true, format: { with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/ }
-  validates :name, uniqueness: true, presence: true, length: {
+  validates :name, uniqueness: true, length: {
     minimum: 4, too_short: "%{count} is the minimum allowed",
     maximum: 30, too_large: "%{count} is the maximum allowed" }
-  validates :password, presence: true, length: { minimum: 8, too_short: "%{count} is the minimum allowed" }
+  validates :password, length: { minimum: 8, too_short: "%{count} is the minimum allowed" }
 
   has_secure_password
   before_create :generate_token

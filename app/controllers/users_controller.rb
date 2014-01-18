@@ -1,17 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  respond_to :json, :html
+  respond_to :json
 
   def index
     @users = User.all
     respond_with @users
-  end
-
-  def show
-  end
-
-  def new
-    @user = User.new
   end
 
   def edit
@@ -20,12 +13,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     @user.save
-    respond_with @user, location: root_path
+    respond_with @user
   end
 
   def update
     @user.update user_params
-    respond_with @user, location: users_path
+    respond_with @user
   end
 
   def destroy
@@ -39,6 +32,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email).merge(password: params[:password], password_confirmation: params[:password_confirmation])
   end
 end
