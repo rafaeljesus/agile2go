@@ -21,7 +21,7 @@ var App = new (Backbone.View.extend({
   init: function() {
     var current_user = new App.Models.CurrentUser({});
     new App.Views.Menu({ current_user: current_user });
-    new App.Routers.Site({});
+    new App.Routers.Site({ current_user: current_user });
     new App.Routers.UserRegistrations({ current_user: current_user });
     new App.Routers.Projects({});
     new App.start();

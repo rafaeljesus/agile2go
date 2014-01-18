@@ -30,7 +30,8 @@ App.Views.UserRegistrations = Support.CompositeView.extend({
   },
 
   saved: function(model, response, options) {
-     this.current_user.set(model.attributes, { signed_in: true });
+     this.current_user.set({ signed_in: true });
+     this.current_user.set(model.attributes.user);
      this.rootPath();
      this.savedMsg();
   },
