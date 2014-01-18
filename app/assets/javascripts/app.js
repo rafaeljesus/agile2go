@@ -21,9 +21,11 @@ var App = new (Backbone.View.extend({
   },
 
   init: function() {
-    var user_session = new App.Models.UserSession({});
-    user_session.fetch({});
-    new App.Views.Menu({ user_session: user_session });
+    var current_user = new App.Models.CurrentUser({});
+    current_user.fetch({});
+    new App.Views.Menu({ current_user: current_user });
+    new App.Routers.Site({});
+    new App.Routers.UserRegistrations({});
     new App.Routers.Projects({});
     new App.semanticUI();
     new App.start();

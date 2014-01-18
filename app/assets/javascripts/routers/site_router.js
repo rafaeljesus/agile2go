@@ -4,12 +4,12 @@ App.Routers.Site = Support.SwappingRouter.extend({
   },
 
   routes: {
-    "": "index"
+    '': 'index'
   },
 
   index: function(){
-    // var view = new App.Views.SiteIndex();
-    // this.swap(view);
+    var view = new App.Views.SiteIndex({});
+    this.swap(view);
   }
 
 });

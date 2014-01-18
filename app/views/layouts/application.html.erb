@@ -17,12 +17,6 @@
   <div id="container"></div>
   <br>
   <%= yield %>
-  <script>
-    App.init({
-      current_user: <%= current_user.to_json.html_safe %>,
-      user_signed_in: <%= user_signed_in?.to_json.html_safe %>
-    });
-  </script>
   <%= render 'layouts/footer' %>
 </body>
 </html>
