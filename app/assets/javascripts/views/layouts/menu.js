@@ -4,6 +4,7 @@ App.Views.Menu = Backbone.View.extend({
   initialize: function(options){
     _.bindAll(this, 'render');
     this.user_session = options.user_session
+    this.user_session.on('change', this.render, this);
     this.render();
   },
 

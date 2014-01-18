@@ -1,4 +1,4 @@
-App.Routers.UserSessions = Backbone.Router.extend({
+App.Routers.CurrentUser = Backbone.Router.extend({
   initialize: function(options){
     _.bindAll(this, 'destroy');
     this.model = options.model;
