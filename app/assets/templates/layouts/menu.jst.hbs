@@ -5,7 +5,7 @@
       </a>
     </div>
   </div>
-  {{#if signed_in}}
+  {{#if current_user.signed_in}}
     <div class="item">
       <a href="#/projects">Projects</a>
     </div>
@@ -17,11 +17,11 @@
         <i class="search link icon"></i>
       </div>
     </div>
-    {{#if signed_in}}
+    {{#if current_user.signed_in}}
       <div class="item">
         <div class="ui red button">
           <i class="sign out icon"></i>
-          <a href="#/user_sessions/destroy">SIGN OUT</a>
+          <a href="/#/sessions/destroy">SIGN OUT</a>
         </div>
       </div>
      {{else}}

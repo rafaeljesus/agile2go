@@ -23,6 +23,7 @@ var App = new (Backbone.View.extend({
     new App.Views.Menu({ current_user: current_user });
     new App.Routers.Site({ current_user: current_user });
     new App.Routers.UserRegistrations({ current_user: current_user });
+    new App.Routers.UserSessions({ current_user: current_user });
     new App.Routers.Projects({});
     new App.start();
     new App.semanticUI();

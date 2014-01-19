@@ -6,6 +6,7 @@ App.Views.SiteIndex = Support.CompositeView.extend({
   },
 
   render: function(){
+    console.log('site render');
     if (!this.current_user.get('signed_in')){
       this.renderTemplate();
     } else {
@@ -19,7 +20,7 @@ App.Views.SiteIndex = Support.CompositeView.extend({
   },
 
   renderDashboard: function(){
-    $('.dashboard').highcharts(this.dashboardData());
+    $(this.$el).addClass('dashboard').highcharts(this.dashboardData());
   },
 
   dashboardData: function(){

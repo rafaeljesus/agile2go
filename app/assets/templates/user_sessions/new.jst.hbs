@@ -3,7 +3,7 @@
     <header class="row">
     <div class="sixteen wide column">
       <div class="ui segment">
-        <h1>Sign Up</h1>
+        <h1>Sign In</h1>
       </div>
     </div>
     </header>
@@ -12,14 +12,6 @@
       <div class="eight wide column">
         <div class="ui form segment">
           <form>
-            <div class="field">
-              <label>Name</label>
-              <div class="ui left labeled icon input">
-                <input name="user[name]" placeholder="Name" type="text">
-                <i class="user icon"></i>
-                <div class="ui corner label"><i class="icon asterisk"></i></div>
-              </div>
-            </div>
             <div class="field">
               <label>Email</label>
               <div class="ui left labeled icon input">
@@ -36,21 +28,7 @@
                 <div class="ui corner label"><i class="icon asterisk"></i></div>
               </div>
             </div>
-            <div class="field">
-              <label for="user_password_confirmation">Password confirmation</label>
-              <div class="ui left labeled icon input">
-                <input name="user[password_confirmation]" placeholder="Password Confirmation" type="password">
-                <i class="lock icon"></i>
-                <div class="ui corner label"><i class="icon asterisk"></i></div>
-              </div>
-            </div>
-            <div class="inline field">
-              <div class="ui checkbox">
-                <input type="checkbox">
-                <label>I agree to the Terms and Conditions</label>
-              </div>
-            </div>
-            <input class="ui orange submit button large right floated" name="commit" type="submit" value="Sign Up">
+            <input class="ui orange submit button large right floated" name="commit" type="submit" value="Sign In">
           </form>
           <div class="ui horizontal clearing divider">Or</div>
           <div class="ui fluid large facebook button">
@@ -71,14 +49,18 @@
         <div class="ui segment">
           <div class="row">
             <div class="sixteen wide column">
-              <h1 class="delta">Alredy have an account?</h1>
-              <p>We're happy you like Jarbaz so much, you may want to login!</p>
+              <h1 class="delta">No account yet? Register or try it now</h1>
+              <p>Are you ready to have your menu in all languages you want, on the web and any smartphone? Sign up now to start receiving notifications! Don't want to register yet another account? You can try it!</p>
             </div>
           </div>
           <div class="row">
             <div class="sixteen wide center aligned column">
-              <div class="ui teal button large">
-                <a href="/#/sessions/new">Sign In</a>
+              <div class="ui buttons">
+                <div class="ui button orange large">
+                  <a href="/#/users/new">Sign Up</a>
+                </div>
+                <div class="or"></div>
+                <div class="ui positive button large">Try it</div>
               </div>
             </div>
           </div>
