@@ -17,7 +17,11 @@ App.Views.UserRegistrations = Support.CompositeView.extend({
   save: function(e){
     e.preventDefault();
     this.commit();
-    this.model.save({}, { success: this.saved, error: this.notSaved });
+    if (!this.model.isValid()) {
+      this.formValidationError();
+    } else {
+      this.model.save({}, { success: this.saved, error: this.notSaved });
+    }
     return false;
   },
 
@@ -33,7 +37,7 @@ App.Views.UserRegistrations = Support.CompositeView.extend({
      this.current_user.set({ signed_in: true });
      this.current_user.set(model.attributes.user);
      this.rootPath();
-     this.savedMsg();
+     this.savedSuccess();
   },
 
   notSaved: function(model, xhr, options){
@@ -45,9 +49,14 @@ App.Views.UserRegistrations = Support.CompositeView.extend({
     window.location.hash = '/';
   },
 
-  savedMsg: function(){
+  savedSuccess: function(){
      var message = 'Welcome. You successfully created a account';
      new FlashMessages({ message: message }).success();
+  },
+
+  formValidationError: function(){
+    var message = this.model.validationError;
+    new FlashMessages({ message: message }).error();
   }
 
 });

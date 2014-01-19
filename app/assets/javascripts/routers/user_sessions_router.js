@@ -11,12 +11,14 @@ App.Routers.UserSessions = Support.SwappingRouter.extend({
   },
 
   new: function(){
-    var view = new App.Views.UserSessions({ current_user: this.current_user, model: this.model });
+    var view = new App.Views.UserSessionsNew({ current_user: this.current_user, model: this.model });
     this.swap(view);
   },
 
   destroy: function(){
-    this.model.destroy({});
+    var view = new App.Views.UserSessionsDestroy({ current_user: this.current_user });
+    view.destroy();
+    this.swap(view);
   }
 
 });
