@@ -10,7 +10,7 @@ App.Views.UserSessions = Support.CompositeView.extend({
   },
 
   render: function(){
-    this.$el.html(JST['user_sessions/new']);
+    this.$el.html(JST['user_sessions/new']());
     return this;
   },
 
@@ -33,8 +33,10 @@ App.Views.UserSessions = Support.CompositeView.extend({
   },
 
   notAuthenticated: function(model, xhr, options){
-    var errors = JSON.parse(xhr.responseText).errors;
-    new FlashMessages({ message: errors }).error();
+    var attributesWithErrors = JSON.parse(xhr.responseText);
+    _.each(attributesWithErrors, function(errors, attribute){
+      new FlashMessages({ message: errors.base  }).error();
+    });
   },
 
   rootPath: function(){
