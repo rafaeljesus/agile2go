@@ -6,7 +6,7 @@ App.Views.UserSessionsNew = Support.CompositeView.extend({
   },
 
   events: {
-    'submit': 'authenticate'
+    'click .submit': 'authenticate'
   },
 
   render: function(){
@@ -20,6 +20,7 @@ App.Views.UserSessionsNew = Support.CompositeView.extend({
     if(!this.model.isValid()){
       this.formValidationError();
     } else {
+      this.blockButton();
       this.model.save({}, { success: this.authenticated, error: this.notAuthenticated });
     }
   },
@@ -37,6 +38,7 @@ App.Views.UserSessionsNew = Support.CompositeView.extend({
   },
 
   notAuthenticated: function(model, xhr, options){
+    this.unblockButton();
     var attributesWithErrors = JSON.parse(xhr.responseText);
     _.each(attributesWithErrors, function(errors, attribute){
       new FlashMessages({ message: errors.base  }).error();
@@ -56,4 +58,13 @@ App.Views.UserSessionsNew = Support.CompositeView.extend({
   rootPath: function(){
     window.location.hash = '/';
   },
+
+  blockButton: function(){
+    $("[name='commit']").addClass('loading');
+  },
+
+  unblockButton: function(){
+    $("[name='commit']").removeClass('loading');
+  }
+
 });

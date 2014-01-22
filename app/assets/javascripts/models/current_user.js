@@ -3,5 +3,18 @@ App.Models.CurrentUser = Backbone.Model.extend({
 
   defaults: {
     signed_in: false
+  },
+
+  signed_in: function(){
+    this.get('signed_in');
+  },
+
+  name: function(){
+    this.get('name');
+  },
+
+  email: function(){
+   this.get('email');
   }
+
 });

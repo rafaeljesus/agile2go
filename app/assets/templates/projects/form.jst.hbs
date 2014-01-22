@@ -14,7 +14,7 @@
             <div class="field">
               <label>Name</label>
               <div class="ui left labeled icon input">
-                <input type="text" name="project[name]" value="{{self.name}}" placeholder="Name">
+                <input type="text" name="project[name]" value="{{ self.name }}" placeholder="Name">
                 <div class="ui corner label">
                   <i class="icon asterisk"></i>
                 </div>
@@ -23,7 +23,7 @@
             <div class="field">
               <label>Company</label>
               <div class="ui left labeled icon input">
-                <input type="text" name="project[company]" value="{{self.company}}" placeholder="Company">
+                <input type="text" name="project[company]" value="{{ self.company }}" placeholder="Company">
                 <div class="ui corner label">
                   <i class="icon asterisk"></i>
                 </div>
@@ -32,7 +32,7 @@
             <div class="field">
               <label>Description</label>
               <div class="ui left labeled icon input">
-                <textarea cols="40" rows="20" name="project[description]" placeholder="Description">{{self.description}}</textarea>
+                <textarea cols="40" rows="20" name="project[description]" placeholder="Description">{{ self.description }}</textarea>
                 <div class="ui corner label">
                   <i class="icon asterisk"></i>
                 </div>
@@ -41,12 +41,12 @@
             <div class="field">
               <label>Users</label>
               <select multiple>
-                {{#each users}}
-                  <option value="{{this.id}}">{{this.name}}</opition>
-                {{/each}}
+                {{# each users }}
+                  <option value="{{ this.id }}">{{ this.name }}</opition>
+                {{/ each }}
               </select>
             </div>
-            <input class="ui green submit button large right floated" type="submit" value="Submit">
+            <div class="ui green submit button large right floated" type="submit">Submit</div>
             <a href="#/projects" class="ui right large floated button">Back</a>
           <form>
         <div>

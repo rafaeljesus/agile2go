@@ -7,11 +7,7 @@ class ApplicationController < ActionController::Base
     UserSession.new(session)
   end
 
-  def authorize
-    redirect_to new_user_sessions_path unless user_signed_in?
-  end
-
-  # def default_serializer_options
-  #   {root: false}
+  # def authorize
+  #   render '#/', status: :unauthorized unless user_signed_in?
   # end
 end

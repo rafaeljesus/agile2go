@@ -9,7 +9,6 @@ App.Views.Menu = Backbone.View.extend({
   },
 
   render: function(){
-    console.log('menu render');
     this.$el.html(JST['layouts/menu']({ current_user: this.current_user.toJSON() }));
     return this;
   }

@@ -19,6 +19,12 @@ App.Models.Project = Backbone.Model.extend({
     var json = _.clone(this.attributes);
     json.assignments_attributes = this.assignments_attributes();
     return json;
+  },
+
+  validate: function(attrs, options){
+    if(attrs.name == ''){ return "name can't be blank" };
+    if(attrs.company == ''){ return "company can't be blank" };
+    if(attrs.description == ''){ return "description can't be blank" };
   }
 
 });

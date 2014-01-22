@@ -7,7 +7,7 @@ App.Views.ProjectNew = Support.CompositeView.extend({
   },
 
   events: {
-    'submit': 'save'
+    'click .submit': 'save'
   },
 
   render: function(){
@@ -27,7 +27,12 @@ App.Views.ProjectNew = Support.CompositeView.extend({
   save: function(e){
     e.preventDefault();
     this.commit();
-    this.model.save({}, { success: this.saved, error: this.notSaved });
+    if(!this.model.isValid()){
+      this.formValidationError();
+    } else {
+      this.blockButton();
+      this.model.save({}, { success: this.saved, error: this.notSaved });
+    }
     return false;
   },
 
@@ -53,11 +58,13 @@ App.Views.ProjectNew = Support.CompositeView.extend({
   },
 
   saved: function(model, response, options) {
+     this.unblockButton();
      this.projectsPath();
      this.savedMsg();
   },
 
   notSaved: function(model, xhr, options){
+    this.unblockButton();
     var errors = JSON.parse(xhr.responseText).errors;
     new FlashMessages({ message: errors }).error();
   },
@@ -73,6 +80,19 @@ App.Views.ProjectNew = Support.CompositeView.extend({
   savedMsg: function(){
      var message = 'Project was successfully created';
      new FlashMessages({ message: message }).success();
+  },
+
+  formValidationError: function(){
+    var message = this.model.validationError;
+    new FlashMessages({ message: message }).error();
+  },
+
+  blockButton: function(){
+    $("[name='commit']").addClass('loading');
+  },
+
+  unblockButton: function(){
+    $("[name='commit']").removeClass('loading');
   }
 
 });
