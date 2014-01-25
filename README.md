@@ -1,6 +1,8 @@
 Agile2Go
 --------
 
+This is a WORK IN PROGRESS
+
 Agile2Go is a awsome single page app site perfect for small agile teams.
 Bult in on top of Backbone.js and Rails as json API.
 
