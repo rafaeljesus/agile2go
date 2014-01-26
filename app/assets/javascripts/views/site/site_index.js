@@ -2,14 +2,14 @@ App.Views.SiteIndex = Support.CompositeView.extend({
   initialize: function(options){
     _.bindAll(this, 'render');
     this.current_user = options.current_user;
-    this.bindTo(this.current_user, 'change:signed_in', this.renderTemplate)
+    this.bindTo(this.current_user, 'change:signed_in', this.render);
   },
 
   render: function(){
-    if (!this.current_user.signed_in()){
-      this.renderTemplate();
-    } else {
+    if (this.current_user.get('signed_in')) {
       this.renderDashboard();
+    } else {
+      this.renderTemplate();
     }
     return this;
   },

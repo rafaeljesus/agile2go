@@ -10,7 +10,6 @@ App.Models.CurrentUser = Backbone.Model.extend({
   },
 
   setSession: function(){
-    if(this.getSession()) return;
     sessionStorage.setItem('currentUser', JSON.stringify(this.toJSON()));
   },
 
@@ -23,7 +22,7 @@ App.Models.CurrentUser = Backbone.Model.extend({
   },
 
   signed_in: function(){
-    this.get('signed_in') || this.getSession().signed_in || false;
+    this.get('signed_in');
   },
 
   name: function(){
