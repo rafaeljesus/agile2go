@@ -6,7 +6,7 @@ App.Views.ProjectEdit = Support.CompositeView.extend({
   },
 
   events: {
-    'submit' : 'update'
+    'click .submit' : 'update'
   },
 
   render: function(){
@@ -38,8 +38,8 @@ App.Views.ProjectEdit = Support.CompositeView.extend({
     var name = this.$("input[name='project[name]']").val(),
         description = this.$("textarea[name='project[description]']").val(),
         company = this.$("input[name='project[company]']").val();
-    this.model.assignedUsers = new App.Collections.Users(this.assignedUsers());
     this.model.set({ name: name, description: description, company: company });
+    this.model.assignedUsers = new App.Collections.Users(this.assignedUsers());
   },
 
   assignedUsers: function(){

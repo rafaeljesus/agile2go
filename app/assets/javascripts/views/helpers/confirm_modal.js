@@ -1,9 +1,16 @@
 App.Views.ConfirmModal = Backbone.View.extend({
-  el: '.ui.small.modal',
+  id: '#modal',
+  className: 'ui small modal',
+  tagName: 'div',
 
   initialize: function(options){
-    _.bindAll(this, 'render');
+    _.bindAll(this, 'render', 'deleted');
     this.project = options.project;
+    this.$tr = options.$tr;
+  },
+
+  events: {
+    'click .delete': 'delete'
   },
 
   render: function(){
@@ -12,8 +19,25 @@ App.Views.ConfirmModal = Backbone.View.extend({
     return this;
   },
 
+  delete: function(e){
+    e.preventDefault();
+    this.project.destroy({ success: this.deleted() });
+    return false;
+  },
+
+  deleted: function(){
+    this.$tr.remove();
+    this.hide();
+    var message = 'Project was successfully deleted';
+    new FlashMessages({ message: message }).success();
+  },
+
   show: function(){
     this.$el.modal('show');
+  },
+
+  hide: function(){
+    this.$el.modal('hide');
   }
 
 });
