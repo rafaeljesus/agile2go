@@ -16,6 +16,7 @@ App.Views.SiteIndex = Support.CompositeView.extend({
 
   renderTemplate: function(){
     this.$el.html(JST['site/index']({ current_user: this.current_user }));
+    $('.rotate').textrotator({ animation: "dissolve", separator: ",", speed: 6000 });
   }
 
 });
