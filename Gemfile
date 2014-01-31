@@ -29,11 +29,9 @@ end
 group :development, :test do
   gem 'capybara', '>= 2.0.2'
   gem 'capybara-webkit'
-  # gem 'selenium-webdriver', '~> 2.39.0'
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'
   gem 'jasmine', '~> 2.0.0.rc4'
-  # gem 'jasmine', github: 'pivotal/jasmine-gem', ref: 'e810540'
-  # gem 'jasmine-core', '1.3.1'
+  gem 'launchy'
 end

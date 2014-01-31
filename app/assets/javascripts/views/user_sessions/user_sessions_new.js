@@ -25,8 +25,8 @@ App.Views.UserSessionsNew = Support.CompositeView.extend({
   },
 
   commit: function(){
-    var email = this.$("input[name='user[email]']").val(),
-        password = this.$("input[name='user[password]']").val();
+    var email = this.$("#email").val(),
+        password = this.$("#password").val();
     this.model.set({ email: email, password: password });
   },
 
@@ -54,7 +54,7 @@ App.Views.UserSessionsNew = Support.CompositeView.extend({
   },
 
   rootPath: function(){
-    window.location.hash = '/';
+    window.location.hash = '#';
   }
 
 });

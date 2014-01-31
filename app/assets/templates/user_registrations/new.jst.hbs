@@ -15,7 +15,7 @@
             <div class="field">
               <label>Name</label>
               <div class="ui left labeled icon input">
-                <input name="user[name]" placeholder="Name" type="text">
+                <input id="name" placeholder="Name" type="text">
                 <i class="user icon"></i>
                 <div class="ui corner label"><i class="icon asterisk"></i></div>
               </div>
@@ -23,7 +23,7 @@
             <div class="field">
               <label>Email</label>
               <div class="ui left labeled icon input">
-                <input autofocus="autofocus" name="user[email]" placeholder="Email" type="email">
+                <input id="email" autofocus="autofocus" placeholder="Email" type="email">
                 <i class="mail icon"></i>
                 <div class="ui corner label"><i class="icon asterisk"></i></div>
               </div>
@@ -31,15 +31,15 @@
             <div class="field">
               <label>Password</label>
               <div class="ui left labeled icon input">
-                <input name="user[password]" placeholder="Password" type="password">
+                <input id="password" placeholder="Password" type="password">
                 <i class="lock icon"></i>
                 <div class="ui corner label"><i class="icon asterisk"></i></div>
               </div>
             </div>
             <div class="field">
-              <label for="user_password_confirmation">Password confirmation</label>
+              <label for="password-confirmation">Password confirmation</label>
               <div class="ui left labeled icon input">
-                <input name="user[password_confirmation]" placeholder="Password Confirmation" type="password">
+                <input id="password-confirmation"  placeholder="Password Confirmation" type="password">
                 <i class="lock icon"></i>
                 <div class="ui corner label"><i class="icon asterisk"></i></div>
               </div>
@@ -78,7 +78,7 @@
           <div class="row">
             <div class="sixteen wide center aligned column">
               <div class="ui teal button large">
-                <a href="/#/sessions/new">Sign In</a>
+                <a href="#sessions/new">Sign In</a>
               </div>
             </div>
           </div>

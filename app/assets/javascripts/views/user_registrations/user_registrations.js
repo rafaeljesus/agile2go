@@ -26,10 +26,10 @@ App.Views.UserRegistrations = Support.CompositeView.extend({
   },
 
   commit: function(){
-    var name = this.$("input[name='user[name]']").val(),
-        email = this.$("input[name='user[email]']").val(),
-        password = this.$("input[name='user[password]']").val(),
-        password_confirmation = this.$("input[name='user[password_confirmation]']").val();
+    var name = this.$("#name").val(),
+        email = this.$("#email").val(),
+        password = this.$("#password").val(),
+        password_confirmation = this.$("#password-confirmation").val();
     this.model.set({ name: name, email: email, password: password, password_confirmation: password_confirmation });
   },
 
@@ -46,11 +46,11 @@ App.Views.UserRegistrations = Support.CompositeView.extend({
   },
 
   rootPath: function(){
-    window.location.hash = '/';
+    window.location.hash = '#';
   },
 
   savedSuccess: function(){
-     var message = 'Welcome. You successfully created a account';
+     var message = 'Welcome. You successfully you have signed up successfully';
      new FlashMessages({ message: message }).success();
   },
 

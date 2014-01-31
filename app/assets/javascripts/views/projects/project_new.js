@@ -74,7 +74,7 @@ App.Views.ProjectNew = Support.CompositeView.extend({
   },
 
   projectsPath: function(){
-    window.location.href = '/#/projects';
+    window.location.href = '#projects';
   },
 
   savedMsg: function(){

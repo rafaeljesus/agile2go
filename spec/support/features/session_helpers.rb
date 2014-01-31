@@ -21,11 +21,11 @@ module Features
     end
 
     def sign_up_as user
-      visit new_user_path
-      fill_in 'user_name', with: user.name
-      fill_in 'user_email', with: user.email
-      fill_in 'user_password', with: user.password
-      fill_in 'user_password_confirmation', with: user.password_confirmation
+      visit '/#/users/new'
+      fill_in 'name', with: user.name
+      fill_in 'email', with: user.email
+      fill_in 'password', with: user.password
+      fill_in 'password-confirmation', with: user.password_confirmation
       click_button I18n.t('btn.sign_up')
       user
     end
