@@ -1,4 +1,13 @@
 en:
+  flash:
+    actions:
+      create:
+        notice: "%{model} was successfully created."
+      update:
+        notice: "%{model} was successfully updated."
+      destroy:
+        notice: "%{model} was successfully removed."
+        alert: "%{model} could not be removed."
   btn:
     sign_up: 'Sign Up'
     sign_in: 'Sign In'

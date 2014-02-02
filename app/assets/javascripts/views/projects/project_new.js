@@ -78,7 +78,7 @@ App.Views.ProjectNew = Support.CompositeView.extend({
   },
 
   savedMsg: function(){
-     var message = 'Project was successfully created';
+     var message = 'Project was successfully created.';
      new FlashMessages({ message: message }).success();
   },
 

@@ -70,7 +70,7 @@ App.Views.ProjectEdit = Support.CompositeView.extend({
   },
 
   savedMsg: function(){
-     var message = 'Project was successfully updated';
+     var message = 'Project was successfully updated.';
      new FlashMessages({ message: message }).success();
   },
 
