@@ -1,5 +1,4 @@
 App.Mixins.Permissions = {
-
   authorize: function(){
     if (!this.current_user || !this.current_user.get('signed_in')) {
       window.location.hash = '#sessions/new';
