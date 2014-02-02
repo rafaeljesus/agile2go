@@ -3,7 +3,7 @@ Agile2Go
 
 This is a WORK IN PROGRESS
 
-Agile2Go is a weel tested single page app, perfect for small agile teams.
+Agile2Go is a well tested single page app, perfect for small agile teams.
 Built with Backbone.js and Rails.
 
 Setup
