@@ -2,8 +2,7 @@ module Features
   module SessionHelpers
 
     def sign_in
-      user = FactoryGirl.create :user
-      sign_in_as user
+      user = sign_in_as FactoryGirl.create :user
       user
     end
 
@@ -14,14 +13,15 @@ module Features
 
     private
     def sign_in_as user
-      visit new_user_session_path
-      fill_in 'user_email', with: user.email
-      fill_in 'user_password', with: user.password
+      visit '#sessions/new'
+      fill_in 'email', with: user.email
+      fill_in 'password', with: user.password
       click_button I18n.t('btn.sign_in')
+      user
     end
 
     def sign_up_as user
-      visit '/#/users/new'
+      visit '#users/new'
       fill_in 'name', with: user.name
       fill_in 'email', with: user.email
       fill_in 'password', with: user.password

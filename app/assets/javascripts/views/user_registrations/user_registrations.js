@@ -50,7 +50,7 @@ App.Views.UserRegistrations = Support.CompositeView.extend({
   },
 
   savedSuccess: function(){
-     var message = 'Welcome. You successfully you have signed up successfully';
+     var message = 'Welcome! You have signed up successfully';
      new FlashMessages({ message: message }).success();
   },
 

@@ -14,21 +14,21 @@ App.Routers.Projects = Support.SwappingRouter.extend(
     },
 
      index: function(){
-      if(!this.authorize()) return;
+      this.authorize();
       this.collection.fetch({});
       var view = new App.Views.ProjectsIndex({ collection : this.collection });
       this.swap(view);
     },
 
     new: function(){
-      if(!this.authorize()) return;
+      this.authorize();
       this.users.fetch({});
       var view = new App.Views.ProjectNew({ users: this.users });
       this.swap(view);
     },
 
     edit: function(id){
-      if(!this.authorize()) return;
+      this.authorize();
       var self = this;
       $.getJSON("/projects/" + id  + "/edit").done(function(json){
         var model = new App.Models.Project(json[0]);

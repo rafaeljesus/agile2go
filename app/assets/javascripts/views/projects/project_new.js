@@ -37,9 +37,9 @@ App.Views.ProjectNew = Support.CompositeView.extend({
   },
 
   commit: function(){
-    var name = this.$("input[name='project[name]']").val(),
-        description = this.$("textarea[name='project[description]']").val(),
-        company = this.$("input[name='project[company]']").val();
+    var name = this.$('#name').val(),
+        description = this.$('#description').val(),
+        company = this.$('#company').val();
     this.model.set({ name: name, description: description, company: company });
     this.model.assignedUsers = new App.Collections.Users(this.assignedUsers());
   },
