@@ -3,8 +3,8 @@ Agile2Go
 
 This is a WORK IN PROGRESS
 
-Agile2Go is a awsome single page app site perfect for small agile teams.
-Bult in on top of Backbone.js and Rails as json API.
+Agile2Go is a well tested single page app, perfect for small agile teams.
+Built with Backbone.js and Rails.
 
 Setup
 -----
@@ -28,7 +28,7 @@ Development
 -----------
 
 * Template Engine: ERB
-* Testing Framework: RSpec, Factory Girl and Capybara
+* Testing Framework: RSpec, Factory Girl, Capybara, Jasmine, Synon
 * Front-end Framework: Semantic-ui (SASS), Backbone.js
 * Authorization: CanCan
 * Database: PostgresSQL
