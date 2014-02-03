@@ -23,6 +23,7 @@
 
     getMatcherFunction = function(sinonName, matcherName) {
       var original = jasmine.Matchers.prototype[matcherName];
+      // var original = jasmine.matchers.prototype[matcherName];
       return function () {
         if (jasmine.isSpy(this.actual) && original) {
           return original.apply(this, arguments);

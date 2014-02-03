@@ -36,11 +36,34 @@ describe('App', function(){
       App.Routers.Site.restore();
     });
 
+    it('instantiate a user_registration router', function(){
+      sinon.spy(App.Routers, 'UserRegistrations');
+      App.init({});
+      expect(App.Routers.UserRegistrations).toHaveBeenCalled();
+      App.Routers.UserRegistrations.restore();
+    });
+
+    it('instantiate a user_session router', function(){
+      sinon.spy(App.Routers, 'UserSessions');
+      App.init({});
+      expect(App.Routers.UserSessions).toHaveBeenCalled();
+      App.Routers.UserSessions.restore();
+    });
+
     it('instantiate a project router', function(){
       sinon.spy(App.Routers, 'Projects');
       App.init({});
       expect(App.Routers.Projects).toHaveBeenCalled();
       App.Routers.Projects.restore();
+    });
+
+    it("starts Backbone.history", function() {
+      Backbone.history.started = null;
+      Backbone.history.stop();
+      sinon.spy(Backbone.history, 'start');
+      App.init({});
+      expect(Backbone.history.start).toHaveBeenCalled();
+      Backbone.history.start.restore();
     });
 
   });
