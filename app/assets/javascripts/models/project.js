@@ -22,9 +22,9 @@ App.Models.Project = Backbone.Model.extend({
   },
 
   validate: function(attrs, options){
-    if(attrs.name == ''){ return "name can't be blank" };
-    if(attrs.company == ''){ return "company can't be blank" };
-    if(attrs.description == ''){ return "description can't be blank" };
+    if(!attrs.name){ return "name can't be blank" };
+    if(!attrs.company){ return "company can't be blank" };
+    if(!attrs.description){ return "description can't be blank" };
   }
 
 });

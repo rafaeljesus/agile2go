@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
   has_many :assigned_projects, through: :assignments, class_name: "Project", source: :project
 
   validates :email, presence: true, format: { with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/ }
-  validates :name, uniqueness: true, length: {
+  validates :name, presence: true, uniqueness: true, length: {
     minimum: 4, too_short: "%{count} is the minimum allowed",
-    maximum: 30, too_large: "%{count} is the maximum allowed" }
+    maximum: 100, too_large: "%{count} is the maximum allowed" }
   validates :password, length: { minimum: 8, too_short: "%{count} is the minimum allowed" }
 
   has_secure_password
