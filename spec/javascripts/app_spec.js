@@ -26,40 +26,35 @@ describe('App', function(){
     });
 
     it('instantiate a site router', function(){
-      // sinon.spy(App.Routers, 'Site');
-      // App.init({});
-      // expect(App.Routers.Site).toHaveBeenCalledWith();
-      // App.Routers.Site.restore();
+      spyOn(App.Routers, 'Site');
+      App.init({});
+      expect(App.Routers.Site).toHaveBeenCalled();
     });
 
     it('instantiate a user_registration router', function(){
-      // sinon.spy(App.Routers, 'UserRegistrations');
-      // App.init({});
-      // expect(App.Routers.UserRegistrations).toHaveBeenCalled();
-      // App.Routers.UserRegistrations.restore();
+      spyOn(App.Routers, 'UserRegistrations');
+      App.init({});
+      expect(App.Routers.UserRegistrations).toHaveBeenCalled();
     });
 
     it('instantiate a user_session router', function(){
-      // sinon.spy(App.Routers, 'UserSessions');
-      // App.init({});
-      // expect(App.Routers.UserSessions).toHaveBeenCalled();
-      // App.Routers.UserSessions.restore();
+      spyOn(App.Routers, 'UserSessions');
+      App.init({});
+      expect(App.Routers.UserSessions).toHaveBeenCalled();
     });
 
     it('instantiate a project router', function(){
-      // sinon.spy(App.Routers, 'Projects');
-      // App.init({});
-      // expect(App.Routers.Projects).toHaveBeenCalled();
-      // App.Routers.Projects.restore();
+      spyOn(App.Routers, 'Projects');
+      App.init({});
+      expect(App.Routers.Projects).toHaveBeenCalled();
     });
 
     it("starts Backbone.history", function() {
-      // Backbone.history.started = null;
-      // Backbone.history.stop();
-      // sinon.spy(Backbone.history, 'start');
-      // App.init({});
-      // expect(Backbone.history.start).toHaveBeenCalled();
-      // Backbone.history.start.restore();
+      Backbone.history.started = null;
+      Backbone.history.stop();
+      spyOn(Backbone.history, 'start');
+      App.init({});
+      expect(Backbone.history.start).toHaveBeenCalled();
     });
 
   });
