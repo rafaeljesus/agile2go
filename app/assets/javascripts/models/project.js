@@ -2,7 +2,7 @@ App.Models.Project = Backbone.Model.extend({
   urlRoot: '/projects',
 
   initialize: function(){
-    this.on('change:assignedUsers', this.parseUsers());
+    this.on('change:assignedUsers', this.parseUsers);
     this.parseUsers();
   },
 

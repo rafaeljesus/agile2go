@@ -8,7 +8,11 @@ describe('App.Models.Projects#initialize', function() {
   });
 
   it('should have assignedUsers', function() {
-    expect(newProject.assignedUsers).toBeDefined();
+    var assignedUsers = newProject.assignedUsers;
+    var typeCheck = assignedUsers instanceof App.Collections.Users;
+    expect(assignedUsers).toBeTruthy();
+    expect(assignedUsers).toBeDefined();
+    expect(assignedUsers.size()).toEqual(1);
   });
 
   it('should call assignments_attributes method when toJSON is called', function() {
@@ -19,5 +23,16 @@ describe('App.Models.Projects#initialize', function() {
 
   it('should validate when model have required attributes', function(){
     expect(newProject.isValid()).toBeFalsy();
+  });
+});
+
+describe("App.Models.Project assignedUsers:change", function() {
+  it("re-parses the assignedUsers", function() {
+    var assignedUsers = { assignedUsers: [{ name: 'Rafael Jesus' }, { name: 'Sophia de Jesus' }] };
+    var project = new App.Models.Project(assignedUsers);
+    expect(project.assignedUsers.size()).toEqual(2);
+
+    project.set({ assignedUsers: [{ name: 'Sophia de Jesus' }] });
+    expect(project.assignedUsers.size()).toEqual(1);
   });
 });
