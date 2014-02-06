@@ -27,12 +27,13 @@ Deploy at Heroku:
 Development
 -----------
 
-* Template Engine: ERB
-* Testing Framework: RSpec, Factory Girl, Capybara, Jasmine, Synon
+* Template Engine: Handlebars
+* Testing Framework: RSpec, Capybara, Factory Girl, Jasmine
 * Front-end Framework: Semantic-ui (SASS), Backbone.js
 * Authorization: CanCan
 * Database: PostgresSQL
 * Server: Puma
+* Editor: VI - Github theme
 
 Contribute
 ----------
