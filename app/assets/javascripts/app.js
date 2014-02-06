@@ -19,9 +19,8 @@ var App = new (Backbone.View.extend({
   },
 
   init: function(){
-    var session = JSON.parse(sessionStorage.getItem('currentUser')),
-        current_user = new App.Models.CurrentUser(session);
-    if (!current_user.get('signed_in')) { current_user.fetch({}); }
+    var session = JSON.parse(sessionStorage.getItem('currentUser'));
+    var current_user = new App.Models.CurrentUser(session);
     var injector = { current_user: current_user };
     new App.Views.Menu(injector);
     new App.Routers.Site(injector);

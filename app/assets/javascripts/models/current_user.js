@@ -3,6 +3,7 @@ App.Models.CurrentUser = Backbone.Model.extend({
 
   initialize: function(){
     this.on('change', this.setSession, this);
+    this._fetch();
   },
 
   defaults: {
@@ -21,8 +22,8 @@ App.Models.CurrentUser = Backbone.Model.extend({
     sessionStorage.removeItem('currentUser');
   },
 
-  signed_in: function(){
-    this.get('signed_in');
+  signedIn: function(){
+    return this.get('signed_in');
   },
 
   name: function(){
@@ -31,6 +32,10 @@ App.Models.CurrentUser = Backbone.Model.extend({
 
   email: function(){
    this.get('email');
+  },
+
+  _fetch: function(){
+    if(!this.signedIn()) this.fetch();
   }
 
 });
