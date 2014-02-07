@@ -3,6 +3,7 @@ App.Models.CurrentUser = Backbone.Model.extend({
 
   initialize: function(){
     this.on('change', this.setSession, this);
+    this.attributes = this.getSession();
     this._fetch();
   },
 
