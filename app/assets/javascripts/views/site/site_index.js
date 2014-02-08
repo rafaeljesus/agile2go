@@ -6,7 +6,7 @@ App.Views.SiteIndex = Support.CompositeView.extend({
   },
 
   render: function(){
-    if (this.current_user.get('signed_in')) {
+    if (this.current_user.signedIn()) {
       new App.Views.Dashboard({ el: this.$el }).render();
     } else {
       this.renderTemplate();
