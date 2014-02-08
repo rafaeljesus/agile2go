@@ -2,10 +2,11 @@ describe('App.Views.ProjectsIndex', function(){
 
   var $el
   , view
-  , collection = new App.Collections.Projects({});
+  , collection;
 
   beforeEach(function(){
     var attributes = { id: 1, name: 'nameFake', company: 'companyFake', description: 'descriptionFake', assignedUsers: [{ id: 1, name: 'userNameFake' }] };
+    collection = new App.Collections.Projects({});
     collection.reset(attributes);
     view = new App.Views.ProjectsIndex({ collection: collection });
     $el = $(view.render().el);
@@ -17,7 +18,7 @@ describe('App.Views.ProjectsIndex', function(){
     expect($el).toHaveText(/descriptionFake/);
   });
 
-  it('should display confirm modal', function(){
+  it('should call showModal method', function(){
     spyOn(view, 'showModal');
     view.showModal();
     expect(view.showModal).toHaveBeenCalled();

@@ -30,7 +30,6 @@ App.Views.ProjectNew = Support.CompositeView.extend({
     if(!this.model.isValid()){
       this.formValidationError();
     } else {
-      this.blockButton();
       this.model.save({}, { success: this.saved, error: this.notSaved });
     }
     return false;
