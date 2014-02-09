@@ -2,7 +2,6 @@ App.Routers.UserSessions = Support.SwappingRouter.extend({
   initialize: function(options){
     this.el = $('#container');
     this.current_user = options.current_user;
-    this.model = new App.Models.UserSession({});
   },
 
   routes: {
@@ -11,7 +10,7 @@ App.Routers.UserSessions = Support.SwappingRouter.extend({
   },
 
   new: function(){
-    var view = new App.Views.UserSessionsNew({ current_user: this.current_user, model: this.model });
+    var view = new App.Views.UserSessionsNew({ current_user: this.current_user });
     this.swap(view);
   },
 

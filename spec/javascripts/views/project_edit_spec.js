@@ -13,7 +13,7 @@ describe('App.Views.ProjectEdit', function(){
   });
 
   it('should edit a model', function(){
-    spyOn(model, 'update');
+    spyOn(model, 'save');
     view.update(new Event(undefined));
     expect(model.save).toHaveBeenCalled();
   });
