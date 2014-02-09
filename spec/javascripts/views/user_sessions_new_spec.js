@@ -1,36 +1,36 @@
 describe('App.Views.UserSessionsNew', function(){
 
-  var current_user
-  , view
+  var view
   , model
-  , $el;
+  , $el
+  , e;
 
   beforeEach(function(){
-    current_user = new App.Models.CurrentUser({});
+    var current_user = new App.Models.CurrentUser({});
     view = new App.Views.UserSessionsNew({ current_user: current_user });
     model = view.model;
     $el = $(view.render().el);
+    e = new Event(undefined);
   });
 
-  it('should render form sign in', function(){
-    expect($el).toHaveText(/Email/);
-    expect($el).toHaveText(/Password/);
+  it('should render sign in form', function(){
+    expect($el).toHaveText(/Sign In/);
   });
 
   it('should authenticate user', function(){
     spyOn(model, 'save');
     view.$('#email').val('fake@email.com');
     view.$('#password').val('passwordFake');
-    view.authenticate(new Event(undefined));
+    view.authenticate(e);
     expect(model.save).toHaveBeenCalled();
   });
 
-  it('should not authenticate if email/password are blank', function(){
+  it('should not authenticate if sign in form is blank', function(){
     spyOn(model, 'save');
     spyOn(view, 'formValidationError');
     view.$('#email').val('');
     view.$('#password').val('');
-    view.authenticate(new Event(undefined));
+    view.authenticate(e);
     expect(model.save).not.toHaveBeenCalled();
     expect(view.formValidationError).toHaveBeenCalled();
   });
@@ -40,7 +40,7 @@ describe('App.Views.UserSessionsNew', function(){
     spyOn(view, 'formValidationError');
     view.$('#email').val('');
     view.$('#password').val('12345678');
-    view.authenticate(new Event(undefined));
+    view.authenticate(e);
     expect(model.save).not.toHaveBeenCalled();
     expect(view.formValidationError).toHaveBeenCalled();
   });
@@ -50,7 +50,7 @@ describe('App.Views.UserSessionsNew', function(){
     spyOn(view, 'formValidationError');
     view.$('#email').val('fake@email.com');
     view.$('#password').val('');
-    view.authenticate(new Event(undefined));
+    view.authenticate(e);
     expect(model.save).not.toHaveBeenCalled();
     expect(view.formValidationError).toHaveBeenCalled();
   });
