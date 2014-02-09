@@ -57,13 +57,11 @@ App.Views.ProjectNew = Support.CompositeView.extend({
   },
 
   saved: function(model, response, options) {
-     this.unblockButton();
      this.projectsPath();
      this.savedMsg();
   },
 
   notSaved: function(model, xhr, options){
-    this.unblockButton();
     var errors = JSON.parse(xhr.responseText).errors;
     new FlashMessages({ message: errors }).error();
   },
@@ -84,14 +82,6 @@ App.Views.ProjectNew = Support.CompositeView.extend({
   formValidationError: function(){
     var message = this.model.validationError;
     new FlashMessages({ message: message }).error();
-  },
-
-  blockButton: function(){
-    $("[name='commit']").addClass('loading');
-  },
-
-  unblockButton: function(){
-    $("[name='commit']").removeClass('loading');
   }
 
 });
