@@ -10,7 +10,7 @@ App.Views.UserSessionsDestroy = Support.CompositeView.extend({
       self.current_user.set({ signed_in: false });
       self.current_user.removeSession({});
       self.logoutSuccess();
-      window.location.hash = '#';
+      self.rootPath();
     }).fail(function(error){
       console.log(error);
     });
@@ -20,5 +20,9 @@ App.Views.UserSessionsDestroy = Support.CompositeView.extend({
     var message = 'You successfully logged out';
     new FlashMessages({ message: message }).success();
   },
+
+  rootPath: function(){
+    window.location.hash = '#';
+  }
 
 });
