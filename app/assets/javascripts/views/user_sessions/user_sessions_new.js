@@ -44,7 +44,7 @@ App.Views.UserSessionsNew = Support.CompositeView.extend({
   },
 
   authenticatedSuccess: function(){
-     var message = 'Signed in successfully';
+     var message = I18n.t('sessions.signed_in');
      new FlashMessages({ message: message }).success();
   },
 

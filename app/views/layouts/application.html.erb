@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= content_for?(:title) ? yield(:title) : "Agile2Go - Project Managment" %></title>
+  <title>Agile2Go - Project Managment</title>
    <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
    <![endif]-->
@@ -18,6 +18,10 @@
   <br>
   <div id="container"></div>
   <div id="modal"></div>
+  <script type="text/javascript">
+    I18n.defaultLocale = "<%= I18n.default_locale %>";
+    I18n.locale = "<%= I18n.locale %>";
+  </script>
   <%= yield %>
   <%= render 'layouts/footer' %>
 </body>

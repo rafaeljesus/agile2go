@@ -8,6 +8,8 @@
 //= require app
 //= require semantic-ui
 //= require select2
+//= require i18n
+//= require i18n/translations
 //= require jquery.simple-text-rotator
 //= require_tree ../templates
 //= require_tree ./models
