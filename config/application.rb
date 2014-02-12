@@ -13,11 +13,12 @@ module Agile2go
       g.helper_specs false
       g.controller_specs false
       g.routing_specs false
+      g.request_specs false
       g.stylesheets = false
       g.javascripts = false
       g.helper = false
     end
-    config.assets.initialize_on_precompile = true
     config.autoload_paths += %W(#{config.root}/lib)
+    config.middleware.use I18n::JS::Middleware
   end
 end

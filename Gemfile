@@ -16,6 +16,7 @@ gem 'puma'
 gem 'rolify'
 gem 'cancan'
 gem 'i18n-js'
+gem 'i18n-js-pika', require: 'i18n-js'
 
 group :production do
   gem 'pg'
