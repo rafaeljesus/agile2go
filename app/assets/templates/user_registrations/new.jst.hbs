@@ -3,7 +3,7 @@
     <header class="row">
     <div class="sixteen wide column">
       <div class="ui segment">
-        <h1>Sign Up</h1>
+        <h1>{{ t 'sign_up' }}</h1>
       </div>
     </div>
     </header>
@@ -13,33 +13,33 @@
         <div class="ui form segment">
           <form class="ui form segment">
             <div class="field">
-              <label>Name</label>
+              <label>{{ t 'user.name' }}</label>
               <div class="ui left labeled icon input">
-                <input id="name" placeholder="Name" type="text">
+                <input id="name" placeholder="{{ t 'user.name' }}" type="text">
                 <i class="user icon"></i>
                 <div class="ui corner label"><i class="icon asterisk"></i></div>
               </div>
             </div>
             <div class="field">
-              <label>Email</label>
+              <label>{{ t 'user.email' }}</label>
               <div class="ui left labeled icon input">
-                <input id="email" autofocus="autofocus" placeholder="Email" type="email">
+                <input id="email" autofocus="autofocus" placeholder="{{ t 'user.email' }}" type="email">
                 <i class="mail icon"></i>
                 <div class="ui corner label"><i class="icon asterisk"></i></div>
               </div>
             </div>
             <div class="field">
-              <label>Password</label>
+              <label>{{ t 'user.password' }}</label>
               <div class="ui left labeled icon input">
-                <input id="password" placeholder="Password" type="password">
+                <input id="password" placeholder="{{ t 'user.password' }}" type="password">
                 <i class="lock icon"></i>
                 <div class="ui corner label"><i class="icon asterisk"></i></div>
               </div>
             </div>
             <div class="field">
-              <label for="password-confirmation">Password confirmation</label>
+              <label for="password-confirmation">{{ t 'user.password_confirmation' }}</label>
               <div class="ui left labeled icon input">
-                <input id="password-confirmation"  placeholder="Password Confirmation" type="password">
+                <input id="password-confirmation"  placeholder="{{ t 'user.password_confirmation' }}" type="password">
                 <i class="lock icon"></i>
                 <div class="ui corner label"><i class="icon asterisk"></i></div>
               </div>
@@ -47,23 +47,23 @@
             <div class="inline field">
               <div class="ui checkbox">
                 <input type="checkbox">
-                <label>I agree to the Terms and Conditions</label>
+                <label>{{ t 'agree_term' }}</label>
               </div>
             </div>
-            <input class="ui orange submit button large right floated" name="commit" type="submit" value="Sign Up">
+            <input class="ui orange submit button large right floated" name="commit" type="submit" value="{{ t 'sign_up' }}">
           </form>
           <div class="ui horizontal clearing divider">Or</div>
           <div class="ui fluid large facebook button">
             <i class="facebook icon"></i>
-            Facebook
+            {{ t 'facebook' }}
           </div>
           <div class="ui fluid large twitter button">
             <i class="twitter icon"></i>
-            Twitter
+            {{ t 'twitter' }}
           </div>
           <div class="ui fluid large google plus button">
             <i class="google plus icon"></i>
-            Google
+            {{ t 'google' }}
           </div>
         </div>
       </div>
@@ -71,14 +71,13 @@
         <div class="ui segment">
           <div class="row">
             <div class="sixteen wide column">
-              <h1 class="delta">Alredy have an account?</h1>
-              <p>We're happy you like Jarbaz so much, you may want to login!</p>
+              {{ t 'registrations.sign_in_option' }}
             </div>
           </div>
           <div class="row">
             <div class="sixteen wide center aligned column">
               <div class="ui teal button large">
-                <a href="#sessions/new">Sign In</a>
+                <a href="#sessions/new">{{ t 'sign_in' }}</a>
               </div>
             </div>
           </div>

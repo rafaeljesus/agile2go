@@ -3,7 +3,7 @@
     <header class="row">
     <div class="sixteen wide column">
       <div class="ui segment">
-        <h1>Sign In</h1>
+        <h1>{{ t 'sign_in' }}</h1>
       </div>
     </div>
     </header>
@@ -13,7 +13,7 @@
         <div class="ui form segment">
           <form class="ui form segment">
             <div class="field">
-              <label>Email</label>
+              <label>{{ t 'user.email' }}</label>
               <div class="ui left labeled icon input">
                 <input autofocus="autofocus" id="email" placeholder="Email" type="email">
                 <i class="mail icon"></i>
@@ -21,27 +21,27 @@
               </div>
             </div>
             <div class="field">
-              <label>Password</label>
+              <label>{{ t 'user.password' }}</label>
               <div class="ui left labeled icon input">
-                <input id="password" placeholder="Password" type="password">
+                <input id="password" placeholder="{{ t 'user.password' }}" type="password">
                 <i class="lock icon"></i>
                 <div class="ui corner label"><i class="icon asterisk"></i></div>
               </div>
             </div>
-            <input class="ui orange submit button large right floated" name="commit" type="submit" value="Sign In"></input>
+            <input class="ui orange submit button large right floated" name="commit" type="submit" value="{{ t 'sign_in' }}"></input>
           </form>
           <div class="ui horizontal clearing divider">Or</div>
           <div class="ui fluid large facebook button">
             <i class="facebook icon"></i>
-            Facebook
+            {{ t 'facebook' }}
           </div>
           <div class="ui fluid large twitter button">
             <i class="twitter icon"></i>
-            Twitter
+            {{ t 'twitter' }}
           </div>
           <div class="ui fluid large google plus button">
             <i class="google plus icon"></i>
-            Google
+            {{ t 'google' }}
           </div>
         </div>
       </div>
@@ -49,18 +49,17 @@
         <div class="ui segment">
           <div class="row">
             <div class="sixteen wide column">
-              <h1 class="delta">No account yet? Register or try it now</h1>
-              <p>Are you ready to have your menu in all languages you want, on the web and any smartphone? Sign up now to start receiving notifications! Don't want to register yet another account? You can try it!</p>
+              {{ t 'sessions.sign_up_or_try' }}
             </div>
           </div>
           <div class="row">
             <div class="sixteen wide center aligned column">
               <div class="ui buttons">
                 <div class="ui button orange large">
-                  <a href="#users/new">Sign Up</a>
+                  <a href="#users/new">{{ t 'sign_up' }}</a>
                 </div>
                 <div class="or"></div>
-                <div class="ui positive button large">Try it</div>
+                <div class="ui positive button large">{{ t 'try_it' }}</div>
               </div>
             </div>
           </div>

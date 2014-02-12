@@ -11,6 +11,13 @@ var App = new (Backbone.View.extend({
     $('.ui.popup').popup();
   },
 
+  setI18nHbsHelper: function(){
+    Handlebars.registerHelper('t', function(i18n_key) {
+      var result = I18n.t(i18n_key);
+      return new Handlebars.SafeString(result);
+    });
+  },
+
   start: function(){
     if (!Backbone.history.started) {
       Backbone.history.start();
@@ -19,6 +26,9 @@ var App = new (Backbone.View.extend({
   },
 
   init: function(){
+    new App.semanticUI();
+    new App.setI18nHbsHelper();
+
     var current_user = new App.Models.CurrentUser({});
     var injector = { current_user: current_user };
     new App.Views.Menu(injector);
@@ -27,7 +37,6 @@ var App = new (Backbone.View.extend({
     new App.Routers.UserSessions(injector);
     new App.Routers.Projects(injector);
     new App.start();
-    new App.semanticUI();
   }
 
 }))({ el: document.body });

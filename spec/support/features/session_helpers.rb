@@ -16,7 +16,7 @@ module Features
       visit '#sessions/new'
       fill_in 'email', with: user.email
       fill_in 'password', with: user.password
-      click_on I18n.t('btn.sign_in')
+      click_on I18n.t('.sign_in')
       user
     end
 
@@ -26,7 +26,7 @@ module Features
       fill_in 'email', with: user.email
       fill_in 'password', with: user.password
       fill_in 'password-confirmation', with: user.password_confirmation
-      click_button I18n.t('btn.sign_up')
+      click_button I18n.t('.sign_up')
       user
     end
   end
