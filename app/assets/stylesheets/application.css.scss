@@ -8,8 +8,12 @@
 @import 'semantic-ui';
 
 body {
-  background-color: rgba(238,238,238,0.6);
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  background: #FCFCFC image-url('bg.jpg') repeat;
+  margin: 0px;
+  padding: 0px;
+  color: #555555;
+  min-width: 320px;
 }
 
 a {

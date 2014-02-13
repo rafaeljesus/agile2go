@@ -10,7 +10,7 @@ describe('App.Models.Projects#initialize', function() {
   it('should have assignedUsers', function() {
     var assignedUsers = newProject.assignedUsers;
     var typeCheck = assignedUsers instanceof App.Collections.Users;
-    expect(assignedUsers).toBeTruthy();
+    expect(typeCheck).toBeTruthy();
     expect(assignedUsers).toBeDefined();
     expect(assignedUsers.size()).toEqual(1);
   });

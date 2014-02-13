@@ -16,7 +16,11 @@ App.Views.SiteIndex = Support.CompositeView.extend({
 
   renderTemplate: function(){
     this.$el.html(JST['site/index']({ current_user: this.current_user }));
-    $('.rotate').textrotator({ animation: "dissolve", separator: ",", speed: 6000 });
+    this.rotate();
+  },
+  // FIXME not working after renderTemplate
+  rotate: function(){
+    $('.rotate').textrotator({ animation: "dissolve", separator: ",", speed: 4000 });
   }
 
 });
