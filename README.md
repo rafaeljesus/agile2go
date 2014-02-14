@@ -23,6 +23,7 @@ Deploy at Heroku:
 * git push heroku master
 * heroku run rake db:migrate
 * heroku restart
+* heroku run RACK_ENV=production foreman start
 
 Development
 -----------
@@ -32,7 +33,7 @@ Development
 * Front-end Framework: Semantic-ui (SASS), Backbone.js
 * Authorization: CanCan
 * Database: PostgresSQL
-* Server: Puma
+* Server: Puma with 2 worker in cluster mode
 * Editor: VI - Github theme
 
 Contribute
