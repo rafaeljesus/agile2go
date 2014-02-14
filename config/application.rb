@@ -19,6 +19,5 @@ module Agile2go
       g.helper = false
     end
     config.autoload_paths += %W(#{config.root}/lib)
-    config.middleware.use I18n::JS::Middleware
   end
 end
