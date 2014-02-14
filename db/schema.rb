@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140210212708) do
+ActiveRecord::Schema.define(version: 20140209213929) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "assignments", force: true do |t|
     t.integer  "project_id"
@@ -20,8 +23,8 @@ ActiveRecord::Schema.define(version: 20140210212708) do
     t.datetime "updated_at"
   end
 
-  add_index "assignments", ["project_id"], name: "index_assignments_on_project_id"
-  add_index "assignments", ["user_id"], name: "index_assignments_on_user_id"
+  add_index "assignments", ["project_id"], name: "index_assignments_on_project_id", using: :btree
+  add_index "assignments", ["user_id"], name: "index_assignments_on_user_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "name"
@@ -39,12 +42,12 @@ ActiveRecord::Schema.define(version: 20140210212708) do
     t.datetime "updated_at"
   end
 
-  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-  add_index "roles", ["name"], name: "index_roles_on_name"
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "sprints", force: true do |t|
-    t.time     "daily"
-    t.integer  "points",     limit: 255
+    t.string   "daily"
+    t.string   "points"
     t.date     "start_date"
     t.date     "end_date"
     t.integer  "project_id"
@@ -52,7 +55,7 @@ ActiveRecord::Schema.define(version: 20140210212708) do
     t.datetime "updated_at"
   end
 
-  add_index "sprints", ["project_id"], name: "index_sprints_on_project_id"
+  add_index "sprints", ["project_id"], name: "index_sprints_on_project_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -69,6 +72,6 @@ ActiveRecord::Schema.define(version: 20140210212708) do
     t.integer "role_id"
   end
 
-  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
 end
