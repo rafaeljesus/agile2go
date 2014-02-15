@@ -1,40 +1,40 @@
 App.Routers.Projects = Support.SwappingRouter.extend(
   _.extend({}, App.Mixins.Permissions, {
-    initialize: function(options){
-      this.current_user = options.current_user;
-      this.el = $('#container');
-      this.collection = new App.Collections.Projects({});
-      this.users = new App.Collections.Users({});
-     },
+  initialize: function(options){
+    this.current_user = options.current_user;
+    this.el = $('#container');
+    this.collection = new App.Collections.Projects({});
+    this.users = new App.Collections.Users({});
+   },
 
-    routes: {
-      'projects': 'index',
-      'projects/new': 'new',
-      'projects/:id/edit': 'edit'
-    },
+  routes: {
+    'projects': 'index',
+    'projects/new': 'new',
+    'projects/:id/edit': 'edit'
+  },
 
-     index: function(){
-      this.authorize();
-      this.collection.fetch({});
-      var view = new App.Views.ProjectsIndex({ collection : this.collection });
-      this.swap(view);
-    },
+   index: function(){
+    this.authorize();
+    this.collection.fetch({});
+    var view = new App.Views.ProjectsIndex({ collection : this.collection });
+    this.swap(view);
+  },
 
-    new: function(){
-      this.authorize();
-      this.users.fetch({});
-      var view = new App.Views.ProjectNew({ users: this.users });
-      this.swap(view);
-    },
+  new: function(){
+    this.authorize();
+    this.users.fetch({});
+    var view = new App.Views.ProjectNew({ users: this.users });
+    this.swap(view);
+  },
 
-    edit: function(id){
-      this.authorize();
-      var self = this;
-      $.getJSON("/projects/" + id  + "/edit").done(function(json){
-        var model = new App.Models.Project(json[0]);
-        this.users = new App.Collections.Users(json[1]);
-        var view = new App.Views.ProjectEdit({ model: model, users: this.users });
-        self.swap(view);
-      });
-    }
+  edit: function(id){
+    this.authorize();
+    var self = this;
+    $.getJSON("/projects/" + id  + "/edit").done(function(json){
+      var model = new App.Models.Project(json[0]);
+      this.users = new App.Collections.Users(json[1]);
+      var view = new App.Views.ProjectEdit({ model: model, users: this.users });
+      self.swap(view);
+    });
+  }
 }));

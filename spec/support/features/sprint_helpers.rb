@@ -12,9 +12,9 @@ module Features
       visit '#sprints/new'
       fill_in 'daily', with: new_sprint.daily
       fill_in 'points', with: new_sprint.points
-      fill_in 'start_date', with: new_sprint.start_date
-      fill_in 'end_date', with: new_sprint.end_date
-      fill_in 'project', with: new_sprint.project
+      fill_in 'start-date', with: new_sprint.start_date
+      fill_in 'end-date', with: new_sprint.end_date
+      execute_script("$('select').val(#{new_sprint.project.id}).trigger('change')")
       submit
       new_sprint
     end

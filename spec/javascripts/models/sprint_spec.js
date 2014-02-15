@@ -15,11 +15,11 @@ describe('App.Models.Sprints#initialize', function(){
   });
 
   it('should validate when model have required attributes', function(){
-    // expect(newSprint.isValid()).toBeFalsy();
+    expect(newSprint.isValid()).toBeFalsy();
   });
 });
 
-describe('App.Models.Sprint project: change', function(){
+describe('App.Models.Sprint project:change', function(){
   it('re-parse the project', function(){
     var project = { project: { id: 1, name: 'projectNameFake' } };
     var sprint = new App.Models.Sprint(project);

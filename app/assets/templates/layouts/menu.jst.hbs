@@ -5,9 +5,12 @@
       </a>
     </div>
   </div>
-  {{#if current_user.signed_in}}
+  {{# if current_user.signed_in }}
     <div class="item">
-      <a href="#projects">Projects</a>
+      <a href="#projects">{{ t 'project.title.other' }}</a>
+    </div>
+    <div class="item">
+      <a href="#sprints">{{ t 'sprint.title.other' }}</a>
     </div>
   {{/if}}
   <div class="right menu">
@@ -17,18 +20,18 @@
         <i class="search link icon"></i>
       </div>
     </div>
-    {{#if current_user.signed_in}}
+    {{# if current_user.signed_in }}
       <div class="item">
         <div class="ui red button">
           <i class="sign out icon"></i>
-          <a href="#sessions/destroy">SIGN OUT</a>
+          <a href="#sessions/destroy">{{ t 'sign_out' }}</a>
         </div>
       </div>
-     {{else}}
+     {{ else }}
      <div class="item">
         <div class="ui teal button">
           <i class="sign in icon"></i>
-          <a href="#sessions/new">SIGN IN</a>
+          <a href="#sessions/new">{{ t 'sign_in' }}</a>
         </div>
       </div>
     {{/if}}

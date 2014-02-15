@@ -8,6 +8,8 @@ en:
       destroy:
         notice: "%{model} was successfully removed."
         alert: "%{model} could not be removed."
+  save: 'Save'
+  back: 'Back'
   sign_up: 'Sign Up'
   sign_in: 'Sign In'
   sign_out: 'Sign Out'
@@ -29,10 +31,28 @@ en:
   account:
     updated: 'You updated your account successfully'
   user:
+    title:
+      one: 'User'
+      other: 'Users'
     name: 'Name'
     email: 'Email'
     password: 'Password'
     password_confirmation: 'Password Confirmation'
+  project:
+    title:
+      one: 'Project'
+      other: 'Projects'
+    name: 'Name'
+    company: 'Company'
+    description: 'Description'
+  sprint:
+    title:
+      one: 'Sprint'
+      other: 'Sprints'
+    daily: 'Daily'
+    points: 'Points'
+    start_date: 'Start Date'
+    end_date: 'End Date'
   activemodel:
     attributes:
       user_session:

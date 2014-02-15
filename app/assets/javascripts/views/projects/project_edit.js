@@ -17,7 +17,7 @@ App.Views.ProjectEdit = Support.CompositeView.extend({
   },
 
   renderTemplate: function(){
-    this.$el.html(JST['projects/form']({ self: this.model.toJSON(), users: this.users.toJSON() }));
+    this.$el.html(JST['projects/form']({ model: this.model.toJSON(), users: this.users.toJSON() }));
   },
 
   renderAssignedUsers: function(){

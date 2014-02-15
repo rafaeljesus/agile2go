@@ -5,8 +5,8 @@ development:
   timeout: 5000
 
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
+  adapter: postgresql
+  database: agile2go_test
   pool: 5
   timeout: 5000
 

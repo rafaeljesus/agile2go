@@ -16,6 +16,18 @@ App.Models.Sprint = Backbone.Model.extend({
   },
 
   parseTasks: function(){
+  },
+
+  toJSON: function(){
+    var json = _.clone(this.attributes);
+    json.project_id = this.project.id ;
+    return json;
+  },
+
+  validate: function(attrs, options){
+    if(!attrs.start_date){ return "start date can't be blank" };
+    if(!attrs.end_date){ return "end date can't be blank" };
+    if(!this.project.attributes.name){ return "project can't be blank" };
   }
 
 });

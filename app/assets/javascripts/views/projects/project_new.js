@@ -1,6 +1,6 @@
 App.Views.ProjectNew = Support.CompositeView.extend({
   initialize: function(options){
-    _.bindAll(this, 'render', 'saved', 'notSaved');
+    _.bindAll(this, 'render', 'saved', 'unSaved');
     this.users = options.users;
     this.newTask();
     this.bindTo(this.users, 'add', this.render);
@@ -17,7 +17,7 @@ App.Views.ProjectNew = Support.CompositeView.extend({
   },
 
   renderTemplate: function(){
-    this.$el.html(JST['projects/form']({ self: this.model.toJSON(), users: this.users.toJSON() }));
+    this.$el.html(JST['projects/form']({ model: this.model.toJSON(), users: this.users.toJSON() }));
   },
 
   newTask: function(){
@@ -30,15 +30,16 @@ App.Views.ProjectNew = Support.CompositeView.extend({
     if(!this.model.isValid()){
       this.formValidationError();
     } else {
-      this.model.save({}, { success: this.saved, error: this.notSaved });
+      this.model.save({}, { success: this.saved, error: this.unSaved });
     }
     return false;
   },
 
   commit: function(){
-    var name = this.$('#name').val(),
-        description = this.$('#description').val(),
-        company = this.$('#company').val();
+    var name = this.$('#name').val()
+    , description = this.$('#description').val()
+    , company = this.$('#company').val()
+    ;
     this.model.set({ name: name, description: description, company: company });
     this.model.assignedUsers = new App.Collections.Users(this.assignedUsers());
   },
@@ -61,7 +62,7 @@ App.Views.ProjectNew = Support.CompositeView.extend({
      this.savedMsg();
   },
 
-  notSaved: function(model, xhr, options){
+  unSaved: function(model, xhr, options){
     var errors = JSON.parse(xhr.responseText).errors;
     new FlashMessages({ message: errors }).error();
   },

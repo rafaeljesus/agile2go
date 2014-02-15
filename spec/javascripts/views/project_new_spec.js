@@ -1,6 +1,6 @@
 describe('App.Views.ProjectNew', function(){
   var view
-  , usersCollection
+  , users
   , model
   , $el
   , e;

@@ -13,18 +13,38 @@
           <form>
             <div class="two fields">
               <div class="field">
-                <label>{{ t 'project.name' }}</label>
+                <label>{{ t 'sprint.start_date' }}</label>
                 <div class="ui left labeled icon input">
-                  <input type="text" id="name" value="{{ model.name }}" placeholder="{{ t 'project.name' }}">
+                  <input type="text" id="start-date" value="{{ model.start_date }}" placeholder="xx/xx/xxxx">
                   <div class="ui corner label">
                     <i class="icon asterisk"></i>
                   </div>
                 </div>
               </div>
               <div class="field">
-                <label>{{ t 'project.company' }}</label>
+                <label>{{ t 'sprint.end_date' }}</label>
                 <div class="ui left labeled icon input">
-                  <input type="text" id="company" value="{{ model.company }}" placeholder="{{ t 'project.company' }}">
+                  <input type="text" id="end-date" value="{{ model.end_date }}" placeholder="xx/xx/xxxx">
+                  <div class="ui corner label">
+                    <i class="icon asterisk"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="two fields">
+              <div class="date field">
+                <label>{{ t 'sprint.daily' }}</label>
+                <div class="ui left labeled icon input">
+                  <input type="text" id="daily" value="{{ model.daily }}" placeholder="xx:xx">
+                  <div class="ui corner label">
+                    <i class="icon asterisk"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <label>{{ t 'sprint.points' }}</label>
+                <div class="ui left labeled icon input">
+                  <input type="text" id="points" value="{{ model.points }}" placeholder="Total Points">
                   <div class="ui corner label">
                     <i class="icon asterisk"></i>
                   </div>
@@ -32,20 +52,11 @@
               </div>
             </div>
             <div class="field">
-              <label>{{ t 'project.description'}}</label>
-              <div class="ui left labeled icon input">
-                <textarea cols="40" rows="20" id="description" placeholder="Description">{{ model.description }}</textarea>
-                <div class="ui corner label">
-                  <i class="icon asterisk"></i>
-                </div>
-              </div>
-            </div>
-            <div class="field">
-              <label>{{ t 'user.title.other' }}</label>
-              <select multiple>
-                {{# each users }}
-                  <option value="{{ this.id }}">{{ this.name }}</opition>
-                {{/each }}
+              <label>{{ t 'project.title.one' }}</label>
+              <select class="project-select">
+                {{# each projects }}
+                  <option value="{{ this.id }}">{{ this.name }}</option>
+                {{/each}}
               </select>
             </div>
             <div class="ui blue submit button large right floated" type="submit">{{ t 'save' }}</div>
