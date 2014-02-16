@@ -12,7 +12,7 @@
         <div class="ui form attached fluid segment">
           <form>
             <div class="two fields">
-              <div class="field">
+              <div id="name_input" class="field">
                 <label>{{ t 'project.name' }}</label>
                 <div class="ui left labeled icon input">
                   <input type="text" id="name" value="{{ model.name }}" placeholder="{{ t 'project.name' }}">
@@ -21,7 +21,7 @@
                   </div>
                 </div>
               </div>
-              <div class="field">
+              <div id="company_input" class="field">
                 <label>{{ t 'project.company' }}</label>
                 <div class="ui left labeled icon input">
                   <input type="text" id="company" value="{{ model.company }}" placeholder="{{ t 'project.company' }}">
@@ -31,7 +31,7 @@
                 </div>
               </div>
             </div>
-            <div class="field">
+            <div id="description_input" class="field">
               <label>{{ t 'project.description'}}</label>
               <div class="ui left labeled icon input">
                 <textarea cols="40" rows="20" id="description" placeholder="Description">{{ model.description }}</textarea>

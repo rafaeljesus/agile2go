@@ -1,8 +1,9 @@
 App.Views.UserRegistrations = Support.CompositeView.extend({
   initialize: function(options){
-    _.bindAll(this, 'render', 'saved', 'notSaved');
+    _.bindAll(this, 'render', 'saved', 'onModelError');
     this.current_user = options.current_user;
     this.model = new App.Models.UserRegistration({});
+    this.model.on('error', this.onModelError);
   },
 
   events: {
@@ -18,9 +19,9 @@ App.Views.UserRegistrations = Support.CompositeView.extend({
     e.preventDefault();
     this.commit();
     if (!this.model.isValid()) {
-      this.formValidationError();
+      this.model.trigger('error');
     } else {
-      this.model.save({}, { success: this.saved, error: this.notSaved });
+      this.model.save({}, { success: this.saved });
     }
     return false;
   },
@@ -40,23 +41,18 @@ App.Views.UserRegistrations = Support.CompositeView.extend({
      this.savedSuccess();
   },
 
-  notSaved: function(model, xhr, options){
-    var errors = JSON.parse(xhr.responseText).errors;
-    new FlashMessages({ message: errors }).error();
-  },
-
-  rootPath: function(){
-    window.location.hash = '#';
-  },
-
   savedSuccess: function(){
      var message = I18n.t('registrations.signed_up');
      new FlashMessages({ message: message }).success();
   },
 
-  formValidationError: function(){
-    var message = this.model.validationError;
-    new FlashMessages({ message: message }).error();
-  }
+  onModelError: function(model, response, options){
+    var attributesWithErrors = response ? JSON.parse(response.responseText).errors : this.model.validationError;
+    new ErrorView({ el: $('form'), attributesWithErrors: attributesWithErrors }).render();
+  },
+
+  rootPath: function(){
+    window.location.hash = '#';
+  },
 
 });

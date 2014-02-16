@@ -1,9 +1,10 @@
 App.Views.ProjectNew = Support.CompositeView.extend({
   initialize: function(options){
-    _.bindAll(this, 'render', 'saved', 'unSaved');
+    _.bindAll(this, 'render', 'saved', 'onModelError');
     this.users = options.users;
-    this.newTask();
+    this.newProject();
     this.bindTo(this.users, 'add', this.render);
+    this.model.on('error', this.onModelError);
   },
 
   events: {
@@ -20,17 +21,13 @@ App.Views.ProjectNew = Support.CompositeView.extend({
     this.$el.html(JST['projects/form']({ model: this.model.toJSON(), users: this.users.toJSON() }));
   },
 
-  newTask: function(){
-    this.model = new App.Models.Project();
-  },
-
   save: function(e){
     e.preventDefault();
     this.commit();
     if(!this.model.isValid()){
-      this.formValidationError();
+      this.model.trigger('error');
     } else {
-      this.model.save({}, { success: this.saved, error: this.unSaved });
+      this.model.save({}, { success: this.saved });
     }
     return false;
   },
@@ -62,9 +59,18 @@ App.Views.ProjectNew = Support.CompositeView.extend({
      this.savedMsg();
   },
 
-  unSaved: function(model, xhr, options){
-    var errors = JSON.parse(xhr.responseText).errors;
-    new FlashMessages({ message: errors }).error();
+  savedMsg: function(){
+     var message = I18n.t('flash.actions.create.notice', { model: 'Project' });
+     new FlashMessages({ message: message }).success();
+  },
+
+  onModelError: function(model, response, options){
+    var attributesWithErrors = response ? JSON.parse(response.responseText).errors : this.model.validationError;
+    new ErrorView({ el: $('form'), attributesWithErrors: attributesWithErrors }).render();
+  },
+
+  newProject: function(){
+    this.model = new App.Models.Project();
   },
 
   select2: function(){
@@ -73,16 +79,6 @@ App.Views.ProjectNew = Support.CompositeView.extend({
 
   projectsPath: function(){
     window.location.href = '#projects';
-  },
-
-  savedMsg: function(){
-     var message = I18n.t('flash.actions.create.notice', { model: 'Project' });
-     new FlashMessages({ message: message }).success();
-  },
-
-  formValidationError: function(){
-    var message = this.model.validationError;
-    new FlashMessages({ message: message }).error();
   }
 
 });

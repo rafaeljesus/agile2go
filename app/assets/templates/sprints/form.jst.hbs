@@ -12,7 +12,7 @@
         <div class="ui form attached fluid segment">
           <form>
             <div class="two fields">
-              <div class="field">
+              <div id="start_date_input" class="field">
                 <label>{{ t 'sprint.start_date' }}</label>
                 <div class="ui left labeled icon input">
                   <input type="text" id="start-date" value="{{ model.start_date }}" placeholder="xx/xx/xxxx">
@@ -21,7 +21,7 @@
                   </div>
                 </div>
               </div>
-              <div class="field">
+              <div id="end_date_input" class="field">
                 <label>{{ t 'sprint.end_date' }}</label>
                 <div class="ui left labeled icon input">
                   <input type="text" id="end-date" value="{{ model.end_date }}" placeholder="xx/xx/xxxx">
@@ -32,7 +32,7 @@
               </div>
             </div>
             <div class="two fields">
-              <div class="date field">
+              <div id="daily_input" class="date field">
                 <label>{{ t 'sprint.daily' }}</label>
                 <div class="ui left labeled icon input">
                   <input type="text" id="daily" value="{{ model.daily }}" placeholder="xx:xx">
@@ -41,7 +41,7 @@
                   </div>
                 </div>
               </div>
-              <div class="field">
+              <div id="points_input" class="field">
                 <label>{{ t 'sprint.points' }}</label>
                 <div class="ui left labeled icon input">
                   <input type="text" id="points" value="{{ model.points }}" placeholder="Total Points">
@@ -51,7 +51,7 @@
                 </div>
               </div>
             </div>
-            <div class="field">
+            <div id="project_input" class="field">
               <label>{{ t 'project.title.one' }}</label>
               <select class="project-select">
                 {{# each projects }}

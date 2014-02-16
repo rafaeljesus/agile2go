@@ -1,20 +1,14 @@
 App.Views.SprintNew = Support.CompositeView.extend({
   initialize: function(options){
-    _.bindAll(this, 'render', 'saved', 'unSaved');
+    _.bindAll(this, 'render', 'saved', 'onModelError');
     this.projects = options.projects;
     this.newProject();
     this.bindTo(this.projects, 'add', this.render);
+    this.model.on('error', this.onModelError);
   },
 
   events: {
-    'click .submit': 'save',
-    'keyup #start-date': 'validateStartDate'
-  },
-
-  validateStartDate: function(){
-    // var startDate = this.$('#start-date').val();
-    // var dateFormat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
-    // if(!startDate.match(dateFormat)) this.$('#start-date').val('');
+    'click .submit': 'save'
   },
 
   render: function(){
@@ -27,9 +21,9 @@ App.Views.SprintNew = Support.CompositeView.extend({
     e.preventDefault();
     this.commit();
     if(!this.model.isValid()){
-      this.formValidationError();
+      this.model.trigger('error');
     } else {
-      this.model.save({}, { success: this.saved, error: this.unSaved });
+      this.model.save({}, { success: this.saved });
     }
     return false;
   },
@@ -38,8 +32,7 @@ App.Views.SprintNew = Support.CompositeView.extend({
     var start_date = this.$('#start-date').val()
     , end_date = this.$('#end-date').val()
     , daily = this.$('#daily').val()
-    , points = this.$('#points').val()
-    ;
+    , points = this.$('#points').val();
     this.model.set({ start_date: start_date, end_date: end_date, daily: daily, points: points });
     this.model.project = this.assignedProject();
   },
@@ -62,14 +55,9 @@ App.Views.SprintNew = Support.CompositeView.extend({
      this.savedMsg();
   },
 
-  unSaved: function(model, xhr, options){
-    var errors = JSON.parse(xhr.responseText).errors;
-    new FlashMessages({ message: errors }).error();
-  },
-
-  formValidationError: function(){
-    var message = this.model.validationError;
-    new FlashMessages({ message: message }).error();
+  onModelError: function(model, response, options){
+    var attributesWithErrors = response ? JSON.parse(response.responseText).errors : this.model.validationError;
+    new ErrorView({ el: $('form'), attributesWithErrors: attributesWithErrors }).render();
   },
 
   newProject: function(){

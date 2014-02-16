@@ -1,8 +1,9 @@
 App.Views.UserSessionsNew = Support.CompositeView.extend({
   initialize: function(options){
-    _.bindAll(this, 'render', 'authenticated', 'notAuthenticated');
+    _.bindAll(this, 'render', 'authenticated', 'onModelError');
     this.current_user = options.current_user;
     this.model = new App.Models.UserSession({});
+    this.model.on('error', this.onModelError);
   },
 
   events: {
@@ -18,9 +19,9 @@ App.Views.UserSessionsNew = Support.CompositeView.extend({
     e.preventDefault();
     this.commit();
     if(!this.model.isValid()){
-      this.formValidationError();
+      this.model.trigger('error');
     } else {
-      this.model.save({}, { success: this.authenticated, error: this.notAuthenticated });
+      this.model.save({}, { success: this.authenticated });
     }
   },
 
@@ -36,21 +37,14 @@ App.Views.UserSessionsNew = Support.CompositeView.extend({
     this.authenticatedSuccess();
   },
 
-  notAuthenticated: function(model, xhr, options){
-    var attributesWithErrors = JSON.parse(xhr.responseText);
-    _.each(attributesWithErrors, function(errors, attribute){
-      new FlashMessages({ message: errors.base  }).error();
-    });
-  },
-
   authenticatedSuccess: function(){
      var message = I18n.t('sessions.signed_in');
      new FlashMessages({ message: message }).success();
   },
 
-  formValidationError: function(){
-    var message = this.model.validationError;
-    new FlashMessages({ message: message }).error();
+  onModelError: function(model, response, options){
+    var attributesWithErrors = response ? JSON.parse(response.responseText).errors : this.model.validationError;
+    new ErrorView({ el: $('form'), attributesWithErrors: attributesWithErrors }).render();
   },
 
   rootPath: function(){

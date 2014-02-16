@@ -3,7 +3,7 @@ var FlashMessages = Backbone.View.extend({
 
   initialize: function(options){
     this.message = options.message;
-    this.delay = options.delay || 10000;
+    this.delay = options.delay || 100000;
   },
 
   success: function(){

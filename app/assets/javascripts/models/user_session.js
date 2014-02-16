@@ -2,8 +2,16 @@ App.Models.UserSession = Backbone.Model.extend({
   urlRoot: 'user_sessions',
 
   validate: function(attrs, options){
-    if (attrs.email == '') { return "email can't be blank" };
-    if (attrs.password == '') { return "password can't be blank" };
+    var errors;
+    if(!attrs.email){
+      errors = errors || {};
+      errors.email = ["email can't be blank"];
+    };
+    if(!attrs.password){
+      errors = errors || {};
+      errors.password = ["password can't be blank"];
+    };
+    if(errors) return errors;
   }
 
 });
