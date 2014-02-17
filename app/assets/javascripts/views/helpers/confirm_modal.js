@@ -5,7 +5,7 @@ App.Views.ConfirmModal = Backbone.View.extend({
 
   initialize: function(options){
     _.bindAll(this, 'render', 'deleted');
-    this.project = options.project;
+    this.model = options.model;
     this.$tr = options.$tr;
   },
 
@@ -14,14 +14,14 @@ App.Views.ConfirmModal = Backbone.View.extend({
   },
 
   render: function(){
-    this.$el.html(JST['modal']({ name: this.project.get('name'), id: this.project.get('id') }));
+    this.$el.html(JST['modal']({ name: this.model.get('name'), id: this.model.get('id') }));
     this.show();
     return this;
   },
 
   delete: function(e){
     e.preventDefault();
-    this.project.destroy({ success: this.deleted() });
+    this.model.destroy({ success: this.deleted() });
     return false;
   },
 

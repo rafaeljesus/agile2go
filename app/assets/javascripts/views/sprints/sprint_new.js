@@ -26,11 +26,12 @@ App.Views.SprintNew = Support.CompositeView.extend({
   },
 
   commit: function(){
-    var start_date = this.$('#start-date').val()
+    var name = this.$('#name').val()
+    , start_date = this.$('#start-date').val()
     , end_date = this.$('#end-date').val()
     , daily = this.$('#daily').val()
     , points = this.$('#points').val();
-    this.model.set({ start_date: start_date, end_date: end_date, daily: daily, points: points });
+    this.model.set({ name: name, start_date: start_date, end_date: end_date, daily: daily, points: points });
     this.model.project = this.assignedProject();
   },
 

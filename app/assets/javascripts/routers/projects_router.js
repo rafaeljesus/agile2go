@@ -1,8 +1,8 @@
 App.Routers.Projects = Support.SwappingRouter.extend(
   _.extend({}, App.Mixins.Permissions, {
   initialize: function(options){
-    this.current_user = options.current_user;
     this.el = $('#container');
+    this.current_user = options.current_user;
     this.collection = new App.Collections.Projects({});
     this.users = new App.Collections.Users({});
    },

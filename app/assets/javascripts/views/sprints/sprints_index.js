@@ -1,4 +1,4 @@
-App.Views.ProjectsIndex = Support.CompositeView.extend({
+App.Views.SprintsIndex = Support.CompositeView.extend({
   initialize: function(){
     _.bindAll(this, 'render');
     this.bindTo(this.collection, 'change', this.render);
@@ -8,12 +8,12 @@ App.Views.ProjectsIndex = Support.CompositeView.extend({
   },
 
   events: {
-    'click .confirm' : 'showModal',
-    'click .delete' : 'delete'
+    'click .confirm': 'showModal',
+    'click .delete': 'delete'
   },
 
   render: function(){
-    this.$el.html(JST['projects/index'](this.collection.toJSON()));
+    this.$el.html(JST['sprints/index'](this.collection.toJSON()));
     return this;
   },
 

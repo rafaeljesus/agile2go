@@ -7,6 +7,11 @@ class SprintsController < ApplicationController
     respond_with @sprints
   end
 
+  def edit
+    @projects = Project.all
+    respond_with [@sprint, @projects], root: false
+  end
+
   def create
     @sprint = Sprint.new sprint_params
     @sprint.save
@@ -29,6 +34,6 @@ class SprintsController < ApplicationController
   end
 
   def sprint_params
-    params.require(:sprint).permit(:daily, :points, :start_date, :end_date, :project_id)
+    params.require(:sprint).permit(:name, :daily, :points, :start_date, :end_date, :project_id)
   end
 end

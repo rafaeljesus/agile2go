@@ -3,23 +3,20 @@ var FlashMessages = Backbone.View.extend({
 
   initialize: function(options){
     this.message = options.message;
-    this.delay = options.delay || 100000;
   },
 
   success: function(){
     this.$el
       .show()
       .html(JST['messages']({ type: 'Success', color: 'blue', message: this.message }))
-      .fadeOut(4000)
-      .delay(this.delay);
+      .fadeOut(5000);
   },
 
   error: function(){
     this.$el
       .show()
       .html(JST['messages']({ type: 'Error', color: 'red', message: this.message }))
-      .fadeOut(4000)
-      .delay(this.delay);
+      .fadeOut(5000)
   }
 
 });

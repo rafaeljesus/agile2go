@@ -27,32 +27,29 @@ describe('App.Views.UserSessionsNew', function(){
 
   it('should not authenticate if sign in form is blank', function(){
     spyOn(model, 'save');
-    spyOn(view, 'formValidationError');
     view.$('#email').val('');
     view.$('#password').val('');
     view.authenticate(e);
     expect(model.save).not.toHaveBeenCalled();
-    expect(view.formValidationError).toHaveBeenCalled();
+    expect(model.isValid()).toBeFalsy();
   });
 
   it('should not authenticate if email are blank', function(){
     spyOn(model, 'save');
-    spyOn(view, 'formValidationError');
     view.$('#email').val('');
     view.$('#password').val('12345678');
     view.authenticate(e);
     expect(model.save).not.toHaveBeenCalled();
-    expect(view.formValidationError).toHaveBeenCalled();
+    expect(model.isValid()).toBeFalsy();
   });
 
   it('should not authenticate if password are blank', function(){
     spyOn(model, 'save');
-    spyOn(view, 'formValidationError');
     view.$('#email').val('fake@email.com');
     view.$('#password').val('');
     view.authenticate(e);
     expect(model.save).not.toHaveBeenCalled();
-    expect(view.formValidationError).toHaveBeenCalled();
+    expect(model.isValid()).toBeFalsy();
   });
 
 });

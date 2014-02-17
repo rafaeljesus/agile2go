@@ -3,12 +3,21 @@ App.Routers.Sprints = Support.SwappingRouter.extend(
   initialize: function(options){
     this.el = $('#container');
     this.current_user = options.current_user;
+    this.collection = new App.Collections.Sprints({});
     this.projects = new App.Collections.Projects({});
   },
 
   routes: {
     'sprints': 'index',
-    'sprints/new': 'new'
+    'sprints/new': 'new',
+    'sprints/:id/edit': 'edit'
+  },
+
+  index: function(){
+    this.authorize();
+    this.collection.fetch({});
+    var view = new App.Views.SprintsIndex({ collection: this.collection });
+    this.swap(view);
   },
 
   new: function(){
@@ -16,6 +25,17 @@ App.Routers.Sprints = Support.SwappingRouter.extend(
     this.projects.fetch({});
     var view = new App.Views.SprintNew({ projects: this.projects });
     this.swap(view);
+  },
+
+  edit: function(id){
+    this.authorize();
+    var self = this;
+    $.getJSON("/sprints/" + id + "/edit").done(function(json){
+      var model = new App.Models.Sprint(json[0]);
+      self.projects = new App.Collections.Projects(json[1]);
+      var view = new App.Views.SprintEdit({ model: model, projects: self.projects });
+      self.swap(view);
+    });
   }
 
 }));

@@ -19,6 +19,7 @@ App.Models.UserRegistration = Backbone.Model.extend({
       errors = errors || {};
       errors.password_confirmation = ["can't be blank"];
     };
+    if(errors) return errors;
   }
 
 });

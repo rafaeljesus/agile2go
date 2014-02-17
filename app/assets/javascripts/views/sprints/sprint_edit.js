@@ -1,8 +1,8 @@
-App.Views.ProjectEdit = Support.CompositeView.extend({
-  initialize : function(options){
+App.Views.SprintEdit = Support.CompositeView.extend({
+  initialize: function(options){
     _.bindAll(this, 'render', 'saved', 'onModelError');
     this.model = options.model;
-    this.users = options.users;
+    this.projects = options.projects;
     this.model.on('error', this.onModelError);
   },
 
@@ -13,19 +13,16 @@ App.Views.ProjectEdit = Support.CompositeView.extend({
   render: function(){
     this.renderTemplate();
     this.select2();
-    this.renderAssignedUsers();
+    this.renderAssignedProject();
     return this;
   },
 
   renderTemplate: function(){
-    this.$el.html(JST['projects/form']({ model: this.model.toJSON(), users: this.users.toJSON() }));
+    this.$el.html(JST['sprints/form']({ model: this.model.toJSON(), projects: this.projects.toJSON() }));
   },
 
-  renderAssignedUsers: function(){
-    var self = this;
-    self.model.assignedUsers.each(function(model){
-      self.$('select').val(model.get('user_id')).trigger('change');
-    });
+  renderAssignedProject: function(){
+    this.$('select').val(this.model.project.id).trigger('change');
   },
 
   update: function(e){
@@ -37,27 +34,29 @@ App.Views.ProjectEdit = Support.CompositeView.extend({
 
   commit: function(){
     var name = this.$('#name').val()
-    , description = this.$('#description').val()
-    , company = this.$('#company').val();
-    this.model.set({ name: name, description: description, company: company });
-    this.model.assignedUsers = new App.Collections.Users(this.assignedUsers());
+    , start_date = this.$('#start-date').val()
+    , end_date = this.$('#end-date').val()
+    , daily = this.$('#daily').val()
+    , points = this.$('#points').val();
+    this.model.set({ name: name, start_date: start_date, end_date: end_date, daily: daily, points: points });
+    this.model.project = this.assignedProject();
   },
 
-  assignedUsers: function(){
+  assignedProject: function(){
     var self = this;
-    return _.uniq(_.compact(_.map(this.assigneeIds(), function(id) {
-      return self.users.get({ id: id });
-    })));
+    return _.first(_.map(this.assigneeId(), function(id){
+      return self.projects.get({ id: id });
+    }));
   },
 
-  assigneeIds: function(){
+  assigneeId: function(){
     return this.$('select').find('option:selected').map(function(n, select){
       return $(select).val();
     });
   },
 
   saved: function(model, response, options) {
-     this.projectsPath();
+     this.sprintsPath();
      this.savedMsg();
   },
 
@@ -66,12 +65,12 @@ App.Views.ProjectEdit = Support.CompositeView.extend({
     new ErrorView({ el: $('form'), attributesWithErrors: attributesWithErrors }).render();
   },
 
-  projectsPath: function(){
-    window.location.href = '#projects';
+  sprintsPath: function(){
+    window.location.href = '#sprints';
   },
 
   savedMsg: function(){
-     var message = 'Project was successfully updated.';
+     var message = I18n.t('flash.actions.update.notice', { model: 'Sprint' });
      new FlashMessages({ message: message }).success();
   },
 
@@ -79,4 +78,4 @@ App.Views.ProjectEdit = Support.CompositeView.extend({
     this.$('select').select2({ placeholder: 'Select a User' });
   }
 
- });
+});

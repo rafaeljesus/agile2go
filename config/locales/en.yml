@@ -30,6 +30,8 @@ en:
     signed_up_but_unconfirmed: 'A messages with a confirmation link has being sent to your email address. Please open the link to activate your account'
   account:
     updated: 'You updated your account successfully'
+  created_at: 'Created At'
+  actions: 'Actions'
   user:
     title:
       one: 'User'
@@ -49,10 +51,12 @@ en:
     title:
       one: 'Sprint'
       other: 'Sprints'
+    name: 'Name'
     daily: 'Daily'
     points: 'Points'
     start_date: 'Start Date'
     end_date: 'End Date'
+    finishing_at: 'Finishing At'
   activemodel:
     attributes:
       user_session:

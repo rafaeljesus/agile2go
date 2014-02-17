@@ -22,10 +22,9 @@ describe('App.Views.ProjectNew', function(){
 
   it('should not persists a empty model', function(){
     spyOn(model, 'save');
-    spyOn(view, 'formValidationError');
     view.save(e);
     expect(model.save).not.toHaveBeenCalled();
-    expect(view.formValidationError).toHaveBeenCalled();
+    expect(model.isValid).toBeTruthy();
   });
 
   it('should persists a new model', function(){

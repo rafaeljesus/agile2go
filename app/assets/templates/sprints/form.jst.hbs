@@ -12,26 +12,15 @@
         <div class="ui form attached fluid segment">
           <form>
             <div class="two fields">
-              <div id="start_date_input" class="field">
-                <label>{{ t 'sprint.start_date' }}</label>
+              <div id="name_input" class="date field">
+                <label>{{ t 'sprint.name' }}</label>
                 <div class="ui left labeled icon input">
-                  <input type="text" id="start-date" value="{{ model.start_date }}" placeholder="xx/xx/xxxx">
+                  <input type="text" id="name" value="{{ model.name }}" placeholder="Sprint Name">
                   <div class="ui corner label">
                     <i class="icon asterisk"></i>
                   </div>
                 </div>
               </div>
-              <div id="end_date_input" class="field">
-                <label>{{ t 'sprint.end_date' }}</label>
-                <div class="ui left labeled icon input">
-                  <input type="text" id="end-date" value="{{ model.end_date }}" placeholder="xx/xx/xxxx">
-                  <div class="ui corner label">
-                    <i class="icon asterisk"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="two fields">
               <div id="daily_input" class="date field">
                 <label>{{ t 'sprint.daily' }}</label>
                 <div class="ui left labeled icon input">
@@ -40,6 +29,36 @@
                     <i class="icon asterisk"></i>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="two fields">
+              <div id="start_date_input" class="field">
+                <label>{{ t 'sprint.start_date' }}</label>
+                <div class="ui left labeled icon input">
+                  <input type="text" id="start-date" value="{{ model.start_date }}" placeholder="xx-xx-xxxx">
+                  <div class="ui corner label">
+                    <i class="icon asterisk"></i>
+                  </div>
+                </div>
+              </div>
+              <div id="end_date_input" class="field">
+                <label>{{ t 'sprint.end_date' }}</label>
+                <div class="ui left labeled icon input">
+                  <input type="text" id="end-date" value="{{ model.end_date }}" placeholder="xx-xx-xxxx">
+                  <div class="ui corner label">
+                    <i class="icon asterisk"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="two fields">
+              <div id="project_input" class="field">
+                <label>{{ t 'project.title.one' }}</label>
+                <select class="project-select">
+                  {{# each projects }}
+                    <option value="{{ this.id }}">{{ this.name }}</option>
+                  {{/each}}
+                </select>
               </div>
               <div id="points_input" class="field">
                 <label>{{ t 'sprint.points' }}</label>
@@ -51,16 +70,8 @@
                 </div>
               </div>
             </div>
-            <div id="project_input" class="field">
-              <label>{{ t 'project.title.one' }}</label>
-              <select class="project-select">
-                {{# each projects }}
-                  <option value="{{ this.id }}">{{ this.name }}</option>
-                {{/each}}
-              </select>
-            </div>
             <div class="ui blue submit button large right floated" type="submit">{{ t 'save' }}</div>
-            <a href="#projects" class="ui right large floated button">{{ t 'back' }}</a>
+            <a href="#sprints" class="ui right large floated button">{{ t 'back' }}</a>
           <form>
         <div>
       </div>

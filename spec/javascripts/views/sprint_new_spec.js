@@ -15,6 +15,7 @@ describe('App.Views.SprintNew', function(){
   });
 
   afterEach(function(){
+    view.$('#name').val('');
     view.$('#daily').val('');
     view.$('#points').val('');
     view.$('#start-date').val('');
@@ -24,18 +25,18 @@ describe('App.Views.SprintNew', function(){
 
   it('should not persists a empty model', function(){
     spyOn(model, 'save');
-    spyOn(view, 'formValidationError');
     view.save(e);
     expect(model.save).not.toHaveBeenCalled();
-    expect(view.formValidationError).toHaveBeenCalled();
+    expect(model.isValid).toBeTruthy();
   });
 
   it('should persists a model', function(){
     spyOn(model, 'save');
+    view.$('#name').val('SprintFake');
     view.$('#daily').val('10:00');
     view.$('#points').val(300);
-    view.$('#start-date').val('01/01/2014');
-    view.$('#end-date').val('14/01/2014');
+    view.$('#start-date').val('01-01-2014');
+    view.$('#end-date').val('14-01-2014');
     view.$('select')[0].options[0] = new Option(projects.at(0).get('name'), projects.at(0).get('id'));
     view.$('select').val(projects.at(0).get('id')).trigger('change');
     view.save(e);

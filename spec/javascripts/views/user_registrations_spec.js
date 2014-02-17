@@ -28,14 +28,13 @@ describe('App.Views.UserRegistrations', function(){
 
   it('should not create a new user if sign up form is blank', function(){
     spyOn(model, 'save');
-    spyOn(view, 'formValidationError');
     view.$('#name').val('');
     view.$('#email').val('');
     view.$('#password').val('');
     view.$('#password-confirmation').val('');
     view.save(e);
     expect(model.save).not.toHaveBeenCalled();
-    expect(view.formValidationError).toHaveBeenCalled();
+    expect(model.isValid()).toBeFalsy();
   });
 
 });
