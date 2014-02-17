@@ -21,7 +21,6 @@ var App = new (Backbone.View.extend({
 
   init: function(){
     new App.setI18nHbsHelper();
-
     var current_user = new App.Models.CurrentUser({});
     var injector = { current_user: current_user };
     new App.Views.Menu(injector);
