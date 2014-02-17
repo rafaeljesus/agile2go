@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :password_digest
       t.datetime :confirmed_at
-      t.confirmation_token :string
+      t.string :confirmation_token
 
       t.timestamps
     end
