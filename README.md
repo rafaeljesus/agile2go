@@ -36,6 +36,10 @@ Development
 * Server: Puma with 2 worker in cluster mode
 * Editor: VI - Github theme
 
+Tests
+------
+* bundle exec rake jasmine
+
 Contribute
 ----------
 

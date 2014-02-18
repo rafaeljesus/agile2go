@@ -7,6 +7,18 @@ module Features
       sprint
     end
 
+    def update_sprint sprint
+      visit "#sprints/#{sprint.id}/edit"
+      fill_in 'name', with: 'new sprint name'
+      submit
+    end
+
+    def delete_sprint sprint
+      visit '#sprints'
+      execute_script("$('.confirm').click();")
+      execute_script("$('.delete').click();")
+    end
+
     private
     def create_sprint_as(new_sprint, current_user)
       visit '#sprints/new'

@@ -11,20 +11,21 @@ feature 'when create a new project' do
     current_user = sign_in
     new_project = FactoryGirl.build :project, name: ''
     create_project_as(new_project, current_user)
-    expect(page).to have_content "name can't be blank"
+    expect(page).to have_content "CAN'T BE BLANK"
   end
 
   scenario 'with company blank', js: true do
     current_user = sign_in
     new_project = FactoryGirl.build :project, company: ''
     create_project_as(new_project, current_user)
-    expect(page).to have_content "company can't be blank"
+    expect(page).to have_content "CAN'T BE BLANK"
   end
 
   scenario 'with description blank', js: true do
     current_user = sign_in
     new_project = FactoryGirl.build :project, description: ''
     create_project_as(new_project, current_user)
-    expect(page).to have_content "description can't be blank"
+    expect(page).to have_content "CAN'T BE BLANK"
   end
+
 end
