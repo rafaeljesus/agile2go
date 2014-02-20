@@ -40,10 +40,19 @@ App.Views.UserSessionsNew = Support.CompositeView.extend({
   },
 
   onModelError: function(model, response, options){
-    var serverErrors = JSON.parse(response.responseText).errors;
-    if(serverErrors.base) new FlashMessages({ message: serverErrors.base }).error(); return;
-    var attributesWithErrors = response ? serverErrors.errors : this.model.validationError;
-    new ErrorView({ el: $('form'), attributesWithErrors: attributesWithErrors }).render();
+    if(this.model.validationError) {
+      var attributesWithErrors = this.model.validationError;
+      new ErrorView({ el: $('form'), attributesWithErrors: attributesWithErrors }).render();
+    } else {
+      this.clearOldErrors();
+      var jsonResponse = JSON.parse(response.responseText);
+      new FlashMessages({ message: jsonResponse.errors.base }).error();
+    }
+  },
+
+  clearOldErrors: function() {
+    this.$('.error').removeClass('error');
+    this.$('div.ui.red.pointing.above.ui.label').remove();
   },
 
   rootPath: function(){
