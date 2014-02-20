@@ -34,8 +34,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project)
-      .permit(:name, :description, :company)
-      .merge(assignments_attributes: params[:assignments_attributes]) unless params[:assignments_attributes].nil?
+    params.merge(assignments_attributes: params[:assignments_attributes]) if params[:assignments_attributes]
+    params.require(:project).permit(:name, :description, :company)
   end
 end
