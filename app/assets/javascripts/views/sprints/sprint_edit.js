@@ -6,6 +6,8 @@ App.Views.SprintEdit = Support.CompositeView.extend({
     this.model.on('error', this.onModelError);
   },
 
+  template: JST['sprints/form'],
+
   events: {
     'click .submit' : 'update'
   },
@@ -18,7 +20,11 @@ App.Views.SprintEdit = Support.CompositeView.extend({
   },
 
   renderTemplate: function(){
-    this.$el.html(JST['sprints/form']({ model: this.model.toJSON(), projects: this.projects.toJSON() }));
+    this.$el.html(this.template(this.serializeData()));
+  },
+
+  serializeData: function(){
+    return { model: this.model.toJSON(), projects: this.projects.toJSON() };
   },
 
   renderAssignedProject: function(){

@@ -6,12 +6,14 @@ App.Views.UserRegistrations = Support.CompositeView.extend({
     this.model.on('error', this.onModelError);
   },
 
+  template: JST['user_registrations/new'],
+
   events: {
     'submit': 'save'
   },
 
   render: function(){
-    this.$el.html(JST['user_registrations/new']);
+    this.$el.html(this.template());
     return this;
   },
 

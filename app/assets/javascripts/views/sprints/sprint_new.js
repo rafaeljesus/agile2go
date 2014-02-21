@@ -7,14 +7,20 @@ App.Views.SprintNew = Support.CompositeView.extend({
     this.model.on('error', this.onModelError);
   },
 
+  template: JST['sprints/form'],
+
   events: {
     'click .submit': 'save'
   },
 
   render: function(){
-    this.$el.html(JST['sprints/form']({ model: this.model.toJSON(), projects: this.projects.toJSON() }));
+    this.$el.html(this.template(this.serializeData()));
     this.select2();
     return this;
+  },
+
+  serializeData: function(){
+    return { model: this.model.toJSON(), projects: this.projects.toJSON() };
   },
 
   save: function(e){

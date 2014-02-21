@@ -6,6 +6,8 @@ App.Views.ProjectEdit = Support.CompositeView.extend({
     this.model.on('error', this.onModelError);
   },
 
+  template: JST['projects/form'],
+
   events: {
     'click .submit' : 'update'
   },
@@ -17,8 +19,12 @@ App.Views.ProjectEdit = Support.CompositeView.extend({
     return this;
   },
 
+  serializeData: function(){
+    return { model: this.model.toJSON(), users: this.users.toJSON() };
+  },
+
   renderTemplate: function(){
-    this.$el.html(JST['projects/form']({ model: this.model.toJSON(), users: this.users.toJSON() }));
+    this.$el.html(this.template(this.serializeData()));
   },
 
   renderAssignedUsers: function(){

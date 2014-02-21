@@ -6,12 +6,14 @@ App.Views.UserSessionsNew = Support.CompositeView.extend({
     this.model.on('error', this.onModelError);
   },
 
+  template: JST['user_sessions/new'],
+
   events: {
     'click .submit': 'authenticate'
   },
 
   render: function(){
-    this.$el.html(JST['user_sessions/new']());
+    this.$el.html(this.template());
     return this;
   },
 

@@ -7,6 +7,8 @@ App.Views.ProjectNew = Support.CompositeView.extend({
     this.model.on('error', this.onModelError);
   },
 
+  template: JST['projects/form'],
+
   events: {
     'click .submit': 'save'
   },
@@ -18,7 +20,11 @@ App.Views.ProjectNew = Support.CompositeView.extend({
   },
 
   renderTemplate: function(){
-    this.$el.html(JST['projects/form']({ model: this.model.toJSON(), users: this.users.toJSON() }));
+    this.$el.html(this.template(this.serializeData()));
+  },
+
+  serializeData: function(){
+    return { model: this.model.toJSON(), users: this.users.toJSON() };
   },
 
   save: function(e){
