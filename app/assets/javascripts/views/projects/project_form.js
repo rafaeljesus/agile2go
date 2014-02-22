@@ -1,7 +1,7 @@
 App.Views.ProjectForm = Support.CompositeView.extend(
   _.extend({}, App.Mixins.BaseView, {
   initialize: function(options){
-    _.bindAll(this, 'render', 'saved', 'setAssignedUser');
+    _.bindAll(this, 'render', 'saved'),
     this.users = options.users;
     this.model = options.model || new App.Models.Project({});
     this.bindTo(this.users, 'add', this.render);
@@ -30,18 +30,13 @@ App.Views.ProjectForm = Support.CompositeView.extend(
   },
 
   renderAssignedUsers: function(){
-    this.model.assignedUsers.each(this.setAssignedUser);
-  },
-
-  setAssignedUser: function(model){
-    this.$('select').val(model.get('user_id')).trigger('change');
+    this.$('select').val(this.model.assignedUsers.ids());
   },
 
   save: function(e){
     e.preventDefault();
     this.commit();
-    if(!this.model.isValid()) return;
-    this.model.save({}, { success: this.saved });
+    if(this.model.isValid()){ this.model.save({}, { success: this.saved }); }
     return false;
   },
 
@@ -50,14 +45,7 @@ App.Views.ProjectForm = Support.CompositeView.extend(
     , description = this.$('#description').val()
     , company = this.$('#company').val();
     this.model.set({ name: name, description: description, company: company });
-    this.model.assignedUsers = new App.Collections.Users(this.assignedUsers());
-  },
-
-  assignedUsers: function(){
-    var self = this;
-    return _.uniq(_.compact(_.map(this.assigneeIds(), function(id) {
-      return self.users.get({ id: id });
-    })));
+    this.model.assignedUsers = this.users.findByIds(this.assigneeIds());
   },
 
   assigneeIds: function(){

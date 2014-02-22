@@ -36,8 +36,7 @@ App.Views.SprintForm = Support.CompositeView.extend(
   save: function(e){
     e.preventDefault();
     this.commit();
-    if(!this.model.isValid()) return;
-    this.model.save({}, { success: this.saved });
+    if(this.model.isValid()){ this.model.save({}, { success: this.saved }); };
     return false;
   },
 

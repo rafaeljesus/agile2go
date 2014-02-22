@@ -21,8 +21,7 @@ App.Views.UserSessionsNew = Support.CompositeView.extend(
   authenticate: function(e){
     e.preventDefault();
     this.commit();
-    if(!this.model.isValid()) return;
-    this.model.save({}, { success: this.authenticated });
+    if(this.model.isValid()){ this.model.save({}, { success: this.authenticated }); };
   },
 
   commit: function(){
