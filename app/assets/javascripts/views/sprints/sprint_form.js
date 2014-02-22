@@ -1,22 +1,23 @@
-App.Views.SprintEdit = Support.CompositeView.extend(
+App.Views.SprintForm = Support.CompositeView.extend(
   _.extend({}, App.Mixins.BaseView, {
   initialize: function(options){
     _.bindAll(this, 'render', 'saved');
-    this.model = options.model;
+    this.model = options.model || new App.Models.Sprint({});
     this.projects = options.projects;
+    this.bindTo(this.projects, 'add', this.render);
     this.observe();
   },
 
   template: JST['sprints/form'],
 
   events: {
-    'click .submit' : 'update'
+    'click .submit': 'save'
   },
 
   render: function(){
-    this.renderTemplate();
-    this.select2();
+    this.renderTemplate()
     this.renderAssignedProject();
+    this.select2();
     return this;
   },
 
@@ -32,7 +33,7 @@ App.Views.SprintEdit = Support.CompositeView.extend(
     this.$('select').val(this.model.project.id).trigger('change');
   },
 
-  update: function(e){
+  save: function(e){
     e.preventDefault();
     this.commit();
     if(!this.model.isValid()) return;
@@ -65,16 +66,16 @@ App.Views.SprintEdit = Support.CompositeView.extend(
 
   saved: function(model, response, options) {
      this.sprintsPath();
-     var message = I18n.t('flash.actions.update.notice', { model: 'Sprint' });
+     var message = I18n.t('flash.actions.create.notice', { model: 'Sprint' });
      this.successMessage(message);
   },
 
   sprintsPath: function(){
-    window.location.href = '#sprints';
+    window.location.hash = '#sprints';
   },
 
   select2: function(){
-    this.$('select').select2({ placeholder: 'Select a User' });
+    this.$('select').select2({ placeholder: 'Select a Project' });
   }
 
 }));

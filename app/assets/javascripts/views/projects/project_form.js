@@ -1,9 +1,9 @@
-App.Views.ProjectNew = Support.CompositeView.extend(
+App.Views.ProjectForm = Support.CompositeView.extend(
   _.extend({}, App.Mixins.BaseView, {
   initialize: function(options){
-    _.bindAll(this, 'render', 'saved');
+    _.bindAll(this, 'render', 'saved', 'setAssignedUser');
     this.users = options.users;
-    this.newProject();
+    this.model = options.model || new App.Models.Project({});
     this.bindTo(this.users, 'add', this.render);
     this.observe();
   },
@@ -16,16 +16,25 @@ App.Views.ProjectNew = Support.CompositeView.extend(
 
   render: function(){
     this.renderTemplate();
+    this.renderAssignedUsers();
     this.select2();
     return this;
+  },
+
+  serializeData: function(){
+    return { model: this.model.toJSON(), users: this.users.toJSON() };
   },
 
   renderTemplate: function(){
     this.$el.html(this.template(this.serializeData()));
   },
 
-  serializeData: function(){
-    return { model: this.model.toJSON(), users: this.users.toJSON() };
+  renderAssignedUsers: function(){
+    this.model.assignedUsers.each(this.setAssignedUser);
+  },
+
+  setAssignedUser: function(model){
+    this.$('select').val(model.get('user_id')).trigger('change');
   },
 
   save: function(e){
@@ -61,10 +70,6 @@ App.Views.ProjectNew = Support.CompositeView.extend(
      this.projectsPath();
      var message = I18n.t('flash.actions.update.notice', { model: 'Project' });
      this.successMessage(message);
-  },
-
-  newProject: function(){
-    this.model = new App.Models.Project();
   },
 
   select2: function(){

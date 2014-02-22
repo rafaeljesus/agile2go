@@ -23,7 +23,7 @@ App.Routers.Sprints = Support.SwappingRouter.extend(
   new: function(){
     this.authorize();
     this.projects.fetch({});
-    var view = new App.Views.SprintNew({ projects: this.projects });
+    var view = new App.Views.SprintForm({ projects: this.projects });
     this.swap(view);
   },
 
@@ -33,7 +33,7 @@ App.Routers.Sprints = Support.SwappingRouter.extend(
     $.getJSON("/sprints/" + id + "/edit").done(function(json){
       var model = new App.Models.Sprint(json[0]);
       self.projects = new App.Collections.Projects(json[1]);
-      var view = new App.Views.SprintEdit({ model: model, projects: self.projects });
+      var view = new App.Views.SprintForm({ model: model, projects: self.projects });
       self.swap(view);
     });
   }
