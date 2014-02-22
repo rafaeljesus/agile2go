@@ -1,9 +1,10 @@
-App.Views.SprintEdit = Support.CompositeView.extend({
+App.Views.SprintEdit = Support.CompositeView.extend(
+  _.extend({}, App.Mixins.BaseView, {
   initialize: function(options){
-    _.bindAll(this, 'render', 'saved', 'onModelError');
+    _.bindAll(this, 'render', 'saved');
     this.model = options.model;
     this.projects = options.projects;
-    this.model.on('error', this.onModelError);
+    this.observe();
   },
 
   template: JST['sprints/form'],
@@ -34,6 +35,7 @@ App.Views.SprintEdit = Support.CompositeView.extend({
   update: function(e){
     e.preventDefault();
     this.commit();
+    if(!this.model.isValid()) return;
     this.model.save({}, { success: this.saved });
     return false;
   },
@@ -63,25 +65,16 @@ App.Views.SprintEdit = Support.CompositeView.extend({
 
   saved: function(model, response, options) {
      this.sprintsPath();
-     this.savedMsg();
-  },
-
-  onModelError: function(model, response, options){
-    var attributesWithErrors = response ? JSON.parse(response.responseText).errors : this.model.validationError;
-    new ErrorView({ el: $('form'), attributesWithErrors: attributesWithErrors }).render();
+     var message = I18n.t('flash.actions.update.notice', { model: 'Sprint' });
+     this.successMessage(message);
   },
 
   sprintsPath: function(){
     window.location.href = '#sprints';
   },
 
-  savedMsg: function(){
-     var message = I18n.t('flash.actions.update.notice', { model: 'Sprint' });
-     new FlashMessages({ message: message }).success();
-  },
-
   select2: function(){
     this.$('select').select2({ placeholder: 'Select a User' });
   }
 
-});
+}));

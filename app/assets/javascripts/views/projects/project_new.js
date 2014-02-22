@@ -1,10 +1,11 @@
-App.Views.ProjectNew = Support.CompositeView.extend({
+App.Views.ProjectNew = Support.CompositeView.extend(
+  _.extend({}, App.Mixins.BaseView, {
   initialize: function(options){
-    _.bindAll(this, 'render', 'saved', 'onModelError');
+    _.bindAll(this, 'render', 'saved');
     this.users = options.users;
     this.newProject();
     this.bindTo(this.users, 'add', this.render);
-    this.model.on('error', this.onModelError);
+    this.observe();
   },
 
   template: JST['projects/form'],
@@ -30,8 +31,8 @@ App.Views.ProjectNew = Support.CompositeView.extend({
   save: function(e){
     e.preventDefault();
     this.commit();
-    if(!this.model.isValid()) this.model.trigger('error');
-    else this.model.save({}, { success: this.saved });
+    if(!this.model.isValid()) return;
+    this.model.save({}, { success: this.saved });
     return false;
   },
 
@@ -58,17 +59,8 @@ App.Views.ProjectNew = Support.CompositeView.extend({
 
   saved: function(model, response, options) {
      this.projectsPath();
-     this.savedMsg();
-  },
-
-  savedMsg: function(){
-     var message = I18n.t('flash.actions.create.notice', { model: 'Project' });
-     new FlashMessages({ message: message }).success();
-  },
-
-  onModelError: function(model, response, options){
-    var attributesWithErrors = response ? JSON.parse(response.responseText).errors : this.model.validationError;
-    new ErrorView({ el: $('form'), attributesWithErrors: attributesWithErrors }).render();
+     var message = I18n.t('flash.actions.update.notice', { model: 'Project' });
+     this.successMessage(message);
   },
 
   newProject: function(){
@@ -83,4 +75,4 @@ App.Views.ProjectNew = Support.CompositeView.extend({
     window.location.href = '#projects';
   }
 
-});
+}));

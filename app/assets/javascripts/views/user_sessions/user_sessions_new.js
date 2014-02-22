@@ -1,9 +1,10 @@
-App.Views.UserSessionsNew = Support.CompositeView.extend({
+App.Views.UserSessionsNew = Support.CompositeView.extend(
+  _.extend({}, App.Mixins.BaseView, {
   initialize: function(options){
-    _.bindAll(this, 'render', 'authenticated', 'onModelError');
+    _.bindAll(this, 'render', 'authenticated');
     this.current_user = options.current_user;
     this.model = new App.Models.UserSession({});
-    this.model.on('error', this.onModelError);
+    this.observe();
   },
 
   template: JST['user_sessions/new'],
@@ -20,8 +21,8 @@ App.Views.UserSessionsNew = Support.CompositeView.extend({
   authenticate: function(e){
     e.preventDefault();
     this.commit();
-    if(!this.model.isValid()) this.model.trigger('error');
-    else this.model.save({}, { success: this.authenticated });
+    if(!this.model.isValid()) return;
+    this.model.save({}, { success: this.authenticated });
   },
 
   commit: function(){
@@ -33,32 +34,19 @@ App.Views.UserSessionsNew = Support.CompositeView.extend({
   authenticated: function(model, response, options){
     this.current_user.set({ signed_in: true, id: model.attributes.session.user_id });
     this.rootPath();
-    this.authenticatedSuccess();
-  },
-
-  authenticatedSuccess: function(){
-     var message = I18n.t('sessions.signed_in');
-     new FlashMessages({ message: message }).success();
+    var message = I18n.t('sessions.signed_in');
+    this.successMessage(message);
   },
 
   onModelError: function(model, response, options){
-    if(this.model.validationError) {
-      var attributesWithErrors = this.model.validationError;
-      new ErrorView({ el: $('form'), attributesWithErrors: attributesWithErrors }).render();
-    } else {
-      this.clearOldErrors();
-      var jsonResponse = JSON.parse(response.responseText);
-      new FlashMessages({ message: jsonResponse.errors.base }).error();
-    }
+    this.clearOldErrors();
+    var jsonResponse = JSON.parse(response.responseText);
+    this.errorMessage(jsonResponse.errors.base);
   },
 
   clearOldErrors: function() {
     this.$('.error').removeClass('error');
     this.$('div.ui.red.pointing.above.ui.label').remove();
-  },
-
-  rootPath: function(){
-    window.location.hash = '#';
   }
 
-});
+}));

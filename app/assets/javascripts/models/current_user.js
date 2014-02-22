@@ -28,11 +28,11 @@ App.Models.CurrentUser = Backbone.Model.extend({
   },
 
   name: function(){
-    this.get('name');
+    return this.get('name');
   },
 
   email: function(){
-   this.get('email');
+   return this.get('email');
   },
 
   _fetch: function(){

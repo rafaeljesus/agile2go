@@ -11,9 +11,9 @@
 //= require i18n/translations
 //= require jquery.simple-text-rotator
 //= require_tree ../templates
+//= require_tree ./mixins
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./views
-//= require_tree ./mixins
 //= require_tree ./routers
 //= require_tree .
