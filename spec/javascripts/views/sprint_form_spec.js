@@ -8,7 +8,7 @@ describe('App.Views.SprintNew', function(){
 
   beforeEach(function(){
     projects = new App.Collections.Projects([{ id: 1, name: 'projectFake', company: 'companyFake', description: 'descriptionFake' }]);
-    view = new App.Views.SprintNew({ projects: projects });
+    view = new App.Views.SprintForm({ projects: projects });
     view.render();
     model = view.model;
     e = new Event(undefined);

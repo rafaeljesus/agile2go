@@ -1,4 +1,4 @@
-describe('App.Views.ProjectNew', function(){
+describe('App.Views.ProjectForm', function(){
   var view
   , users
   , model
@@ -7,7 +7,7 @@ describe('App.Views.ProjectNew', function(){
 
   beforeEach(function(){
     users = new App.Collections.Users([{ id: 1, name: 'userNamefake', email: 'email@fake.com' }]);
-    view = new App.Views.ProjectNew({ users: users });
+    view = new App.Views.ProjectForm({ users: users });
     view.render();
     model = view.model;
     e = new Event(undefined);
@@ -53,6 +53,19 @@ describe('App.Views.ProjectNew', function(){
     view.$('select').val(users.at(0).get('id')).trigger('change');
     view.commit();
     expect(model.assignedUsers.length).toEqual(1);
+  });
+
+  it('should render assigned users', function(){
+    var assignedUsers = view.$('select')[0].options;
+    expect(assignedUsers.length).toEqual(1);
+  });
+
+  it('should render multiple assigned users', function(){
+    var twoMoreUsers = [{ id: 2, name: 'userNamefake2'}, { id: 3, name: 'userNamefake3' }];
+    users.add(twoMoreUsers);
+    view.render();
+    var assignedUsers = view.$('select')[0].options;
+    expect(assignedUsers.length).toEqual(3);
   });
 
 });
