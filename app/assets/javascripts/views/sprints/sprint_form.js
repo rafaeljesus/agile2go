@@ -47,14 +47,7 @@ App.Views.SprintForm = Support.CompositeView.extend(
     , daily = this.$('#daily').val()
     , points = this.$('#points').val();
     this.model.set({ name: name, start_date: start_date, end_date: end_date, daily: daily, points: points });
-    this.model.project = this.assignedProject();
-  },
-
-  assignedProject: function(){
-    var self = this;
-    return _.first(_.map(this.assigneeId(), function(id){
-      return self.projects.get({ id: id });
-    }));
+    this.model.project = this.projects.firstById(this.assigneeId());
   },
 
   assigneeId: function(){
