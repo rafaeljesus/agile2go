@@ -13,11 +13,6 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
     'submit': 'save'
   },
 
-  render: function(){
-    this.$el.html(this.template());
-    return this;
-  },
-
   save: function(e){
     e.preventDefault();
     this.commit();

@@ -1,4 +1,5 @@
-App.Views.SiteIndex = Support.CompositeView.extend({
+App.Views.SiteIndex = Support.CompositeView.extend(
+  _.extend({}, App.Mixins.BaseView, {
   initialize: function(options){
     _.bindAll(this, 'render');
     this.current_user = options.current_user;
@@ -7,24 +8,18 @@ App.Views.SiteIndex = Support.CompositeView.extend({
 
   template: JST['site/index'],
 
-  render: function(){
-    if (this.current_user.signedIn()) new App.Views.Dashboard({ el: this.$el }).render();
-    else this.renderTemplate();
+  onRender: function(){
+    if(this.current_user.signedIn()) new App.Views.Dashboard({ el: this.$el }).render();
+    else this.rotate();
     return this;
-  },
-
-  renderTemplate: function(){
-    this.$el.html(this.template(this.serializeData()));
-    this.rotate();
   },
 
   serializeData: function(){
     return { current_user: this.current_user };
   },
 
-  // FIXME not working after renderTemplate
   rotate: function(){
     $('.rotate').textrotator({ animation: "dissolve", separator: ",", speed: 4000 });
   }
 
-});
+}));

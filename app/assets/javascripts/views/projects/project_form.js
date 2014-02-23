@@ -14,8 +14,7 @@ App.Views.ProjectForm = Support.CompositeView.extend(
     'click .submit': 'save'
   },
 
-  render: function(){
-    this.renderTemplate();
+  onRender: function(){
     this.renderAssignedUsers();
     this.select2();
     return this;
@@ -23,10 +22,6 @@ App.Views.ProjectForm = Support.CompositeView.extend(
 
   serializeData: function(){
     return { model: this.model.toJSON(), users: this.users.toJSON() };
-  },
-
-  renderTemplate: function(){
-    this.$el.html(this.template(this.serializeData()));
   },
 
   renderAssignedUsers: function(){

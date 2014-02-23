@@ -5,17 +5,19 @@ var FlashMessages = Backbone.View.extend({
     this.message = options.message;
   },
 
+  template: JST['messages'],
+
   success: function(){
     this.$el
       .show()
-      .html(JST['messages']({ type: 'Success', color: 'blue', message: this.message }))
+      .html(this.template({ type: 'Success', color: 'blue', message: this.message }))
       .fadeOut(5000);
   },
 
   error: function(){
     this.$el
       .show()
-      .html(JST['messages']({ type: 'Error', color: 'red', message: this.message }))
+      .html(this.template({ type: 'Error', color: 'red', message: this.message }))
       .fadeOut(5000)
   }
 

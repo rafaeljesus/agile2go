@@ -14,15 +14,10 @@ App.Views.SprintForm = Support.CompositeView.extend(
     'click .submit': 'save'
   },
 
-  render: function(){
-    this.renderTemplate()
+  onRender: function(){
     this.renderAssignedProject();
     this.select2();
     return this;
-  },
-
-  renderTemplate: function(){
-    this.$el.html(this.template(this.serializeData()));
   },
 
   serializeData: function(){

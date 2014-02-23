@@ -13,11 +13,6 @@ App.Views.UserSessionsNew = Support.CompositeView.extend(
     'click .submit': 'authenticate'
   },
 
-  render: function(){
-    this.$el.html(this.template());
-    return this;
-  },
-
   authenticate: function(e){
     e.preventDefault();
     this.commit();

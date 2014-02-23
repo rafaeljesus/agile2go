@@ -9,12 +9,18 @@ App.Views.ConfirmModal = Backbone.View.extend({
     this.$tr = options.$tr;
   },
 
+  template: JST['modal'],
+
   events: {
     'click .delete': 'delete'
   },
 
+  serializeData: function(){
+    return { name: this.model.get('name'), id: this.model.get('id') };
+  },
+
   render: function(){
-    this.$el.html(JST['modal']({ name: this.model.get('name'), id: this.model.get('id') }));
+    this.$el.html(this.template(this.serializeData()));
     this.show();
     return this;
   },
