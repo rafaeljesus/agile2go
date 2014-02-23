@@ -4,7 +4,7 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
     _.bindAll(this, 'render', 'saved');
     this.current_user = options.current_user;
     this.model = new App.Models.UserRegistration({});
-    this.observe();
+    this.modelObserve();
   },
 
   template: JST['user_registrations/new'],

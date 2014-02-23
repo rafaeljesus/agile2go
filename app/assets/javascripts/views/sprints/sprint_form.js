@@ -5,10 +5,14 @@ App.Views.SprintForm = Support.CompositeView.extend(
     this.model = options.model || new App.Models.Sprint({});
     this.projects = options.projects;
     this.bindTo(this.projects, 'add', this.render);
-    this.observe();
+    this.modelObserve();
   },
 
   template: JST['sprints/form'],
+
+  serializeData: function(){
+    return { model: this.model.toJSON(), projects: this.projects.toJSON() };
+  },
 
   events: {
     'click .submit': 'save'
@@ -18,10 +22,6 @@ App.Views.SprintForm = Support.CompositeView.extend(
     this.renderAssignedProject();
     this.select2();
     return this;
-  },
-
-  serializeData: function(){
-    return { model: this.model.toJSON(), projects: this.projects.toJSON() };
   },
 
   renderAssignedProject: function(){
@@ -42,13 +42,13 @@ App.Views.SprintForm = Support.CompositeView.extend(
     , daily = this.$('#daily').val()
     , points = this.$('#points').val();
     this.model.set({ name: name, start_date: start_date, end_date: end_date, daily: daily, points: points });
-    this.model.project = this.projects.firstById(this.assigneeId());
+    this.model.project = this.projects.get({ id: this.assigneeId() });
   },
 
   assigneeId: function(){
-    return this.$('select').find('option:selected').map(function(n, select){
+    return _.first(this.$('select').find('option:selected').map(function(n, select){
       return $(select).val();
-    });
+    }));
   },
 
   saved: function(model, response, options) {

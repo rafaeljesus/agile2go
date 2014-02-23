@@ -5,10 +5,14 @@ App.Views.ProjectForm = Support.CompositeView.extend(
     this.users = options.users;
     this.model = options.model || new App.Models.Project({});
     this.bindTo(this.users, 'add', this.render);
-    this.observe();
+    this.modelObserve()
   },
 
   template: JST['projects/form'],
+
+  serializeData: function(){
+    return { model: this.model.toJSON(), users: this.users.toJSON() };
+  },
 
   events: {
     'click .submit': 'save'
@@ -18,10 +22,6 @@ App.Views.ProjectForm = Support.CompositeView.extend(
     this.renderAssignedUsers();
     this.select2();
     return this;
-  },
-
-  serializeData: function(){
-    return { model: this.model.toJSON(), users: this.users.toJSON() };
   },
 
   renderAssignedUsers: function(){

@@ -4,7 +4,7 @@ App.Views.UserSessionsNew = Support.CompositeView.extend(
     _.bindAll(this, 'render', 'authenticated');
     this.current_user = options.current_user;
     this.model = new App.Models.UserSession({});
-    this.observe();
+    this.modelObserve();
   },
 
   template: JST['user_sessions/new'],

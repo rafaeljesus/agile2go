@@ -6,7 +6,7 @@ App.Mixins.BaseView = {
     return this;
   },
 
-  observe: function(){
+  modelObserve: function(){
     _.bindAll(this, 'onModelError', 'onModelInvalid');
     this.model.on('invalid', this.onModelInvalid);
     this.model.on('error', this.onModelError);

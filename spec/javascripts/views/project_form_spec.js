@@ -44,7 +44,7 @@ describe('App.Views.ProjectForm', function(){
     view.$('select').val(users.at(0).get('id')).trigger('change');
     view.commit();
     expect(model.isValid()).toBeTruthy();
-    expect(model.assignedUsers.toJSON()).toEqual(users.toJSON());
+    expect(model.assignedUsers).toEqual(users.toArray());
   });
 
   it('should assigne users', function(){

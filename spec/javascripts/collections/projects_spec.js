@@ -3,4 +3,5 @@ describe('App.Collections.Projects', function(){
     var collection = new App.Collections.Projects({});
     expect(collection.model).toEqual(App.Models.Project);
   });
+
 });
