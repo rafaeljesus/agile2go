@@ -1,18 +1,13 @@
-App.Views.SprintItem = Support.CompositeView.extend(
+App.Views.RowItem = Support.CompositeView.extend(
   _.extend({}, App.Mixins.BaseView,
   _.extend({}, App.Mixins.Modal, {
-  initialize: function(){
+  initialize: function(options){
     _.bindAll(this, 'render');
+    this.template = options.template;
     this.addPrettyDateHelper();
   },
 
-  id: function(){
-    return 'sprint-item-' + this.model.id;
-  },
-
   tagName: 'tr',
-
-  template: JST['sprints/item'],
 
   serializeData: function(){
     return this.model.toJSON();
