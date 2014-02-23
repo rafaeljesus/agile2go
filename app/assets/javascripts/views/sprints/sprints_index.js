@@ -9,11 +9,6 @@ App.Views.SprintsIndex = Support.CompositeView.extend(
     this.addPrettyDateHelper();
   },
 
-  events: {
-    'click .confirm': 'showModal',
-    'click .delete': 'delete'
-  },
-
   template: JST['sprints/index'],
 
   serializeData: function(){

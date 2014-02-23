@@ -9,11 +9,6 @@ App.Views.ProjectsIndex = Support.CompositeView.extend(
     this.addPrettyDateHelper();
   },
 
-  events: {
-    'click .confirm' : 'showModal',
-    'click .delete' : 'delete'
-  },
-
   template: JST['projects/index'],
 
   serializeData: function(){

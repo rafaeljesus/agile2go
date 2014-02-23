@@ -1,4 +1,10 @@
 App.Mixins.Modal = {
+
+  events: {
+    'click .confirm' : 'showModal',
+    'click .delete' : 'delete'
+  },
+
   showModal: function(e){
     e.preventDefault();
     var $i = $(e.target);
