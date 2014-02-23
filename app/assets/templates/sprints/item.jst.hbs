@@ -1,0 +1,12 @@
+<td>{{ name }}</td>
+<td>{{ points }}</td>
+<td><span>{{ daily }}</span></td>
+<td>{{ prettyDate created_at }}</td>
+<td>
+  <a class="edit-button" href="#sprints/{{ id }}/edit">
+    <i class="edit large icon"></i>
+  </a>
+  <a id="{{ id }}" class="edit-button" href="javascript:void(0);">
+    <i class="icon large remove confirm"></i>
+  </a>
+</td>
