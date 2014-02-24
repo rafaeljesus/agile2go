@@ -18,9 +18,10 @@ describe('App.Views.ProjectsIndex', function(){
     expect($el).toHaveText(/descriptionFake/);
   });
 
-  it('should call showModal method', function(){
-    spyOn(view, 'showModal');
-    view.showModal();
-    expect(view.showModal).toHaveBeenCalled();
+  it('should call renderRow method', function(){
+    spyOn(view, 'renderRow');
+    view.renderRow(collection.first());
+    expect(view.renderRow).toHaveBeenCalled();
+    expect(view.children._wrapped.length).toEqual(collection.length);
   });
 });

@@ -6,6 +6,16 @@ describe('App.Views.SprintNew', function(){
   , e
   ;
 
+  var commit = function(){
+    view.$('#name').val('SprintFake');
+    view.$('#daily').val('10:00');
+    view.$('#points').val(300);
+    view.$('#start-date').val('01-01-2014');
+    view.$('#end-date').val('14-01-2014');
+    view.$('select')[0].options[0] = new Option(projects.at(0).get('name'), projects.at(0).get('id'));
+    view.$('select').val(projects.at(0).get('id')).trigger('change');
+  };
+
   beforeEach(function(){
     projects = new App.Collections.Projects([{ id: 1, name: 'projectFake', company: 'companyFake', description: 'descriptionFake' }]);
     view = new App.Views.SprintForm({ projects: projects });
@@ -23,6 +33,12 @@ describe('App.Views.SprintNew', function(){
     view.$('select')[0].options = [];
   });
 
+  it('should call onRender when instantiate', function(){
+    spyOn(view, 'onRender');
+    view.render();
+    expect(view.onRender).toHaveBeenCalled();
+  });
+
   it('should not persists a empty model', function(){
     spyOn(model, 'save');
     view.save(e);
@@ -30,16 +46,18 @@ describe('App.Views.SprintNew', function(){
     expect(model.isValid).toBeTruthy();
   });
 
+  it('should commit model', function(){
+    commit();
+    view.commit();
+    expect(model.isValid()).toBeTruthy();
+    expect(model.project).toEqual(view.model.project);
+  });
+
   it('should persists a model', function(){
     spyOn(model, 'save');
-    view.$('#name').val('SprintFake');
-    view.$('#daily').val('10:00');
-    view.$('#points').val(300);
-    view.$('#start-date').val('01-01-2014');
-    view.$('#end-date').val('14-01-2014');
-    view.$('select')[0].options[0] = new Option(projects.at(0).get('name'), projects.at(0).get('id'));
-    view.$('select').val(projects.at(0).get('id')).trigger('change');
+    commit();
     view.save(e);
     expect(model.save).toHaveBeenCalled();
   });
+
 });

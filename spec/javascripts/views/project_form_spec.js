@@ -5,6 +5,14 @@ describe('App.Views.ProjectForm', function(){
   , $el
   , e;
 
+  var commit = function(){
+    view.$('#name').val('nameFake');
+    view.$('#company').val('companyFake');
+    view.$('#description').val('descriptionFake');
+    view.$('select')[0].options[0] = new Option(users.at(0).get('name'), users.at(0).get('id'));
+    view.$('select').val(users.at(0).get('id')).trigger('change');
+  };
+
   beforeEach(function(){
     users = new App.Collections.Users([{ id: 1, name: 'userNamefake', email: 'email@fake.com' }]);
     view = new App.Views.ProjectForm({ users: users });
@@ -18,6 +26,12 @@ describe('App.Views.ProjectForm', function(){
     view.$('#company').val('');
     view.$('#description').val('');
     view.$('select')[0].options = [];
+  });
+
+  it('should call onRender when instantiate', function(){
+    spyOn(view, 'onRender');
+    view.render();
+    expect(view.onRender).toHaveBeenCalled();
   });
 
   it('should not persists a empty model', function(){
@@ -37,11 +51,7 @@ describe('App.Views.ProjectForm', function(){
   });
 
   it('should commit model', function(){
-    view.$('#name').val('nameFake');
-    view.$('#company').val('companyFake');
-    view.$('#description').val('descriptionFake');
-    view.$('select')[0].options[0] = new Option(users.at(0).get('name'), users.at(0).get('id'));
-    view.$('select').val(users.at(0).get('id')).trigger('change');
+    commit();
     view.commit();
     expect(model.isValid()).toBeTruthy();
     expect(model.assignedUsers).toEqual(users.toArray());
@@ -55,7 +65,7 @@ describe('App.Views.ProjectForm', function(){
     expect(model.assignedUsers.length).toEqual(1);
   });
 
-  it('should render assigned users', function(){
+  it('should render on assigned user', function(){
     var assignedUsers = view.$('select')[0].options;
     expect(assignedUsers.length).toEqual(1);
   });
@@ -65,7 +75,12 @@ describe('App.Views.ProjectForm', function(){
     users.add(twoMoreUsers);
     view.render();
     var assignedUsers = view.$('select')[0].options;
-    expect(assignedUsers.length).toEqual(3);
+    expect(assignedUsers.length).toEqual(users.length);
+  });
+
+  it('should assigneeIds match number of selected users', function(){
+    commit();
+    expect(view.assigneeIds().length).toEqual(users.length);
   });
 
 });
