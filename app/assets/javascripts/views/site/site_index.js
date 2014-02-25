@@ -13,7 +13,12 @@ App.Views.SiteIndex = Support.CompositeView.extend(
   },
 
   onRender: function(){
-    if(this.current_user.signedIn()) new App.Views.Dashboard({ el: this.$el }).render();
+    if(this.current_user.signedIn()){
+      new App.Views.Dashboard({ el: this.$el }).render();
+    } else {
+      var commits = new App.Collections.LastCommits({});
+      new App.Views.LastCommit({ collection: commits });
+    }
     return this;
   }
 
