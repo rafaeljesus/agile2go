@@ -37,6 +37,7 @@ var App = new (Backbone.View.extend({
 
 $(function(){
   App.init();
+  $('.rotate').textrotator({ animation: "dissolve", separator: ",", speed: 4000 });
   $('.ui.dropdown').dropdown();
   $('.ui.checkbox').checkbox();
   $('.ui.popup').popup();

@@ -14,12 +14,7 @@ App.Views.SiteIndex = Support.CompositeView.extend(
 
   onRender: function(){
     if(this.current_user.signedIn()) new App.Views.Dashboard({ el: this.$el }).render();
-    else this.rotate();
     return this;
-  },
-
-  rotate: function(){
-    $('.rotate').textrotator({ animation: "dissolve", separator: ",", speed: 4000 });
   }
 
 }));
