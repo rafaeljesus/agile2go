@@ -8,17 +8,15 @@ App.Views.SiteIndex = Support.CompositeView.extend(
 
   template: JST['site/index'],
 
-  serializeData: function(){
-    return { current_user: this.current_user };
-  },
-
   onRender: function(){
+    var childView;
     if(this.current_user.signedIn()){
-      new App.Views.Dashboard({ el: this.$el }).render();
+      childView = new App.Views.Dashboard({ el: this.$el });
     } else {
-      var commits = new App.Collections.LastCommits({});
-      new App.Views.LastCommit({ collection: commits });
+      childView = new App.Views.LastCommit({});
+      this.$('#last-commit').append(childView.el);
     }
+    this.renderChild(childView);
     return this;
   }
 

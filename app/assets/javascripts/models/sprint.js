@@ -24,6 +24,12 @@ App.Models.Sprint = Backbone.Model.extend({
     return json;
   },
 
+  parse: function(model){
+    model.start_date = moment(model.start_date).calendar();
+    model.end_date = moment(model.end_date).calendar();
+    return model;
+  },
+
   validate: function(attrs, options){
     var errors;
     if(!attrs.name){

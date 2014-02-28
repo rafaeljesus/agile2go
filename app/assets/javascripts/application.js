@@ -5,6 +5,7 @@
 //= require backbone-support
 //= require backbone.domStorage
 //= require handlebars
+//= require moment
 //= require app
 //= require semantic-ui
 //= require select2

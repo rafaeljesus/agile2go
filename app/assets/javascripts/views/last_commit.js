@@ -1,7 +1,12 @@
-App.Views.LastCommit = Support.CompositeView.extend({
+App.Views.LastCommit = Support.CompositeView.extend(
+  _.extend({}, App.Mixins.BaseView, {
+  id: '#last-commit',
+  tagName: 'div',
+  className: 'ui one column middle aligned page grid sign-up',
+
   initialize: function(){
     _.bindAll(this, 'render');
-    this.collection.fetch({});
+    this.newCollection();
     this.bindTo(this.collection, 'add', this.render);
   },
 
@@ -12,9 +17,9 @@ App.Views.LastCommit = Support.CompositeView.extend({
     return { sha: model.sha, html_url: model.html_url };
   },
 
-  render: function(){
-    $('#last-commit').html(this.template(this.serializeData()));
-    return this;
+  newCollection: function(){
+    this.collection = new App.Collections.LastCommits({});
+    this.collection.fetch({});
   }
 
-});
+}));

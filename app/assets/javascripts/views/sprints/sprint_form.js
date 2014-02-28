@@ -1,11 +1,12 @@
 App.Views.SprintForm = Support.CompositeView.extend(
+  _.extend({}, App.Mixins.ModelObserver,
   _.extend({}, App.Mixins.BaseView, {
   initialize: function(options){
     _.bindAll(this, 'render', 'saved');
     this.model = options.model || new App.Models.Sprint({});
     this.projects = options.projects;
     this.bindTo(this.projects, 'add', this.render);
-    this.modelObserve();
+    this.observe();
   },
 
   template: JST['sprints/form'],
@@ -65,4 +66,4 @@ App.Views.SprintForm = Support.CompositeView.extend(
     this.$('select').select2({ placeholder: 'Select a Project' });
   }
 
-}));
+})));

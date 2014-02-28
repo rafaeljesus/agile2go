@@ -1,10 +1,11 @@
 App.Views.UserSessionsNew = Support.CompositeView.extend(
+  _.extend({}, App.Mixins.ModelObserver,
   _.extend({}, App.Mixins.BaseView, {
   initialize: function(options){
     _.bindAll(this, 'render', 'authenticated');
     this.current_user = options.current_user;
     this.model = new App.Models.UserSession({});
-    this.modelObserve();
+    this.observe();
   },
 
   template: JST['user_sessions/new'],
@@ -43,4 +44,4 @@ App.Views.UserSessionsNew = Support.CompositeView.extend(
     this.$('div.ui.red.pointing.above.ui.label').remove();
   }
 
-}));
+})));

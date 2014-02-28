@@ -1,13 +1,13 @@
-App.Views.Dashboard = Backbone.View.extend({
+App.Views.Dashboard = Support.CompositeView.extend({
   initialize: function(){
     _.bindAll(this, 'render');
   },
 
   render: function(){
-    $(this.$el).addClass('dashboard').highcharts(this.dashboardData());
+    $(this.$el).addClass('dashboard').highcharts(this.serializeData());
   },
 
-  dashboardData: function(){
+  serializeData: function(){
     return {
       chart: {
         type: 'bar'
