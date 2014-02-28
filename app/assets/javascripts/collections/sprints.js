@@ -5,7 +5,6 @@ App.Collections.Sprints = Backbone.Collection.extend({
   formatDate: function(sprints){
     _.each(sprints, function(model){
       model.start_date = moment(model.start_date).calendar();
-      model.end_date = moment(model.end_date).calendar();
     });
   },
 

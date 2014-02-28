@@ -8,13 +8,6 @@ App.Mixins.BaseView = {
 
   rootPath: function(){
     window.location.hash = '';
-  },
-
-  addPrettyDateHelper: function() {
-    Handlebars.registerHelper('prettyDate', function(created_at) {
-      if (!created_at) return;
-        return $.timeago(created_at);
-    });
   }
 
 }

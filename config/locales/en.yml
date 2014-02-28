@@ -31,6 +31,8 @@ en:
   account:
     updated: 'You updated your account successfully'
   created_at: 'Created At'
+  started_at: 'Started At'
+  finishing_at: 'Finishing At'
   actions: 'Actions'
   user:
     title:
@@ -56,7 +58,6 @@ en:
     points: 'Points'
     start_date: 'Start Date'
     end_date: 'End Date'
-    finishing_at: 'Finishing At'
   activemodel:
     attributes:
       user_session:

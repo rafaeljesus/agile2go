@@ -1,9 +1,12 @@
-App.Views.ProjectsIndex = Support.CompositeView.extend({
+App.Views.ProjectsIndex = Support.CompositeView.extend(
+  _.extend({}, App.Mixins.HandlebarsHelpers, {
   initialize: function(){
     _.bindAll(this, 'render', 'renderRow');
     this.bindTo(this.collection, 'change', this.render);
     this.bindTo(this.collection, 'reset', this.render);
     this.bindTo(this.collection, 'add', this.render);
+    this.addPrettyDateHelper();
+    this.addDiffDateHelper();
   },
 
   template: JST['projects/index'],
@@ -21,4 +24,4 @@ App.Views.ProjectsIndex = Support.CompositeView.extend({
     this.$('tbody').append(row.el);
   }
 
-});
+}));

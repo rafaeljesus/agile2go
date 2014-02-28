@@ -4,7 +4,6 @@ App.Views.RowItem = Support.CompositeView.extend(
   initialize: function(options){
     _.bindAll(this, 'render');
     this.template = options.template;
-    this.addPrettyDateHelper();
   },
 
   tagName: 'tr',
