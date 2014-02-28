@@ -24,16 +24,13 @@ App.Models.Project = Backbone.Model.extend({
   validate: function(attrs, options){
     var errors;
     if(!attrs.name){
-      errors = errors || {};
-      errors.name = ["can't be blank"];
+      (errors = errors || {}).name = ["can't be blank"];
     };
     if(!attrs.company){
-      errors = errors || {};
-      errors.company = ["can't be blank"];
+      (errors = errors || {}).company= ["can't be blank"];
     };
     if(!attrs.description){
-      errors = errors || {};
-      errors.description = ["can't be blank"];
+      (errors = errors || {}).description= ["can't be blank"];
     };
     if(errors) return errors;
   }

@@ -34,16 +34,13 @@ App.Models.Sprint = Backbone.Model.extend({
   validate: function(attrs, options){
     var errors;
     if(!attrs.name){
-       errors = errors || {};
-       errors.name = ["can't be blank"];
+      (errors = errors || {}).name = ["can't be blank"];
     };
     if(!attrs.start_date){
-       errors = errors || {};
-       errors.start_date = ["can't be blank"];
+      (errors = errors || {}).start_date = ["can't be blank"];
     };
     if(!attrs.end_date){
-      errors = errors || {};
-      errors.end_date = ["can't be blank"];
+      (errors = errors || {}).end_date = ["can't be blank"];
     };
     if(errors) return errors;
   }

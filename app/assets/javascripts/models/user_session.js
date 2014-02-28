@@ -4,12 +4,10 @@ App.Models.UserSession = Backbone.Model.extend({
   validate: function(attrs, options){
     var errors;
     if(!attrs.email){
-      errors = errors || {};
-      errors.email = ["email can't be blank"];
+      (errors = errors || {}).email = ["can't be blank"];
     };
     if(!attrs.password){
-      errors = errors || {};
-      errors.password = ["password can't be blank"];
+      (errors = errors || {}).password = ["can't be blank"];
     };
     if(errors) return errors;
   }
