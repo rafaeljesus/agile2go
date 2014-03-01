@@ -2,7 +2,7 @@ App.Views.ProjectForm = Support.CompositeView.extend(
   _.extend({}, App.Mixins.ModelObserver,
   _.extend({}, App.Mixins.BaseView, {
   initialize: function(options){
-    _.bindAll(this, 'render', 'saved'),
+    _.bindAll(this, 'render', 'saved');
     this.users = options.users;
     this.model = options.model || new App.Models.Project({});
     this.bindTo(this.users, 'add', this.render);

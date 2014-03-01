@@ -19,7 +19,7 @@ App.Views.SprintsIndex = Support.CompositeView.extend(
   },
 
   renderRow: function(model){
-    var row = new App.Views.RowItem({ model: model });
+    var row = new App.Views.RowItem({ model: model, template: JST['sprints/item'] });
     this.renderChild(row);
     this.$('tbody').append(row.el);
   }
