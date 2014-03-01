@@ -26,8 +26,8 @@ App.Models.Sprint = Backbone.Model.extend({
 
   parse: function(model){
     if(!model) return;
-    model.start_date = moment(model.start_date).calendar();
-    model.end_date = moment(model.end_date).calendar();
+    model.start_date = moment(model.start_date).format('MM/DD/YYYY');
+    model.end_date = moment(model.end_date).format('MM/DD/YYYY');
     return model;
   },
 
@@ -41,6 +41,9 @@ App.Models.Sprint = Backbone.Model.extend({
     };
     if(!attrs.end_date){
       (errors = errors || {}).end_date = ["can't be blank"];
+    };
+    if(attrs.daily && moment.duration(attrs.daily).hours() <= 0){
+      (errors = errors || {}).daily = ["invalid date"];
     };
     if(errors) return errors;
   }

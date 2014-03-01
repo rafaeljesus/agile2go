@@ -46,6 +46,18 @@ describe('App.Views.SprintNew', function(){
     expect(model.isValid).toBeTruthy();
   });
 
+  it('should not persists when daily is invalid', function(){
+  });
+
+  it('should not persists when start_date is invalid', function(){
+  });
+
+  it('should not persists when end_date is invalid', function(){
+  });
+
+  it('should not persists when points is not a number', function(){
+  });
+
   it('should commit model', function(){
     commit();
     view.commit();

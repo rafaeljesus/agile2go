@@ -38,8 +38,8 @@ App.Views.SprintForm = Support.CompositeView.extend(
 
   commit: function(){
     var name     = this.$('#name').val()
-    , start_date = this.$('#start-date').val()
-    , end_date   = this.$('#end-date').val()
+    , start_date = moment(this.$('#start-date').val()).format('YYYY/MM/DD')
+    , end_date   = moment(this.$('#end-date').val()).format('YYYY/MM/DD')
     , daily      = this.$('#daily').val()
     , points     = this.$('#points').val();
     var attributes = { name: name, start_date: start_date, end_date: end_date, daily: daily, points: points };
