@@ -1,5 +1,6 @@
 App.Views.LastCommit = Support.CompositeView.extend(
-  _.extend({}, App.Mixins.BaseView, {
+  _.extend({}, App.Mixins.BaseView,
+  _.extend({}, App.Mixins.HandlebarsHelpers, {
   id: '#last-commit',
   tagName: 'div',
   className: 'ui one column middle aligned page grid sign-up',
@@ -8,13 +9,15 @@ App.Views.LastCommit = Support.CompositeView.extend(
     _.bindAll(this, 'render');
     this.newCollection();
     this.bindTo(this.collection, 'add', this.render);
+    this.addPrettyDateHelper();
   },
 
   template: JST['last_commit'],
 
   serializeData: function(){
     var model = _.first(this.collection.toJSON());
-    return { sha: model.sha, html_url: model.html_url };
+    if($.isEmptyObject(model)) return model;
+    return { committer: model.commit.committer, sha: model.sha.substring(0, 10), html_url: model.html_url };
   },
 
   newCollection: function(){
@@ -22,4 +25,4 @@ App.Views.LastCommit = Support.CompositeView.extend(
     this.collection.fetch({});
   }
 
-}));
+})));

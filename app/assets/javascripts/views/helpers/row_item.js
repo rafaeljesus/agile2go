@@ -8,6 +8,8 @@ App.Views.RowItem = Support.CompositeView.extend(
 
   tagName: 'tr',
 
+  template: JST['projects/item'],
+
   serializeData: function(){
     return this.model.toJSON();
   }

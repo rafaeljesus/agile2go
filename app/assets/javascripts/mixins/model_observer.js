@@ -6,20 +6,28 @@ App.Mixins.ModelObserver = {
   },
 
   onModelInvalid: function(model, errors){
-    new ErrorView({ el: $('form'), attributesWithErrors: model.validationError }).render();
+    this._errorView(model.validationError);
   },
 
   onModelError: function(model, response, options){
     var attributesWithErrors = JSON.parse(response.responseText).errors;
-    new ErrorView({ el: $('form'), attributesWithErrors: attributesWithErrors }).render();
+    this._errorView(attributesWithErrors);
   },
 
   successMessage: function(message){
-     new FlashMessages({ message: message }).success();
+     this._flashMessage(message).success();
   },
 
   errorMessage: function(message){
-     new FlashMessages({ message: message }).error();
+     this._flashMessage(message).error();
+  },
+
+  _flashMessage: function(message){
+     return new FlashMessages({ message: message });
+   },
+
+  _errorView: function(attributesWithErrors){
+    new ErrorView({ el: $('form'), attributesWithErrors: attributesWithErrors }).render();
   }
 
 }
