@@ -10,8 +10,8 @@ describe('App.Views.SprintNew', function(){
     view.$('#name').val('SprintFake');
     view.$('#daily').val('10:00');
     view.$('#points').val(300);
-    view.$('#start-date').val('01-01-2014');
-    view.$('#end-date').val('14-01-2014');
+    view.$('#start-date').val('03/01/2014');
+    view.$('#end-date').val('03/10/2014');
     view.$('select')[0].options[0] = new Option(projects.at(0).get('name'), projects.at(0).get('id'));
     view.$('select').val(projects.at(0).get('id')).trigger('change');
   };
@@ -43,19 +43,43 @@ describe('App.Views.SprintNew', function(){
     spyOn(model, 'save');
     view.save(e);
     expect(model.save).not.toHaveBeenCalled();
-    expect(model.isValid).toBeTruthy();
+    expect(model.isValid()).toBeFalsy();
   });
 
   it('should not persists when daily is invalid', function(){
-  });
-
-  it('should not persists when start_date is invalid', function(){
-  });
-
-  it('should not persists when end_date is invalid', function(){
+    spyOn(model, 'save');
+    commit();
+    view.$('#daily').val('invalid hour');
+    view.save(e);
+    expect(model.save).not.toHaveBeenCalled();
+    expect(model.isValid()).toBeFalsy();
   });
 
   it('should not persists when points is not a number', function(){
+    spyOn(model, 'save');
+    commit();
+    view.$('#points').val('invalid points');
+    view.save(e);
+    expect(model.save).not.toHaveBeenCalled();
+    expect(model.isValid()).toBeFalsy();
+  });
+
+  it('should not persists when start_date is invalid', function(){
+    spyOn(model, 'save');
+    commit();
+    view.$('#start-date').val('invalid date');
+    view.save(e);
+    expect(model.save).not.toHaveBeenCalled();
+    expect(model.isValid()).toBeFalsy();
+  });
+
+  it('should not persists when end_date is not a number', function(){
+    spyOn(model, 'save');
+    commit();
+    view.$('#end-date').val('invalid date');
+    view.save(e);
+    expect(model.save).not.toHaveBeenCalled();
+    expect(model.isValid()).toBeFalsy();
   });
 
   it('should commit model', function(){

@@ -5,8 +5,8 @@ App.Views.SprintsIndex = Support.CompositeView.extend(
     this.bindTo(this.collection, 'change', this.render);
     this.bindTo(this.collection, 'reset', this.render);
     this.bindTo(this.collection, 'add', this.render);
-    this.addPrettyDateHelper();
-    this.addDiffDateHelper();
+    this.timeagoHelper();
+    this.diffDateHelper();
   },
 
   template: JST['sprints/index'],

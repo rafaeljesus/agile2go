@@ -1,6 +1,6 @@
 App.Mixins.HandlebarsHelpers = {
 
-  addDiffDateHelper: function() {
+  diffDateHelper: function() {
     Handlebars.registerHelper('diffDate', function(end_date) {
       if (!end_date) return;
         var now = moment().toDate(), end_date = moment(end_date);
@@ -12,10 +12,10 @@ App.Mixins.HandlebarsHelpers = {
     });
   },
 
-  addPrettyDateHelper: function() {
-    Handlebars.registerHelper('prettyDate', function(created_at) {
+  timeagoHelper: function() {
+    Handlebars.registerHelper('timeago', function(created_at) {
       if (!created_at) return;
-        return $.timeago(created_at);
+      return $.timeago(created_at);
     });
   }
 

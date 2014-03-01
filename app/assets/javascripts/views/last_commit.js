@@ -9,7 +9,7 @@ App.Views.LastCommit = Support.CompositeView.extend(
     _.bindAll(this, 'render');
     this.newCollection();
     this.bindTo(this.collection, 'add', this.render);
-    this.addPrettyDateHelper();
+    this.timeagoHelper();
   },
 
   template: JST['last_commit'],

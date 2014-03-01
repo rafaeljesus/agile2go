@@ -16,7 +16,9 @@ App.Views.SprintForm = Support.CompositeView.extend(
   },
 
   events: {
-    'click .submit': 'save'
+    'click .submit': 'save',
+    'keyup #start-date': 'isValidStartDate',
+    'keyup #end-date': 'isValidEndDate'
   },
 
   onRender: function(){
@@ -36,14 +38,25 @@ App.Views.SprintForm = Support.CompositeView.extend(
     return false;
   },
 
+  isValidStartDate: function(e){
+    e.preventDefault();
+    var $input = e.target.value;
+  },
+
+  isValidEndDate: function(e){
+    e.preventDefault();
+    var $input = e.target.value;
+  },
+
   commit: function(){
-    var name     = this.$('#name').val()
-    , start_date = moment(this.$('#start-date').val()).format('YYYY/MM/DD')
-    , end_date   = moment(this.$('#end-date').val()).format('YYYY/MM/DD')
-    , daily      = this.$('#daily').val()
-    , points     = this.$('#points').val();
-    var attributes = { name: name, start_date: start_date, end_date: end_date, daily: daily, points: points };
-    this.model.set(attributes);
+    var start_date = this.$('#start-date').val()
+    , end_date   = this.$('#end-date').val();
+    if(start_date != '') { start_date = moment(start_date).format('MM/DD/YYYY'); };
+    if(end_date != '') { end_date = moment(end_date).format('MM/DD/YYYY'); };
+    var name = this.$('#name').val()
+    , daily  = this.$('#daily').val()
+    , points = this.$('#points').val();
+    this.model.set({ name: name, start_date: start_date, end_date: end_date, daily: daily, points: points });
     this.model.project = this.projects.get({ id: this.assigneeId() });
   },
 
