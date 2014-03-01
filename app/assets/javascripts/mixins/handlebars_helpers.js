@@ -7,7 +7,7 @@ App.Mixins.HandlebarsHelpers = {
         var diff = end_date.diff(now, 'days');
         if(diff == 0) return new Handlebars.SafeString('<td class="negative">Today</td>');
         if(diff < 0) return new Handlebars.SafeString('<td class="positive">Finished</td>');
-        if(diff == 1 || diff == 2) return new Handlebars.SafeString('<td class="warning">Today</td>');
+        if(diff == 1 || diff == 2) return new Handlebars.SafeString('<td class="warning">' + diff + '</td>');
         return new Handlebars.SafeString('<td>' + diff + ' day(s)</td>');
     });
   },
