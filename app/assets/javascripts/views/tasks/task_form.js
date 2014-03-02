@@ -41,9 +41,10 @@ App.Views.TaskForm = Support.CompositeView.extend(
   commit: function(){
     var status = this.$('#status').val()
     , priority = this.$('#priority').val()
+    , points   = this.$('#points').val()
     , title    = this.$('#title').val()
     , story    = this.$('#story').val();
-    this.model.set({ status: status, priority: priority, title: title, story: story });
+    this.model.set({ status: status, priority: priority, points: points, title: title, story: story });
     this.model.sprint = this.sprints.get({ id: this.assigneeId() });
   },
 

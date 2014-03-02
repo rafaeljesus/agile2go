@@ -11,7 +11,7 @@
         </div>
         <div class="ui form attached fluid segment">
           <form>
-            <div class="two fields">
+            <div class="three fields">
               <div id="status_input" class="field">
                 <label>Status</label>
                 <div class="ui selection dropdown">
@@ -23,6 +23,23 @@
                     <div class="item" data-value="Ongoing">Ongoing</div>
                     <div class="item" data-value="Test">Test</div>
                     <div class="item" data-value="Done">Done</div>
+                  </div>
+                </div>
+              </div>
+               <div id="points_input" class="field">
+                <label>Points</label>
+                <div class="ui selection dropdown">
+                  <input type="hidden" id="points" value="{{ model.points }}">
+                  <div class="text">Points</div>
+                  <i class="dropdown icon"></i>
+                  <div class="menu">
+                    <div class="item" data-value="1">1</div>
+                    <div class="item" data-value="2">2</div>
+                    <div class="item" data-value="3">3</div>
+                    <div class="item" data-value="5">5</div>
+                    <div class="item" data-value="8">8</div>
+                    <div class="item" data-value="13">13</div>
+                    <div class="item" data-value="20">20</div>
                   </div>
                 </div>
               </div>

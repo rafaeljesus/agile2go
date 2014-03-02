@@ -5,6 +5,7 @@ class CreateTasks < ActiveRecord::Migration
       t.text :story
       t.string :status
       t.integer :priority
+      t.integer :points
       t.references :sprint, index: true
 
       t.timestamps

@@ -1,4 +1,4 @@
 class TaskSerializer < ActiveModel::Serializer
-  attributes :title, :story, :status, :priority, :created_at, :id
+  attributes :id, :title, :story, :status, :priority, :points, :created_at
   has_one :sprint
 end
