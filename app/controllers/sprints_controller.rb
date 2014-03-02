@@ -3,8 +3,7 @@ class SprintsController < ApplicationController
   respond_to :json
 
   def index
-    @sprints = Sprint.all
-    respond_with @sprints
+    respond_with Sprint.all
   end
 
   def edit
@@ -30,7 +29,7 @@ class SprintsController < ApplicationController
 
   private
   def set_sprint
-    @sprint = Sprint.find(params[:id])
+    @sprint = Sprint.find params[:id]
   end
 
   def sprint_params

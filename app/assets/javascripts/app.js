@@ -5,13 +5,6 @@ var App = new (Backbone.View.extend({
   Routers: {},
   Mixins: {},
 
-  setI18nHbsHelper: function(){
-    Handlebars.registerHelper('t', function(i18n_key) {
-      var result = I18n.t(i18n_key);
-      return new Handlebars.SafeString(result);
-    });
-  },
-
   start: function(){
     if (!Backbone.history.started) {
       Backbone.history.start();
@@ -20,7 +13,7 @@ var App = new (Backbone.View.extend({
   },
 
   init: function(){
-    new App.setI18nHbsHelper();
+    new App.Mixins.HandlebarsHelpers.setI18nHbsHelper();
 
     var current_user = new App.Models.CurrentUser({});
     var injector = { current_user: current_user };
@@ -30,6 +23,7 @@ var App = new (Backbone.View.extend({
     new App.Routers.UserSessions(injector);
     new App.Routers.Projects(injector);
     new App.Routers.Sprints(injector);
+    new App.Routers.Tasks(injector);
     new App.start();
   }
 
@@ -38,7 +32,4 @@ var App = new (Backbone.View.extend({
 $(function(){
   App.init();
   $('.rotate').textrotator({ animation: "dissolve", separator: ",", speed: 4000 });
-  $('.ui.dropdown').dropdown();
-  $('.ui.checkbox').checkbox();
-  $('.ui.popup').popup();
 });

@@ -2,12 +2,8 @@ App.Models.Sprint = Backbone.Model.extend({
   urlRoot: '/sprints',
 
   initialize: function(){
-    this.observe();
-    this.parseProject();
-  },
-
-  observe: function(){
     this.on('change:project', this.parseProject);
+    this.parseProject();
   },
 
   parseProject: function(){
@@ -15,12 +11,9 @@ App.Models.Sprint = Backbone.Model.extend({
     this.project = new App.Models.Project(projectAttr);
   },
 
-  parseTasks: function(){
-  },
-
   toJSON: function(){
     var json = _.clone(this.attributes);
-    json.project_id = this.project.id ;
+    json.project_id = this.project.id;
     return json;
   },
 

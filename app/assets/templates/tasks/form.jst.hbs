@@ -1,0 +1,80 @@
+<div class="ui one column page grid">
+  <div class="ui grid">
+    <div class="row">
+      <div class="three wide column"></div>
+      <div class="ten wide column">
+        <div class="ui attached info message">
+          <div class="header">
+            Have you heard about our mailing list?
+          </div>
+          <p>Get all the best inventions in your e-mail every day. Register your company now!</p>
+        </div>
+        <div class="ui form attached fluid segment">
+          <form>
+            <div class="two fields">
+              <div id="status_input" class="field">
+                <label>Status</label>
+                <div class="ui selection dropdown">
+                  <input type="hidden" id="status" value="{{ model.status }}">
+                  <div class="text">Status</div>
+                  <i class="dropdown icon"></i>
+                  <div class="menu">
+                    <div class="item" data-value="Todo">Todo</div>
+                    <div class="item" data-value="Ongoing">Ongoing</div>
+                    <div class="item" data-value="Test">Test</div>
+                    <div class="item" data-value="Done">Done</div>
+                  </div>
+                </div>
+              </div>
+              <div id="priority_input" class="field">
+                <label>Priority</label>
+                <div class="ui selection dropdown">
+                  <input type="hidden" id="priority" value="{{ model.priority }}">
+                  <div class="text">Priority</div>
+                  <i class="dropdown icon"></i>
+                  <div class="menu">
+                    <div class="item" data-value="1">1</div>
+                    <div class="item" data-value="2">2</div>
+                    <div class="item" data-value="3">3</div>
+                    <div class="item" data-value="4">4</div>
+                    <div class="item" data-value="5">5</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="title_input" class="field">
+              <label>Title</label>
+              <div class="ui left labeled icon input">
+                <input type="text" id="title" value="{{ model.title }}" placeholder="Title">
+                <div class="ui corner label">
+                  <i class="icon asterisk"></i>
+                </div>
+              </div>
+            </div>
+            <div id="story_input" class="field">
+              <label>Story</label>
+              <div class="ui left labeled icon input">
+                <textarea cols="40" rows="20" id="story" placeholder="When I Sign In as example@example.com
+Then Im on the home page, Then I should see Master Backbone within the tasks list
+And I should see purchase "Building Backbone Plugins ebook" within the tasks lists">{{ model.story }}</textarea>
+                <div class="ui corner label">
+                  <i class="icon asterisk"></i>
+                </div>
+              </div>
+            </div>
+            <div id="sprint_input" class="field">
+              <label>{{ t 'sprint.title.one' }}</label>
+              <select class="project-select">
+                {{# each sprints }}
+                  <option value="{{ this.id }}">{{ this.name }}</option>
+                {{/ each }}
+              </select>
+            </div>
+            <div class="ui blue submit button large right floated" type="submit">{{ t 'save' }}</div>
+            <a href="#tasks" class="ui right large floated button">{{ t 'back' }}</a>
+          <form>
+        <div>
+      </div>
+    </div>
+  </div>
+</div>

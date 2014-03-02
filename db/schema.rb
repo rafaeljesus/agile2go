@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140209213929) do
+ActiveRecord::Schema.define(version: 20140301222615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,26 +46,38 @@ ActiveRecord::Schema.define(version: 20140209213929) do
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "sprints", force: true do |t|
-    t.string   "name"
     t.string   "daily"
-    t.integer  "points"
+    t.string   "points"
     t.date     "start_date"
     t.date     "end_date"
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   add_index "sprints", ["project_id"], name: "index_sprints_on_project_id", using: :btree
+
+  create_table "tasks", force: true do |t|
+    t.string   "title"
+    t.text     "story"
+    t.string   "status"
+    t.integer  "priority"
+    t.integer  "sprint_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tasks", ["sprint_id"], name: "index_tasks_on_sprint_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "confirmed_at"
-    t.string   "confirmation_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "confirmed_at"
+    t.string   "confirmation_token"
   end
 
   create_table "users_roles", id: false, force: true do |t|
