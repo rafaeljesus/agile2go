@@ -1,6 +1,6 @@
 <td>{{ name }}</td>
 <td>{{ company }}</td>
-<td><span>{{ description }}</span></td>
+<td><span>{{ truncate description 80 }}</span></td>
 <td>{{ timeago created_at }}</td>
 <td>
   <a class="edit-button" href="#projects/{{ id }}/edit">

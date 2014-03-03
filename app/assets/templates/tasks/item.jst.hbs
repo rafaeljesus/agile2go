@@ -5,7 +5,7 @@
       <div class="name"><a href="#tasks/{{ id }}/edit" style="color: black;">{{ title  }}</a></div>
       <h3 class="description">{{ status }}</h3>
       <hr>
-      <p class="description">{{ story }}</p>
+      <p class="description">{{ truncate story 500 }}</p>
     <div class="extra">
       {{ points }} Points -
       <a id="{{ id }}" class="edit-button" href="javascript:void(0);">

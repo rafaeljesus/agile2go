@@ -26,10 +26,10 @@ a {
 }
 
 .truncate {
-  width: 100px !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  width: 300px !important;
 }
 
 .dashboard {

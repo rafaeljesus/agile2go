@@ -24,6 +24,15 @@ App.Mixins.HandlebarsHelpers = {
       var result = I18n.t(i18n_key);
       return new Handlebars.SafeString(result);
     });
+  },
+
+  truncate: function(){
+    Handlebars.registerHelper('truncate', function(text, maxLength){
+      if(text && text.length > maxLength){
+        text = text.substr(0, maxLength-3) + "...";
+      }
+      return text;
+    });
   }
 
 };
