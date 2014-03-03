@@ -13,7 +13,7 @@ App.Models.Task = Backbone.Model.extend({
 
   toJSON: function(){
     var json = _.clone(this.attributes);
-    json.sprint_id = this.sprint.id;
+    json.sprint_id = (this.sprint || {}).id || {};
     return json;
   },
 

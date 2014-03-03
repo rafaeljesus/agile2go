@@ -13,7 +13,7 @@ App.Models.Sprint = Backbone.Model.extend({
 
   toJSON: function(){
     var json = _.clone(this.attributes);
-    json.project_id = this.project.id;
+    json.project_id = (this.project || {}).id || undefined;
     return json;
   },
 
@@ -32,14 +32,8 @@ App.Models.Sprint = Backbone.Model.extend({
     if(!attrs.start_date){
       (errors = errors || {}).start_date = ["can't be blank"];
     };
-    if(attrs.start_date && !moment(attrs.start_date).isValid()){
-      (errors = errors || {}).start_date = ["invalid date"];
-    };
     if(!attrs.end_date){
       (errors = errors || {}).end_date = ["can't be blank"];
-    };
-    if(attrs.end_date && !moment(attrs.end_date).isValid()){
-      (errors = errors || {}).end_date = ["invalid date"];
     };
     if(attrs.daily && moment.duration(attrs.daily).hours() <= 0){
       (errors = errors || {}).daily = ["invalid hour"];
