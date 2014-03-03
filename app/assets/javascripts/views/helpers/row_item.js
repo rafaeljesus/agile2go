@@ -6,6 +6,8 @@ App.Views.CollectionItem = Support.CompositeView.extend(
     this.template = options.template;
   },
 
+  className: 'removable',
+
   serializeData: function(){
     return this.model.toJSON();
   }

@@ -1,9 +1,9 @@
 module Features
   module SprintHelpers
 
-    def create_sprint current_user
+    def create_sprint
       new_sprint = FactoryGirl.build :sprint
-      sprint = create_sprint_as(new_sprint, current_user)
+      sprint = create_sprint_as new_sprint
       sprint
     end
 
@@ -20,7 +20,7 @@ module Features
     end
 
     private
-    def create_sprint_as(new_sprint, current_user)
+    def create_sprint_as new_sprint
       visit '#sprints/new'
       fill_in 'name', with: new_sprint.name
       fill_in 'daily', with: new_sprint.daily

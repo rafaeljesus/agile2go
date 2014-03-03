@@ -15,6 +15,17 @@ App.Models.Task = Backbone.Model.extend({
     var json = _.clone(this.attributes);
     json.sprint_id = this.sprint.id;
     return json;
+  },
+
+  validate: function(attrs, options){
+    var errors;
+    if(!attrs.title){
+      (errors = errors || {}).title = ["can't be blank"];
+    };
+    if(!attrs.story){
+      (errors = errors || {}).story = ["can't be blank"];
+    };
+    if(errors) return errors;
   }
 
 });

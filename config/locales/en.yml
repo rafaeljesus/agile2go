@@ -2,7 +2,7 @@ en:
   flash:
     actions:
       create:
-        notice: "%{model} was successfully saved."
+        notice: "%{model} was successfully created."
       update:
         notice: "%{model} was successfully updated."
       destroy:

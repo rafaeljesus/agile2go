@@ -56,7 +56,7 @@ App.Views.TaskForm = Support.CompositeView.extend(
 
   saved: function(model, response, options) {
      window.location.hash = '#tasks';
-     var message = I18n.t('flash.actions.update.notice', { model: 'Task' });
+     var message = I18n.t('flash.actions.create.notice', { model: 'Task' });
      this.successMessage(message);
   },
 

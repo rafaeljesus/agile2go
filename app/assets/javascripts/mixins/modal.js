@@ -9,7 +9,7 @@ App.Mixins.Modal = {
     e.preventDefault();
     var $i = $(e.target);
     var id = $i.closest('a').attr('id');
-    new App.Views.ConfirmModal({ model: this.model, $tr: $i.closest('tr') }).render();
+    new App.Views.ConfirmModal({ model: this.model, $removable: $i.closest('.removable') }).render();
   }
 
 };

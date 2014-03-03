@@ -19,7 +19,7 @@ App.Views.TasksIndex = Support.CompositeView.extend(
   },
 
   renderItem: function(model){
-    var dependencies = { model: model, template: JST['tasks/item'], tagName: 'div', className: 'column' };
+    var dependencies = { model: model, template: JST['tasks/item'], tagName: 'div', className: 'column removable' };
     var item = new App.Views.CollectionItem(dependencies);
     this.renderChild(item);
     this.$('#items').append(item.el);

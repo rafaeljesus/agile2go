@@ -3,11 +3,14 @@
     <div class="content">
       <div class="meta">{{ timeago created_at }}</div>
       <div class="name"><a href="#tasks/{{ id }}/edit" style="color: black;">{{ title  }}</a></div>
-      <h3 class="description">{{ status }}</h3><hr>
+      <h3 class="description">{{ status }}</h3>
+      <hr>
       <p class="description">{{ story }}</p>
-    </div>
     <div class="extra">
-      {{ points }} Points
+      {{ points }} Points -
+      <a id="{{ id }}" class="edit-button" href="javascript:void(0);">
+        <i class="icon trash confirm"></i>
+      </a>
     </div>
   </div>
 </div>

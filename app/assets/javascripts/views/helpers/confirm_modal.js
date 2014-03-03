@@ -6,7 +6,7 @@ App.Views.ConfirmModal = Backbone.View.extend({
   initialize: function(options){
     _.bindAll(this, 'render', 'deleted');
     this.model = options.model;
-    this.$tr = options.$tr;
+    this.$removable = options.$removable;
   },
 
   template: JST['modal'],
@@ -32,7 +32,7 @@ App.Views.ConfirmModal = Backbone.View.extend({
   },
 
   deleted: function(){
-    this.$tr.remove();
+    this.$removable.remove();
     this.hide();
     var message = 'Item was successfully deleted';
     new FlashMessages({ message: message }).success();
