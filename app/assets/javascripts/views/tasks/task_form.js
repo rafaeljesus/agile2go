@@ -2,10 +2,11 @@ App.Views.TaskForm = Support.CompositeView.extend(
   _.extend({}, App.Mixins.ModelObserver,
   _.extend({}, App.Mixins.BaseView, {
   initialize: function(options){
-    _.bindAll(this, 'render', 'saved');
-    this.model = options.model || new App.Models.Task({});
+    _.bindAll(this, 'render', 'saved', 'setValue');
+    this.model = options.model || this.newModel();
     this.sprints = options.sprints;
     this.bindTo(this.sprints, 'add', this.render);
+    this.bindTo(this.model.sprint.project.assignedUsers, 'add', this.render);
     this.observe();
     new App.HandlebarsHelpers.withDiffDate();
   },
@@ -13,7 +14,11 @@ App.Views.TaskForm = Support.CompositeView.extend(
   template: JST['tasks/form'],
 
   serializeData: function(){
-    return { model: this.model.toJSON(), sprints: this.sprints.toJSON() };
+    return {
+      model: this.model.toJSON(),
+      sprints: this.sprints.toJSON(),
+      users: this.model.projectUsers().toJSON()
+    };
   },
 
   events: {
@@ -27,14 +32,18 @@ App.Views.TaskForm = Support.CompositeView.extend(
     return this;
   },
 
+  newModel: function(){
+    var model = new App.Models.Task({});
+    model.projectUsers().fetch({});
+    return model;
+  },
+
   renderAssignedSprint: function(){
     this.$('#sprint').val(this.model.sprint.id).trigger('change');
   },
 
-
-  //TODO task must have many users on rails relationship, and we can add users to a task
   renderAssignedUsers: function(){
-    // this.$('#users').val(this.model.assignedUsers().ids());
+    this.$('#users').val(this.model.assignedUsers.ids());
   },
 
   save: function(e){
@@ -51,13 +60,20 @@ App.Views.TaskForm = Support.CompositeView.extend(
     , title    = this.$('#title').val()
     , story    = this.$('#story').val();
     this.model.set({ status: status, priority: priority, points: points, title: title, story: story });
-    this.model.sprint = this.sprints.get({ id: this.assigneeId() });
+    this.model.sprint = this.sprints.get({ id: this.selectedSprint() });
+    this.model.assignedUsers = this.model.findProjectUsersByIds(this.assignedUsersIds());
   },
 
-  assigneeId: function(){
-    return _.first(this.$('select').find('option:selected').map(function(n, select){
-      return $(select).val();
-    }));
+  selectedSprint: function(){
+    return _.first(this.$('#sprint').find('option:selected').map(this.setValue));
+  },
+
+  assignedUsersIds : function(){
+    return this.$('#users').find('option:selected').map(this.setValue);
+  },
+
+  setValue: function(n, select){
+    return $(select).val();
   },
 
   saved: function(model, response, options) {
@@ -67,8 +83,8 @@ App.Views.TaskForm = Support.CompositeView.extend(
   },
 
   thirdComponents: function(){
-    this.$('#sprint').select2({ placeholder: 'Select a Sprint' });
-    this.$('#users').select2({ placeholder: 'Select a User' });
+    this.$('#sprint').select2();
+    this.$('#users').select2();
     this.$('.ui.dropdown').dropdown();
   }
 

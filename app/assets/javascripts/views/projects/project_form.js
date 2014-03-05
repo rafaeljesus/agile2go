@@ -41,10 +41,10 @@ App.Views.ProjectForm = Support.CompositeView.extend(
     , description = this.$('#description').val()
     , company     = this.$('#company').val();
     this.model.set({ name: name, description: description, company: company });
-    this.model.assignedUsers = this.users.findByIds(this.assigneeIds());
+    this.model.assignedUsers = this.users.findByIds(this.assignedUsersIds());
   },
 
-  assigneeIds: function(){
+  assignedUsersIds: function(){
     return this.$('select').find('option:selected').map(function(n, select){
       return $(select).val();
     });
