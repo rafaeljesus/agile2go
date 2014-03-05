@@ -3,7 +3,9 @@ App.Models.Task = Backbone.Model.extend({
 
   initialize: function(){
     this.on('change:sprint', this.parseSprint);
+    this.on('change:assignedUsers', this.parseUsers);
     this.parseSprint();
+    this.parseUsers();
   },
 
   parseSprint: function(){
@@ -11,9 +13,19 @@ App.Models.Task = Backbone.Model.extend({
     this.sprint = new App.Models.Sprint(sprintAttr);
   },
 
+  parseUsers: function(){
+    var assignedAttr = this.get('assignedUsers');
+    this.assignedUsers = new App.Collections.Users(assignedAttr);
+  },
+
+  user_assignments_attributes: function(){
+    return this.assignedUsers.map(function(user) { return { user_id: user.id } });
+  },
+
   toJSON: function(){
     var json = _.clone(this.attributes);
     json.sprint_id = (this.sprint || {}).id || {};
+    json.user_assignments_attributes = this.user_assignments_attributes();
     return json;
   },
 

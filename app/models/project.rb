@@ -6,4 +6,8 @@ class Project < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
   validates_presence_of :company, :description
+
+  def self.find_by_user(current_user)
+    where(user_id: current_user.id).limit(10)
+  end
 end

@@ -3,7 +3,7 @@ App.Collections.Users = Backbone.Collection.extend({
   model: App.Models.User,
 
   ids: function(){
-    return _.uniq(_.pluck(this.toJSON(), 'user_id'));
+    return _.uniq(_.pluck(this.toJSON(), 'id'));
   },
 
   findByIds: function(assigneeIds){

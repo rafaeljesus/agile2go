@@ -22,12 +22,19 @@ App.Views.TaskForm = Support.CompositeView.extend(
 
   onRender: function(){
     this.renderAssignedSprint();
+    this.renderAssignedUsers();
     this.thirdComponents();
     return this;
   },
 
   renderAssignedSprint: function(){
-    this.$('select').val(this.model.sprint.id).trigger('change');
+    this.$('#sprint').val(this.model.sprint.id).trigger('change');
+  },
+
+
+  //TODO task must have many users on rails relationship, and we can add users to a task
+  renderAssignedUsers: function(){
+    // this.$('#users').val(this.model.assignedUsers().ids());
   },
 
   save: function(e){
@@ -60,7 +67,8 @@ App.Views.TaskForm = Support.CompositeView.extend(
   },
 
   thirdComponents: function(){
-    this.$('select').select2({ placeholder: 'Select a Sprint' });
+    this.$('#sprint').select2({ placeholder: 'Select a Sprint' });
+    this.$('#users').select2({ placeholder: 'Select a User' });
     this.$('.ui.dropdown').dropdown();
   }
 

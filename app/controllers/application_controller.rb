@@ -6,8 +6,4 @@ class ApplicationController < ActionController::Base
   def user_session
     UserSession.new(session)
   end
-
-  # def authorize
-  #   render '#/', status: :unauthorized unless user_signed_in?
-  # end
 end

@@ -89,8 +89,16 @@ And I should see purchase "Building Backbone Plugins ebook" within the tasks lis
             </div>
             <div id="sprint_input" class="field">
               <label>{{ t 'sprint.title.one' }}</label>
-              <select class="project-select">
+              <select id="sprint" class="select2">
                 {{# each sprints }}
+                  <option value="{{ this.id }}">{{ this.name }}</option>
+                {{/ each }}
+              </select>
+            </div>
+            <div id="users_input" class="field">
+              <label>{{ t 'user.title.other' }}</label>
+              <select id="users" multiple>
+                {{# each model.sprint.project.assignedUsers }}
                   <option value="{{ this.id }}">{{ this.name }}</option>
                 {{/ each }}
               </select>

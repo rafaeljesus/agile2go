@@ -33,6 +33,8 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :story, :status, :priority, :points, :sprint_id)
+    params.require(:task)
+      .permit(:title, :story, :status, :priority, :points, :sprint_id)
+      .merge(user_assignments_attributes: params[:user_assignments_attributes])
   end
 end
