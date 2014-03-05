@@ -13,7 +13,7 @@ var App = new (Backbone.View.extend({
   },
 
   init: function(){
-    new App.Mixins.HandlebarsHelpers.setI18nHbsHelper();
+    new App.HandlebarsHelpers.withI18n();
 
     var current_user = new App.Models.CurrentUser({});
     var injector = { current_user: current_user };

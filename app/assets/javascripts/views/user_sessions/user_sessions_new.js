@@ -21,8 +21,8 @@ App.Views.UserSessionsNew = Support.CompositeView.extend(
   },
 
   commit: function(){
-    var email = this.$("#email").val(),
-        password = this.$("#password").val();
+    var email = this.$("#email").val()
+    , password = this.$("#password").val();
     this.model.set({ email: email, password: password });
   },
 

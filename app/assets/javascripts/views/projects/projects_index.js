@@ -5,9 +5,7 @@ App.Views.ProjectsIndex = Support.CompositeView.extend(
     this.bindTo(this.collection, 'change', this.render);
     this.bindTo(this.collection, 'reset', this.render);
     this.bindTo(this.collection, 'add', this.render);
-    this.timeagoHelper();
-    this.diffDateHelper();
-    this.truncate();
+    new App.HandlebarsHelpers.withTimeago().withDiffDate().withTruncate();
   },
 
   template: JST['projects/index'],

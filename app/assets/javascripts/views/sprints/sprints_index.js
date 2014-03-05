@@ -1,12 +1,10 @@
-App.Views.SprintsIndex = Support.CompositeView.extend(
-  _.extend({}, App.Mixins.HandlebarsHelpers, {
+App.Views.SprintsIndex = Support.CompositeView.extend({
   initialize: function(){
     _.bindAll(this, 'render', 'renderRow');
     this.bindTo(this.collection, 'change', this.render);
     this.bindTo(this.collection, 'reset', this.render);
     this.bindTo(this.collection, 'add', this.render);
-    this.timeagoHelper();
-    this.diffDateHelper();
+    new App.HandlebarsHelpers.withTimeago().withDiffDate();
   },
 
   template: JST['sprints/index'],
@@ -25,4 +23,4 @@ App.Views.SprintsIndex = Support.CompositeView.extend(
     this.$('tbody').append(row.el);
   }
 
-}));
+});

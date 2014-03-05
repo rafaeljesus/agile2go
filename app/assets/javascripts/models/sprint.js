@@ -29,10 +29,10 @@ App.Models.Sprint = Backbone.Model.extend({
     if(!attrs.name){
       (errors = errors || {}).name = ["can't be blank"];
     };
-    if(!attrs.start_date){
+    if(!attrs.start_date || !moment(attrs.start_date).isValid()){
       (errors = errors || {}).start_date = ["can't be blank"];
     };
-    if(!attrs.end_date){
+    if(!attrs.end_date || !moment(attrs.end_date).isValid()){
       (errors = errors || {}).end_date = ["can't be blank"];
     };
     if(attrs.daily && moment.duration(attrs.daily).hours() <= 0){

@@ -1,6 +1,5 @@
 App.Views.TaskForm = Support.CompositeView.extend(
   _.extend({}, App.Mixins.ModelObserver,
-  _.extend({}, App.Mixins.HandlebarsHelpers,
   _.extend({}, App.Mixins.BaseView, {
   initialize: function(options){
     _.bindAll(this, 'render', 'saved');
@@ -8,7 +7,7 @@ App.Views.TaskForm = Support.CompositeView.extend(
     this.sprints = options.sprints;
     this.bindTo(this.sprints, 'add', this.render);
     this.observe();
-    this.diffDateHelper();
+    new App.HandlebarsHelpers.withDiffDate();
   },
 
   template: JST['tasks/form'],
@@ -65,4 +64,4 @@ App.Views.TaskForm = Support.CompositeView.extend(
     this.$('.ui.dropdown').dropdown();
   }
 
-}))));
+})));

@@ -1,13 +1,10 @@
-App.Views.TasksIndex = Support.CompositeView.extend(
-  _.extend({}, App.Mixins.HandlebarsHelpers, {
+App.Views.TasksIndex = Support.CompositeView.extend({
   initialize: function(options){
     _.bindAll(this, 'render', 'renderItem');
     this.bindTo(this.collection, 'change', this.render);
     this.bindTo(this.collection, 'reset', this.render);
     this.bindTo(this.collection, 'add', this.render);
-    this.timeagoHelper();
-    this.diffDateHelper();
-    this.truncate();
+    new App.HandlebarsHelpers.withDiffDate().withTimeago().withTruncate();
   },
 
   template: JST['tasks/index'],
@@ -26,4 +23,4 @@ App.Views.TasksIndex = Support.CompositeView.extend(
     this.$('#items').append(item.el);
   }
 
-}));
+});

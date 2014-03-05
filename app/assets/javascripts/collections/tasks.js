@@ -3,7 +3,6 @@ App.Collections.Tasks = Backbone.Collection.extend({
   model: App.Models.Task,
 
   parse: function(response){
-    this.sprint = response.sprint;
     return response.tasks;
   }
 

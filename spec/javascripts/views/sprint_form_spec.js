@@ -1,4 +1,4 @@
-describe('App.Views.SprintNew', function(){
+describe('App.Views.SprintForm', function(){
   var view
   , model
   , projects
@@ -73,7 +73,7 @@ describe('App.Views.SprintNew', function(){
     expect(model.isValid()).toBeFalsy();
   });
 
-  it('should not persists when end_date is not a number', function(){
+  it('should not persists when end_date is invalid', function(){
     spyOn(model, 'save');
     commit();
     view.$('#end-date').val('invalid date');

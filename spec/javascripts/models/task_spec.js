@@ -1,21 +1,21 @@
-describe('App.Models.Sprints#initialize', function(){
+describe('App.Models.Tasks#initialize', function(){
 
-  var newSprint;
+  var newTask;
 
   beforeEach(function(){
-    var attributes = { id: 1, daily: '10:00', points: 40, start_date: '01/01/2014', end_date: '01/15/2014', project: { id: 1, name: 'projectNameFake' } };
-    newSprint = new App.Models.Sprint(attributes);
+    var attributes = { id: 1, title: 'Assigning a Tasks to others', priority: 5, points: 8, status: 'Todo', sprint: { id: 1 } };
+    newTask = new App.Models.Task(attributes);
   });
 
-  it('should have one project', function(){
-    var project = newSprint.project;
-    var typeCheck = project instanceof App.Models.Project;
+  it('should have one sprint', function(){
+    var sprint = newTask.sprint;
+    var typeCheck = sprint instanceof App.Models.Sprint;
     expect(typeCheck).toBeTruthy();
-    expect(project).toBeDefined();
+    expect(sprint).toBeDefined();
   });
 
   it('should validate when model have required attributes', function(){
-    expect(newSprint.isValid()).toBeFalsy();
+    expect(newTask.isValid()).toBeFalsy();
   });
 });
 

@@ -6,6 +6,18 @@ App.Mixins.BaseView = {
     return this;
   },
 
+  successMessage: function(message){
+     this._flashMessage(message).success();
+  },
+
+  errorMessage: function(message){
+     this._flashMessage(message).error();
+  },
+
+  _flashMessage: function(message){
+     return new FlashMessages({ message: message });
+   },
+
   rootPath: function(){
     window.location.hash = '';
   }
