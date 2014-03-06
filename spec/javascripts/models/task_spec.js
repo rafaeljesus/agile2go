@@ -19,12 +19,23 @@ describe('App.Models.Tasks#initialize', function(){
   });
 });
 
-describe('App.Models.Sprint project:change', function(){
-  it('re-parse the project', function(){
-    var project = { project: { id: 1, name: 'projectNameFake' } };
-    var sprint = new App.Models.Sprint(project);
-    expect(sprint.project).toBeDefined();
-    sprint.set({ project: { name: 'Agile2Go' } });
-    expect(sprint.project.get('name')).toEqual('Agile2Go');
+describe('App.Models.Task change:sprint', function(){
+  it('re-parse the sprint', function(){
+    var sprint = { sprint: { id: 1, name: 'sprintNameFake' } };
+    var task = new App.Models.Task(sprint);
+    expect(task.sprint).toBeDefined();
+    task.set({ task: { name: 'Create a new Task' } });
+    expect(task.sprint.get('name')).toEqual('Create a new Task');
   });
-})
+});
+
+describe('App.Models.Task change:assignedUsers', function(){
+  it("re-parses the assignedUsers", function() {
+    var assignedUsers = { assignedUsers: [{ name: 'Rafael Jesus' }, { name: 'Sophia de Jesus' }] };
+    var task = new App.Models.Task(assignedUsers);
+    expect(task.assignedUsers.size()).toEqual(2);
+
+    task.set({ assignedUsers: [{ name: 'Sophia de Jesus' }] });
+    expect(task.assignedUsers.size()).toEqual(1);
+  });
+});
