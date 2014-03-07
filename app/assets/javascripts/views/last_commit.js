@@ -8,7 +8,7 @@ App.Views.LastCommit = Support.CompositeView.extend(
     _.bindAll(this, 'render');
     this.newCollection();
     this.bindTo(this.collection, 'add', this.render);
-    new App.HandlebarsHelpers.withTimeago();
+    new App.HandlebarsHelpers().withTimeago();
   },
 
   template: JST['last_commit'],

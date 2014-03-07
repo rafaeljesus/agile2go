@@ -1,19 +1,19 @@
 App.Views.UserSessionsDestroy = Support.CompositeView.extend({
   initialize: function(options){
-    this.current_user = options.current_user;
+    _.bindAll(this, 'destroyed');
+    this.current_user = options.current_user;    
   },
 
-  destroy: function(){
-    var self = this;
+  destroy: function(){    
     var content = { url: 'user_sessions', type: 'post', dataType: 'json', data: {_method: 'delete'} };
-    $.ajax(content).done(function(data){
-      self.current_user.set({ signed_in: false });
-      self.current_user.removeSession({});
-      self.logoutSuccess();
-      self.rootPath();
-    }).fail(function(error){
-      console.log(error);
-    });
+    $.ajax(content).done(this.destroyed);
+  },
+
+  destroyed: function(data){
+    this.current_user.set({ signed_in: false });
+    this.current_user.removeSession({});
+    this.logoutSuccess();
+    this.rootPath();
   },
 
   logoutSuccess: function(){

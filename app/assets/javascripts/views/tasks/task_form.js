@@ -9,7 +9,7 @@ App.Views.TaskForm = Support.CompositeView.extend(
     this.bindTo(this.sprints, 'add', this.render);
     this.bindTo(this.users, 'add', this.render);
     this.observe();
-    new App.HandlebarsHelpers.withDiffDate();
+    new App.HandlebarsHelpers().withDiffDate();
   },
 
   template: JST['tasks/form'],

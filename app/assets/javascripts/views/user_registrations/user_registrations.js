@@ -4,7 +4,7 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
   initialize: function(options){
     _.bindAll(this, 'render', 'saved');
     this.current_user = options.current_user;
-    this.model = new App.Models.UserRegistration({});
+    this.newModel();
     this.observe();
   },
 
@@ -12,6 +12,10 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
 
   events: {
     'submit': 'save'
+  },
+
+  newModel: function(){
+    this.model = new App.Models.UserRegistration({});
   },
 
   save: function(e){
@@ -22,10 +26,10 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
   },
 
   commit: function(){
-    var name = this.$("#name").val(),
-        email = this.$("#email").val(),
-        password = this.$("#password").val(),
-        password_confirmation = this.$("#password-confirmation").val();
+    var name    = this.$("#name").val()
+    , email     = this.$("#email").val()
+    , password  = this.$("#password").val()
+    , password_confirmation = this.$("#password-confirmation").val();
     this.model.set({ name: name, email: email, password: password, password_confirmation: password_confirmation });
   },
 

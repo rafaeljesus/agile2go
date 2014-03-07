@@ -4,7 +4,7 @@ App.Views.UserSessionsNew = Support.CompositeView.extend(
   initialize: function(options){
     _.bindAll(this, 'render', 'authenticated');
     this.current_user = options.current_user;
-    this.model = new App.Models.UserSession({});
+    this.newModel();
     this.observe();
   },
 
@@ -12,6 +12,10 @@ App.Views.UserSessionsNew = Support.CompositeView.extend(
 
   events: {
     'click .submit': 'authenticate'
+  },
+
+  newModel: function(){
+    this.model = new App.Models.UserSession({});
   },
 
   authenticate: function(e){

@@ -4,7 +4,7 @@ App.Views.TasksIndex = Support.CompositeView.extend({
     this.bindTo(this.collection, 'change', this.render);
     this.bindTo(this.collection, 'reset', this.render);
     this.bindTo(this.collection, 'add', this.render);
-    new App.HandlebarsHelpers.withDiffDate().withTimeago().withTruncate();
+    new App.HandlebarsHelpers().withDiffDate().withTimeago().withTruncate();
   },
 
   template: JST['tasks/index'],

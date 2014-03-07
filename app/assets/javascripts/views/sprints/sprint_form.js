@@ -3,7 +3,7 @@ App.Views.SprintForm = Support.CompositeView.extend(
   _.extend({}, App.Mixins.BaseView, {
   initialize: function(options){
     _.bindAll(this, 'render', 'saved');
-    this.model = options.model || new App.Models.Sprint({});
+    this.model = options.model || this.newModel();
     this.projects = options.projects;
     this.bindTo(this.projects, 'add', this.render);
     this.observe();
@@ -25,6 +25,10 @@ App.Views.SprintForm = Support.CompositeView.extend(
     this.renderAssignedProject();
     this.select2();
     return this;
+  },
+
+  newModel: function(){
+    return new App.Models.Sprint({});
   },
 
   renderAssignedProject: function(){
