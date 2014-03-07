@@ -18,12 +18,10 @@ App.Models.Task = Backbone.Model.extend({
     this.assignedUsers = new App.Collections.Users(assignedAttr);
   },
 
-  findProjectUsersByIds: function(ids){
-    return this.projectUsers().findByIds(ids);
-  },
-
-  projectUsers: function(){
-    return this.sprint.project.assignedUsers;
+  allUsers: function(){
+    var allUsers = this.sprint.project.assignedUsers;
+    allUsers.fetch({});
+    return allUsers;
   },
 
   user_assignments_attributes: function(){

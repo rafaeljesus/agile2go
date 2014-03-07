@@ -2,11 +2,12 @@ App.Views.TaskForm = Support.CompositeView.extend(
   _.extend({}, App.Mixins.ModelObserver,
   _.extend({}, App.Mixins.BaseView, {
   initialize: function(options){
-    _.bindAll(this, 'render', 'saved', 'setValue');
+    _.bindAll(this, 'render', 'saved');
     this.model = options.model || this.newModel();
+    this.users = this.model.allUsers();
     this.sprints = options.sprints;
     this.bindTo(this.sprints, 'add', this.render);
-    this.bindTo(this.model.sprint.project.assignedUsers, 'add', this.render);
+    this.bindTo(this.users, 'add', this.render);
     this.observe();
     new App.HandlebarsHelpers.withDiffDate();
   },
@@ -17,7 +18,7 @@ App.Views.TaskForm = Support.CompositeView.extend(
     return {
       model: this.model.toJSON(),
       sprints: this.sprints.toJSON(),
-      users: this.model.projectUsers().toJSON()
+      users: this.users.toJSON()
     };
   },
 
@@ -33,9 +34,7 @@ App.Views.TaskForm = Support.CompositeView.extend(
   },
 
   newModel: function(){
-    var model = new App.Models.Task({});
-    model.projectUsers().fetch({});
-    return model;
+    return new App.Models.Task({});
   },
 
   renderAssignedSprint: function(){
@@ -61,18 +60,18 @@ App.Views.TaskForm = Support.CompositeView.extend(
     , story    = this.$('#story').val();
     this.model.set({ status: status, priority: priority, points: points, title: title, story: story });
     this.model.sprint = this.sprints.get({ id: this.selectedSprint() });
-    this.model.assignedUsers = this.model.findProjectUsersByIds(this.assignedUsersIds());
+    this.model.assignedUsers = this.users.findByIds(this.assignedUsersIds());
   },
 
   selectedSprint: function(){
-    return _.first(this.$('#sprint').find('option:selected').map(this.setValue));
+    return _.first(this.$('#sprint').find('option:selected').map(this.setOptionValue));
   },
 
   assignedUsersIds : function(){
-    return this.$('#users').find('option:selected').map(this.setValue);
+    return this.$('#users').find('option:selected').map(this.setOptionValue);
   },
 
-  setValue: function(n, select){
+  setOptionValue: function(n, select){
     return $(select).val();
   },
 
