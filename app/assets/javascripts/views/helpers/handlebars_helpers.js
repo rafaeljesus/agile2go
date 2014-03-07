@@ -1,8 +1,8 @@
-App.HandlebarsHelpers = (function(){
+App.HandlebarsHelpers = function(){ };
 
-  function HandlebarsHelpers(){ }
+_.extend(App.HandlebarsHelpers.prototype, {
 
-  HandlebarsHelpers.prototype.withDiffDate = function() {
+  withDiffDate: function() {
     Handlebars.registerHelper('diffDate', function(end_date) {
       if (!end_date) return;
       var now = moment().toDate(), end_date = moment(end_date);
@@ -15,7 +15,7 @@ App.HandlebarsHelpers = (function(){
     return this;
   },
 
-  HandlebarsHelpers.prototype.withTimeago = function() {
+  withTimeago: function() {
     Handlebars.registerHelper('timeago', function(created_at) {
       if (!created_at) return;
       return $.timeago(created_at);
@@ -23,7 +23,7 @@ App.HandlebarsHelpers = (function(){
     return this;
   },
 
-  HandlebarsHelpers.prototype.withI18n = function(){
+  withI18n: function(){
     Handlebars.registerHelper('t', function(i18n_key) {
       var result = I18n.t(i18n_key);
       return new Handlebars.SafeString(result);
@@ -31,7 +31,7 @@ App.HandlebarsHelpers = (function(){
     return this;
   },
 
-  HandlebarsHelpers.prototype.withTruncate = function(){
+  withTruncate: function(){
     Handlebars.registerHelper('truncate', function(text, maxLength){
       if(text && text.length > maxLength){
         text = text.substr(0, maxLength-3) + "...";
@@ -41,7 +41,6 @@ App.HandlebarsHelpers = (function(){
     return this;
   }
 
-  return HandlebarsHelpers;
+});
 
 
-})();
