@@ -4,8 +4,8 @@ App.Views.TaskForm = Support.CompositeView.extend(
   initialize: function(options){
     _.bindAll(this, 'render', 'saved');
     this.model = options.model || this.newModel();
-    this.users = this.model.allUsers();
     this.sprints = options.sprints;
+    this.users = this.model.allUsers();
     this.bindTo(this.sprints, 'add', this.render);
     this.bindTo(this.users, 'add', this.render);
     this.observe();

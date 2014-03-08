@@ -13,6 +13,7 @@ var App = new (Backbone.View.extend({
   },
 
   init: function(){
+    $('.rotate').textrotator({ animation: "dissolve", separator: ",", speed: 4000 });
     new App.HandlebarsHelpers().withI18n();
 
     var current_user = new App.Models.CurrentUser({});
@@ -31,5 +32,4 @@ var App = new (Backbone.View.extend({
 
 $(function(){
   App.init();
-  $('.rotate').textrotator({ animation: "dissolve", separator: ",", speed: 4000 });
 });

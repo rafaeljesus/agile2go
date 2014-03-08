@@ -5,8 +5,8 @@ App.Views.Menu = Backbone.View.extend(
   initialize: function(options){
     _.bindAll(this, 'render');
     this.current_user = options.current_user
-    this.listenTo(this.current_user, 'change:signed_in', this.render);   
-    this.render(); 
+    this.listenTo(this.current_user, 'change:signed_in', this.render);
+    this.render();
   },
 
   template: JST['layouts/menu'],
@@ -14,5 +14,5 @@ App.Views.Menu = Backbone.View.extend(
   serializeData: function(){
     return { current_user: this.current_user.toJSON() };
   }
-  
+
 }));

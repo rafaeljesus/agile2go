@@ -44,6 +44,7 @@ App.Views.ConfirmModal = Backbone.View.extend({
 
   hide: function(){
     this.$el.modal('hide');
+    this.$el.remove();
   }
 
 });
