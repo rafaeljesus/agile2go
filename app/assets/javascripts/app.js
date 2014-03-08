@@ -13,9 +13,7 @@ var App = new (Backbone.View.extend({
   },
 
   init: function(){
-    $('.rotate').textrotator({ animation: "dissolve", separator: ",", speed: 4000 });
     new App.HandlebarsHelpers().withI18n();
-
     var current_user = new App.Models.CurrentUser({});
     var injector = { current_user: current_user };
     new App.Views.Menu(injector);

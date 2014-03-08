@@ -13,11 +13,18 @@ App.Views.SiteIndex = Support.CompositeView.extend(
     if(this.current_user.signedIn()){
       childView = new App.Views.Dashboard({ el: this.$el });
     } else {
+      this.rotate();
       childView = new App.Views.LastCommit({});
       this.$('#last-commit').append(childView.el);
     }
     this.renderChild(childView);
     return this;
-  }
+  },
+
+  rotate: function(){
+    setTimeout(function(){
+      $('.rotate').textrotator({ animation: "dissolve", separator: ",", speed: 4000 });
+    }, 500);
+  },
 
 }));
