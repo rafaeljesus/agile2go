@@ -1,10 +1,11 @@
 App.Views.Dashboard = Support.CompositeView.extend({
   initialize: function(){
     _.bindAll(this, 'render');
+   this.bindTo(this.model, 'change', this.render);
   },
 
   render: function(){
-    $(this.$el).addClass('dashboard').highcharts(this.serializeData());
+    this.$el.addClass('dashboard').highcharts(this.serializeData());
   },
 
   serializeData: function(){
@@ -17,7 +18,7 @@ App.Views.Dashboard = Support.CompositeView.extend({
         },
         colors: ['#AA4643', '#80699B', '#4572A7', '#89A54E' ],
         xAxis: {
-          categories: ['Agile2Go', 'Discourse', 'Grupon', 'Erepair', 'Epoll']
+          categories: this.model.get('categories')
         },
         yAxis: {
           title: 'Qty'
@@ -27,10 +28,7 @@ App.Views.Dashboard = Support.CompositeView.extend({
             stacking: 'normal'
           },
         },
-        series: [{ name: 'todo', data: [107, 31, 635, 203, 2] },
-                 { name: 'ongoing', data: [133, 156, 947, 408, 6] },
-                 { name: 'test', data: [973, 914, 4054, 732, 34] },
-                 { name: 'done', data: [973, 5014, 4704, 772, 43] }]
+        series: this.model.get('series')
       }
   }
 

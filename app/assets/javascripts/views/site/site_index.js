@@ -11,7 +11,9 @@ App.Views.SiteIndex = Support.CompositeView.extend(
   onRender: function(){
     var childView;
     if(this.current_user.signedIn()){
-      childView = new App.Views.Dashboard({ el: this.$el });
+      var model = new App.Models.Dashboard({});
+      model.fetch({});
+      childView = new App.Views.Dashboard({ el: this.$el, model: model });
     } else {
       this.rotate();
       childView = new App.Views.LastCommit({});
@@ -24,7 +26,7 @@ App.Views.SiteIndex = Support.CompositeView.extend(
   rotate: function(){
     setTimeout(function(){
       $('.rotate').textrotator({ animation: "dissolve", separator: ",", speed: 4000 });
-    }, 500);
+    }, 1000);
   },
 
 }));
