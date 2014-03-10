@@ -80,7 +80,7 @@ describe('App.Views.ProjectForm', function(){
 
   it('should assigneeIds match number of selected users', function(){
     commit();
-    expect(view.assigneeIds().length).toEqual(users.length);
+    expect(view.assignedUsersIds().length).toEqual(users.length);
   });
 
 });

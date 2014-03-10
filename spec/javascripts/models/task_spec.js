@@ -24,7 +24,7 @@ describe('App.Models.Task change:sprint', function(){
     var sprint = { sprint: { id: 1, name: 'sprintNameFake' } };
     var task = new App.Models.Task(sprint);
     expect(task.sprint).toBeDefined();
-    task.set({ task: { name: 'Create a new Task' } });
+    task.set({ sprint: { name: 'Create a new Task' } });
     expect(task.sprint.get('name')).toEqual('Create a new Task');
   });
 });
