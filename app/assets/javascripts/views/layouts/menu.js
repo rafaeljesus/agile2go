@@ -16,6 +16,10 @@ App.Views.Menu = Backbone.View.extend(
     return { current_user: this.current_user.toJSON() };
   },
 
+  onRender: function(){
+    this.dropdown();
+  },
+
   dropdown: function(){
     setTimeout(function(){
       this.$('.ui.dropdown').dropdown();
