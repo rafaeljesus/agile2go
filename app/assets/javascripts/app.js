@@ -24,7 +24,6 @@ var App = new (Backbone.View.extend({
     new App.Routers.Sprints(injector);
     new App.Routers.Tasks(injector);
     new App.start();
-    $('.ui.dropdown').dropdown();
   }
 
 }))({ el: document.body });
