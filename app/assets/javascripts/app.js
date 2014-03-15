@@ -23,6 +23,7 @@ var App = new (Backbone.View.extend({
     new App.Routers.Projects(injector);
     new App.Routers.Sprints(injector);
     new App.Routers.Tasks(injector);
+    new App.Routers.Dashboards(injector);
     new App.start();
   }
 

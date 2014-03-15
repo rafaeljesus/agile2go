@@ -2,11 +2,11 @@ App.Views.Dashboard = Support.CompositeView.extend({
   initialize: function(){
     _.bindAll(this, 'render');
    this.bindTo(this.model, 'change', this.render);
-   this.activeMenu();
   },
 
   render: function(){
     this.$el.addClass('dashboard').highcharts(this.serializeData());
+    return this;
   },
 
   serializeData: function(){
@@ -31,12 +31,6 @@ App.Views.Dashboard = Support.CompositeView.extend({
         },
         series: this.model.get('series')
       }
-  },
-
-  activeMenu: function(){
-    this.$("a[href='#projects']").removeClass('active');
-    this.$("a[href='#sprints']").removeClass('active');
-    this.$("a[href='#tasks']").removeClass('active');
   }
 
 });

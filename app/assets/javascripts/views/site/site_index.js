@@ -1,5 +1,4 @@
-App.Views.SiteIndex = Support.CompositeView.extend(
-  _.extend({}, App.Mixins.BaseView, {
+App.Views.SiteIndex = Support.CompositeView.extend({
   initialize: function(options){
     _.bindAll(this, 'render');
     this.current_user = options.current_user;
@@ -8,18 +7,16 @@ App.Views.SiteIndex = Support.CompositeView.extend(
 
   template: JST['site/index'],
 
-  onRender: function(){
-    var childView;
+  render: function(){
     if(this.current_user.signedIn()){
-      var model = new App.Models.Dashboard({});
-      model.fetch({});
-      childView = new App.Views.Dashboard({ el: this.$el, model: model });
+      window.location.hash = '#dashboard';
     } else {
-      this.rotate();
-      childView = new App.Views.LastCommit({});
+      this.$el.html(this.template());
+      var childView = new App.Views.LastCommit({});
       this.$('#last-commit').append(childView.el);
+      this.renderChild(childView);
+      this.rotate();
     }
-    this.renderChild(childView);
     return this;
   },
 
@@ -27,6 +24,6 @@ App.Views.SiteIndex = Support.CompositeView.extend(
     setTimeout(function(){
       $('.rotate').textrotator({ animation: "dissolve", separator: ",", speed: 4000 });
     }, 1000);
-  },
+  }
 
-}));
+});
