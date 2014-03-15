@@ -6,15 +6,9 @@
     </div>
   </div>
   {{# if current_user.signed_in }}
-    <div class="item">
-      <a href="#projects">{{ t 'project.title.other' }}</a>
-    </div>
-    <div class="item">
-      <a href="#sprints">{{ t 'sprint.title.other' }}</a>
-    </div>
-    <div class="item">
-      <a href="#tasks">Tasks</a>
-    </div>
+    <a class="item" href="#projects">{{ t 'project.title.other' }}</a>
+    <a class="item" href="#sprints">{{ t 'sprint.title.other' }}</a>
+    <a class="item" href="#tasks">Tasks</a>
   {{/if}}
   <div class="right menu">
     <div class="item">
@@ -24,10 +18,11 @@
       </div>
     </div>
     {{# if current_user.signed_in }}
-      <div class="item">
-        <div class="ui red button">
-          <i class="sign out icon"></i>
-          <a href="#sessions/destroy">{{ t 'sign_out' }}</a>
+      <div class="ui dropdown item">
+       <i class="icon settings"></i>
+        <div class="menu">
+          <a class="item"><i class="edit icon"></i> Edit Profile</a>
+          <a class="item" href="#sessions/destroy"><i class="sign out icon"></i>{{ t 'sign_out' }}</a>
         </div>
       </div>
      {{ else }}

@@ -5,6 +5,7 @@ App.Views.TasksIndex = Support.CompositeView.extend({
     this.bindTo(this.collection, 'reset', this.render);
     this.bindTo(this.collection, 'add', this.render);
     new App.HandlebarsHelpers().withDiffDate().withTimeago().withTruncate();
+    this.activeMenu();
   },
 
   template: JST['tasks/index'],
@@ -21,6 +22,13 @@ App.Views.TasksIndex = Support.CompositeView.extend({
     var item = new App.Views.CollectionItem(dependencies);
     this.renderChild(item);
     this.$('#items').append(item.el);
+  },
+
+  activeMenu: function(){
+    $("a[href='#']").removeClass('active');
+    $("a[href='#projects']").removeClass('active');
+    $("a[href='#sprints']").removeClass('active');
+    $("a[href='#tasks']").addClass('active');
   }
 
 });

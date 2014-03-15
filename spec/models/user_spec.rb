@@ -12,11 +12,10 @@ end
 
 describe User do
   context '#name' do
-    it { should validate_uniqueness_of(:name) }
     it { should validate_presence_of(:name) }
     it { should ensure_length_of(:name)
       .is_at_least(4)
-      .is_at_most(30)
+      .is_at_most(100)
       .with_short_message(/4 is the minimum allowed/)
       .with_long_message(/maximum/) }
   end
