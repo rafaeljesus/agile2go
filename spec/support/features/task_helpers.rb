@@ -14,6 +14,7 @@ module Features
     end
 
     def delete_task task
+      visit '#tasks'
       execute_script("$('.confirm').click();")
       execute_script("$('.delete').click();")
     end

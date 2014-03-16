@@ -1,7 +1,7 @@
 module Features
   module ProjectHelpers
 
-    def create_project current_user
+    def create_project(current_user)
       new_project = FactoryGirl.build :project
       project = create_project_as(new_project, current_user)
       project

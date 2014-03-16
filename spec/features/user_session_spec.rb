@@ -13,11 +13,11 @@ feature 'when sign in' do
 
   scenario 'with email blank', js: true do
     sign_in_as FactoryGirl.build :user, email: ''
-    expect(page).to have_content "email can't be blank"
+    expect(page).to have_content I18n.t('errors.messages.blank').upcase
   end
 
   scenario 'with password blank', js: true do
     sign_in_as FactoryGirl.build :user, password: ''
-    expect(page).to have_content "password can't be blank"
+    expect(page).to have_content I18n.t('errors.messages.blank').upcase
   end
 end
