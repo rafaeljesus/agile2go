@@ -7,7 +7,8 @@ App.Routers.UserRegistrations = Support.SwappingRouter.extend(
 
   routes: {
     'users/new': 'new',
-    'users/:id/edit': 'edit'
+    'users/:id/edit': 'edit',
+    'users/:id': 'destroy'
   },
 
   new: function(){
@@ -17,12 +18,19 @@ App.Routers.UserRegistrations = Support.SwappingRouter.extend(
 
   edit: function(id){
     this.authorize();
-    var self = this;
+    var self = this, current_user = this.current_user;
     $.getJSON("/users/" + id + "/edit").done(function(response){
       var model = new App.Models.UserRegistration(response, { parse: true });
-      var view = new App.Views.UserRegistrations({ model: model });
+      var dependencies = { model: model, current_user: current_user };
+      var view = new App.Views.UserRegistrations(dependencies);
       self.swap(view);
     });
+  },
+
+  destroy: function(){
+    var view = new App.Views.UserDestroy({ current_user: this.current_user });
+    view.destroy();
+    this.swap(view);
   }
 
 }));

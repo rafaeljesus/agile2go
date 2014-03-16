@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140305144536) do
+ActiveRecord::Schema.define(version: 20140316164246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,8 +85,6 @@ ActiveRecord::Schema.define(version: 20140305144536) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "confirmed_at"
-    t.string   "confirmation_token"
   end
 
   create_table "users_roles", id: false, force: true do |t|

@@ -3,7 +3,7 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
   _.extend({}, App.Mixins.BaseView, {
   initialize: function(options){
     _.bindAll(this, 'render', 'saved');
-    this.current_user = options.current_user || {};
+    this.current_user = options.current_user;
     this.model = options.model || this.newModel();
     this.observe();
   },
@@ -16,6 +16,13 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
 
   events: {
     'submit': 'save'
+  },
+
+  onRender: function(){
+    if (this.model.get('id')) {
+      this.$('#name').attr('disabled', 'disabled');
+      this.$('#email').attr('disabled', 'disabled');
+    }
   },
 
   newModel: function(){

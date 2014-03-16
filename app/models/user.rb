@@ -12,28 +12,15 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 8, too_short: "%{count} is the minimum allowed" }
 
   has_secure_password
-  before_create :generate_token
-
-  scope :confirmed, -> { where('confirmed_at IS NOT NULL') }
+  after_save :clear_password
 
   def self.authenticate(email, password)
-    #confirmed.
     find_by_email(email).try(:authenticate, password)
   end
 
-  def generate_token
-    self.confirmation_token = SecureRandom.urlsafe_base64
-  end
-
-  def confirm!
-    return if confirmed?
-    self.confirmed_at = Time.current
-    self.confirmation_token = ''
-    save!
-  end
-
-  def confirmed?
-    confirmed_at.present?
+  def clear_password
+    self.password = nil
+    self.password_confirmation = nil
   end
 
   def master?

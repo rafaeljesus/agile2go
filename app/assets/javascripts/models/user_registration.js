@@ -2,6 +2,7 @@ App.Models.UserRegistration = Backbone.Model.extend({
   urlRoot: 'users',
 
   parse: function(response){
+    if(!response) return;
     return response.user;
   },
 
@@ -12,12 +13,6 @@ App.Models.UserRegistration = Backbone.Model.extend({
     };
     if(!attrs.email){
       (errors = errors || {}).email = ["can't be blank"];
-    };
-    if(!attrs.password){
-      (errors = errors || {}).password = ["can't be blank"];
-    };
-    if(!attrs.password_confirmation){
-      (errors = errors || {}).password_confirmation = ["can't be blank"];
     };
     if(errors) return errors;
   }

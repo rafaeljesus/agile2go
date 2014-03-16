@@ -3,11 +3,11 @@
     <header class="row">
     <div class="sixteen wide column">
       <div class="ui segment">
-        {{#if current_user.id }}
+        {{#if current_user.id}}
           <h1>Edit Account</h1>
-        {{ else }}
+        {{else}}
           <h1>{{ t 'sign_up' }}</h1>
-        {{/if }}
+        {{/if}}
       </div>
     </div>
     </header>
@@ -19,7 +19,7 @@
             <div id="name_input" class="field">
               <label>{{ t 'user.name' }}</label>
               <div class="ui left labeled icon input">
-                <input id="name" value="{{ current_user.name }}" placeholder="{{ t 'user.name' }}" type="text">
+                <input id="name" value="{{current_user.name}}" placeholder="{{ t 'user.name' }}" type="text">
                 <i class="user icon"></i>
                 <div class="ui corner label"><i class="icon asterisk"></i></div>
               </div>
@@ -27,7 +27,7 @@
             <div id="email_input" class="field">
               <label>{{ t 'user.email' }}</label>
               <div class="ui left labeled icon input">
-                <input id="email" value="{{ current_user.email }}" autofocus="autofocus" placeholder="{{ t 'user.email' }}" type="email">
+                <input id="email" value="{{current_user.email}}" autofocus="autofocus" placeholder="{{ t 'user.email' }}" type="email">
                 <i class="mail icon"></i>
                 <div class="ui corner label"><i class="icon asterisk"></i></div>
               </div>
@@ -35,7 +35,7 @@
             <div id="password_input" class="field">
               <label>{{ t 'user.password' }}</label>
               <div class="ui left labeled icon input">
-                <input id="password" value="{{ current_user.password }}" placeholder="{{ t 'user.password' }}" type="password">
+                <input id="password" value="{{current_user.password}}" placeholder="{{ t 'user.password' }}" type="password">
                 <i class="lock icon"></i>
                 <div class="ui corner label"><i class="icon asterisk"></i></div>
               </div>
@@ -48,15 +48,21 @@
                 <div class="ui corner label"><i class="icon asterisk"></i></div>
               </div>
             </div>
+            {{#unless current_user.id}}
             <div class="inline field">
               <div class="ui checkbox">
                 <input type="checkbox">
                 <label>{{ t 'agree_term' }}</label>
               </div>
             </div>
-            <input class="ui orange submit button large right floated" name="commit" type="submit" value="{{ t 'sign_up' }}">
+            {{/unless}}
+            {{#if current_user.id}}
+              <input class="ui orange submit button large right floated" name="commit" type="submit" value="{{ t 'save' }}">
+            {{else}}
+              <input class="ui orange submit button large right floated" name="commit" type="submit" value="{{ t 'sign_up' }}">
+            {{/if}}
           </form>
-          {{#unless current_user.id }}
+          {{#unless current_user.id}}
             <div class="ui horizontal clearing divider">Or</div>
             <div class="ui fluid large facebook button">
               <i class="facebook icon"></i>
@@ -70,31 +76,31 @@
               <i class="google plus icon"></i>
               {{ t 'google' }}
             </div>
-          {{/unless }}
+          {{/unless}}
         </div>
       </div>
       <div class="eight wide column">
         <div class="ui segment">
           <div class="row">
             <div class="sixteen wide column">
-              {{#if current_use.id }}
-                {{ t 'registrations.sign_in_option' }}
-              {{ else }}
+              {{#if current_user.id}}
                 <h1>Unhappy with Agile2Go?</h1>
-              {{/if }}
+              {{else}}
+                {{ t 'registrations.sign_in_option' }}
+              {{/if}}
             </div>
           </div>
           <div class="row">
             <div class="sixteen wide center aligned column">
-              {{#if current_user.id }}
+              {{#if current_user.id}}
                 <div class="ui negative button large">
-                  <a href="#">Cancel my account</a>
+                  <a href="#users/{{current_user.id}}">Cancel my account</a>
                 </div>
-              {{ else }}
+              {{else}}
                 <div class="ui teal button large">
                   <a href="#sessions/new">{{ t 'sign_in' }}</a>
                 </div>
-              {{/if }}
+              {{/if}}
               </div>
             </div>
           </div>
