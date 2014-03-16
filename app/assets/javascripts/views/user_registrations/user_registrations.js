@@ -3,19 +3,23 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
   _.extend({}, App.Mixins.BaseView, {
   initialize: function(options){
     _.bindAll(this, 'render', 'saved');
-    this.current_user = options.current_user;
-    this.newModel();
+    this.current_user = options.current_user || {};
+    this.model = options.model || this.newModel();
     this.observe();
   },
 
   template: JST['user_registrations/new'],
+
+  serializeData: function(){
+    return { current_user: this.model.toJSON() }
+  },
 
   events: {
     'submit': 'save'
   },
 
   newModel: function(){
-    this.model = new App.Models.UserRegistration({});
+    return new App.Models.UserRegistration({});
   },
 
   save: function(e){

@@ -1,6 +1,10 @@
 App.Models.UserRegistration = Backbone.Model.extend({
   urlRoot: 'users',
 
+  parse: function(response){
+    return response.user;
+  },
+
   validate: function(attrs, options){
     var errors;
     if(!attrs.name){

@@ -5,12 +5,12 @@
       </a>
     </div>
   </div>
-  {{# if current_user.signed_in }}
+  {{#if current_user.signed_in }}
     <a class="item" href="#projects">{{ t 'project.title.other' }}</a>
     <a class="item" href="#sprints">{{ t 'sprint.title.other' }}</a>
     <a class="item" href="#tasks">Tasks</a>
     <a class="item" href="#dashboard">Dashboard</a>
-  {{/if}}
+  {{/if }}
   <div class="right menu">
     <div class="item">
       <div class="ui icon input">
@@ -18,11 +18,11 @@
         <i class="search link icon"></i>
       </div>
     </div>
-    {{# if current_user.signed_in }}
+    {{#if current_user.signed_in }}
       <div class="ui dropdown item">
        <i class="icon settings"></i>
         <div class="menu">
-          <a class="item"><i class="edit icon"></i> Edit Profile</a>
+          <a class="item" href="#users/{{ current_user.id  }}/edit"><i class="edit icon"></i> Edit Profile</a>
           <a class="item" href="#sessions/destroy"><i class="sign out icon"></i>{{ t 'sign_out' }}</a>
         </div>
       </div>
@@ -33,6 +33,6 @@
           <a href="#sessions/new">{{ t 'sign_in' }}</a>
         </div>
       </div>
-    {{/if}}
+    {{/if }}
   </div>
 </div>
