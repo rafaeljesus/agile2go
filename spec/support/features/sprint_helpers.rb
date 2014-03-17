@@ -15,8 +15,8 @@ module Features
 
     def delete_sprint sprint
       visit '#sprints'
-      execute_script("$('.confirm').click();")
-      execute_script("$('.delete').click();")
+      page.find(".confirm").click
+      page.find(".delete").click
     end
 
     private
@@ -29,7 +29,6 @@ module Features
       fill_in 'end-date', with: new_sprint.end_date
       execute_script("$('select').val(#{new_sprint.project.id}).trigger('change')")
       submit
-      new_sprint
     end
 
     def submit

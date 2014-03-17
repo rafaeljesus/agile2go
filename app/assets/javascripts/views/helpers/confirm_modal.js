@@ -34,7 +34,7 @@ App.Views.ConfirmModal = Backbone.View.extend({
   deleted: function(){
     this.$removable.remove();
     this.hide();
-    var message = 'Item was successfully deleted';
+    var message = I18n.t('flash.actions.destroy.notice', { model: 'Item' });
     new FlashMessages({ message: message }).success();
   },
 

@@ -8,6 +8,7 @@ module Features
     end
 
     def update_task task
+      sleep 4
       visit "#tasks/#{task.id}/edit"
       fill_in 'title', with: 'new task title'
       submit
@@ -15,8 +16,8 @@ module Features
 
     def delete_task task
       visit '#tasks'
-      execute_script("$('.confirm').click();")
-      execute_script("$('.delete').click();")
+      page.find(".confirm").click
+      page.find(".delete").click
     end
 
     private
@@ -33,7 +34,7 @@ module Features
     end
 
     def submit
-      find("[type='submit']").click
+      page.find("[type='submit']").click
     end
 
   end
