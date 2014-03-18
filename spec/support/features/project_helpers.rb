@@ -3,14 +3,13 @@ module Features
 
     def create_project(current_user)
       new_project = FactoryGirl.build :project
-      project = create_project_as(new_project, current_user)
-      project
+      create_project_as(new_project, current_user)
     end
 
     def update_project project
-      sleep 4
       visit "#projects/#{project.id}/edit"
-      fill_in 'name', with: 'new project name'
+      sleep 1
+      fill_in 'name', with: 'new project'
       submit
     end
 

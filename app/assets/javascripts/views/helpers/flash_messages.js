@@ -8,11 +8,22 @@ var FlashMessages = Backbone.View.extend({
   template: JST['messages'],
 
   success: function(){
-    this.$el.show().html(this.template({ type: 'Success', color: 'blue', message: this.message })).fadeOut(6000);
+    var config = { type: 'Success', color: 'blue', message: this.message };
+    this.$el.show().html(this.template(config));
+    this.empty();
   },
 
   error: function(){
-    this.$el.show().html(this.template({ type: 'Error', color: 'red', message: this.message })).fadeOut(6000)
+    var config = { type: 'Error', color: 'red', message: this.message };
+    this.$el.show().html(this.template(config));
+    this.empty();
+  },
+
+  empty: function(){
+    var self = this;
+    setTimeout(function(){
+      self.$el.empty();
+    }, 2000);
   }
 
 });

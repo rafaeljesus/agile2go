@@ -3,14 +3,12 @@ module Features
 
     def create_task
       new_task = FactoryGirl.build :task
-      task = create_task_as new_task
-      task
+      create_task_as new_task
     end
 
     def update_task task
-      sleep 4
       visit "#tasks/#{task.id}/edit"
-      fill_in 'title', with: 'new task title'
+      fill_in 'title', with: 'new title'
       submit
     end
 
@@ -23,12 +21,12 @@ module Features
     private
     def create_task_as new_task
       visit '#tasks/new'
-      execute_script("$('#status').val('#{new_task.status}');")
-      execute_script("$('#points').val(#{new_task.points});")
-      execute_script("$('#priority').val(#{new_task.priority});")
+      fill_in 'status', with: new_task.status
+      fill_in 'priority', with: new_task.priority
+      fill_in 'points', with: new_task.points
       fill_in 'title', with: new_task.title
       fill_in 'story', with: new_task.story
-      execute_script("$('select').val(#{new_task.sprint.id}).trigger('change');")
+      page.execute_script("$('select').val(#{new_task.sprint.id}).trigger('change');")
       submit
       new_task
     end
