@@ -5,7 +5,6 @@ feature 'when edit existing sprint' do
     sign_in
     sprint = FactoryGirl.create :sprint
     update_sprint sprint
-    puts page.html
     expect(page).to have_content I18n.t('flash.actions.create.notice', model: 'Sprint')
   end
 end

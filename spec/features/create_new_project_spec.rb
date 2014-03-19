@@ -4,7 +4,7 @@ feature 'when create a new project' do
   scenario 'with all filled corrected filled', js: true do
     current_user = sign_in
     create_project current_user
-    expect(page).to have_content I18n.t('flash.actions.create.notice', model: 'Project')
+    expect(page).to have_content I18n.t('flash.actions.update.notice', model: 'Project')
   end
 
   scenario 'with name blank', js: true do

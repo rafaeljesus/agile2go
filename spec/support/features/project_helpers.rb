@@ -21,13 +21,14 @@ module Features
 
     private
     def create_project_as(new_project, current_user)
+      sleep 1
       visit '#projects/new'
       fill_in 'name', with: new_project.name
       fill_in 'company', with: new_project.company
       fill_in 'description', with: new_project.description
       page.execute_script("$('select').val(#{current_user.id}).trigger('change')")
+      sleep 1
       submit
-      new_project
     end
 
     def submit

@@ -21,7 +21,6 @@ describe User do
   end
 
   context '#email' do
-    it { should validate_uniqueness_of(:email) }
     it { should validate_presence_of(:email) }
     it { should allow_value("a@b.com").for(:email) }
     it { should allow_value("A@B.com").for(:email) }
@@ -29,6 +28,13 @@ describe User do
     it { should_not allow_value("blah@blah,com").for(:email) }
     it { should_not allow_value("blah_blah.com").for(:email) }
     it { should_not allow_value("blah.user@bla.").for(:email) }
+
+    it 'should validate uniqueness of email' do
+      old_user = FactoryGirl.create :user
+      new_user = FactoryGirl.build :user, email: old_user.email
+      new_user.valid?
+      expect(new_user.errors.messages[:email]).to eq ['has already been taken']
+    end
   end
 
   context '#password' do

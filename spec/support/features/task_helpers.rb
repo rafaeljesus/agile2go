@@ -21,14 +21,13 @@ module Features
     private
     def create_task_as new_task
       visit '#tasks/new'
-      fill_in 'status', with: new_task.status
-      fill_in 'priority', with: new_task.priority
-      fill_in 'points', with: new_task.points
+      page.execute_script("$('#status')[0].value = '#{new_task.status}'")
+      page.execute_script("$('#priority')[0].value = '#{new_task.priority}'")
+      page.execute_script("$('#points')[0].value = '#{new_task.points}'")
       fill_in 'title', with: new_task.title
       fill_in 'story', with: new_task.story
       page.execute_script("$('select').val(#{new_task.sprint.id}).trigger('change');")
       submit
-      new_task
     end
 
     def submit
