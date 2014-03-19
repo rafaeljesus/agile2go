@@ -5,9 +5,9 @@
       <div class="ten wide column">
         <div class="ui attached info message">
           <div class="header">
-            Have you heard about our mailing list?
+            {{ t 'project.form_top_desc_question' }}
           </div>
-          <p>Get all the best inventions in your e-mail every day. Register your company now!</p>
+          <p>{{ t 'project.form_top_desc' }}</p>
         </div>
         <div class="ui form attached fluid segment">
           <form>
@@ -34,7 +34,7 @@
             <div id="description_input" class="field">
               <label>{{ t 'project.description'}}</label>
               <div class="ui left labeled icon input">
-                <textarea cols="40" rows="20" id="description" placeholder="Description">{{ model.description }}</textarea>
+                <textarea cols="40" rows="20" id="description" placeholder="{{ t 'project.description' }}">{{ model.description }}</textarea>
                 <div class="ui corner label">
                   <i class="icon asterisk"></i>
                 </div>

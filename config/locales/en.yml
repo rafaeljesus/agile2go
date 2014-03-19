@@ -49,6 +49,8 @@ en:
     name: 'Name'
     company: 'Company'
     description: 'Description'
+    form_top_desc_question: 'Have you hear about our real time dashboard?'
+    form_top_desc: 'Take a close look at dashboard page and see the current project status in real time'
   sprint:
     title:
       one: 'Sprint'
