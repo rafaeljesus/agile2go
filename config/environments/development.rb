@@ -26,5 +26,4 @@ Agile2go::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.middleware.use I18n::JS::Middleware
 end
