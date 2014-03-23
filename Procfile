@@ -1,1 +1,1 @@
-web: bundle exec puma -p 9292 -e production -R faye/config.ru
+web: bundle exec puma -p $PORT -e production -R faye/config.ru
