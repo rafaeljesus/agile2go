@@ -1,1 +1,1 @@
-web: bundle exec puma rackup faye/config.ru -p 9292
+web: bundle exec rackup faye/config.ru -p 9292
