@@ -4,7 +4,7 @@ BackboneSync.FayeSubscriber = (function() {
 
    function FayeSubscriber(collection, options) {
      this.collection = collection;
-     this.client = new Faye.Client('http://' + window.location.hostname + ':9292/faye');
+     this.client = new Faye.Client('http://' + fayejsPath + '/faye');
      this.channel = options.channel;
      this.subscribe();
    }
