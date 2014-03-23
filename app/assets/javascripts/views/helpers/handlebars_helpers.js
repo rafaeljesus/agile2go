@@ -5,8 +5,9 @@ _.extend(App.HandlebarsHelpers.prototype, {
   withDiffDate: function() {
     Handlebars.registerHelper('diffDate', function(end_date) {
       if (!end_date) return;
-      var now = moment().toDate(), end_date = moment(end_date);
-      var diff = end_date.diff(now, 'days');
+      var end_date_formatted = moment(end_date).format('YYYY/MM/DD');
+      var now = moment().toDate(), end_date_formatted = moment(end_date_formatted);
+      var diff = end_date_formatted.diff(now, 'days');
       if(diff == 0) return new Handlebars.SafeString('<td class="negative">Today</td>');
       if(diff < 0) return new Handlebars.SafeString('<td class="positive">Finished</td>');
       if(diff == 1 || diff == 2) return new Handlebars.SafeString('<td class="warning">' + diff + ' day(s)</td>');

@@ -19,5 +19,6 @@ module Agile2go
       g.helper = false
     end
     config.autoload_paths += %W(#{config.root}/lib)
+    Time::DATE_FORMATS[:date_time] = "%d/%b/%Y %H:%M"
   end
 end

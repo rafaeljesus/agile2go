@@ -54,13 +54,25 @@ App.Views.SprintForm = Support.CompositeView.extend(
 
 
   commit: function(){
-    var start_date = this.$('#start-date').val()
-    , end_date     = this.$('#end-date').val()
+    var start_date = this.parseStartDate()
+    , end_date     = this.parseEndDate()
     , name         = this.$('#name').val()
     , daily        = this.$('#daily').val()
     , points       = this.$('#points').val();
     this.model.set({ name: name, start_date: start_date, end_date: end_date, daily: daily, points: points });
     this.model.project = this.projects.get({ id: this.assigneeId() });
+  },
+
+  parseStartDate: function(){
+    var start_date = this.$('#start-date').val();
+    if (start_date == '') return;
+    return moment(start_date).format('YYYY/MM/DD');
+  },
+
+  parseEndDate: function(){
+    var end_date = this.$('#end-date').val();
+    if (end_date == '') return;
+    return moment(end_date).format('YYYY/MM/DD');
   },
 
   assigneeId: function(){
