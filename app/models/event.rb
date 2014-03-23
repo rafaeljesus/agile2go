@@ -1,3 +1,5 @@
+require 'net/http'
+
 class Event
   def initialize(model, event)
     @model = model
