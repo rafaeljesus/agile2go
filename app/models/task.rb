@@ -1,8 +1,8 @@
 class Task < ActiveRecord::Base
-  include BackboneSync::Faye::Observer
-  after_update :publish_update
-  after_create :publish_create
-  after_destroy :publish_destroy
+  # include BackboneSync::Faye::Observer
+  # after_update :publish_update
+  # after_create :publish_create
+  # after_destroy :publish_destroy
 
   has_many :user_assignments
   has_many :users, through: :user_assignments
