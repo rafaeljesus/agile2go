@@ -1,1 +1,2 @@
-web: bundle exec puma -p $PORT -e production -R faye/config.ru
+web: bundle exec puma -t ${PUMA_MIN_THREADS:-8}:${PUMA_MAX_THREADS:-12} -w ${PUMA_WORKERS:-2} -p $PORT -e ${RACK_ENV:-development}
+/*rackup faye/config.ru -p 9292*/
