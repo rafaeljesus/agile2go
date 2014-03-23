@@ -32,7 +32,7 @@ module BackboneSync
 
       def host
         if ENV['RAILS_ENV'] == 'production'
-          'https://agile2go-faye-server.herokuapp.com'
+          'http://agile2go-faye-server.herokuapp.com'
         else
           'http://localhost:9292'
         end
