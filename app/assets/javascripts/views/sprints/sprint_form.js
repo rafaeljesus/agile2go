@@ -66,13 +66,13 @@ App.Views.SprintForm = Support.CompositeView.extend(
   parseStartDate: function(){
     var start_date = this.$('#start-date').val();
     if (start_date == '') return;
-    return moment(start_date).format('YYYY/MM/DD');
+    return moment(start_date, 'DD/MM/YYYY').format('YYYY/MM/DD');
   },
 
   parseEndDate: function(){
     var end_date = this.$('#end-date').val();
     if (end_date == '') return;
-    return moment(end_date).format('YYYY/MM/DD');
+    return moment(end_date, 'DD/MM/YYYY').format('YYYY/MM/DD');
   },
 
   assigneeId: function(){

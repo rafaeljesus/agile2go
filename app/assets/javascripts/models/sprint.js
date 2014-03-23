@@ -23,8 +23,8 @@ App.Models.Sprint = Backbone.Model.extend({
 
   parse: function(model){
     if(!model) return;
-    model.start_date = moment(model.start_date).format('MM/DD/YYYY');
-    model.end_date = moment(model.end_date).format('MM/DD/YYYY');
+    model.start_date = moment(model.start_date).format('DD/MM/YYYY');
+    model.end_date = moment(model.end_date).format('DD/MM/YYYY');
     return model;
   },
 
