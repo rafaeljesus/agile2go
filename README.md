@@ -37,7 +37,7 @@ Running the app with Puma
 $ puma faye/config.ru -p 9292
 ```
 
-* Or see other available options here https://github.com/faye/faye-websocket-ruby
+Or see other available options here https://github.com/faye/faye-websocket-ruby
 
 Development
 -----------
