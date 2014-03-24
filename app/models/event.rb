@@ -17,7 +17,7 @@ class Event
 
   def host
     if ENV['RAILS_ENV'] == 'production'
-      'https://agile2go-faye-server.herokuapp.com'
+      'https://faye-ruby-server.herokuapp.com'
     else
       'http://localhost:9292'
     end
