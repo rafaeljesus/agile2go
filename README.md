@@ -34,7 +34,7 @@ Run Faye locally:
 Running the app with Puma
 
 ```
-$ puma config.ru -p 9292
+$ puma faye/config.ru -p 9292
 ```
 
 * Or see other available options here https://github.com/faye/faye-websocket-ruby
