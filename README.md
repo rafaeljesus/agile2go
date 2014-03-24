@@ -31,9 +31,7 @@ Run Faye in Heroku:
 
 Run Faye locally:
 
-### Running the app with Puma
-
-Puma has a command line interface for starting your application:
+Running the app with Puma
 
 ```
 $ puma config.ru -p 9292
