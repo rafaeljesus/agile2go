@@ -1,9 +1,9 @@
 Agile2Go
---------
+=========
 
 This is a WORK IN PROGRESS
 
-Agile2Go is a well tested single page app, perfect for small agile teams.
+Agile2Go is a well tested real time single page app, perfect for small agile teams.
 Built with Backbone.js and Rails.
 
 Setup
@@ -19,11 +19,19 @@ Deploy
 
 Deploy at Heroku:
 
-* heroku create --stack cedar
+* heroku create
 * git push heroku master
 * heroku run rake db:migrate
 * heroku restart
 * heroku run RACK_ENV=production foreman start
+
+Install Faye for WebSockets in Heroku:
+
+* see https://github.com/rafaeljesus.faye-ruby-server.git
+
+Using Faye locally:
+
+* see here the available options to run it locally https://github.com/faye/faye-websocket-ruby
 
 Development
 -----------
