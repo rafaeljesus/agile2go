@@ -2,9 +2,9 @@ module ApplicationHelper
 
   def fayejs_path
     if ENV['RAILS_ENV'] == 'production'
-      'faye-ruby-server.herokuapp.com'
+      'https://faye-ruby-server.herokuapp.com'
     else
-      'localhost:9292'
+      'http://localhost:9292'
     end
   end
 
