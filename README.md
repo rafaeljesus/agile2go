@@ -25,11 +25,11 @@ Deploy at Heroku:
 * heroku restart
 * heroku run RACK_ENV=production foreman start
 
-Install Faye for WebSockets in Heroku:
+Run Faye in Heroku:
 
-* see https://github.com/rafaeljesus.faye-ruby-server.git
+* see https://github.com/rafaeljesus/faye-ruby-server
 
-Using Faye locally:
+Run Faye locally:
 
 * see here the available options to run it locally https://github.com/faye/faye-websocket-ruby
 
