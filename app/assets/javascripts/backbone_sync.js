@@ -39,7 +39,7 @@ BackboneSync.FayeSubscriber = (function() {
   FayeSubscriber.prototype.destroy = function(params) {
     var self = this;
     return $.each(params, function(id, attributes) {
-    var model = self.collection.get(id);
+      var model = self.collection.get(id);
       return self.collection.remove(model);
     });
   };
