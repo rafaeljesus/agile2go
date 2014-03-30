@@ -1,58 +1,56 @@
-<div class="ui one column page grid">
-  <div class="ui grid">
-    <div class="row">
-      <div class="three wide column"></div>
-      <div class="ten wide column">
-        <div class="ui attached info message">
-          <div class="header">
-            Have you hear about our real time <a href="#dashboard">dashboard page?</a>
-          </div>
-          <p>Take a close look at dashboard page and see the current project status in real time.</p>
-        </div>
-        <div class="ui form attached fluid segment">
-          <form>
-            <div class="two fields">
-              <div id="name_input" class="field">
-                <label>{{ t 'project.name' }}</label>
-                <div class="ui left labeled icon input">
-                  <input type="text" id="name" value="{{ model.name }}" placeholder="{{ t 'project.name' }}">
-                  <div class="ui corner label">
-                    <i class="icon asterisk"></i>
-                  </div>
-                </div>
-              </div>
-              <div id="company_input" class="field">
-                <label>{{ t 'project.company' }}</label>
-                <div class="ui left labeled icon input">
-                  <input type="text" id="company" value="{{ model.company }}" placeholder="{{ t 'project.company' }}">
-                  <div class="ui corner label">
-                    <i class="icon asterisk"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="description_input" class="field">
-              <label>{{ t 'project.description'}}</label>
-              <div class="ui left labeled icon input">
-                <textarea cols="40" rows="20" id="description" placeholder="{{ t 'project.description' }}">{{ model.description }}</textarea>
-                <div class="ui corner label">
-                  <i class="icon asterisk"></i>
-                </div>
-              </div>
-            </div>
-            <div class="field">
-              <label>{{ t 'user.title.other' }}</label>
-              <select multiple>
-                {{# each users }}
-                  <option value="{{ this.id }}">{{ this.name }}</opition>
-                {{/each }}
-              </select>
-            </div>
-            <div class="ui blue submit button large right floated" type="submit">{{ t 'save' }}</div>
-            <a href="#projects" class="ui right large floated button">{{ t 'back' }}</a>
-          <form>
-        <div>
+<div class="one column stackable ui grid">
+  <div class="column two wide"></div>
+  <div class="column twelve wide">
+    <div class="ui attached info message">
+      <div class="header">
+        Have you hear about our real time <a href="#dashboard">dashboard page?</a>
       </div>
+      <p>Take a close look at dashboard page and see the current project status in real time.</p>
     </div>
+    <div class="ui form attached fluid segment">
+      <form>
+        <div class="two fields">
+          <div id="name_input" class="field">
+            <label>{{ t 'project.name' }}</label>
+            <div class="ui left labeled icon input">
+              <input type="text" id="name" value="{{ model.name }}" placeholder="{{ t 'project.name' }}">
+              <div class="ui corner label">
+                <i class="icon asterisk"></i>
+              </div>
+            </div>
+          </div>
+          <div id="company_input" class="field">
+            <label>{{ t 'project.company' }}</label>
+            <div class="ui left labeled icon input">
+              <input type="text" id="company" value="{{ model.company }}" placeholder="{{ t 'project.company' }}">
+              <div class="ui corner label">
+                <i class="icon asterisk"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="description_input" class="field">
+          <label>{{ t 'project.description'}}</label>
+          <div class="ui left labeled icon input">
+            <textarea cols="40" rows="20" id="description" placeholder="{{ t 'project.description' }}">{{ model.description }}</textarea>
+            <div class="ui corner label">
+              <i class="icon asterisk"></i>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>{{ t 'user.title.other' }}</label>
+          <select multiple>
+            {{# each users }}
+              <option value="{{ this.id }}">{{ this.name }}</opition>
+            {{/each }}
+          </select>
+        </div>
+        <div class="ui blue submit button large right floated" type="submit">{{ t 'save' }}</div>
+        <a href="#projects" class="ui right large floated button">{{ t 'back' }}</a>
+      <form>
+    <div>
+  </div>
   </div>
 </div>
+  <div class="column two wide"></div>
