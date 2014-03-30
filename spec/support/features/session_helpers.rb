@@ -11,7 +11,6 @@ module Features
       user
     end
 
-    private
     def sign_in_as user
       visit '#sessions/new'
       fill_in 'email', with: user.email

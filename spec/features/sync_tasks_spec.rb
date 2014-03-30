@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 feature 'when sync tasks' do
+
+  background do
+    connect_to_faye
+    @user1 = FactoryGirl.create :user
+    @user2 = FactoryGirl.create :user
+    @task = FactoryGirl.create :task
+  end
+
   scenario 'Viewing a task edited by another user', %q{
     Given fake1@example.com, fake2@example.com exists
     And I am using Session Fake1
@@ -13,6 +21,37 @@ feature 'when sync tasks' do
     Then I should see the title was changed
   }, js: true do
 
+    sign_in_as @user1
+    sleep 1
+    redirect_to_root_path
+    expect(page).to have_content @task.title
+
+    Capybara.session_name = @user2.name
+    sign_in_as @user2
+    sleep 1
+    redirect_to_root_path
+    update_task @task
+
+    Capybara.session_name = 'default'
+    sign_in_as @user1
+    sleep 1
+    redirect_to_root_path
+    expect(page).to have_content 'new title'
+  end
+
+  def redirect_to_root_path
+    page.driver.evaluate_script("window.location.hash='#tasks'")
+  end
+
+  def connect_to_faye
+    begin
+      Timeout.timeout(1) do
+        uri = URI.parse('http://localhost:9292')
+        TCPSocket.new(uri.host, uri.port).close
+      end
+    rescue Errno::ECONNREFUSED, Errno::EHOSTUNREACH, Timeout::ERROR
+      raise 'Could not connect to faye'
+    end
   end
 
 end
