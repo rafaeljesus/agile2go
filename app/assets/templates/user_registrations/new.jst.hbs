@@ -48,9 +48,9 @@
         </div>
         {{/unless}}
         {{#if current_user.id}}
-          <input class="ui orange submit button large right floated" name="commit" type="submit" value="{{ t 'save' }}">
+          <input class="ui orange submit button fluid large right floated" name="commit" type="submit" value="{{ t 'save' }}">
         {{else}}
-          <input class="ui orange submit button large right floated" name="commit" type="submit" value="{{ t 'sign_up' }}">
+          <input class="ui orange submit button fluid large right floated" name="commit" type="submit" value="{{ t 'sign_up' }}">
         {{/if}}
       </form>
       {{#unless current_user.id}}

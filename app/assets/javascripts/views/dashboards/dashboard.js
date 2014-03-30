@@ -19,7 +19,7 @@ App.Views.Dashboard = Support.CompositeView.extend({
         },
         colors: ['#AA4643', '#80699B', '#4572A7', '#89A54E' ],
         xAxis: {
-          categories: this.model.get('categories')
+          categories: _.uniq(this.model.get('categories'))
         },
         yAxis: {
           title: 'Qty'
