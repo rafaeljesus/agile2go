@@ -1,67 +1,53 @@
-<div class="ui one column page grid">
-  <div class="ui grid">
-    <header class="row">
-    <div class="sixteen wide column">
-      <div class="ui segment">
-        <h1>{{ t 'sign_in' }}</h1>
-      </div>
-    </div>
-    </header>
-    <div class="row">
-      <div class="sixteen wide column"></div>
-      <div class="eight wide column">
-        <div class="ui form segment">
-          <form class="ui form segment">
-            <div id="email_input" class="field">
-              <label>{{ t 'user.email' }}</label>
-              <div class="ui left labeled icon input">
-                <input autofocus="autofocus" id="email" placeholder="Email" type="email">
-                <i class="mail icon"></i>
-                <div class="ui corner label"><i class="icon asterisk"></i></div>
-              </div>
-            </div>
-            <div id="password_input" class="field">
-              <label>{{ t 'user.password' }}</label>
-              <div class="ui left labeled icon input">
-                <input id="password" placeholder="{{ t 'user.password' }}" type="password">
-                <i class="lock icon"></i>
-                <div class="ui corner label"><i class="icon asterisk"></i></div>
-              </div>
-            </div>
-            <input class="ui orange submit button large right floated" name="commit" type="submit" value="{{ t 'sign_in' }}">
-          </form>
-          <div class="ui horizontal clearing divider">Or</div>
-          <div class="ui fluid large facebook button">
-            <i class="facebook icon"></i>
-            {{ t 'facebook' }}
-          </div>
-          <div class="ui fluid large twitter button">
-            <i class="twitter icon"></i>
-            {{ t 'twitter' }}
-          </div>
-          <div class="ui fluid large google plus button">
-            <i class="google plus icon"></i>
-            {{ t 'google' }}
+<div class="two column stackable ui grid">
+  <div class="column">
+    <div class="ui form segment">
+      <h1>{{ t 'sign_in' }}</h1>
+      <form class="ui form segment">
+        <div id="email_input" class="field">
+          <label>{{ t 'user.email' }}</label>
+          <div class="ui left labeled icon input">
+            <input autofocus="autofocus" id="email" placeholder="Email" type="email">
+            <i class="mail icon"></i>
+            <div class="ui corner label"><i class="icon asterisk"></i></div>
           </div>
         </div>
-      </div>
-      <div class="eight wide column">
-        <div class="ui segment">
-          <div class="row">
-            <div class="sixteen wide column">
-              {{ t 'sessions.sign_up_or_try' }}
-            </div>
+        <div id="password_input" class="field">
+          <label>{{ t 'user.password' }}</label>
+          <div class="ui left labeled icon input">
+            <input id="password" placeholder="{{ t 'user.password' }}" type="password">
+            <i class="lock icon"></i>
+            <div class="ui corner label"><i class="icon asterisk"></i></div>
           </div>
-          <div class="row">
-            <div class="sixteen wide center aligned column">
-              <div class="ui buttons">
-                <div class="ui button orange large">
-                  <a href="#users/new">{{ t 'sign_up' }}</a>
-                </div>
-                <div class="or"></div>
-                <div class="ui positive button large">{{ t 'try_it' }}</div>
-              </div>
+        </div>
+        <input class="ui orange submit button large right floated" name="commit" type="submit" value="{{ t 'sign_in' }}">
+      </form>
+      <div class="ui horizontal clearing divider">Or</div>
+      <div class="ui fluid large facebook button">
+        <i class="facebook icon"></i>{{ t 'facebook' }}
+      </div>
+      <div class="ui fluid large twitter button">
+        <i class="twitter icon"></i>{{ t 'twitter' }}
+      </div>
+      <div class="ui fluid large google plus button">
+        <i class="google plus icon"></i>{{ t 'google' }}
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="ui segment">
+      <div class="row">
+        <div class="sixteen wide column">
+          {{ t 'sessions.sign_up_or_try' }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="sixteen wide center aligned column">
+          <div class="ui buttons">
+            <div class="ui button orange large">
+              <a href="#users/new">{{ t 'sign_up' }}</a>
             </div>
+            <div class="or"></div>
+            <div class="ui positive button large">{{ t 'try_it' }}</div>
           </div>
         </div>
       </div>
