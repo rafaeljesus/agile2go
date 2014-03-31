@@ -1,80 +1,77 @@
-<div class="ui one column page grid">
-  <div class="ui grid">
-    <div class="row">
-      <div class="three wide column"></div>
-      <div class="ten wide column">
-        <div class="ui attached info message">
-          <div class="header">
-            Have you heard about our mailing list?
-          </div>
-          <p>Get all the best inventions in your e-mail every day. Register your company now!</p>
-        </div>
-        <div class="ui form attached fluid segment">
-          <form>
-            <div class="two fields">
-              <div id="name_input" class="date field">
-                <label>{{ t 'sprint.name' }}</label>
-                <div class="ui left labeled icon input">
-                  <input type="text" id="name" value="{{ model.name }}" placeholder="Sprint Name">
-                  <div class="ui corner label">
-                    <i class="icon asterisk"></i>
-                  </div>
-                </div>
-              </div>
-              <div id="daily_input" class="date field">
-                <label>{{ t 'sprint.daily' }}</label>
-                <div class="ui left labeled icon input">
-                  <input type="text" id="daily" value="{{ model.daily }}" placeholder="HH:MM">
-                  <div class="ui corner label">
-                    <i class="icon asterisk"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="two fields">
-              <div id="start_date_input" class="field">
-                <label>{{ t 'sprint.start_date' }}</label>
-                <div class="ui left labeled icon input">
-                  <input type="text" id="start-date" value="{{ model.start_date }}" placeholder="DD/MM/YYYY">
-                  <div class="ui corner label">
-                    <i class="icon asterisk"></i>
-                  </div>
-                </div>
-              </div>
-              <div id="end_date_input" class="field">
-                <label>{{ t 'sprint.end_date' }}</label>
-                <div class="ui left labeled icon input">
-                  <input type="text" id="end-date" value="{{ model.end_date }}" placeholder="DD/MM/YYYY">
-                  <div class="ui corner label">
-                    <i class="icon asterisk"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="two fields">
-              <div id="project_input" class="field">
-                <label>{{ t 'project.title.one' }}</label>
-                <select class="select2">
-                  {{# each projects }}
-                    <option value="{{ this.id }}">{{ this.name }}</option>
-                  {{/each}}
-                </select>
-              </div>
-              <div id="points_input" class="field">
-                <label>{{ t 'sprint.points' }}</label>
-                <div class="ui left labeled icon input">
-                  <input type="text" id="points" value="{{ model.points }}" placeholder="Total Points">
-                  <div class="ui corner label">
-                    <i class="icon asterisk"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="ui blue submit button large right floated" type="submit">{{ t 'save' }}</div>
-            <a href="#sprints" class="ui right large floated button">{{ t 'back' }}</a>
-          <form>
-        <div>
+<div class="one column stackable ui grid">
+  <div class="column two wide"></div>
+  <div class="column twelve wide">
+    <div class="ui attached info message">
+      <div class="header">
+        Have you heard about our mailing list?
       </div>
+      <p>Get all the best inventions in your e-mail every day. Register your company now!</p>
+    </div>
+    <div class="ui form attached fluid segment">
+      <form>
+        <div class="two fields">
+          <div id="name_input" class="date field">
+            <label>{{ t 'sprint.name' }}</label>
+            <div class="ui left labeled icon input">
+              <input type="text" id="name" value="{{ model.name }}" placeholder="Sprint Name">
+              <div class="ui corner label">
+                <i class="icon asterisk"></i>
+              </div>
+            </div>
+          </div>
+          <div id="daily_input" class="date field">
+            <label>{{ t 'sprint.daily' }}</label>
+            <div class="ui left labeled icon input">
+              <input type="text" id="daily" value="{{ model.daily }}" placeholder="HH:MM">
+              <div class="ui corner label">
+                <i class="icon asterisk"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="two fields">
+          <div id="start_date_input" class="field">
+            <label>{{ t 'sprint.start_date' }}</label>
+            <div class="ui left labeled icon input">
+              <input type="text" id="start-date" value="{{ model.start_date }}" placeholder="DD/MM/YYYY">
+              <div class="ui corner label">
+                <i class="icon asterisk"></i>
+              </div>
+            </div>
+          </div>
+          <div id="end_date_input" class="field">
+            <label>{{ t 'sprint.end_date' }}</label>
+            <div class="ui left labeled icon input">
+              <input type="text" id="end-date" value="{{ model.end_date }}" placeholder="DD/MM/YYYY">
+              <div class="ui corner label">
+                <i class="icon asterisk"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="two fields">
+          <div id="project_input" class="field">
+            <label>{{ t 'project.title.one' }}</label>
+            <select class="select2">
+              {{# each projects }}
+                <option value="{{ this.id }}">{{ this.name }}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div id="points_input" class="field">
+            <label>{{ t 'sprint.points' }}</label>
+            <div class="ui left labeled icon input">
+              <input type="text" id="points" value="{{ model.points }}" placeholder="Total Points">
+              <div class="ui corner label">
+                <i class="icon asterisk"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui blue submit button large right floated" type="submit">{{ t 'save' }}</div>
+        <a href="#sprints" class="ui right large floated button">{{ t 'back' }}</a>
+      </form>
     </div>
   </div>
 </div>
+<div class="column two wide"></div>
