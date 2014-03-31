@@ -4,8 +4,11 @@ App.Views.Dashboard = Support.CompositeView.extend({
    this.bindTo(this.model, 'change', this.render);
   },
 
+  template: JST['dashboards/index'],
+
   render: function(){
-    this.$el.addClass('dashboard').highcharts(this.serializeData());
+    this.$el.html(this.template());
+    this.$('#chart').addClass('dashboard').highcharts(this.serializeData());
     return this;
   },
 
@@ -19,7 +22,7 @@ App.Views.Dashboard = Support.CompositeView.extend({
         },
         colors: ['#AA4643', '#80699B', '#4572A7', '#89A54E' ],
         xAxis: {
-          categories: _.uniq(this.model.get('categories'))
+          categories: this.model.get('categories')
         },
         yAxis: {
           title: 'Qty'

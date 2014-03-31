@@ -1,113 +1,112 @@
-<div class="ui one column page grid">
-  <div class="ui grid">
-    <div class="row">
-      <div class="three wide column"></div>
-      <div class="ten wide column">
-        <div class="ui attached info message">
-          <div class="header">
-            Have you heard about our real time <a href="#tasks">task dashboard page?</a>
+<div class="one column stackable ui grid">
+  <div class="column two wide"></div>
+  <div class="column twelve wide">
+    <div class="ui attached info message">
+      <div class="header">
+        Have you heard about our real time <a href="#tasks">task dashboard page?</a>
+      </div>
+      <p>Take a close look at task dashboard page and see the current tasks in real time.</p>
+    </div>
+    <div class="ui form attached fluid segment">
+      <form>
+        <div class="three fields">
+          <div id="status_input" class="field">
+            <label>Status</label>
+            <div class="ui selection dropdown">
+              <input type="hidden" id="status" value="{{ model.status }}">
+              <div class="text">Status</div>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <div class="item" data-value="Todo">Todo
+                  <div class="ui red circular label"></div>
+                </div>
+                <div class="item" data-value="Ongoing">Ongoing
+                  <div class="ui purple circular label"></div>
+                </div>
+                <div class="item" data-value="Test">Test
+                  <div class="ui blue circular label" style="border-color: #4572A7 !important; background-color: #4572A7 !important;"></div>
+                </div>
+                <div class="item" data-value="Done">Done
+                  <div class="ui green circular label"></div>
+                </div>
+              </div>
+            </div>
           </div>
-          <p>Take a close look at task dashboard page and see the current tasks in real time.</p>
+           <div id="points_input" class="field">
+            <label>Points</label>
+            <div class="ui selection dropdown">
+              <input type="hidden" id="points" value="{{ model.points }}">
+              <div class="text">Points</div>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <div class="item" data-value="1">1</div>
+                <div class="item" data-value="2">2</div>
+                <div class="item" data-value="3">3</div>
+                <div class="item" data-value="5">5</div>
+                <div class="item" data-value="8">8</div>
+                <div class="item" data-value="13">13</div>
+                <div class="item" data-value="20">20</div>
+              </div>
+            </div>
+          </div>
+          <div id="priority_input" class="field">
+            <label>Priority</label>
+            <div class="ui selection dropdown">
+              <input type="hidden" id="priority" value="{{ model.priority }}">
+              <div class="text">Priority</div>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <div class="item" data-value="1">1</div>
+                <div class="item" data-value="2">2</div>
+                <div class="item" data-value="3">3</div>
+                <div class="item" data-value="4">4</div>
+                <div class="item" data-value="5">5</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="ui form attached fluid segment">
-          <form>
-            <div class="three fields">
-              <div id="status_input" class="field">
-                <label>Status</label>
-                <div class="ui selection dropdown">
-                  <input type="hidden" id="status" value="{{ model.status }}">
-                  <div class="text">Status</div>
-                  <i class="dropdown icon"></i>
-                  <div class="menu">
-                    <div class="item" data-value="Todo">Todo
-                      <div class="ui red circular label"></div>
-                    </div>
-                    <div class="item" data-value="Ongoing">Ongoing
-                      <div class="ui purple circular label"></div>
-                    </div>
-                    <div class="item" data-value="Test">Test
-                      <div class="ui blue circular label" style="border-color: #4572A7 !important; background-color: #4572A7 !important;"></div>
-                    </div>
-                    <div class="item" data-value="Done">Done
-                      <div class="ui green circular label"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-               <div id="points_input" class="field">
-                <label>Points</label>
-                <div class="ui selection dropdown">
-                  <input type="hidden" id="points" value="{{ model.points }}">
-                  <div class="text">Points</div>
-                  <i class="dropdown icon"></i>
-                  <div class="menu">
-                    <div class="item" data-value="1">1</div>
-                    <div class="item" data-value="2">2</div>
-                    <div class="item" data-value="3">3</div>
-                    <div class="item" data-value="5">5</div>
-                    <div class="item" data-value="8">8</div>
-                    <div class="item" data-value="13">13</div>
-                    <div class="item" data-value="20">20</div>
-                  </div>
-                </div>
-              </div>
-              <div id="priority_input" class="field">
-                <label>Priority</label>
-                <div class="ui selection dropdown">
-                  <input type="hidden" id="priority" value="{{ model.priority }}">
-                  <div class="text">Priority</div>
-                  <i class="dropdown icon"></i>
-                  <div class="menu">
-                    <div class="item" data-value="1">1</div>
-                    <div class="item" data-value="2">2</div>
-                    <div class="item" data-value="3">3</div>
-                    <div class="item" data-value="4">4</div>
-                    <div class="item" data-value="5">5</div>
-                  </div>
-                </div>
-              </div>
+        <div id="title_input" class="field">
+          <label>Title</label>
+          <div class="ui left labeled icon input">
+            <input type="text" id="title" value="{{ model.title }}" placeholder="Title">
+            <div class="ui corner label">
+              <i class="icon asterisk"></i>
             </div>
-            <div id="title_input" class="field">
-              <label>Title</label>
-              <div class="ui left labeled icon input">
-                <input type="text" id="title" value="{{ model.title }}" placeholder="Title">
-                <div class="ui corner label">
-                  <i class="icon asterisk"></i>
-                </div>
-              </div>
-            </div>
-            <div id="story_input" class="field">
-              <label>Story</label>
-              <div class="ui left labeled icon input">
-                <textarea cols="40" rows="20" id="story" placeholder="When I Sign In as example@example.com
+          </div>
+        </div>
+        <div id="story_input" class="field">
+          <label>Story</label>
+          <div class="ui left labeled icon input">
+            <textarea cols="40" rows="20" id="story" placeholder="When I Sign In as example@example.com
 Then Im on the home page, Then I should see Master Backbone within the tasks list
 And I should see purchase "Building Backbone Plugins ebook" within the tasks lists">{{ model.story }}</textarea>
-                <div class="ui corner label">
-                  <i class="icon asterisk"></i>
-                </div>
-              </div>
+            <div class="ui corner label">
+              <i class="icon asterisk"></i>
             </div>
-            <div id="sprint_input" class="field">
-              <label>{{ t 'sprint.title.one' }}</label>
-              <select id="sprint" class="select2">
-                {{# each sprints }}
-                  <option value="{{ this.id }}">{{ this.name }}</option>
-                {{/ each }}
-              </select>
-            </div>
-            <div id="users_input" class="field">
-              <label>{{ t 'user.title.other' }}</label>
-              <select id="users" multiple>
-                {{# each users }}
-                  <option value="{{ this.id }}">{{ this.name }}</option>
-                {{/ each }}
-              </select>
-            </div>
-            <div class="ui blue submit button large right floated" type="submit">{{ t 'save' }}</div>
-            <a href="#tasks" class="ui right large floated button">{{ t 'back' }}</a>
-          <form>
-        <div>
-      </div>
+          </div>
+        </div>
+        <div class="two fields">
+          <div id="sprint_input" class="field">
+            <label>{{ t 'sprint.title.one' }}</label>
+            <select id="sprint" class="select2">
+              {{# each sprints }}
+                <option value="{{ this.id }}">{{ this.name }}</option>
+              {{/ each }}
+            </select>
+          </div>
+          <div id="users_input" class="field">
+            <label>{{ t 'user.title.other' }}</label>
+            <select id="users" multiple>
+              {{# each users }}
+                <option value="{{ this.id }}">{{ this.name }}</option>
+              {{/ each }}
+            </select>
+          </div>
+        </div>
+        <div class="ui blue submit button large right floated" type="submit">{{ t 'save' }}</div>
+        <a href="#tasks" class="ui right large floated button">{{ t 'back' }}</a>
+      <form>
     </div>
   </div>
 </div>
+<div class="column two wide"></div>
