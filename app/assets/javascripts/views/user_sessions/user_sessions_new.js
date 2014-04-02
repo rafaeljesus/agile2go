@@ -11,7 +11,8 @@ App.Views.UserSessionsNew = Support.CompositeView.extend(
   template: JST['user_sessions/new'],
 
   events: {
-    'click .submit': 'authenticate'
+    'click .submit': 'authenticate',
+    'click .twitter': 'authenticate_with_twitter'
   },
 
   newModel: function(){
@@ -22,6 +23,11 @@ App.Views.UserSessionsNew = Support.CompositeView.extend(
     e.preventDefault();
     this.commit();
     if(this.model.isValid()){ this.model.save({}, { success: this.authenticated }); };
+  },
+
+  authenticate_with_twitter: function(e){
+    e.preventDefault();
+    this.model.authenticate_with_twitter();
   },
 
   commit: function(){

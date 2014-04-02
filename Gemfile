@@ -20,6 +20,9 @@ gem 'i18n-js'
 gem 'i18n-js-pika', require: 'i18n-js'
 gem 'faye'
 gem 'thin'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-github'
 
 group :production do
   gem 'pg'

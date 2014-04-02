@@ -8,6 +8,12 @@ class UserSessionsController < ApplicationController
     respond_with @session
   end
 
+  def create_from_omniauth
+    user = User.from_omniauth(request.env['omniauth.auth'])
+    session[:user_id] = user.id
+    redirect_to '#dashboad'
+  end
+
   def destroy
     user_session.destroy
     respond_with user_session
