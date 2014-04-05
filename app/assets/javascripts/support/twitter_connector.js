@@ -8,7 +8,7 @@ var TwitterConnect = (function() {
 
   TwitterConnect.prototype.exec = function() {
     var self = this,
-    params = 'location=0,status=0,width=800,height=600';
+    params = 'location=0,status=0,menubar=no,width=400,height=200,left=440,top=200';
     this.twitter_window = window.open(this.url, 'twitterWindow', params);
     this.interval = window.setInterval((function() {
       if (self.twitter_window.closed) {
