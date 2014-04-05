@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     minimum: 4, too_short: "%{count} is the minimum allowed",
     maximum: 100, too_large: "%{count} is the maximum allowed" }
 
-  has_secure_password if: -> { password.present? }
+  has_secure_password validations: false
   after_save :clear_password
 
   def self.authenticate(email, password)
