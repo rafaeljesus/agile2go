@@ -1,7 +1,8 @@
 Agile2go::Application.routes.draw do
 
-  get 'auth/:provider/callback', to: 'user_sessions#create_from_omniauth'
+  match 'auth/:provider/callback', to: 'user_sessions#create_from_omniauth', via: [:get, :post]
   get 'auth/failure', to: redirect('user_sessions#new')
+  get 'auth/check/:provider', to: 'user_sessions#check'
 
   get 'current_user', to: 'current_user#index'
   get 'dashboard', to: 'dashboard#index'

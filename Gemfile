@@ -21,8 +21,10 @@ gem 'i18n-js-pika', require: 'i18n-js'
 gem 'faye'
 gem 'thin'
 gem 'omniauth'
+gem 'omniauth-oauth2', '1.0.2'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
+gem 'omniauth-facebook', '1.4.0'
 
 group :production do
   gem 'pg'

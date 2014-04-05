@@ -5,18 +5,25 @@ class UserSession
   extend ActiveModel::Translation
   extend ActiveModel::Naming
 
-  attr_accessor :email, :password
+  validates :email, presence: true, format: { with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/ }
+  validates :password, length: { minimum: 8, too_short: "%{count} is the minimum allowed" }
 
-  validates_presence_of :email, :password
-
-  def initialize(session, attributes={})
+  def initialize(session)
     @session = session
-    @email = attributes[:email]
-    @password = attributes[:password]
   end
 
-  def authenticate
-    user = User.authenticate(@email, @password)
+  def authenticate(options={})
+    user = User.authenticate(options[:email], options[:password])
+    if user.present?
+      store(user)
+    else
+      errors.add(:base, :invalid_login)
+      false
+    end
+  end
+
+  def authenticate_from_omniauth(omniauth_hash)
+    user = User.from_omniauth(omniauth_hash)
     if user.present?
       store(user)
     else

@@ -12,6 +12,7 @@ App.Views.UserSessionsDestroy = Support.CompositeView.extend({
   destroyed: function(data){
     this.current_user.set({ signed_in: false });
     this.current_user.removeSession({});
+    if(this.current_user.signedInWithFacebook()){ new FacebookConnect({}).logout(); }
     this.logoutSuccess();
     this.rootPath();
   },

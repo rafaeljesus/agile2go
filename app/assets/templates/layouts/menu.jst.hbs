@@ -22,8 +22,10 @@
       <div class="ui dropdown item">
        <i class="icon settings"></i>
         <div class="menu">
-          <a class="item" href="#users/{{ current_user.id  }}/edit"><i class="edit icon"></i> Edit Profile</a>
-          <a class="item" href="#sessions/destroy"><i class="sign out icon"></i>{{ t 'sign_out' }}</a>
+          {{#unless current_user.provider }}
+            <a class="item" href="#users/{{ current_user.id  }}/edit"><i class="edit icon"></i> Edit Profile</a>
+          {{/unless }}
+          <a id="sign-out" class="item" href="#sessions/destroy"><i class="sign out icon"></i>{{ t 'sign_out' }}</a>
         </div>
       </div>
      {{ else }}

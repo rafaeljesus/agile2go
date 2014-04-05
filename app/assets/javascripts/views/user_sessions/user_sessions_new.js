@@ -12,22 +12,26 @@ App.Views.UserSessionsNew = Support.CompositeView.extend(
 
   events: {
     'click .submit': 'authenticate',
-    'click .twitter': 'authenticate_with_twitter'
+    'click .twitter': 'authenticate_with_twitter',
+    'click .facebook': 'authenticate_with_facebook'
   },
 
-  newModel: function(){
-    this.model = new App.Models.UserSession({});
+  authenticate_with_twitter: function(e){
+    e.preventDefault();
+    var options = { view: this, url: e.target.href, authenticatedCallback: this.authenticatedCallback };
+    new TwitterConnect(options).exec();
+  },
+
+  authenticate_with_facebook: function(e){
+    e.preventDefault();
+    var options = { view: this, authenticatedCallback: this.authenticatedCallback };
+    new FacebookConnect(options).login();
   },
 
   authenticate: function(e){
     e.preventDefault();
     this.commit();
     if(this.model.isValid()){ this.model.save({}, { success: this.authenticated }); };
-  },
-
-  authenticate_with_twitter: function(e){
-    e.preventDefault();
-    this.model.authenticate_with_twitter();
   },
 
   commit: function(){
@@ -37,10 +41,15 @@ App.Views.UserSessionsNew = Support.CompositeView.extend(
   },
 
   authenticated: function(model, response, options){
-    this.current_user.set({ signed_in: true, id: model.attributes.session.user_id });
-    this.rootPath();
+    var attrs = { signed_in: true, id: model.attributes.session.user_id };
+    this.authenticatedCallback(attrs, this);
+  },
+
+  authenticatedCallback: function(view, attrs){
+    view.current_user.set(attrs);
+    view.rootPath()
     var message = I18n.t('sessions.signed_in');
-    this.successMessage(message);
+    view.successMessage(message);
   },
 
   onModelError: function(model, response, options){
@@ -52,6 +61,10 @@ App.Views.UserSessionsNew = Support.CompositeView.extend(
   clearOldErrors: function() {
     this.$('.error').removeClass('error');
     this.$('div.ui.red.pointing.above.ui.label').remove();
+  },
+
+  newModel: function(){
+    this.model = new App.Models.UserSession({});
   }
 
 })));

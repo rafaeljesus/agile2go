@@ -27,6 +27,15 @@ App.Models.CurrentUser = Backbone.Model.extend({
     return this.get('signed_in');
   },
 
+  signedInWithFacebook: function(){
+    if(!this.provider) return false;
+    if(this.provider() == 'facebook') return true;
+  },
+
+  provider: function(){
+    return this.get('provider');
+  },
+
   name: function(){
     return this.get('name');
   },
