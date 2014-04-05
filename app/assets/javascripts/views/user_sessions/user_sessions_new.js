@@ -13,13 +13,9 @@ App.Views.UserSessionsNew = Support.CompositeView.extend(
   events: {
     'click .submit': 'authenticate',
     'click .twitter': 'authenticate_with_twitter',
-    'click .facebook': 'authenticate_with_facebook'
-  },
-
-  authenticate_with_twitter: function(e){
-    e.preventDefault();
-    var options = { view: this, url: e.target.href, authenticatedCallback: this.authenticatedCallback };
-    new TwitterConnect(options).exec();
+    'click .facebook': 'authenticate_with_facebook',
+    'click .google': 'authenticate_with_google',
+    'click .github': 'authenticate_with_github'
   },
 
   authenticate_with_facebook: function(e){
@@ -28,21 +24,42 @@ App.Views.UserSessionsNew = Support.CompositeView.extend(
     new FacebookConnect(options).login();
   },
 
+  authenticate_with_twitter: function(e){
+    e.preventDefault();
+    this.omniauthConnect('twitter', e);
+  },
+
+  authenticate_with_google: function(e){
+    e.preventDefault();
+    this.omniauthConnect('google', e);
+  },
+
+  authenticate_with_github: function(e){
+    e.preventDefault();
+    this.omniauthConnect('github', e);
+  },
+
   authenticate: function(e){
     e.preventDefault();
     this.commit();
     if(this.model.isValid()){ this.model.save({}, { success: this.authenticated }); };
   },
 
+  omniauthConnect: function(provider, e){
+    var options = { view: this, url: e.target.href, provider: provider, authenticatedCallback: this.authenticatedCallback };
+    new OmniauthConnect(options).exec();
+  },
+
   commit: function(){
     var email = this.$("#email").val()
-    , password = this.$("#password").val();
-    this.model.set({ email: email, password: password });
+    , password = this.$("#password").val()
+    , options = { email: email, password: password };
+    this.model.set(options);
   },
 
   authenticated: function(model, response, options){
     var attrs = { signed_in: true, id: model.attributes.session.user_id };
-    this.authenticatedCallback(attrs, this);
+    this.authenticatedCallback(this, attrs);
   },
 
   authenticatedCallback: function(view, attrs){

@@ -9,14 +9,15 @@ class User < ActiveRecord::Base
     minimum: 4, too_short: "%{count} is the minimum allowed",
     maximum: 100, too_large: "%{count} is the maximum allowed" }
 
-  # has_secure_password if: :password?
-  # after_save :clear_password
+  has_secure_password if: -> { password.present? }
+  after_save :clear_password
 
   def self.authenticate(email, password)
     find_by_email(email).try(:authenticate, password)
   end
 
   def self.from_omniauth(auth)
+    auth['uid'] = auth['uid'].to_s # workaround for github bug
     where(auth.slice(:provider, :uid)).first || create_from_omniauth(auth)
   end
 
@@ -30,8 +31,8 @@ class User < ActiveRecord::Base
   end
 
   def clear_password
-    self.password = nil if self.password
-    self.password_confirmation = nil if self.password_confirmation
+    self.password = nil
+    self.password_confirmation = nil
   end
 
   def master?

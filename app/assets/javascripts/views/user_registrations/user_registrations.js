@@ -40,8 +40,9 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
     var name    = this.$("#name").val()
     , email     = this.$("#email").val()
     , password  = this.$("#password").val()
-    , password_confirmation = this.$("#password-confirmation").val();
-    this.model.set({ name: name, email: email, password: password, password_confirmation: password_confirmation });
+    , password_confirmation = this.$("#password-confirmation").val()
+    , options = { name: name, email: email, password: password, password_confirmation: password_confirmation };
+    this.model.set(options);
   },
 
   saved: function(model, response, options) {

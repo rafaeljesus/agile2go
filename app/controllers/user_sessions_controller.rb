@@ -11,9 +11,9 @@ class UserSessionsController < ApplicationController
   def create_from_omniauth
     @session = UserSession.new(session)
     @session.authenticate_from_omniauth(omniauth_hash)
-    if cookies[:twitter_oauth_popup]
-      cookies[:twitter_oauth_popup] = nil
-      return render 'layouts/twitter_popup_close', layout: false
+    if cookies[:oauth_popup]
+      cookies[:oauth_popup] = nil
+      return render 'layouts/oauth_popup_close', layout: false
     else
       respond_with signed_in: true, user_id: current_user.id, provider: current_user.provider
     end
@@ -21,8 +21,7 @@ class UserSessionsController < ApplicationController
 
   def check
     if user_signed_in?
-      session[:twitter_omniauth] = nil
-      session[:twitter_oauth_popup] = nil
+      session[:oauth_popup] = nil
       respond_with signed_in: true, user_id: current_user.id, provider: current_user.provider
     else
       respond_with {}

@@ -53,18 +53,6 @@
           <input class="ui orange submit button fluid large right floated" name="commit" type="submit" value="{{ t 'sign_up' }}">
         {{/if}}
       </form>
-      {{#unless current_user.id}}
-      <div class="ui horizontal clearing divider">Or</div>
-      <div class="ui fluid large facebook button">
-        <i class="facebook icon"></i>{{ t 'facebook' }}
-      </div>
-      <div class="ui fluid large twitter button">
-        <i class="twitter icon"></i>{{ t 'twitter' }}
-      </div>
-      <div class="ui fluid large google plus button">
-        <i class="google plus icon"></i>{{ t 'google' }}
-      </div>
-      {{/unless}}
     </div>
   </div>
   <div class="column">
