@@ -6,6 +6,8 @@
 //= require backbone.domStorage
 //= require handlebars
 //= require moment
+//= require highcharts
+//= require exporting
 //= require backbone_sync
 //= require app
 //= require semantic-ui

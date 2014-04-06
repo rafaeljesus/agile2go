@@ -14,6 +14,7 @@ class DashboardController < ApplicationController
     respond_with dashboard
   end
 
+  private
   def count_all_tasks_with(status, project_names)
     result = []
     project_names.each do |name|
