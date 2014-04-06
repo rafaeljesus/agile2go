@@ -10,11 +10,8 @@ class Project < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates_presence_of :company, :description
 
-  def self.count_all_tasks_of(project_name, status)
-    select('count(tasks.id) as qty')
-    .joins(:sprints, :tasks)
-    .where('projects.name = ? and tasks.status = ?', project_name, status)
-    .group('tasks.status')
+  def self.count_all_tasks_with(project_name, status)
+    count('tasks.id', joins: 'INNER JOIN sprints ON sprints.project_id = projects.id INNER JOIN tasks ON tasks.sprint_id = sprints.id', conditions: "projects.name = '#{project_name}' AND tasks.status = '#{status}'" )
   end
 
   def self.find_by_user(current_user)
