@@ -65,6 +65,7 @@ App.Views.UserSessionsNew = Support.CompositeView.extend(
   authenticatedCallback: function(view, attrs){
     view.current_user.set(attrs);
     view.rootPath()
+    if(!attrs) return;
     var message = I18n.t('sessions.signed_in');
     view.successMessage(message);
   },

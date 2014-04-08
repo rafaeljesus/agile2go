@@ -22,8 +22,7 @@ var OmniauthConnect = (function() {
 
   OmniauthConnect.prototype.finish = function() {
     var self = this;
-    $.getJSON('/auth/check/' + self.provider).done(function(response){
-      var attrs = { signed_in: true, id: response.user_id, provider: response.provider };
+    $.getJSON('/auth/check/' + self.provider).done(function(attrs){
       self.authenticatedCallback(self.view, attrs);
     });
   };

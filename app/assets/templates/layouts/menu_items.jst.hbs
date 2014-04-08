@@ -27,6 +27,9 @@
         <a id="sign-out" class="item" href="#sessions/destroy"><i class="sign out icon"></i>{{ t 'sign_out' }}</a>
       </div>
     </div>
+    <div class="item">
+      <img class="avatar" src="{{ current_user.avatar }}">
+    </div>
    {{ else }}
    <div class="item">
       <div class="ui teal button">

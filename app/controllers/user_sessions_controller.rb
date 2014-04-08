@@ -15,17 +15,21 @@ class UserSessionsController < ApplicationController
       cookies[:oauth_popup] = nil
       return render 'layouts/oauth_popup_close', layout: false
     else
-      respond_with signed_in: true, user_id: current_user.id, provider: current_user.provider
+      respond_with user_json
     end
   end
 
   def check
     if user_signed_in?
       session[:oauth_popup] = nil
-      respond_with signed_in: true, user_id: current_user.id, provider: current_user.provider
+      respond_with user_json
     else
       respond_with {}
     end
+  end
+
+  def user_json
+    { signed_in: true, user_id: current_user.id, provider: current_user.provider, avatar: current_user.avatar }
   end
 
   def destroy

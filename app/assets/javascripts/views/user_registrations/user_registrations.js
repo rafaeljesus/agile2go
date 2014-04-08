@@ -1,5 +1,4 @@
-App.Views.UserRegistrations = Support.CompositeView.extend(
-  _.extend({}, App.Mixins.ModelObserver,
+App.Views.UserRegistrations = Support.CompositeView.extend( _.extend({}, App.Mixins.ModelObserver,
   _.extend({}, App.Mixins.BaseView, {
   initialize: function(options){
     _.bindAll(this, 'render', 'saved');
@@ -25,10 +24,6 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
     }
   },
 
-  newModel: function(){
-    return new App.Models.UserRegistration({});
-  },
-
   save: function(e){
     e.preventDefault();
     this.commit();
@@ -46,11 +41,15 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
   },
 
   saved: function(model, response, options) {
-     this.current_user.set({ signed_in: true });
-     this.current_user.set(model.attributes.user);
+     model.attributes.signed_in = true;
+     this.current_user.set(model.attributes);
      this.rootPath();
      var message = I18n.t('registrations.signed_up');
      this.successMessage(message);
+  },
+
+  newModel: function(){
+    return new App.Models.UserRegistration({});
   }
 
 })));
