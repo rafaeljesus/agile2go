@@ -2,8 +2,8 @@ var FacebookConnect = (function(){
 
   function FacebookConnect(options){
     for (var attr in options) {
-			this[attr] = options[attr] || {};
-		}
+      this[attr] = options[attr] || {};
+    }
   };
 
   FacebookConnect.prototype.login = function(){
