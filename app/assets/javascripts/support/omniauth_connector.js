@@ -1,10 +1,9 @@
 var OmniauthConnect = (function() {
 
   function OmniauthConnect(options){
-    this.view = options.view;
-    this.url = options.url;
-    this.provider = options.provider;
-    this.authenticatedCallback = options.authenticatedCallback;
+    for (var attr in options) {
+			this[attr] = options[attr] || {};
+		}
   }
 
   OmniauthConnect.prototype.exec = function() {
