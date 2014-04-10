@@ -1,8 +1,9 @@
 var FacebookConnect = (function(){
 
   function FacebookConnect(options){
-    this.view = options.view || {};
-    this.authenticatedCallback = options.authenticatedCallback || {};
+    for (var attr in options) {
+      this[attr] = options[attr] || {};
+    }
   };
 
   FacebookConnect.prototype.login = function(){
