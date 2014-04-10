@@ -25,7 +25,7 @@ gem 'omniauth-oauth2', '1.0.2'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
 gem 'omniauth-facebook', '1.4.0'
-gem "omniauth-google"
+gem 'omniauth-google'
 
 group :production do
   gem 'pg'

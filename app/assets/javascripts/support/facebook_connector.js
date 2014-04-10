@@ -8,9 +8,8 @@ var FacebookConnect = (function(){
   FacebookConnect.prototype.login = function(){
     var self = this;
     FB.login(function(response) {
-      $.getJSON('/auth/facebook/callback').done(function(response){
-      var attrs = { signed_in: true, id: response.user_id, provider: response.provider };
-      self.authenticatedCallback(self.view, attrs);
+      $.getJSON('/auth/facebook/callback').done(function(json){
+        self.authenticatedCallback(self.view, json);
       });
     });
   };

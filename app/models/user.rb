@@ -21,13 +21,20 @@ class User < ActiveRecord::Base
   end
 
   def self.create_from_omniauth(auth)
+    puts auth.to_yaml
     create! do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.name = auth.info.name
-      user.avatar = auth.info.image
+      user.email = auth.info.email
+      user.avatar = parse_image(auth)
       user.oauth_token = auth.credentials.token
     end
+  end
+
+  def self.parse_image(auth)
+    return auth.info.image unless auth.provider == 'github'
+    auth.extra.raw_info.avatar_url
   end
 
   def master?
