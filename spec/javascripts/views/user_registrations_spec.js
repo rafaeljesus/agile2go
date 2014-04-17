@@ -2,15 +2,22 @@ describe('App.Views.UserRegistrations', function(){
   var view
   , $el
   , model
+  , server
   , e;
 
   describe('When create a new account', function(){
     beforeEach(function(){
+      server = sinon.fakeServer.create();
+      server.respondWith("GET", "/current_user/12345", [ 200, {"Content-Type": "application/json"}, '[{ "name": "fakeUser" }]' ]);
       var current_user = new App.Models.CurrentUser({});
       view = new App.Views.UserRegistrations({});
       model = view.model;
       $el = $(view.render().el);
       e = new Event(undefined);
+    });
+
+    afterEach(function(){
+      server.restore();
     });
 
     it('should render sign up form', function(){
@@ -41,6 +48,8 @@ describe('App.Views.UserRegistrations', function(){
 
   describe('When edit a existing account', function(){
     beforeEach(function(){
+      server = sinon.fakeServer.create();
+      server.respondWith("GET", "/current_user/12345", [ 200, {"Content-Type": "application/json"}, '[{ "name": "fakeUser" }]' ]);
       var current_user = new App.Models.CurrentUser({ id: 1, name: 'fakeName', email: 'fakeEmail' });
       var model = new App.Models.UserRegistration({ user: { id: 1, name: 'fakeName', email: 'fakeEmail' } }, { parse: true });
       var dependencies = { model: model, current_user: current_user };
@@ -48,6 +57,10 @@ describe('App.Views.UserRegistrations', function(){
       model = view.model;
       $el = $(view.render().el);
       e = new Event(undefined);
+    });
+
+    afterEach(function(){
+      server.restore();
     });
 
     it('should render edit account form', function(){

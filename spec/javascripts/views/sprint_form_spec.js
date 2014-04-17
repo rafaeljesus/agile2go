@@ -6,16 +6,6 @@ describe('App.Views.SprintForm', function(){
   , e
   ;
 
-  var commit = function(){
-    view.$('#name').val('SprintFake');
-    view.$('#daily').val('10:00');
-    view.$('#points').val(300);
-    view.$('#start-date').val('03/01/2014');
-    view.$('#end-date').val('03/10/2014');
-    view.$('select')[0].options[0] = new Option(projects.at(0).get('name'), projects.at(0).get('id'));
-    view.$('select').val(projects.at(0).get('id')).trigger('change');
-  };
-
   beforeEach(function(){
     projects = new App.Collections.Projects([{ id: 1, name: 'projectFake', company: 'companyFake', description: 'descriptionFake' }]);
     view = new App.Views.SprintForm({ projects: projects });
@@ -32,6 +22,16 @@ describe('App.Views.SprintForm', function(){
     view.$('#end-date').val('');
     view.$('select')[0].options = [];
   });
+
+  var commit = function(){
+    view.$('#name').val('SprintFake');
+    view.$('#daily').val('10:00');
+    view.$('#points').val(300);
+    view.$('#start-date').val('03/01/2014');
+    view.$('#end-date').val('03/10/2014');
+    view.$('select')[0].options[0] = new Option(projects.at(0).get('name'), projects.at(0).get('id'));
+    view.$('select').val(projects.at(0).get('id')).trigger('change');
+  };
 
   it('should call onRender when instantiate', function(){
     spyOn(view, 'onRender');

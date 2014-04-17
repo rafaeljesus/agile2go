@@ -34,7 +34,6 @@ describe('App.Models.Task change:assignedUsers', function(){
     var assignedUsers = { assignedUsers: [{ name: 'Rafael Jesus' }, { name: 'Sophia de Jesus' }] };
     var task = new App.Models.Task(assignedUsers);
     expect(task.assignedUsers.size()).toEqual(2);
-
     task.set({ assignedUsers: [{ name: 'Sophia de Jesus' }] });
     expect(task.assignedUsers.size()).toEqual(1);
   });

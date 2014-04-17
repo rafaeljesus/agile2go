@@ -17,7 +17,7 @@ App.Models.UserRegistration = Backbone.Model.extend({
     if(!attrs.password){
       (errors = errors || {}).password = ["can't be blank"];
     };
-    if(!attrs.password.length < 6){
+    if(attrs.password.length < 6){
       (errors = errors || {}).password = ["6 is the minimun allowed"];
     };
     if(!attrs.password_confirmation){

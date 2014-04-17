@@ -2,15 +2,22 @@ describe('App.Views.UserSessionsNew', function(){
 
   var view
   , model
+  , server
   , $el
   , e;
 
   beforeEach(function(){
+    server = sinon.fakeServer.create();
+    server.respondWith('GET', '/current_user/1', [ 200, {"Content-Type": "application/json"}, JSON.stringify({ signed_in: true, id: 1 }) ]);
     var current_user = new App.Models.CurrentUser({});
     view = new App.Views.UserSessionsNew({ current_user: current_user });
     model = view.model;
     $el = $(view.render().el);
     e = new Event(undefined);
+  });
+
+  afterEach(function(){
+    server.restore();
   });
 
   it('should render sign in form', function(){

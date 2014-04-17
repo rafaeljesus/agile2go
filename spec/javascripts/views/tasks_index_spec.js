@@ -5,6 +5,8 @@ describe('App.Views.TasksIndex', function(){
   , collection
   , attributes;
 
+  window.fayejsPath = 'http://0.0.0.0:9292';
+
   beforeEach(function(){
     attributes = { id: 1, title: 'Assigning a Tasks to others', priority: 5, points: 8, status: 'Todo', sprint: { id: 1 } };
     collection = new App.Collections.Tasks({});
@@ -14,9 +16,10 @@ describe('App.Views.TasksIndex', function(){
   });
 
   it('should renders a collections of tasks', function(){
-    expect($el.children().children().children().children()).toHaveClass('removable');
-    expect($el).toHaveText(/Assigning a Tasks to others/);
-    expect($el).toHaveText(/Todo/);
+    var items = $el.find('#items');
+    expect(items.find('.removable')).toHaveClass('removable');
+    expect(items).toHaveText(/Assigning a Tasks to others/);
+    expect(items).toHaveText(/Todo/);
   });
 
   it('should call renderRow method', function(){
@@ -24,5 +27,8 @@ describe('App.Views.TasksIndex', function(){
     view.renderItem(collection.first());
     expect(view.renderItem).toHaveBeenCalled();
     expect(view.children._wrapped.length).toEqual(collection.length);
+  });
+
+  it('should remove a task from dashboard', function(){
   });
 });

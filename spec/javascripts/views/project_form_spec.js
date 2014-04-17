@@ -5,14 +5,6 @@ describe('App.Views.ProjectForm', function(){
   , $el
   , e;
 
-  var commit = function(){
-    view.$('#name').val('nameFake');
-    view.$('#company').val('companyFake');
-    view.$('#description').val('descriptionFake');
-    view.$('select')[0].options[0] = new Option(users.at(0).get('name'), users.at(0).get('id'));
-    view.$('select').val(users.at(0).get('id')).trigger('change');
-  };
-
   beforeEach(function(){
     users = new App.Collections.Users([{ id: 1, name: 'userNamefake', email: 'email@fake.com' }]);
     view = new App.Views.ProjectForm({ users: users });
@@ -27,6 +19,14 @@ describe('App.Views.ProjectForm', function(){
     view.$('#description').val('');
     view.$('select')[0].options = [];
   });
+
+  var commit = function(){
+    view.$('#name').val('nameFake');
+    view.$('#company').val('companyFake');
+    view.$('#description').val('descriptionFake');
+    view.$('select')[0].options[0] = new Option(users.at(0).get('name'), users.at(0).get('id'));
+    view.$('select').val(users.at(0).get('id')).trigger('change');
+  };
 
   it('should call onRender when instantiate', function(){
     spyOn(view, 'onRender');

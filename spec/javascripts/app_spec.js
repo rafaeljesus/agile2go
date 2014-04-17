@@ -22,6 +22,17 @@ describe('App', function(){
   });
 
   describe('when call App.init()', function(){
+    var server;
+
+    beforeEach(function(){
+      server = sinon.fakeServer.create();
+      server.respondWith('GET', '/current_user/1', [ 200, {"Content-Type": "application/json"}, JSON.stringify({ signed_in: true, id: 1 }) ]);
+    });
+
+    afterEach(function(){
+      server.restore();
+    });
+
     it('instantiate a menu view', function(){
     });
 

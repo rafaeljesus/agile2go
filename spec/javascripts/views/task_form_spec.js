@@ -6,22 +6,13 @@ describe('App.Views.TaskForm', function(){
   , e
   ;
 
-  var commit = function(){
-    view.$('#status').val('Todo');
-    view.$('#priority').val(5);
-    view.$('#points').val(8);
-    view.$('#title').val('Create a new Task');
-    view.$('#story').val('User Story goes here');
-    view.$('select')[0].options[0] = new Option(sprints.at(0).get('name'), sprints.at(0).get('id'));
-    view.$('select').val(sprints.at(0).get('id')).trigger('change');
-  };
-
   beforeEach(function(){
     var sprint = { id: 1, daily: '10:00', points: 40, start_date: '01/01/2014', end_date: '01/15/2014', project: { id: 1, name: 'projectNameFake' } };
+    this.server = sinon.fakeServer.create();
     sprints = new App.Collections.Sprints([sprint]);
     view = new App.Views.TaskForm({ sprints: sprints });
-    view.render();
     model = view.model;
+    view.render();
     e = new Event(undefined);
   });
 
@@ -32,7 +23,19 @@ describe('App.Views.TaskForm', function(){
     view.$('#title').val('');
     view.$('#story').val('');
     view.$('select')[0].options = [];
+    this.server.restore();
   });
+
+  var commit = function(){
+    view.$('#status').val('Todo');
+    view.$('#priority').val(5);
+    view.$('#points').val(8);
+    view.$('#title').val('Create a new Task');
+    view.$('#story').val('User Story goes here');
+    view.$('select')[0].options[0] = new Option(sprints.at(0).get('name'), sprints.at(0).get('id'));
+    view.$('select').val(sprints.at(0).get('id')).trigger('change');
+  };
+
 
   it('should call onRender when instantiate', function(){
     spyOn(view, 'onRender');
@@ -76,6 +79,7 @@ describe('App.Views.TaskForm', function(){
     spyOn(model, 'save');
     commit();
     view.save(e);
+    this.server.respond();
     expect(model.save).toHaveBeenCalled();
   });
 
