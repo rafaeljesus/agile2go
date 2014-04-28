@@ -10,37 +10,37 @@ BackboneSync.FayeSubscriber = (function() {
    }
 
   FayeSubscriber.prototype.subscribe = function() {
-    return this.client.subscribe('/sync/' + this.channel, _.bind(this.receive, this));
+    this.client.subscribe('/sync/' + this.channel, _.bind(this.receive, this));
   };
 
   FayeSubscriber.prototype.receive = function(message) {
     var self = this;
-    return $.each(message, function(event, eventArguments) {
-      return self[event](eventArguments);
+    $.each(message, function(event, eventArguments) {
+      self[event](eventArguments);
     });
   };
 
   FayeSubscriber.prototype.update = function(params) {
     var self = this;
-    return $.each(params, function(id, attributes) {
+    $.each(params, function(id, attributes) {
       var model = self.collection.get(id);
-      return model.set(attributes);
+      model.set(attributes);
     });
   };
 
   FayeSubscriber.prototype.create = function(params) {
     var self = this;
-    return $.each(params, function(id, attributes) {
+    $.each(params, function(id, attributes) {
       var model = new self.collection.model(attributes);
-      return self.collection.add(model);
+      self.collection.add(model);
     });
   };
 
   FayeSubscriber.prototype.destroy = function(params) {
     var self = this;
-    return $.each(params, function(id, attributes) {
+    $.each(params, function(id, attributes) {
       var model = self.collection.get(id);
-      return self.collection.remove(model);
+      self.collection.remove(model);
     });
   };
 
