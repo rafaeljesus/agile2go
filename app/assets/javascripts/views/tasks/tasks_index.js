@@ -1,7 +1,7 @@
 App.Views.TasksIndex = Support.CompositeView.extend({
   initialize: function(options){
-    _.bindAll(this, 'render', 'renderItem');
-    this.bindTo(this.collection, 'change', this.render);
+    _.bindAll(this, 'render', 'renderItem', 'showSyncMessage');
+    this.bindTo(this.collection, 'change', this.change);
     this.bindTo(this.collection, 'reset', this.render);
     this.bindTo(this.collection, 'add', this.render);
     new App.HandlebarsHelpers().withDiffDate().withTimeago().withTruncate();
@@ -16,11 +16,23 @@ App.Views.TasksIndex = Support.CompositeView.extend({
     return this;
   },
 
+  change: function(){
+    this.collection.each(this.showSyncMessage);
+    this.render();
+  },
+
   renderItem: function(model){
     var dependencies = { model: model, template: JST['tasks/item'], tagName: 'div', className: 'column removable' };
     var item = new App.Views.CollectionItem(dependencies);
     this.renderChild(item);
     this.$('#items').append(item.el);
+  },
+
+  showSyncMessage: function(model){
+    if($.isEmptyObject(model.changed)) return;
+    var message = "The Task '" + model.get('title') + "' was changed by other user";
+    new FlashMessages({ message: message }).info();
+    return false;
   }
 
 });

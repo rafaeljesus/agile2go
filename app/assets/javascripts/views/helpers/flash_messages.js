@@ -7,15 +7,23 @@ var FlashMessages = Backbone.View.extend({
 
   template: JST['messages'],
 
+  info: function(){
+    var options = { type: 'Info', color: 'green', message: this.message };
+    this.render(options);
+  },
+
   success: function(){
-    var config = { type: 'Success', color: 'blue', message: this.message };
-    this.$el.show().html(this.template(config));
-    this.empty();
+    var options = { type: 'Success', color: 'blue', message: this.message };
+    this.render(options);
   },
 
   error: function(){
-    var config = { type: 'Error', color: 'red', message: this.message };
-    this.$el.show().html(this.template(config));
+    var options = { type: 'Error', color: 'red', message: this.message };
+    this.render(options);
+  },
+
+  render: function(options) {
+    this.$el.show().html(this.template(options));
     this.empty();
   },
 
@@ -23,7 +31,7 @@ var FlashMessages = Backbone.View.extend({
     var self = this;
     setTimeout(function(){
       self.$el.empty();
-    }, 2000);
+    }, 10000);
   }
 
 });

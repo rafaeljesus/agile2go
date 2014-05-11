@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_secure_password validations: false
 
   def self.authenticate(email, password)
-    find_by_email(email).try(:authenticate, password)
+    find_by(email: email).try(:authenticate, password)
   end
 
   def self.from_omniauth(auth)
@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.parse_image(auth)
+  def parse_image(auth)
     return auth.info.image unless auth.provider == 'github'
     auth.extra.raw_info.avatar_url
   end
