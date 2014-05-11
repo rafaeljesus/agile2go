@@ -17,6 +17,7 @@ App.Views.TasksIndex = Support.CompositeView.extend({
   },
 
   change: function(){
+    if(window.location.hash != '#tasks') return;
     this.collection.each(this.showSyncMessage);
     this.render();
   },
@@ -30,7 +31,7 @@ App.Views.TasksIndex = Support.CompositeView.extend({
 
   showSyncMessage: function(model){
     if($.isEmptyObject(model.changed)) return;
-    var message = "The Task '" + model.get('title') + "' was changed by other user";
+    var message = "'" + model.get('title') + "' has a new version";
     new FlashMessages({ message: message }).info();
     return false;
   }
