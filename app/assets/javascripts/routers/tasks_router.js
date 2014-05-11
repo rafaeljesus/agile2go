@@ -19,7 +19,6 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
     this.collection.fetch({});
     var view = new App.Views.TasksIndex({ collection: this.collection });
     this.swap(view);
-    this.activeMenu();
   },
 
   new: function(){
@@ -38,11 +37,6 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
       var view = new App.Views.TaskForm({ model: model, sprints: self.sprints });
       self.swap(view);
     });
-  },
-
-  activeMenu: function(){
-    $("a[href='#projects'], a[href='#sprints'], a[href='#dashboard']").removeClass('active');
-    $("a[href='#tasks']").addClass('active');
   }
 
 }));

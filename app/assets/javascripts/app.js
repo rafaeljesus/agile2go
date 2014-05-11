@@ -5,13 +5,6 @@ var App = new (Backbone.View.extend({
   Routers: {},
   Mixins: {},
 
-  start: function(){
-    if (!Backbone.history.started) {
-      Backbone.history.start();
-      Backbone.history.started = true;
-    }
-  },
-
   init: function(){
     new App.HandlebarsHelpers().withI18n();
     var current_user = new App.Models.CurrentUser({});
@@ -25,6 +18,36 @@ var App = new (Backbone.View.extend({
     new App.Routers.Tasks(injector);
     new App.Routers.Dashboards(injector);
     new App.start();
+    new App.activeMenu();
+  },
+
+  start: function(){
+    if (!Backbone.history.started) {
+      Backbone.history.start();
+      Backbone.history.started = true;
+    }
+  },
+
+  activeMenu: function(){
+    $(window).on('hashchange', function(e){
+      if(App._isCurrentHash('projects')){
+        $("a[href='#sprints'], a[href='#tasks'], a[href='#dashboard']").removeClass('active');
+        $("a[href='#projects']").addClass('active');
+      } else if (App._isCurrentHash('sprints')){
+        $("a[href='#projects'], a[href='#tasks'], a[href='#dashboard']").removeClass('active');
+        $("a[href='#sprints']").addClass('active');
+      } else if (App._isCurrentHash('tasks')){
+        $("a[href='#projects'], a[href='#sprints'], a[href='#dashboard']").removeClass('active');
+        $("a[href='#tasks']").addClass('active');
+      } else if (App._isCurrentHash('dashboard')){
+        $("a[href='#projects'], a[href='#sprints'], a[href='#tasks']").removeClass('active');
+        $("a[href='#dashboard']").addClass('active');
+      }
+    });
+  },
+
+  _isCurrentHash: function(name){
+    return window.location.hash == '#' + name;
   }
 
 }))({ el: document.body });

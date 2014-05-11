@@ -18,7 +18,6 @@ App.Routers.Sprints = Support.SwappingRouter.extend(
     this.collection.fetch({});
     var view = new App.Views.SprintsIndex({ collection: this.collection });
     this.swap(view);
-    this.activeMenu();
   },
 
   new: function(){
@@ -37,11 +36,6 @@ App.Routers.Sprints = Support.SwappingRouter.extend(
       var view = new App.Views.SprintForm({ model: model, projects: self.projects });
       self.swap(view);
     });
-  },
-
-  activeMenu: function(){
-    $("a[href='#projects'], a[href='#tasks'], a[href='#dashboard']").removeClass('active');
-    $("a[href='#sprints']").addClass('active');
   }
 
 }));

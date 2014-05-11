@@ -15,12 +15,6 @@ App.Routers.Dashboards = Support.SwappingRouter.extend(
     this.model.fetch({});
     var view = new App.Views.Dashboard({ model: this.model });
     this.swap(view);
-    this.activeMenu();
-  },
-
-  activeMenu: function(){
-    $("a[href='#projects'], a[href='#sprints'], a[href='#tasks']").removeClass('active');
-    $("a[href='#dashboard']").addClass('active');
   }
 
 }));
