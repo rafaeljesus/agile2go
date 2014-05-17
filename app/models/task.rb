@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   include BackboneSync::Faye::Observer
+  COLUMNS = %w(title status story)
 
   after_update :publish_update
   after_create :publish_create
@@ -14,4 +15,23 @@ class Task < ActiveRecord::Base
 
   validates :title, presence: true
   validates :story, presence: true
+
+  scope :ordered, -> { order(:created_at) }
+
+  def self.search(query)
+    return ordered unless query
+    tokens = query.split(/\s+/)
+    conditions = tokens.collect do |token|
+      COLUMNS.collect do |column|
+        if token =~ /^\d+$/
+          "#{column} = #{token}"
+        else
+          "#{column} like '%#{token.upcase}%'"
+        end
+      end
+    end
+    conditions = conditions.flatten.join(" or ")
+    where(conditions)
+  end
+
 end

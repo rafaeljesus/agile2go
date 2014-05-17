@@ -19,7 +19,7 @@ en:
   try_it: 'Try it'
   agree_term: 'I agree with the Terms and Conditions'
   sessions:
-    sign_up_or_try: "<h1 class='delta'>No account yet? Register or try it now</h1><p>Are you ready to have your menu in all languages you want, on the web and any smartphone? Sign up now to start receiving notifications! Don't want to register yet another account? You can try it!</p>"
+    sign_up_or_try: "<h1 class='delta'>No account yet? Register now</h1>"
     signed_in: 'Signed in successfully'
     signed_out: 'Signed out successfully'
     already_authenticated: 'You are already signed in'

@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Task.all
+    respond_with Task.ordered
   end
 
   def edit
@@ -25,6 +25,10 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_with @task
+  end
+
+  def search
+    respond_with Task.search(params[:query])
   end
 
   private

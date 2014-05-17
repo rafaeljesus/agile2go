@@ -1,7 +1,7 @@
 App.Routers.Site = Support.SwappingRouter.extend({
   initialize: function(options){
     this.el = $('#container');
-    this.injector = options;
+    this.options = options;
   },
 
   routes: {
@@ -9,7 +9,7 @@ App.Routers.Site = Support.SwappingRouter.extend({
   },
 
   index: function(){
-    var view = new App.Views.SiteIndex(this.injector);
+    var view = new App.Views.SiteIndex(this.options);
     this.swap(view);
   }
 

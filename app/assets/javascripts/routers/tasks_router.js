@@ -11,7 +11,8 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
   routes: {
     'tasks': 'index',
     'tasks/new': 'new',
-    'tasks/:id/edit': 'edit'
+    'tasks/:id/edit': 'edit',
+    'tasks/search/:query': 'search'
   },
 
   index: function(){
@@ -31,10 +32,19 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
   edit: function(id){
     this.authorize();
     var self = this;
-    $.getJSON("/tasks/" + id + "/edit").done(function(json){
+    $.getJSON("/tasks/" + id + "/edit").then(function(json){
       var model = new App.Models.Task(json[0]);
       self.sprints = new App.Collections.Sprints(json[1]);
       var view = new App.Views.TaskForm({ model: model, sprints: self.sprints });
+      self.swap(view);
+    });
+  },
+
+  search: function(query){
+    var self = this;
+    $.getJSON('/tasks/search/' + query).then(function(resp){
+      self.collection.reset(resp, { parse: true });
+      var view = new App.Views.TasksIndex({ collection: self.collection });
       self.swap(view);
     });
   }

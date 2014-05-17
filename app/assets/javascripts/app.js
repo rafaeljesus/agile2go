@@ -8,17 +8,18 @@ var App = new (Backbone.View.extend({
   init: function(){
     new App.HandlebarsHelpers().withI18n();
     var current_user = new App.Models.CurrentUser({});
-    var injector = { current_user: current_user };
-    new App.Views.Menu(injector);
-    new App.Routers.Site(injector);
-    new App.Routers.UserRegistrations(injector);
-    new App.Routers.UserSessions(injector);
-    new App.Routers.Projects(injector);
-    new App.Routers.Sprints(injector);
-    new App.Routers.Tasks(injector);
-    new App.Routers.Dashboards(injector);
+    var options = { current_user: current_user };
+    new App.Views.Menu(options);
+    new App.Routers.Site(options);
+    new App.Routers.UserRegistrations(options);
+    new App.Routers.UserSessions(options);
+    new App.Routers.Projects(options);
+    new App.Routers.Sprints(options);
+    new App.Routers.Tasks(options);
+    new App.Routers.Dashboards(options);
     new App.start();
-    new App.activeMenu();
+    new App.updateActiveNav();
+    new Searchable();
   },
 
   start: function(){
@@ -28,7 +29,7 @@ var App = new (Backbone.View.extend({
     }
   },
 
-  activeMenu: function(){
+  updateActiveNav: function(){
     $(window).on('hashchange', function(e){
       if(App._isCurrentHash('projects')){
         $("a[href='#sprints'], a[href='#tasks'], a[href='#dashboard']").removeClass('active');

@@ -30,7 +30,7 @@ App.Routers.Projects = Support.SwappingRouter.extend(
   edit: function(id){
     this.authorize();
     var self = this;
-    $.getJSON("/projects/" + id  + "/edit").done(function(json){
+    $.getJSON("/projects/" + id  + "/edit").then(function(json){
       var model = new App.Models.Project(json[0]);
       this.users = new App.Collections.Users(json[1]);
       var view = new App.Views.ProjectForm({ model: model, users: this.users });

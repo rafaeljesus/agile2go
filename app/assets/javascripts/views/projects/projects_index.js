@@ -1,9 +1,7 @@
 App.Views.ProjectsIndex = Support.CompositeView.extend({
   initialize: function(){
     _.bindAll(this, 'render', 'renderRow');
-    this.bindTo(this.collection, 'change', this.render);
-    this.bindTo(this.collection, 'reset', this.render);
-    this.bindTo(this.collection, 'add', this.render);
+    this.bindTo(this.collection, 'change add reset', this.render);
     new App.HandlebarsHelpers().withTimeago().withDiffDate().withTruncate();
     this.tablePartial();
   },

@@ -1,9 +1,7 @@
 App.Views.TasksIndex = Support.CompositeView.extend({
   initialize: function(options){
     _.bindAll(this, 'render', 'renderItem', 'showSyncMessage');
-    this.bindTo(this.collection, 'change', this.change);
-    this.bindTo(this.collection, 'reset', this.render);
-    this.bindTo(this.collection, 'add', this.render);
+    this.bindTo(this.collection, 'change reset add', this.change);
     new App.HandlebarsHelpers().withDiffDate().withTimeago().withTruncate();
   },
 
@@ -23,8 +21,8 @@ App.Views.TasksIndex = Support.CompositeView.extend({
   },
 
   renderItem: function(model){
-    var dependencies = { model: model, template: JST['tasks/item'], tagName: 'div', className: 'column removable' };
-    var item = new App.Views.CollectionItem(dependencies);
+    var options = { model: model, template: JST['tasks/item'], tagName: 'div', className: 'column removable' };
+    var item = new App.Views.CollectionItem(options);
     this.renderChild(item);
     this.$('#items').append(item.el);
   },
