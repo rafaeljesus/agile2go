@@ -3,7 +3,9 @@ Searchable  = (function(){
   function Searchable(){
     $('#task-search').keyup(function(e){
       if (e.which != 13) return;
-      window.location.hash = '#tasks/search/' + e.target.value;
+      var value = e.target.value;
+      if (value == '') window.location.hash = '#tasks';
+      else window.location.hash = '#tasks/search/' + value;
     });
   };
 
