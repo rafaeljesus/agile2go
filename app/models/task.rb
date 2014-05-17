@@ -26,7 +26,7 @@ class Task < ActiveRecord::Base
         if token =~ /^\d+$/
           "#{column} = #{token}"
         else
-          "#{column} like '%#{token.upcase}%'"
+          "#{column} like '%#{token}%'"
         end
       end
     end

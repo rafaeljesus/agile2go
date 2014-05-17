@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
     project_names = Project.pluck(:name)
     dashboard = { series: [] }
     dashboard[:categories] = project_names
-    %w(Todo Ongoing Test Done).each do |status|
+    %w(todo ongoing test done).each do |status|
       series = {}
       series[:name] = status
       series[:data] = count_all_tasks_with(status, project_names)
