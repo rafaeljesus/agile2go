@@ -7,8 +7,7 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @sprints = Sprint.all
-    respond_with [@task, @sprints], root: false
+    respond_with @task, root: false
   end
 
   def create

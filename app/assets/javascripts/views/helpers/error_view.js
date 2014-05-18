@@ -19,9 +19,9 @@ var ErrorView = Backbone.View.extend({
   },
 
   renderError: function(errors, attribute) {
-    var errorString = errors.join(', ');
-    var field = this.fieldFor(attribute);
-    var errorTag = $('<div>').addClass('ui red pointing above ui label').text(errorString);
+    var errorString = errors.join(', ')
+    , field = this.fieldFor(attribute)
+    , errorTag = $('<div>').addClass('ui red pointing above ui label').text(errorString);
     field.append(errorTag);
     field.addClass('error');
   },

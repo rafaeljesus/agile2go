@@ -7,8 +7,7 @@ class SprintsController < ApplicationController
   end
 
   def edit
-    @projects = Project.all
-    respond_with [@sprint, @projects], root: false
+    respond_with @sprint, root: false
   end
 
   def create

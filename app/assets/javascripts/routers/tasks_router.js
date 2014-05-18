@@ -32,10 +32,10 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
   edit: function(id){
     this.authorize();
     var self = this;
-    $.getJSON("/tasks/" + id + "/edit").then(function(json){
-      var model = new App.Models.Task(json[0]);
-      self.sprints = new App.Collections.Sprints(json[1]);
-      var view = new App.Views.TaskForm({ model: model, sprints: self.sprints });
+    $.getJSON("/tasks/" + id + "/edit").then(function(resp){
+      self.sprints.fetch({});
+      var model = new App.Models.Task(resp)
+      , view = new App.Views.TaskForm({ model: model, sprints: self.sprints });
       self.swap(view);
     });
   },
@@ -43,8 +43,8 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
   search: function(query){
     var self = this;
     $.getJSON('/tasks/search/' + query).then(function(resp){
-      var collection = new App.Collections.Tasks(resp, { parse: true });
-      var view = new App.Views.TasksIndex({ collection: collection });
+      var collection = new App.Collections.Tasks(resp, { parse: true })
+      , view = new App.Views.TasksIndex({ collection: collection });
       self.swap(view);
     });
   }

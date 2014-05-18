@@ -3,13 +3,11 @@ class ProjectsController < ApplicationController
   respond_to :json
 
   def index
-    @projects = Project.all
-    respond_with @projects
+    respond_with Project.all
   end
 
   def edit
-    @users = User.all
-    respond_with [@project, @users], root: false
+    respond_with @project, root: false
   end
 
   def create
