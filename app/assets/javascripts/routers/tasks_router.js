@@ -43,8 +43,8 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
   search: function(query){
     var self = this;
     $.getJSON('/tasks/search/' + query).then(function(resp){
-      self.collection.reset(resp, { parse: true });
-      var view = new App.Views.TasksIndex({ collection: self.collection });
+      var collection = new App.Collections.Tasks(resp, { parse: true });
+      var view = new App.Views.TasksIndex({ collection: collection });
       self.swap(view);
     });
   }
