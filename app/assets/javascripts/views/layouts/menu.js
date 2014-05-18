@@ -8,7 +8,6 @@ App.Views.Menu = Backbone.View.extend(
     this.listenTo(this.current_user, 'change:signed_in', this.render);
     this.itemsPartial();
     this.render();
-    this.dropdown();
   },
 
   template: JST['layouts/menu'],
