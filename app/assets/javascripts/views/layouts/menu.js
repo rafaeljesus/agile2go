@@ -20,17 +20,14 @@ App.Views.Menu = Backbone.View.extend(
   },
 
   onRender: function(){
-    this.dropdown();
+    setTimeout(function(){
+      this.$('.ui.dropdown').dropdown();
+      new Searchable();
+    }, 1000);
   },
 
   itemsPartial: function(){
     Handlebars.registerPartial('menu_items', this.items);
-  },
-
-  dropdown: function(){
-    setTimeout(function(){
-      this.$('.ui.dropdown').dropdown();
-    }, 1000);
   }
 
 }));

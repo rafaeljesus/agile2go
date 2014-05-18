@@ -19,7 +19,6 @@ var App = new (Backbone.View.extend({
     new App.Routers.Dashboards(options);
     new App.start();
     new App.updateActiveNav();
-    new Searchable();
   },
 
   start: function(){
