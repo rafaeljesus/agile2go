@@ -1,4 +1,5 @@
-App.Views.UserRegistrations = Support.CompositeView.extend( _.extend({}, App.Mixins.ModelObserver,
+App.Views.UserRegistrations = Support.CompositeView.extend(
+  _.extend({}, App.Mixins.ModelObserver,
   _.extend({}, App.Mixins.BaseView, {
   initialize: function(options){
     _.bindAll(this, 'render', 'saved');
