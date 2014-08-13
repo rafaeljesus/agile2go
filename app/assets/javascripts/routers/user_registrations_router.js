@@ -18,11 +18,10 @@ App.Routers.UserRegistrations = Support.SwappingRouter.extend(
 
   edit: function(id){
     this.authorize();
-    var self = this, current_user = this.current_user;
-    $.getJSON("/users/" + id + "/edit").done(function(response){
-      var model = new App.Models.UserRegistration(response, { parse: true });
-      var dependencies = { model: model, current_user: current_user };
-      var view = new App.Views.UserRegistrations(dependencies);
+    var self = this;
+    $.getJSON("/users/" + id + "/edit").then(function(resp){
+      var model = new App.Models.UserRegistration(resp, { parse: true })
+      , view = new App.Views.UserRegistrations({ model: model, current_user: self.current_user });
       self.swap(view);
     });
   },

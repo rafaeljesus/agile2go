@@ -48,7 +48,9 @@ App.Views.TaskForm = Support.CompositeView.extend(
   save: function(e){
     e.preventDefault();
     this.commit();
-    if(this.model.isValid()){ this.model.save({}, { success: this.saved }); }
+    if (this.model.isValid()) {
+      this.model.save({}, { success: this.saved });
+    }
     return false;
   },
 
@@ -57,8 +59,10 @@ App.Views.TaskForm = Support.CompositeView.extend(
     , priority = this.$('#priority').val()
     , points   = this.$('#points').val()
     , title    = this.$('#title').val()
-    , story    = this.$('#story').val();
-    this.model.set({ status: status, priority: priority, points: points, title: title, story: story });
+    , story    = this.$('#story').val()
+    , options  = { status: status, priority: priority, points: points, title: title, story: story }
+    ;
+    this.model.set(options);
     this.model.sprint = this.sprints.get({ id: this.selectedSprint() });
     this.model.assignedUsers = this.users.findByIds(this.assignedUsersIds());
   },

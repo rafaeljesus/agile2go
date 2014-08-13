@@ -29,9 +29,9 @@ App.Routers.Projects = Support.SwappingRouter.extend(
 
   edit: function(id){
     this.authorize();
+    this.users.fetch({});
     var self = this;
     $.getJSON("/projects/" + id  + "/edit").then(function(resp){
-      self.users.fetch({});
       var model = new App.Models.Project(resp)
       , view = new App.Views.ProjectForm({ model: model, users: self.users });
       self.swap(view);

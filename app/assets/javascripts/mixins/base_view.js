@@ -1,8 +1,14 @@
 App.Mixins.BaseView = {
-  render: function(){
-    var data = this.serializeData ? this.serializeData() : undefined;
+
+  render: function() {
+    var data;
+    if (this.serializeData) {
+      data = this.serializeData();
+    }
     this.$el.html(this.template(data));
-    if(this.onRender){ this.onRender(); };
+    if (this.onRender) {
+      this.onRender();
+    };
     return this;
   },
 
