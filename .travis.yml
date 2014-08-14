@@ -1,5 +1,5 @@
 language: ruby
 rvm:
-  - ruby 2.0.0p247
+  - ruby 2.0.0p247 --create
 before_script: 'bundle exec rake db:drop db:create db:migrate'
-script: 'bundle exec rspec spec/'
+script: 'bundle'
