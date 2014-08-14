@@ -1,5 +1,5 @@
-Agile2Go
-=========
+Agile2Go [![Build Status](https://travis-ci.org/rafaeljesus/agile2go.svg?branch=master)](https://travis-ci.org/rafaeljesus/agile2go.svg?branch=master)
+===============
 
 This is a WORK IN PROGRESS
 
