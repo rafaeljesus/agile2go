@@ -1,4 +1,11 @@
 language: ruby
 rvm:
   - ruby 2.0.0-p247
-  script: "bundle exec rake db:drop db:create db:migrate"
+env:
+  - DB=postgresql
+script:
+  - bundle exec rake db:drop
+  - bundle exec rake  db:create
+  - bundle exec rake db:migrate
+before_script:
+  - psql -c 'create database agile2go_test' -U postgres
