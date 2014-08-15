@@ -10,7 +10,7 @@ describe('App.Views.ProjectForm', function(){
     view = new App.Views.ProjectForm({ users: users });
     view.render();
     model = view.model;
-    e = new Event(undefined);
+    e = document.createEvent('KeyboardEvent');
   });
 
   afterEach(function(){

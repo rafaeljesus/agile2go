@@ -13,7 +13,7 @@ describe('App.Views.UserSessionsNew', function(){
     view = new App.Views.UserSessionsNew({ current_user: current_user });
     model = view.model;
     $el = $(view.render().el);
-    e = new Event(undefined);
+    e = document.createEvent('KeyboardEvent');
   });
 
   afterEach(function(){

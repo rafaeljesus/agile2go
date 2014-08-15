@@ -13,7 +13,7 @@ describe('App.Views.TaskForm', function(){
     view = new App.Views.TaskForm({ sprints: sprints });
     model = view.model;
     view.render();
-    e = new Event(undefined);
+    e = document.createEvent('KeyboardEvent');
   });
 
   afterEach(function(){

@@ -3,9 +3,11 @@ rvm:
   - ruby 2.0.0-p247
 env:
   - DB=postgresql
-script:
-  - bundle exec rake db:drop
-  - bundle exec rake  db:create
-  - bundle exec rake db:migrate
 before_script:
   - psql -c 'create database agile2go_test' -U postgres
+  - puma faye/config.ru 9292
+script:
+  - bundle exec rake db:drop
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
+  - bundle exec rake jasmine:ci

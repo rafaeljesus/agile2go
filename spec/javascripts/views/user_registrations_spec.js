@@ -13,7 +13,7 @@ describe('App.Views.UserRegistrations', function(){
       view = new App.Views.UserRegistrations({});
       model = view.model;
       $el = $(view.render().el);
-      e = new Event(undefined);
+      e = document.createEvent('KeyboardEvent');
     });
 
     afterEach(function(){
@@ -56,7 +56,7 @@ describe('App.Views.UserRegistrations', function(){
       view = new App.Views.UserRegistrations(dependencies);
       model = view.model;
       $el = $(view.render().el);
-      e = new Event(undefined);
+      e = document.createEvent('KeyboardEvent');
     });
 
     afterEach(function(){

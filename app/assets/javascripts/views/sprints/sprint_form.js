@@ -17,8 +17,8 @@ App.Views.SprintForm = Support.CompositeView.extend(
 
   events: {
     'click .submit': 'save',
-    'keyup #start-date': 'isValidStartDate',
-    'keyup #end-date': 'isValidEndDate'
+    // 'keyup #start-date': 'isValidStartDate',
+    // 'keyup #end-date': 'isValidEndDate'
   },
 
   onRender: function(){
