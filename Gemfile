@@ -26,6 +26,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-github'
 gem 'omniauth-facebook', '1.4.0'
 gem 'omniauth-google'
+gem 'coveralls', require: false
 
 group :production do
   gem 'pg'
