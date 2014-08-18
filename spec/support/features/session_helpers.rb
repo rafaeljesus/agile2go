@@ -2,13 +2,13 @@ module Features
   module SessionHelpers
 
     def sign_in
-      user = sign_in_as FactoryGirl.create :user
-      user
+      user = FactoryGirl.create(:user)
+      sign_in_as user
     end
 
     def sign_up
-      user = sign_up_as FactoryGirl.build :user
-      user
+      user = FactoryGirl.build(:user)
+      sign_up_as user
     end
 
     def sign_in_as user

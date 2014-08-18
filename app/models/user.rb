@@ -5,9 +5,10 @@ class User < ActiveRecord::Base
   has_many :projects, through: :assignments
   has_many :assigned_projects, through: :assignments, class_name: 'Project', source: :project
 
-  validates :name, presence: true, length: {
-    minimum: 4, too_short: "%{count} is the minimum allowed",
-    maximum: 100, too_large: "%{count} is the maximum allowed" }
+  validates :name, presence: true, length: { minimum: 4, maximum: 100 }
+  validates_uniqueness_of :email
+  validates_confirmation_of :password, if: :password_present?
+  validates_presence_of :password, on: :create, unless: :omniauth_user?
 
   has_secure_password validations: false
 
@@ -22,22 +23,30 @@ class User < ActiveRecord::Base
 
   def self.create_from_omniauth(auth)
     create! do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.name = auth.info.name
-      user.email = auth.info.email
+      user.provider = auth[:provider]
+      user.uid = auth[:uid]
+      user.name = auth[:info][:name]
+      user.email = auth[:info][:email]
       user.avatar = parse_image(auth)
-      user.oauth_token = auth.credentials.token
+      user.oauth_token = auth[:credentials][:token]
     end
   end
 
-  def parse_image(auth)
-    return auth.info.image unless auth.provider == 'github'
-    auth.extra.raw_info.avatar_url
+  def self.parse_image(auth)
+    return auth[:info][:image] unless auth[:provider] == 'github'
+    auth[:extra][:raw_info][:avatar_url]
   end
 
   def master?
     self.has_role? :master
+  end
+
+  def omniauth_user?
+    !uid.nil? && !provider.nil?
+  end
+
+  def password_present?
+    !password.nil?
   end
 
 end

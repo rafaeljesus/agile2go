@@ -3,24 +3,15 @@ class DashboardController < ApplicationController
 
   def index
     project_names = Project.pluck(:name)
-    dashboard = { series: [] }
-    dashboard[:categories] = project_names
+    dashboard = { series: [], categories: project_names }
     %w(todo ongoing test done).each do |status|
-      series = {}
-      series[:name] = status
-      series[:data] = count_all_tasks_with(status, project_names)
+      series = {
+        name: status,
+        data: Project.count_all_tasks_with(project_names, status)
+      }
       dashboard[:series] << series
     end
     respond_with dashboard
-  end
-
-  private
-  def count_all_tasks_with(status, project_names)
-    result = []
-    project_names.each do |name|
-      result << Array.wrap(Project.count_all_tasks_with(name, status))
-    end
-    result
   end
 
 end

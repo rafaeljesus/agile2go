@@ -1,7 +1,6 @@
 class UserSession
   include ActiveModel::Validations
   include ActiveModel::Conversion
-
   extend ActiveModel::Translation
   extend ActiveModel::Naming
 
@@ -14,26 +13,12 @@ class UserSession
 
   def authenticate(options={})
     user = User.authenticate(options[:email], options[:password])
-    if user.present?
-      store(user)
-    else
-      errors.add(:base, :invalid_login)
-      false
-    end
+    store(user)
   end
 
-  def authenticate_from_omniauth(omniauth_hash)
+  def authenticate_with_omniauth(omniauth_hash)
     user = User.from_omniauth(omniauth_hash)
-    if user.present?
-      store(user)
-    else
-      errors.add(:base, :invalid_login)
-      false
-    end
-  end
-
-  def store(user)
-    @session[:user_id] = user.id
+    store(user)
   end
 
   def persisted?
@@ -52,4 +37,16 @@ class UserSession
   def destroy
     @session[:user_id] = nil
   end
+
+  private
+
+  def store(user)
+    if user.present?
+      @session[:user_id] = user.id
+    else
+      errors.add(:base, :invalid_login)
+      false
+    end
+  end
+
 end

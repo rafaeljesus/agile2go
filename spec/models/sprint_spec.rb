@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe Sprint do
   it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:start_date) }
-  it { should validate_presence_of(:end_date) }
   it { should validate_presence_of(:project_id) }
   it { should validate_presence_of(:points) }
   it { should allow_value(Date.today).for(:start_date) }

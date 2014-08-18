@@ -3,8 +3,7 @@ module Features
 
     def create_sprint
       new_sprint = FactoryGirl.build :sprint
-      sprint = create_sprint_as new_sprint
-      sprint
+      create_sprint_as new_sprint
     end
 
     def update_sprint sprint

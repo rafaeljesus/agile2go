@@ -12,7 +12,10 @@ App.Views.SprintForm = Support.CompositeView.extend(
   template: JST['sprints/form'],
 
   serializeData: function(){
-    return { model: this.model.toJSON(), projects: this.projects.toJSON() };
+    return {
+      model: this.model.toJSON(),
+      projects: this.projects.toJSON()
+    }
   },
 
   events: {
@@ -38,7 +41,9 @@ App.Views.SprintForm = Support.CompositeView.extend(
   save: function(e){
     e.preventDefault();
     this.commit();
-    if(this.model.isValid()){ this.model.save({}, { success: this.saved }); };
+    if (this.model.isValid()) {
+      this.model.save({}, { success: this.saved });
+    };
     return false;
   },
 
@@ -52,14 +57,14 @@ App.Views.SprintForm = Support.CompositeView.extend(
     var $input = e.target.value;
   },
 
-
   commit: function(){
     var start_date = this.parseStartDate()
-    , end_date     = this.parseEndDate()
-    , name         = this.$('#name').val()
-    , daily        = this.$('#daily').val()
-    , points       = this.$('#points').val();
-    this.model.set({ name: name, start_date: start_date, end_date: end_date, daily: daily, points: points });
+    , end_date = this.parseEndDate()
+    , name = this.$('#name').val()
+    , daily = this.$('#daily').val()
+    , points = this.$('#points').val()
+    , options = { name: name, start_date: start_date, end_date: end_date, daily: daily, points: points };
+    this.model.set(options);
     this.model.project = this.projects.get({ id: this.assigneeId() });
   },
 
