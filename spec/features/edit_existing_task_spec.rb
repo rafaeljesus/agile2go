@@ -5,6 +5,6 @@ feature 'when edit existing task' do
     sign_in
     task = FactoryGirl.create :task
     update_task task
-    expect(page).to have_content I18n.t('flash.actions.create.notice', model: 'Task')
+    expect(page).to have_content 'has a new version'
   end
 end

@@ -23,23 +23,24 @@ feature 'when sync tasks' do
 
     sign_in_as @user1
     sleep 1
-    redirect_to_root_path
+    redirect_to_tasks_path
     expect(page).to have_content @task.title
 
     Capybara.session_name = @user2.name
     sign_in_as @user2
     sleep 1
-    redirect_to_root_path
+    redirect_to_tasks_path
     update_task @task
 
     Capybara.session_name = 'default'
     sign_in_as @user1
     sleep 1
-    redirect_to_root_path
+    redirect_to_tasks_path
+    sleep 1
     expect(page).to have_content 'new title'
   end
 
-  def redirect_to_root_path
+  def redirect_to_tasks_path
     page.driver.evaluate_script("window.location.hash='#tasks'")
   end
 

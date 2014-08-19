@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
   def self.count_all_tasks_with(project_names, status)
     result = []
     project_names.each do |project_name|
-      result << count('tasks.id', joins: 'INNER JOIN sprints ON sprints.project_id = projects.id INNER JOIN tasks ON tasks.sprint_id = sprints.id', conditions: "projects.name = '#{project_name}' AND tasks.status = '#{status}'" )
+      result << joins(sprints: :tasks).where(projects: { name: project_name }, tasks: { status: status }).count
     end
     result
   end

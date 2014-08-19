@@ -19,9 +19,7 @@ App.Views.SprintForm = Support.CompositeView.extend(
   },
 
   events: {
-    'click .submit': 'save',
-    // 'keyup #start-date': 'isValidStartDate',
-    // 'keyup #end-date': 'isValidEndDate'
+    'click .submit': 'save'
   },
 
   onRender: function(){
@@ -45,16 +43,6 @@ App.Views.SprintForm = Support.CompositeView.extend(
       this.model.save({}, { success: this.saved });
     };
     return false;
-  },
-
-  isValidStartDate: function(e){
-    e.preventDefault();
-    var $input = e.target.value;
-  },
-
-  isValidEndDate: function(e){
-    e.preventDefault();
-    var $input = e.target.value;
   },
 
   commit: function(){

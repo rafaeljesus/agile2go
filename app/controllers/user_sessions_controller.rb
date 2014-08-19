@@ -8,9 +8,9 @@ class UserSessionsController < ApplicationController
     respond_with @session
   end
 
-  def create_from_omniauth
+  def create_with_omniauth
     @session = UserSession.new(session)
-    @session.authenticate_from_omniauth(omniauth_hash)
+    @session.authenticate_with_omniauth(omniauth_hash)
     if cookies[:oauth_popup]
       cookies[:oauth_popup] = nil
       return render 'layouts/oauth_popup_close', layout: false
