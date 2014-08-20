@@ -5,9 +5,15 @@ env:
   - DB=postgresql
 before_script:
   - psql -c 'create database agile2go_test' -U postgres
+  before_script:
+    - "export DISPLAY=:99.0"
+    - "sh -e /etc/init.d/xvfb start"
+    - sleep 3
+    - puma faye/config.ru 9292
+    - sleep 3
 script:
   - bundle exec rake db:drop
   - bundle exec rake db:create
   - bundle exec rake db:migrate
-  - bundle exec rspec
+  - bundle exec rake
   - bundle exec rake jasmine:ci
