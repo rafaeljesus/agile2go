@@ -1,4 +1,4 @@
-Agile2Go [![Build Status](https://travis-ci.org/rafaeljesus/agile2go.svg?branch=master)](https://travis-ci.org/rafaeljesus/agile2go) [![Coverage Status](https://img.shields.io/coveralls/rafaeljesus/agile2go.svg)](https://coveralls.io/r/rafaeljesus/agile2go)
+Agile2Go [![Build Status](https://travis-ci.org/rafaeljesus/agile2go.svg?branch=master)](https://travis-ci.org/rafaeljesus/agile2go) [![Coverage Status](https://img.shields.io/coveralls/rafaeljesus/agile2go.svg)](https://coveralls.io/r/rafaeljesus/agile2go) [![Code Climate](https://codeclimate.com/github/rafaeljesus/agile2go/badges/gpa.svg)](https://codeclimate.com/github/rafaeljesus/agile2go)
 ===============
 
 This is a WORK IN PROGRESS
