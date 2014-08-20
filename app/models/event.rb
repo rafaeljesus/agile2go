@@ -16,7 +16,7 @@ class Event
   end
 
   def host
-    if ENV['RAILS_ENV'] == 'production'
+    if ENV['RAILS_ENV'] == 'production' || ENV['TRAVIS']
       'https://faye-ruby-server.herokuapp.com'
     else
       'http://localhost:9292'
