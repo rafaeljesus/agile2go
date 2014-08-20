@@ -1,4 +1,4 @@
-Searchable  = (function(){
+var Searchable  = (function(){
 
   function Searchable(){
     this.onSearch();

@@ -1,4 +1,4 @@
-App.Routers.Projects = Support.SwappingRouter.extend(
+var App.Routers.Projects = Support.SwappingRouter.extend(
   _.extend({}, App.Mixins.Permissions, {
   initialize: function(options){
     this.el = $('#container');
@@ -32,8 +32,8 @@ App.Routers.Projects = Support.SwappingRouter.extend(
     this.users.fetch({});
     var self = this;
     $.getJSON("/projects/" + id  + "/edit").then(function(resp){
-      var model = new App.Models.Project(resp)
-      , view = new App.Views.ProjectForm({ model: model, users: self.users });
+      var model = new App.Models.Project(resp);
+      var view = new App.Views.ProjectForm({ model: model, users: self.users });
       self.swap(view);
     });
   }

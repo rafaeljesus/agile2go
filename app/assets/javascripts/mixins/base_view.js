@@ -1,4 +1,4 @@
-App.Mixins.BaseView = {
+var App.Mixins.BaseView = {
 
   render: function() {
     var data;

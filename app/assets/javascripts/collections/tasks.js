@@ -1,4 +1,4 @@
-App.Collections.Tasks = Backbone.Collection.extend({
+var App.Collections.Tasks = Backbone.Collection.extend({
   url: 'tasks',
   model: App.Models.Task,
 
