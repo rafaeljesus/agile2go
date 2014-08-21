@@ -1,4 +1,4 @@
-var App.Mixins.ModelObserver = {
+App.Mixins.ModelObserver = {
   observe: function(){
     _.bindAll(this, 'onModelError', 'onModelInvalid');
     this.model.on('invalid', this.onModelInvalid);

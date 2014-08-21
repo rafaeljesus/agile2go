@@ -1,4 +1,4 @@
-var App.Collections.UserRegistrations = Backbone.Collection.extend({
+App.Collections.UserRegistrations = Backbone.Collection.extend({
   url: '/users',
   model: App.Models.UserRegistration
 });

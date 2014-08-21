@@ -1,4 +1,4 @@
-var App.Routers.Projects = Support.SwappingRouter.extend(
+App.Routers.Projects = Support.SwappingRouter.extend(
   _.extend({}, App.Mixins.Permissions, {
   initialize: function(options){
     this.el = $('#container');

@@ -1,4 +1,4 @@
-var App.Mixins.Modal = {
+App.Mixins.Modal = {
 
   events: {
     'click .confirm' : 'showModal',

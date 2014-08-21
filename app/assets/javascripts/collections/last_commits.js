@@ -1,4 +1,4 @@
-var App.Collections.LastCommits = Backbone.Collection.extend({
+App.Collections.LastCommits = Backbone.Collection.extend({
   url: 'https://api.github.com/repos/rafaeljesus/agile2go/commits',
   model: App.Models.LastCommit,
 

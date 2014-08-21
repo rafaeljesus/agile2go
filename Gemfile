@@ -26,7 +26,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-github'
 gem 'omniauth-facebook', '1.4.0'
 gem 'omniauth-google'
-gem 'coveralls', require: false
+gem "codeclimate-test-reporter", group: :test, require: nil
 
 group :production do
   gem 'pg'
@@ -40,7 +40,8 @@ end
 
 group :development, :test do
   gem 'capybara', '>= 2.0.2'
-  gem 'capybara-webkit'
+  # gem 'capybara-webkit'
+  gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'
