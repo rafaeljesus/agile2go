@@ -3,9 +3,10 @@ rvm:
   - ruby 2.0.0-p247
 env:
   - DB=postgresql
-  - CODECLIMATE_REPO_TOKEN=48356d3a75c8091d36e9ceeb7f92f39ee4b4ba3057f098a06362254cd1347c4c
 before_script:
   - psql -c 'create database agile2go_test' -U postgres
+  - "export CODECLIMATE_REPO_TOKEN=48356d3a75c8091d36e9ceeb7f92f39ee4b4ba3057f098a06362254cd1347c4c"
+  - "export FAYE_REMOTE=http://faye-ruby-server.herokuapp.com"
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3

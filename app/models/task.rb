@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  include BackboneSync::Faye::Observer
+  include Sync::Faye::Observer
   COLUMNS = %w(title status story)
 
   after_update :publish_update

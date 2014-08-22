@@ -47,7 +47,8 @@ feature 'when sync tasks' do
   def connect_to_faye
     begin
       Timeout.timeout(1) do
-        uri = URI.parse('http://localhost:9292')
+        host = Sync::Faye.to_host
+        uri = URI.parse(host)
         TCPSocket.new(uri.host, uri.port).close
       end
     rescue Errno::ECONNREFUSED, Errno::EHOSTUNREACH, Timeout::ERROR

@@ -12,15 +12,8 @@ class Event
 
   private
   def uri
+    host = Sync::Faye.to_host
     URI.parse("#{host}/faye")
-  end
-
-  def host
-    if ENV['RAILS_ENV'] == 'production' || ENV['TRAVIS']
-      'https://faye-ruby-server.herokuapp.com'
-    else
-      'http://localhost:9292'
-    end
   end
 
   def message
