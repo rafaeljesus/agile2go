@@ -21,7 +21,4 @@ feature 'when create a new task' do
     expect(page).to have_content "CAN'T BE BLANK"
   end
 
-  scenario 'with sprint_id blank', js: true do
-  end
-
 end

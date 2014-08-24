@@ -40,7 +40,6 @@ end
 
 group :development, :test do
   gem 'capybara', '>= 2.0.2'
-  # gem 'capybara-webkit'
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'factory_girl_rails', '~> 4.0'
