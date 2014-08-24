@@ -45,13 +45,13 @@ Development
 * Template Engine: Handlebars
 * Testing Framework: RSpec, Capybara, Factory Girl, Jasmine
 * Front-end Framework: Semantic-ui (SASS), Backbone.js
-* Authorization: CanCan
 * Database: PostgresSQL
 * Server: Puma with 2 worker in cluster mode
-* Editor: VI - Github theme
+* Editor: VIM molokay theme
 
 Tests
 ------
+* bundle exec rake
 * bundle exec rake jasmine
 
 Contribute
