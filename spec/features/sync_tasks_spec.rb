@@ -46,7 +46,7 @@ feature 'when sync tasks' do
 
   def connect_to_faye
     begin
-      Timeout.timeout(1) do
+      Timeout.timeout(4) do
         host = Sync::Faye.to_host
         uri = URI.parse(host)
         TCPSocket.new(uri.host, uri.port).close
