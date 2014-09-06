@@ -29,7 +29,8 @@ class UserSessionsController < ApplicationController
   end
 
   def user_json
-    { signed_in: true,
+    {
+      signed_in: true,
       user_id: current_user.id,
       provider: current_user.provider,
       avatar: current_user.avatar
