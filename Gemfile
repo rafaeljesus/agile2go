@@ -27,6 +27,7 @@ gem 'omniauth-github'
 gem 'omniauth-facebook', '1.4.0'
 gem 'omniauth-google'
 gem "codeclimate-test-reporter", group: :test, require: nil
+gem 'virtus'
 
 group :production do
   gem 'pg'

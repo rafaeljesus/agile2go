@@ -12,7 +12,9 @@ App.Models.Project = Backbone.Model.extend({
   },
 
   assignments_attributes: function(){
-    return this.assignedUsers.map(function(user) { return { user_id: user.id } });
+    return this.assignedUsers.map(function(user) {
+      return { user_id: user.id }
+    });
   },
 
   toJSON: function() {
@@ -23,16 +25,16 @@ App.Models.Project = Backbone.Model.extend({
 
   validate: function(attrs, options){
     var errors;
-    if(!attrs.name){
+    if (!attrs.name) {
       (errors = errors || {}).name = ["can't be blank"];
     };
-    if(!attrs.company){
+    if (!attrs.company) {
       (errors = errors || {}).company= ["can't be blank"];
     };
-    if(!attrs.description){
+    if (!attrs.description) {
       (errors = errors || {}).description= ["can't be blank"];
     };
-    if(errors) return errors;
+    if (errors) return errors;
   }
 
 });
