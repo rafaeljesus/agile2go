@@ -23,11 +23,11 @@ describe('App.Views.SprintForm', function(){
     view.$('select')[0].options = [];
   });
 
-  var commit = function(){
+  var commit = function() {
     view.$('#name').val('SprintFake');
     view.$('#daily').val('10:00');
     view.$('#points').val(300);
-    view.$('#start-date').val('03/01/2014');
+    view.$('#start-date').val('03/03/2014');
     view.$('#end-date').val('03/10/2014');
     view.$('select')[0].options[0] = new Option(projects.at(0).get('name'), projects.at(0).get('id'));
     view.$('select').val(projects.at(0).get('id')).trigger('change');

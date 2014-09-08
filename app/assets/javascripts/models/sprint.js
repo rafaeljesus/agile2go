@@ -22,7 +22,7 @@ App.Models.Sprint = Backbone.Model.extend({
   },
 
   parse: function(model){
-    if(!model) return;
+    if (!model) return;
     model.start_date = moment(model.start_date).format('DD/MM/YYYY');
     model.end_date = moment(model.end_date).format('DD/MM/YYYY');
     return model;
@@ -30,22 +30,22 @@ App.Models.Sprint = Backbone.Model.extend({
 
   validate: function(attrs, options){
     var errors;
-    if(!attrs.name){
+    if (!attrs.name) {
       (errors = errors || {}).name = ["can't be blank"];
     };
-    if(!attrs.start_date || !moment(attrs.start_date).isValid()){
+    if (!attrs.start_date || !moment(attrs.start_date).isValid()) {
       (errors = errors || {}).start_date = ["can't be blank"];
     };
-    if(!attrs.end_date || !moment(attrs.end_date).isValid()){
+    if (!attrs.end_date || !moment(attrs.end_date).isValid()) {
       (errors = errors || {}).end_date = ["can't be blank"];
     };
-    if(attrs.daily && moment.duration(attrs.daily).hours() <= 0){
+    if (attrs.daily && moment.duration(attrs.daily).hours() <= 0) {
       (errors = errors || {}).daily = ["invalid hour"];
     };
-    if(isNaN(attrs.points)){
+    if (isNaN(attrs.points)) {
       (errors = errors || {}).points = ["must be a number"];
     };
-    if(errors) return errors;
+    if (errors) return errors;
   }
 
 });
