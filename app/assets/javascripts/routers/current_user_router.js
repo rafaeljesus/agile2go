@@ -1,5 +1,6 @@
 App.Routers.CurrentUser = Backbone.Router.extend({
-  initialize: function(options){
+
+  initialize: function(options) {
     _.bindAll(this, 'destroy');
     this.model = options.model;
   },
@@ -8,11 +9,11 @@ App.Routers.CurrentUser = Backbone.Router.extend({
     'user_sessions/destroy': 'destroy'
   },
 
-  destroy: function(){
+  destroy: function() {
     this.model.destroy({ succsess: this.destroyed });
   },
 
-  destroyed: function(model, response, options){
+  destroyed: function(model, response, options) {
     var message = 'You successfully sign out';
     new FlashMessages({ message: message }).success();
   },

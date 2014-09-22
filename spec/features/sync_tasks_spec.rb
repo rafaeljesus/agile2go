@@ -25,15 +25,12 @@ feature 'when sync tasks' do
     sleep 1
     redirect_to_tasks_path
     expect(page).to have_content @task.title
-
     Capybara.session_name = @user2.name
     sign_in_as @user2
     sleep 1
     redirect_to_tasks_path
     update_task @task
-
     Capybara.session_name = 'default'
-    sign_in_as @user1
     sleep 1
     redirect_to_tasks_path
     sleep 1

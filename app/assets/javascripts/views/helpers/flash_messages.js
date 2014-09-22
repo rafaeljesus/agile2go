@@ -1,23 +1,23 @@
 var FlashMessages = Backbone.View.extend({
   el: '#messages',
 
-  initialize: function(options){
+  initialize: function(options) {
     this.message = options.message;
   },
 
   template: JST['messages'],
 
-  info: function(){
+  info: function() {
     var options = { type: 'Info', color: 'green', message: this.message };
     this.render(options);
   },
 
-  success: function(){
+  success: function() {
     var options = { type: 'Success', color: 'blue', message: this.message };
     this.render(options);
   },
 
-  error: function(){
+  error: function() {
     var options = { type: 'Error', color: 'red', message: this.message };
     this.render(options);
   },
@@ -27,7 +27,7 @@ var FlashMessages = Backbone.View.extend({
     this.empty();
   },
 
-  empty: function(){
+  empty: function() {
     var self = this;
     setTimeout(function(){
       self.$el.empty();

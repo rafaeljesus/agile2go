@@ -1,8 +1,5 @@
 class ProjectSave
   include Virtus.model
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-  extend ActiveModel::Naming
 
   attribute :name, String
   attribute :company, String
@@ -21,14 +18,14 @@ class ProjectSave
 
   private
   def persist!
-    # user = User.find(id: :user_id)
-    # project = Project.create! @params
+    user = User.find(id: :user_id)
+    project = Project.create! @params
     # project.assignments.create !
     # Assignment.create! project: project, user: user
   end
 
   def project_name_is_uniq
-    unless Project.where(name: :name).count == 0
+    unless Project.exists?(:name)
       errors.add(:base, 'Project name is taken')
     end
   end

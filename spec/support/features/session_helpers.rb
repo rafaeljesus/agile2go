@@ -11,6 +11,11 @@ module Features
       sign_up_as user
     end
 
+    def logout
+      visit '#sessions/destroy'
+      sleep 1
+    end
+
     def sign_in_as user
       visit '#sessions/new'
       fill_in 'email', with: user.email

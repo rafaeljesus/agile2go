@@ -1,49 +1,51 @@
 App.Models.Task = Backbone.Model.extend({
   urlRoot: '/tasks',
 
-  initialize: function(){
+  initialize: function() {
     this.on('change:sprint', this.parseSprint);
     this.on('change:assignedUsers', this.parseUsers);
     this.parseSprint();
     this.parseUsers();
   },
 
-  parseSprint: function(){
+  parseSprint: function() {
     var sprintAttr = this.get('sprint');
     this.sprint = new App.Models.Sprint(sprintAttr);
   },
 
-  parseUsers: function(){
+  parseUsers: function() {
     var assignedAttr = this.get('assignedUsers');
     this.assignedUsers = new App.Collections.Users(assignedAttr);
   },
 
-  allUsers: function(){
+  allUsers: function() {
     var allUsers = this.sprint.project.assignedUsers;
-    allUsers.fetch({});
+    allUsers.fetch();
     return allUsers;
   },
 
-  user_assignments_attributes: function(){
-    return this.assignedUsers.map(function(user) { return { user_id: user.id } });
+  user_assignments_attributes: function() {
+    return this.assignedUsers.map(function(user) {
+      return { user_id: user.id }
+    });
   },
 
-  toJSON: function(){
+  toJSON: function() {
     var json = _.clone(this.attributes);
     json.sprint_id = (this.sprint || {}).id || {};
     json.user_assignments_attributes = this.user_assignments_attributes();
     return json;
   },
 
-  validate: function(attrs, options){
+  validate: function(attrs, options) {
     var errors;
-    if(!attrs.title){
+    if (!attrs.title) {
       (errors = errors || {}).title = ["can't be blank"];
     };
-    if(!attrs.story){
+    if (!attrs.story) {
       (errors = errors || {}).story = ["can't be blank"];
     };
-    if(errors) return errors;
+    if (errors) return errors;
   }
 
 });

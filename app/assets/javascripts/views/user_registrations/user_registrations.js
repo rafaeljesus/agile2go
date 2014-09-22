@@ -1,16 +1,17 @@
 App.Views.UserRegistrations = Support.CompositeView.extend(
   _.extend({}, App.Mixins.ModelObserver,
   _.extend({}, App.Mixins.BaseView, {
-  initialize: function(options){
+
+  template: JST['user_registrations/new'],
+
+  initialize: function(options) {
     _.bindAll(this, 'render', 'saved');
     this.current_user = options.current_user;
     this.model = options.model || this.newModel();
     this.observe();
   },
 
-  template: JST['user_registrations/new'],
-
-  serializeData: function(){
+  serializeData: function() {
     return { current_user: this.model.toJSON() }
   },
 
@@ -18,21 +19,20 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
     'submit': 'save'
   },
 
-  onRender: function(){
-    if (this.model.get('id')) {
-      this.$('#name').attr('disabled', 'disabled');
-      this.$('#email').attr('disabled', 'disabled');
-    }
+  onRender: function() {
+    if (!this.model.get('id')) return;
+    this.$('#name').attr('disabled', 'disabled');
+    this.$('#email').attr('disabled', 'disabled');
   },
 
-  save: function(e){
+  save: function(e) {
     e.preventDefault();
     this.commit();
-    if(this.model.isValid()){ this.model.save({}, { success: this.saved }); };
-    return false;
+    if (!this.model.isValid()) return false;
+    this.model.save({}, { success: this.saved });
   },
 
-  commit: function(){
+  commit: function() {
     var name    = this.$("#name").val()
     , email     = this.$("#email").val()
     , password  = this.$("#password").val()
@@ -49,8 +49,8 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
      this.successMessage(message);
   },
 
-  newModel: function(){
-    return new App.Models.UserRegistration({});
+  newModel: function() {
+    return new App.Models.UserRegistration();
   }
 
 })));

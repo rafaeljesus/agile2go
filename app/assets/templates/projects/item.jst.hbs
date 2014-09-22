@@ -1,12 +1,20 @@
-<td>{{ name }}</td>
-<td>{{ company }}</td>
-<td><span>{{ truncate description 80 }}</span></td>
-<td>{{ timeago created_at }}</td>
-<td>
-  <a class="edit-button" href="#projects/{{ id }}/edit">
-    <i class="edit large icon"></i>
-  </a>
-  <a id="{{ id }}" class="edit-button" href="javascript:void(0);">
-    <i class="icon large remove confirm"></i>
-  </a>
-</td>
+<div class="ui feed segment piled">
+  <div class="event">
+    <div class="label"></div>
+    <div class="content">
+      <div class="date">
+        {{timeago created_at}}
+      </div>
+      <div class="summary">
+        <a href="#projects/{{id}}/edit" style="color: black;"><h3>{{name}}</h3></a>
+      </div>
+      <div class="extra text">
+        {{truncate description}}
+      </div>
+      <a id="{{id}}" class="edit-button" href="javascript:void(0);">
+        <i class="icon large remove confirm"></i>
+      </a>
+    </div>
+  </div>
+</div>
+<br>

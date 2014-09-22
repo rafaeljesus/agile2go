@@ -13,27 +13,4 @@ describe Project do
   it { should have_many(:tasks).through(:sprints) }
   it { should accept_nested_attributes_for(:assignments) }
 
-  it 'should count all tasks of a given project and status' do
-    task = FactoryGirl.create :task
-    qty = Project.count_all_tasks_with([task.sprint.project.name], task.status)
-    expect(qty).to eq([1])
-  end
-
-  it 'should count all ongoing tasks of a given project' do
-    task = FactoryGirl.create :task, status: 'ongoing'
-    qty = Project.count_all_tasks_with([task.sprint.project.name], task.status)
-    expect(qty).to eq([1])
-  end
-
-  it 'should count all test tasks of a given project' do
-    task = FactoryGirl.create :task, status: 'test'
-    qty = Project.count_all_tasks_with([task.sprint.project.name], task.status)
-    expect(qty).to eq([1])
-  end
-
-  it 'should count all done tasks of a given project' do
-    task = FactoryGirl.create :task, status: 'done'
-    qty = Project.count_all_tasks_with([task.sprint.project.name], task.status)
-    expect(qty).to eq([1])
-  end
 end

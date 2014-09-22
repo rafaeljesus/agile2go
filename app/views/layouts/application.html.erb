@@ -15,24 +15,30 @@
   <br>
   <div id="messages"></div>
   <br>
-  <div id="container"></div>
+  <div class="ui one grid page">
+    <div class="column">
+      <div id="container"></div>
+    </div>
+  </div>
   <div id="fb-root"></div>
-  <%= javascript_include_tag "#{fayejs_path}/faye.js" %>
   <%= javascript_include_tag "application" %>
-  <script>
-    (function(d, s, id){
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/all.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
+  <%- unless test? %>
+    <script>
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+  <%- end %>
   <script type="text/javascript">
     I18n.defaultLocale = "<%= I18n.default_locale %>";
     I18n.locale = "<%= I18n.locale %>";
     fayejsPath = "<%= fayejs_path %>";
   </script>
+  <%= javascript_include_tag "#{fayejs_path}/faye.js" %>
   <%= yield %>
   <%= render 'layouts/footer' %>
 </body>

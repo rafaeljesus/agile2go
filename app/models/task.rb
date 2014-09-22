@@ -1,6 +1,7 @@
 class Task < ActiveRecord::Base
   include Sync::Faye::Observer
   COLUMNS = %w(title status story)
+  STATUSES = %w(todo ongoing test done)
 
   after_update :publish_update
   after_create :publish_create
@@ -15,6 +16,7 @@ class Task < ActiveRecord::Base
 
   validates :title, presence: true
   validates :story, presence: true
+  validates :status, inclusion: { in: STATUSES }
 
   scope :ordered, -> { order(:created_at) }
 

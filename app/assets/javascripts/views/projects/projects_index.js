@@ -1,30 +1,33 @@
 App.Views.ProjectsIndex = Support.CompositeView.extend({
-  initialize: function(){
-    _.bindAll(this, 'render', 'renderRow');
-    this.bindTo(this.collection, 'change add reset', this.render);
-    new App.HandlebarsHelpers().withTimeago().withDiffDate().withTruncate();
-    this.tablePartial();
-  },
 
   template: JST['projects/index'],
+  itemTemplate: JST['projects/item'],
 
-  partial: JST['projects/table'],
+  initialize: function() {
+    _.bindAll(this, 'render', 'renderRow');
+    this.bindTo(this.collection, 'change add reset', this.render);
+    this.registerHelpers();
+  },
 
-  render: function(){
+  render: function() {
     this.$el.html(this.template());
-    this.$('tbody').empty();
+    this.$('#index').empty();
     this.collection.each(this.renderRow);
     return this;
   },
 
-  renderRow: function(model){
-    var row = new App.Views.CollectionItem({ model: model, template: JST['projects/item'], tagName: 'tr' });
+  renderRow: function(model) {
+    var options = { model: model, template: this.itemTemplate };
+    var row = new App.Views.CollectionItem(options);
     this.renderChild(row);
-    this.$('tbody').append(row.el);
+    this.$('#index').append(row.el);
   },
 
-  tablePartial: function(){
-    Handlebars.registerPartial('project_table', this.partial);
+  registerHelpers: function() {
+    new App.HandlebarsHelpers()
+      .withTimeago()
+      .withDiffDate()
+      .withTruncate();
   }
 
 });

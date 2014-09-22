@@ -1,7 +1,7 @@
 App.Models.CurrentUser = Backbone.Model.extend({
   urlRoot: 'current_user',
 
-  initialize: function(){
+  initialize: function() {
     this.on('change', this.setSession, this);
     this.attributes = this.getSession();
     this._fetch();
@@ -11,41 +11,42 @@ App.Models.CurrentUser = Backbone.Model.extend({
     signed_in: false
   },
 
-  setSession: function(){
+  setSession: function() {
     sessionStorage.setItem('currentUser', JSON.stringify(this.toJSON()));
   },
 
-  getSession: function(){
+  getSession: function() {
     return JSON.parse(sessionStorage.getItem('currentUser')) || {};
   },
 
-  removeSession: function(){
+  removeSession: function() {
     sessionStorage.removeItem('currentUser');
   },
 
-  signedIn: function(){
+  signedIn: function() {
     return this.get('signed_in');
   },
 
-  signedInWithFacebook: function(){
-    if(!this.provider) return false;
-    if(this.provider() == 'facebook') return true;
+  signedInWithFacebook: function() {
+    if (!this.provider) return false;
+    if (this.provider() == 'facebook') return true;
   },
 
-  provider: function(){
+  provider: function() {
     return this.get('provider');
   },
 
-  name: function(){
+  name: function() {
     return this.get('name');
   },
 
-  email: function(){
+  email: function() {
    return this.get('email');
   },
 
-  _fetch: function(){
-    if(!this.signedIn()) this.fetch();
+  _fetch: function() {
+    if (this.signedIn()) return;
+    this.fetch();
   }
 
 });

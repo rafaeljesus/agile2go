@@ -1,6 +1,8 @@
-App.Routers.UserSessions = Support.SwappingRouter.extend({
-  initialize: function(options){
-    this.el = $('#container');
+App.Routers.UserSessions = Support.SwappingRouter.extend(
+  _.extend({}, App.Mixins.UserSignedInCheck, {
+
+  initialize: function(options) {
+    this.el = document.querySelector('#container');
     this.current_user = options.current_user;
   },
 
@@ -9,15 +11,16 @@ App.Routers.UserSessions = Support.SwappingRouter.extend({
     'sessions/destroy': 'destroy'
   },
 
-  new: function(){
+  new: function() {
+    this.checkUserSignedIn();
     var view = new App.Views.UserSessionsNew({ current_user: this.current_user });
     this.swap(view);
   },
 
-  destroy: function(){
+  destroy: function() {
     var view = new App.Views.UserSessionsDestroy({ current_user: this.current_user });
     view.destroy();
     this.swap(view);
   }
 
-});
+}));

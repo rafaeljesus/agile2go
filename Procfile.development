@@ -1,0 +1,2 @@
+web: rails s
+faye: puma faye/config.ru 9292

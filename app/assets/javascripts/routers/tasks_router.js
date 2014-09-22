@@ -1,11 +1,12 @@
 App.Routers.Tasks = Support.SwappingRouter.extend(
   _.extend({}, App.Mixins.Permissions, {
-  initialize: function(options){
-    this.el = $('#container');
+
+  initialize: function(options) {
+    this.el = document.querySelector('#container');
     this.current_user = options.current_user;
-    this.collection = new App.Collections.Tasks({});
-    this.sprints = new App.Collections.Sprints({});
-    new BackboneSync.FayeSubscriber(this.collection, { channel: 'tasks' });
+    this.collection = new App.Collections.Tasks();
+    this.sprints = new App.Collections.Sprints();
+    this.subscribe();
   },
 
   routes: {
@@ -15,38 +16,43 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
     'tasks/search/:query': 'search'
   },
 
-  index: function(){
+  index: function() {
     this.authorize();
-    this.collection.fetch({});
+    this.collection.fetch();
     var view = new App.Views.TasksIndex({ collection: this.collection });
     this.swap(view);
+    this.subscribe();
   },
 
-  new: function(){
+  new: function() {
     this.authorize();
-    this.sprints.fetch({});
+    this.sprints.fetch();
     var view = new App.Views.TaskForm({ sprints: this.sprints });
     this.swap(view);
   },
 
-  edit: function(id){
+  edit: function(id) {
     this.authorize();
+    this.sprints.fetch();
     var self = this;
-    $.getJSON("/tasks/" + id + "/edit").then(function(resp){
-      self.sprints.fetch({});
-      var model = new App.Models.Task(resp)
-      , view = new App.Views.TaskForm({ model: model, sprints: self.sprints });
+    $.getJSON("/tasks/" + id + "/edit").then(function(resp) {
+      var model = new App.Models.Task(resp);
+      var view = new App.Views.TaskForm({ model: model, sprints: self.sprints });
       self.swap(view);
     });
   },
 
-  search: function(query){
+  search: function(query) {
     var self = this;
-    $.getJSON('/tasks/search/' + query).then(function(resp){
-      var collection = new App.Collections.Tasks(resp, { parse: true })
-      , view = new App.Views.TasksIndex({ collection: collection });
+    $.getJSON('/tasks/search/' + query).then(function(resp) {
+      var collection = new App.Collections.Tasks(resp, { parse: true });
+      var view = new App.Views.TasksIndex({ collection: collection });
       self.swap(view);
     });
+  },
+
+  subscribe: function() {
+    new BackboneSync.FayeSubscriber(this.collection, { channel: 'tasks' });
   }
 
 }));

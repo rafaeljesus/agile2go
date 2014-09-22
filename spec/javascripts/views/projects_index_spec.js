@@ -13,9 +13,10 @@ describe('App.Views.ProjectsIndex', function(){
   });
 
   it('should renders a collections of projects', function(){
-    expect($el).toHaveText(/nameFake/);
-    expect($el).toHaveText(/companyFake/);
-    expect($el).toHaveText(/descriptionFake/);
+    var html = $el.find('.event');
+    expect(html.toHaveText(/nameFake/);
+    expect(html).toHaveText(/companyFake/);
+    expect(html).toHaveText(/descriptionFake/);
   });
 
   it('should call renderRow method', function(){

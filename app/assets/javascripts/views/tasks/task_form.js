@@ -1,7 +1,8 @@
 App.Views.TaskForm = Support.CompositeView.extend(
   _.extend({}, App.Mixins.ModelObserver,
   _.extend({}, App.Mixins.BaseView, {
-  initialize: function(options){
+
+  initialize: function(options) {
     _.bindAll(this, 'render', 'saved');
     this.model = options.model || this.newModel();
     this.sprints = options.sprints;
@@ -14,7 +15,7 @@ App.Views.TaskForm = Support.CompositeView.extend(
 
   template: JST['tasks/form'],
 
-  serializeData: function(){
+  serializeData: function() {
     return {
       model: this.model.toJSON(),
       sprints: this.sprints.toJSON(),
@@ -26,26 +27,26 @@ App.Views.TaskForm = Support.CompositeView.extend(
     'click .submit': 'save'
   },
 
-  onRender: function(){
+  onRender: function() {
     this.renderAssignedSprint();
     this.renderAssignedUsers();
     this.thirdComponents();
     return this;
   },
 
-  newModel: function(){
+  newModel: function() {
     return new App.Models.Task({});
   },
 
-  renderAssignedSprint: function(){
+  renderAssignedSprint: function() {
     this.$('#sprint').val(this.model.sprint.id).trigger('change');
   },
 
-  renderAssignedUsers: function(){
+  renderAssignedUsers: function() {
     this.$('#users').val(this.model.assignedUsers.ids());
   },
 
-  save: function(e){
+  save: function(e) {
     e.preventDefault();
     this.commit();
     if (this.model.isValid()) {
@@ -54,7 +55,7 @@ App.Views.TaskForm = Support.CompositeView.extend(
     return false;
   },
 
-  commit: function(){
+  commit: function() {
     var status = this.$('#status').val()
     , priority = this.$('#priority').val()
     , points   = this.$('#points').val()
@@ -67,15 +68,15 @@ App.Views.TaskForm = Support.CompositeView.extend(
     this.model.assignedUsers = this.users.findByIds(this.assignedUsersIds());
   },
 
-  selectedSprint: function(){
+  selectedSprint: function() {
     return _.first(this.$('#sprint').find('option:selected').map(this.setOptionValue));
   },
 
-  assignedUsersIds : function(){
+  assignedUsersIds : function() {
     return this.$('#users').find('option:selected').map(this.setOptionValue);
   },
 
-  setOptionValue: function(n, select){
+  setOptionValue: function(n, select) {
     return $(select).val();
   },
 
@@ -85,7 +86,7 @@ App.Views.TaskForm = Support.CompositeView.extend(
      this.successMessage(message);
   },
 
-  thirdComponents: function(){
+  thirdComponents: function() {
     this.$('#sprint').select2();
     this.$('#users').select2();
     this.$('.ui.dropdown').dropdown();
