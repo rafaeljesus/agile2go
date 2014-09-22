@@ -24,6 +24,11 @@
   <%= render 'layouts/footer' %>
 
   <%= javascript_include_tag "#{fayejs_path}/faye.js" %>
+  <script type="text/javascript">
+    I18n.defaultLocale = "<%= I18n.default_locale %>";
+    I18n.locale = "<%= I18n.locale %>";
+    fayejsPath = "<%= fayejs_path %>";
+  </script>
   <%= javascript_include_tag "application" %>
   <%- unless test? %>
     <script>
@@ -36,11 +41,6 @@
       }(document, 'script', 'facebook-jssdk'));
     </script>
   <%- end %>
-  <script type="text/javascript">
-    I18n.defaultLocale = "<%= I18n.default_locale %>";
-    I18n.locale = "<%= I18n.locale %>";
-    fayejsPath = "<%= fayejs_path %>";
-  </script>
   <%= yield %>
 </body>
 </html>
