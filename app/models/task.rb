@@ -1,6 +1,5 @@
 class Task < ActiveRecord::Base
   include Sync::Faye::Observer
-  COLUMNS = %w(title status story)
   STATUSES = %w(todo ongoing test done)
 
   after_update :publish_update
@@ -19,21 +18,5 @@ class Task < ActiveRecord::Base
   validates :status, inclusion: { in: STATUSES }
 
   scope :ordered, -> { order(:created_at) }
-
-  def self.search(query)
-    return ordered unless query
-    tokens = query.split(/\s+/)
-    conditions = tokens.collect do |token|
-      COLUMNS.collect do |column|
-        if token =~ /^\d+$/
-          "#{column} = #{token}"
-        else
-          "#{column} like '%#{token}%'"
-        end
-      end
-    end
-    conditions = conditions.flatten.join(" or ")
-    where(conditions)
-  end
 
 end

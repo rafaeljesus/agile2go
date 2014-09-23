@@ -1,6 +1,6 @@
 class DashboardQuery
 
-  def initialize(relation = Project.all.load)
+  def initialize(relation = Project.all)
     @relation = relation
   end
 

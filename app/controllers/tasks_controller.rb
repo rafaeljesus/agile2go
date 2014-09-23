@@ -27,7 +27,7 @@ class TasksController < ApplicationController
   end
 
   def search
-    respond_with Task.search(params[:query])
+    respond_with TaskSearch.search(params[:query])
   end
 
   private
