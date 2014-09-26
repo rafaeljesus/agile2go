@@ -1,6 +1,9 @@
 App.Views.Menu = Backbone.View.extend(
   _.extend({}, App.Mixins.BaseView, {
+
   el: '#menu',
+  template: JST['layouts/menu'],
+  items: JST['layouts/menu_items'],
 
   initialize: function(options){
     _.bindAll(this, 'render');
@@ -9,10 +12,6 @@ App.Views.Menu = Backbone.View.extend(
     this.itemsPartial();
     this.render();
   },
-
-  template: JST['layouts/menu'],
-
-  items: JST['layouts/menu_items'],
 
   serializeData: function(){
     return { current_user: this.current_user.toJSON() };

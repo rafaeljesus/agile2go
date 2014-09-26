@@ -49,14 +49,14 @@ App.Views.SprintForm = Support.CompositeView.extend(
   commit: function() {
     var name = this.$('#name').val()
     , daily = this.$('#daily').val()
-    , points = this.$('#points').val()
-    , options = {
-        name: name,
-        start_date: this.parseStartDate(),
-        end_date: this.parseEndDate(),
-        daily: daily,
-        points: points
-      };
+    , points = this.$('#points').val();
+    var options = {
+      name: name,
+      start_date: this.parseStartDate(),
+      end_date: this.parseEndDate(),
+      daily: daily,
+      points: points
+    };
     this.model.set(options);
     this.model.project = this.projects.get({ id: this.assigneeId() });
   },

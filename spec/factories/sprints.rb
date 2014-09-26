@@ -3,8 +3,8 @@ FactoryGirl.define do
     name 'SprintFake'
     daily '10:00'
     points 300
-    start_date '2014/02/09'
-    end_date '2014/02/09'
+    start_date Date.new(2014, 01, 01).to_s
+    end_date Date.new(2014, 01, 01).to_s
     association :project
   end
 end

@@ -20,7 +20,6 @@
       <div id="container"></div>
     </div>
   </div>
-  <div id="fb-root"></div>
   <%= render 'layouts/footer' %>
 
   <%= javascript_include_tag "#{fayejs_path}/faye.js" %>
@@ -30,6 +29,7 @@
     I18n.locale = "<%= I18n.locale %>";
     fayejsPath = "<%= fayejs_path %>";
   </script>
+  <div id="fb-root"></div>
   <%- unless test? %>
     <script>
       (function(d, s, id){

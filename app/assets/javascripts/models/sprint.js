@@ -1,34 +1,34 @@
 App.Models.Sprint = Backbone.Model.extend({
   urlRoot: '/sprints',
 
-  initialize: function(){
+  initialize: function() {
     this.on('change:project', this.parseProject);
     this.parseProject();
   },
 
-  parseProject: function(){
+  parseProject: function() {
     var projectAttr = this.get('project');
     this.project = new App.Models.Project(projectAttr);
   },
 
-  assignedUsers: function(){
+  assignedUsers: function() {
     return this.project.assignedUsers;
   },
 
-  toJSON: function(){
+  toJSON: function() {
     var json = _.clone(this.attributes);
     json.project_id = (this.project || {}).id || undefined;
     return json;
   },
 
-  parse: function(model){
+  parse: function(model) {
     if (!model) return;
     model.start_date = moment(model.start_date).format('DD/MM/YYYY');
     model.end_date = moment(model.end_date).format('DD/MM/YYYY');
     return model;
   },
 
-  validate: function(attrs, options){
+  validate: function(attrs, options) {
     var errors;
     if (!attrs.name) {
       (errors = errors || {}).name = ["can't be blank"];

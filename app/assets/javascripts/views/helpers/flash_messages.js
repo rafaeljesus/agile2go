@@ -31,7 +31,7 @@ var FlashMessages = Backbone.View.extend({
     var self = this;
     setTimeout(function(){
       self.$el.empty();
-    }, 10000);
+    }, 5000);
   }
 
 });

@@ -13,12 +13,12 @@ class SprintsController < ApplicationController
   def create
     @sprint = Sprint.new sprint_params
     @sprint.save
-    respond_with @sprint
+    respond_with @sprint, root: false
   end
 
   def update
     @sprint.update sprint_params
-    respond_with @sprint
+    respond_with @sprint, root: false
   end
 
   def destroy

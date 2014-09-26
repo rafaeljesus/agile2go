@@ -6,13 +6,13 @@
 //= require backbone.domStorage
 //= require handlebars
 //= require moment
-//= require highcharts
-//= require exporting
-//= require app
 //= require semantic-ui
 //= require select2
 //= require i18n/translations
 //= require jquery.simple-text-rotator
+//= require highcharts
+//= require exporting
+//= require app
 //= require_tree ../templates
 //= require_tree ./mixins
 //= require_tree ./models

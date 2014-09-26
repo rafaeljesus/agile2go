@@ -1,19 +1,21 @@
 App.Models.Project = Backbone.Model.extend({
   urlRoot: '/projects',
 
-  initialize: function(){
+  initialize: function() {
     this.on('change:assignedUsers', this.parseUsers);
     this.parseUsers();
   },
 
-  parseUsers: function(){
+  parseUsers: function() {
     var assignedAttr = this.get('assignedUsers');
     this.assignedUsers = new App.Collections.Users(assignedAttr);
   },
 
-  assignments_attributes: function(){
-    return this.assignedUsers.map(function(user) {
-      return { user_id: user.id }
+  assignments_attributes: function() {
+    this.assignedUsers.map(function(user) {
+      return {
+        user_id: user.id
+      }
     });
   },
 
@@ -23,7 +25,7 @@ App.Models.Project = Backbone.Model.extend({
     return json;
   },
 
-  validate: function(attrs, options){
+  validate: function(attrs, options) {
     var errors;
     if (!attrs.name) {
       (errors = errors || {}).name = ["can't be blank"];
