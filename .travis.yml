@@ -18,5 +18,5 @@ script:
   - bundle exec rake db:drop
   - bundle exec rake db:create
   - bundle exec rake db:migrate
-  - xvfb-run bundle exec rake
+  - xvfb-run -a bundle exec rake
   - bundle exec rake jasmine:ci
