@@ -14,8 +14,8 @@ module Features
 
     def delete_sprint sprint
       visit '#sprints'
-      page.find(".confirm").click
-      page.find(".delete").click
+      find(".confirm").click
+      find(".delete").click
     end
 
     private

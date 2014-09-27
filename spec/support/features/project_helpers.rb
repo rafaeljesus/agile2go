@@ -15,8 +15,8 @@ module Features
 
     def delete_project project
       visit '#projects'
-      page.find(".confirm").click
-      page.find(".delete").click
+      find(".confirm").click
+      find(".delete").click
     end
 
     private
@@ -26,13 +26,13 @@ module Features
       fill_in 'name', with: new_project.name
       fill_in 'company', with: new_project.company
       fill_in 'description', with: new_project.description
-      page.execute_script("$('select').val(#{current_user.id}).trigger('change')")
+      execute_script("$('select').val(#{current_user.id}).trigger('change')")
       sleep 1
       submit
     end
 
     def submit
-      page.find("[type='submit']").click
+      find("[type='submit']").click
     end
 
   end
