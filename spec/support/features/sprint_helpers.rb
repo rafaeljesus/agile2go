@@ -21,7 +21,6 @@ module Features
     private
     def create_sprint_as new_sprint
       visit '#sprints/new'
-      sleep 0.3
       fill_in 'name', with: new_sprint.name
       fill_in 'daily', with: new_sprint.daily
       fill_in 'points', with: new_sprint.points
