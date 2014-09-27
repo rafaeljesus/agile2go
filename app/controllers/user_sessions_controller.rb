@@ -15,8 +15,13 @@ class UserSessionsController < ApplicationController
       cookies[:oauth_popup] = nil
       return render 'layouts/oauth_popup_close', layout: false
     else
-      respond_with user_json
+      render json: user_json
     end
+  end
+
+  def destroy
+    user_session.destroy
+    respond_with user_session
   end
 
   def check
@@ -35,11 +40,6 @@ class UserSessionsController < ApplicationController
       provider: current_user.provider,
       avatar: current_user.avatar
     }
-  end
-
-  def destroy
-    user_session.destroy
-    respond_with user_session
   end
 
   private
