@@ -10,9 +10,13 @@ before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3
+before_install:
+  - sudo apt-add-repository -y ppa:ubuntu-sdk-team/ppa
+  - sudo apt-get update
+  - sudo apt-get install libqt5webkit5-dev qtdeclarative5-dev qtlocation5-dev qtsensors5-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev qt4-default
 script:
   - bundle exec rake db:drop
   - bundle exec rake db:create
   - bundle exec rake db:migrate
-  - bundle exec rake
+  - xvfb-run bundle exec rake
   - bundle exec rake jasmine:ci

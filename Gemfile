@@ -42,9 +42,9 @@ end
 
 group :development, :test do
   gem 'capybara', '>= 2.0.2'
-  # gem 'selenium-webdriver'
   gem 'capybara-webkit'
   gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'mocha', require: false
   gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'
   gem 'jasmine'
