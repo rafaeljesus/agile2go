@@ -8,21 +8,22 @@ module Features
 
     def update_project project
       visit "#projects/#{project.id}/edit"
-      sleep 1
+      sleep 0.5
       fill_in 'name', with: 'new project'
       submit
     end
 
     def delete_project project
       visit '#projects'
+      sleep 0.5
       find(".confirm").click
       find(".delete").click
     end
 
     private
     def create_project_as(new_project, current_user)
-      sleep 1
       visit '#projects/new'
+      sleep 0.5
       fill_in 'name', with: new_project.name
       fill_in 'company', with: new_project.company
       fill_in 'description', with: new_project.description

@@ -8,12 +8,14 @@ module Features
 
     def update_task task
       visit "#tasks/#{task.id}/edit"
+      sleep 0.5
       fill_in 'title', with: 'new title'
       submit
     end
 
     def delete_task task
       visit '#tasks'
+      sleep 0.5
       find(".confirm").click
       find(".delete").click
     end
