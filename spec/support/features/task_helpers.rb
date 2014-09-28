@@ -8,14 +8,14 @@ module Features
 
     def update_task task
       visit "#tasks/#{task.id}/edit"
-      sleep 5
+      sleep 1
       fill_in 'title', with: 'new title'
       submit
     end
 
     def delete_task task
       visit '#tasks'
-      sleep 5
+      sleep 1
       find(".confirm").click
       find(".delete").click
     end
@@ -23,18 +23,18 @@ module Features
     private
     def create_task_as new_task
       visit '#tasks/new'
-      sleep 5
-      execute_script("$('#status')[0].value = '#{new_task.status}'")
-      execute_script("$('#priority')[0].value = '#{new_task.priority}'")
-      execute_script("$('#points')[0].value = '#{new_task.points}'")
-      fill_in 'title', with: new_task.title
-      fill_in 'story', with: new_task.story
-      execute_script("$('select').val(#{new_task.sprint.id}).trigger('change');")
+      sleep 1
+      page.execute_script("$('#status')[0].value = '#{new_task.status}'")
+      page.execute_script("$('#priority')[0].value = '#{new_task.priority}'")
+      page.execute_script("$('#points')[0].value = '#{new_task.points}'")
+      page.fill_in 'title', with: new_task.title
+      page.fill_in 'story', with: new_task.story
+      page.execute_script("$('select').val(#{new_task.sprint.id}).trigger('change');")
       submit
     end
 
     def submit
-      find("[type='submit']").click
+      page.find("[type='submit']").click
     end
 
   end
