@@ -12,7 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'select2-rails'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.1.5'
 gem 'puma'
 gem 'foreman'
 gem 'cancan'
@@ -35,7 +35,6 @@ group :production do
 end
 
 group :test do
-  gem 'shoulda-matchers'
   gem 'database_cleaner'
 end
 
