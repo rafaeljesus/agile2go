@@ -8,14 +8,14 @@ module Features
 
     def update_task task
       visit "#tasks/#{task.id}/edit"
-      sleep 2
+      sleep 5
       fill_in 'title', with: 'new title'
       submit
     end
 
     def delete_task task
       visit '#tasks'
-      sleep 2
+      sleep 5
       find(".confirm").click
       find(".delete").click
     end
@@ -23,7 +23,7 @@ module Features
     private
     def create_task_as new_task
       visit '#tasks/new'
-      sleep 2
+      sleep 5
       execute_script("$('#status')[0].value = '#{new_task.status}'")
       execute_script("$('#priority')[0].value = '#{new_task.priority}'")
       execute_script("$('#points')[0].value = '#{new_task.points}'")
