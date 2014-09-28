@@ -3,8 +3,18 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with :truncation
   end
 
+  config.before :each, type: :feature do
+    config.verbose_retry = true
+    config.default_retry_count = 3
+  end
+
   config.before :each do
+    DatabaseCleaner.start
     DatabaseCleaner.strategy = :transaction
+  end
+
+  config.after :each do
+    DatabaseCleaner.clean
   end
 
   config.before :each, js: true do
@@ -12,11 +22,8 @@ RSpec.configure do |config|
     FactoryGirl.reload
   end
 
-  config.before :each do
-    DatabaseCleaner.start
+  config.after :each, :js do
+    Capybara.reset_sessions!
   end
 
-  config.after :each do
-    DatabaseCleaner.clean
-  end
 end

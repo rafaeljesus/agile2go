@@ -2,8 +2,11 @@ require 'spec_helper'
 
 feature 'when create a new project' do
 
-  before(:each) { @current_user = sign_in }
-  after(:each) { logout }
+  before { @current_user = sign_in }
+  after do
+    logout
+    page.driver.reset!
+  end
 
   scenario 'with all filled corrected filled', js: true do
     create_project @current_user

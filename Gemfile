@@ -41,8 +41,9 @@ group :test do
 end
 
 group :development, :test do
+  gem 'rspec-retry'
   gem 'capybara', '>= 2.0.2'
-  gem 'capybara-webkit'
+  gem 'poltergeist'
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'mocha', require: false
   gem 'factory_girl_rails', '~> 4.0'

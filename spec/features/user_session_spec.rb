@@ -2,8 +2,6 @@ require 'spec_helper'
 
 feature 'when sign in' do
 
-  after(:each) { logout }
-
   scenario 'with all fields corrected filled', js: true do
     sign_in
     expect(page).to have_content I18n.t('sessions.signed_in')
