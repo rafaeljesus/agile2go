@@ -1,16 +1,15 @@
-class User < ActiveRecord::Base
-  rolify
+class User
+  include MongoMapper::Document
 
-  has_many :assignments
-  has_many :projects, through: :assignments
-  has_many :assigned_projects, through: :assignments, class_name: 'Project', source: :project
-
-  validates :name, presence: true, length: { minimum: 4, maximum: 100 }
-  validates_uniqueness_of :email
-  validates_confirmation_of :password, if: :password_present?
-  validates_presence_of :password, on: :create, unless: :omniauth_user?
-
-  has_secure_password validations: false
+  key :name, String
+  key :email, String
+  key :password_digest, String
+  key :provider, String
+  key :uid, String
+  key :avatar, String
+  key :oauth_token, String
+  key :oauth_expires_at, Time
+  timestamps!
 
   def self.authenticate(email, password)
     find_by(email: email).try(:authenticate, password)
@@ -37,16 +36,8 @@ class User < ActiveRecord::Base
     auth[:extra][:raw_info][:avatar_url]
   end
 
-  def master?
-    self.has_role? :master
-  end
-
   def omniauth_user?
     !uid.nil? && !provider.nil?
-  end
-
-  def password_present?
-    !password.nil?
   end
 
 end

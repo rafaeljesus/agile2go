@@ -1,8 +1,10 @@
-ruby '2.0.0'
+ruby '2.1.2'
 source 'https://rubygems.org'
 
 gem 'rails', '4.0.0'
 gem 'sass-rails', '~> 4.0.0'
+gem 'mongo_mapper'
+gem 'bson_ext'
 gem 'handlebars_assets', '~> 0.17.1'
 gem 'backbone-on-rails'
 gem 'backbone-support'
@@ -10,11 +12,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'select2-rails'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
-gem 'active_model_serializers'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'puma'
 gem 'foreman'
-gem 'rolify'
 gem 'cancan'
 gem 'i18n-js'
 gem 'i18n-js-pika', require: 'i18n-js'
@@ -27,7 +27,6 @@ gem 'omniauth-github'
 gem 'omniauth-facebook', '1.4.0'
 gem 'omniauth-google'
 gem "codeclimate-test-reporter", group: :test, require: nil
-gem 'virtus'
 gem 'pry-byebug'
 
 group :production do
@@ -41,13 +40,9 @@ group :test do
 end
 
 group :development, :test do
-  gem 'capybara', '>= 2.0.2'
-  gem 'capybara-webkit'
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'mocha', require: false
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'sqlite3'
   gem 'jasmine'
   gem 'jasmine-jquery-rails'
-  gem 'launchy'
 end
