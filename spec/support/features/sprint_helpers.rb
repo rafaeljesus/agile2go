@@ -8,12 +8,14 @@ module Features
 
     def update_sprint sprint
       visit "#sprints/#{sprint.id}/edit"
+      sleep 0.5
       fill_in 'name', with: 'new sprint name'
       submit
     end
 
     def delete_sprint sprint
       visit '#sprints'
+      sleep 0.5
       find(".confirm").click
       find(".delete").click
     end
@@ -21,6 +23,7 @@ module Features
     private
     def create_sprint_as new_sprint
       visit '#sprints/new'
+      sleep 0.5
       fill_in 'name', with: new_sprint.name
       fill_in 'daily', with: new_sprint.daily
       fill_in 'points', with: new_sprint.points
