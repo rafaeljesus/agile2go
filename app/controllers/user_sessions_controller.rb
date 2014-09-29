@@ -3,14 +3,14 @@ class UserSessionsController < ApplicationController
   respond_to :json
 
   def create
-    @session = UserSession.new(session)
-    @session.authenticate(params[:user_session])
+    @session = UserSession.new session
+    @session.authenticate params[:user_session]
     respond_with @session
   end
 
   def create_with_omniauth
-    @session = UserSession.new(session)
-    @session.authenticate_with_omniauth(omniauth_hash)
+    @session = UserSession.new session
+    @session.from_omniauth omniauth_hash
     if cookies[:oauth_popup]
       cookies[:oauth_popup] = nil
       return render 'layouts/oauth_popup_close', layout: false

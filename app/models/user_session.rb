@@ -11,14 +11,14 @@ class UserSession
     @session = session
   end
 
-  def authenticate(options={})
-    user = User.authenticate(options[:email], options[:password])
-    store(user)
+  def authenticate(options = {})
+    auth = Authentication.new(nil, options)
+    store(auth.user)
   end
 
-  def authenticate_with_omniauth(omniauth_hash)
-    user = User.from_omniauth(omniauth_hash)
-    store(user)
+  def from_omniauth(omniauth)
+    auth = Authentication.new(omniauth, {})
+    store(auth.user)
   end
 
   def persisted?
@@ -39,7 +39,6 @@ class UserSession
   end
 
   private
-
   def store(user)
     if user.present?
       @session[:user_id] = user.id
