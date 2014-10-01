@@ -1,11 +1,20 @@
 require 'spec_helper'
 
 describe Sprint do
-  it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:project_id) }
-  it { should validate_presence_of(:points) }
-  it { should allow_value(Date.today).for(:start_date) }
-  it { should allow_value(Date.today).for(:end_date) }
-  it { should belong_to :project }
-  it { should have_db_index(:project_id) }
+
+  before do
+    @user = FactoryGirl.create(:user)
+    project = FactoryGirl.build(:project)
+    @sprint = FactoryGirl.build(:sprint)
+    project.sprints.push(@sprint)
+    @user.projects.push(project)
+    @user.save
+  end
+
+  it "should reject duplicate name" do
+    sprint_with_duplicate_name = FactoryGirl.build(:sprint, name: @sprint.name)
+    @user.sprint_name_uniq?(sprint_with_duplicate_name.name)
+    expect(@user.errors.messages[:sprint_name]).to eq(["sprint name has already been taken"])
+  end
+
 end

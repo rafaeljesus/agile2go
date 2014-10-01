@@ -1,7 +1,7 @@
 class Project
   include MongoMapper::EmbeddedDocument
 
-  key :name, String, required: true
+  key :name, String
   key :company, String
   timestamps!
 

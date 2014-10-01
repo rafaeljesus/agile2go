@@ -6,7 +6,7 @@ describe Project do
 
   it "should reject duplicate name" do
     project = FactoryGirl.build(:project)
-    user.projects << project
+    user.projects.push(project)
     user.save
     project_with_duplicate_name = FactoryGirl.build(:project, name: project.name)
     user.project_name_uniq?(project_with_duplicate_name.name)
@@ -19,8 +19,6 @@ describe Project do
     project.sprints.push(sprint)
     user.projects.push(project)
     user.save
-    user.projects.each { |p|
-      expect(p.sprints.size).to eq(1)
-    }
+    expect(user.sprints_size).to eq(1)
   end
 end
