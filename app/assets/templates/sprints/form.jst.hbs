@@ -11,18 +11,18 @@
       <form>
         <div class="two fields">
           <div id="name_input" class="date field">
-            <label>{{ t 'sprint.name' }}</label>
+            <label>{{t 'sprint.name'}}</label>
             <div class="ui left labeled icon input">
-              <input type="text" id="name" value="{{ model.name }}" placeholder="Sprint Name">
+              <input type="text" id="name" value="{{model.name}}" placeholder="Sprint Name">
               <div class="ui corner label">
                 <i class="icon asterisk"></i>
               </div>
             </div>
           </div>
           <div id="daily_input" class="date field">
-            <label>{{ t 'sprint.daily' }}</label>
+            <label>{{t 'sprint.daily'}}</label>
             <div class="ui left labeled icon input">
-              <input type="text" id="daily" value="{{ model.daily }}">
+              <input type="text" id="daily" value="{{model.daily}}">
               <div class="ui corner label">
                 <i class="icon asterisk"></i>
               </div>
@@ -31,18 +31,18 @@
         </div>
         <div class="two fields">
           <div id="start_date_input" class="field">
-            <label>{{ t 'sprint.start_date' }}</label>
+            <label>{{t 'sprint.start_date'}}</label>
             <div class="ui left labeled icon input">
-              <input type="text" id="start-date" value="{{ model.start_date }}">
+              <input type="text" id="start-date" value="{{model.start_date}}">
               <div class="ui corner label">
                 <i class="icon asterisk"></i>
               </div>
             </div>
           </div>
           <div id="end_date_input" class="field">
-            <label>{{ t 'sprint.end_date' }}</label>
+            <label>{{t 'sprint.end_date'}}</label>
             <div class="ui left labeled icon input">
-              <input type="text" id="end-date" value="{{ model.end_date }}">
+              <input type="text" id="end-date" value="{{model.end_date}}">
               <div class="ui corner label">
                 <i class="icon asterisk"></i>
               </div>
@@ -51,26 +51,26 @@
         </div>
         <div class="two fields">
           <div id="points_input" class="field">
-            <label>{{ t 'sprint.points' }}</label>
+            <label>{{t 'sprint.points'}}</label>
             <div class="ui left labeled icon input">
-              <input type="text" id="points" value="{{ model.points }}" placeholder="Total Points">
+              <input type="text" id="points" value="{{model.points}}" placeholder="Total Points">
               <div class="ui corner label">
                 <i class="icon asterisk"></i>
               </div>
             </div>
           </div>
           <div id="project_input" class="field">
-            <label>{{ t 'project.title.one' }}</label>
+            <label>{{t 'project.title.one'}}</label>
             <select class="select2">
-              {{# each projects }}
-                <option value="{{ this.id }}">{{ this.name }}</option>
+              {{#each projects}}
+                <option value="{{this.id}}">{{this.name}}</option>
               {{/each}}
             </select>
           </div>
         </div>
         <br>
-        <div class="ui blue submit button large right floated" type="submit">{{ t 'save' }}</div>
-        <a href="#sprints" class="ui right large floated button">{{ t 'back' }}</a>
+        <div class="ui blue submit button large right floated" type="submit">{{t 'save'}}</div>
+        <a href="#sprints" class="ui right large floated button">{{t 'back'}}</a>
       </form>
     </div>
   </div>

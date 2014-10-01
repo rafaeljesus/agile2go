@@ -13,7 +13,7 @@
           <div id="status_input" class="field">
             <label>Status</label>
             <div class="ui selection dropdown">
-              <input type="hidden" id="status" value="{{ model.status }}">
+              <input type="hidden" id="status" value="{{model.status}}">
               <div class="text">Status</div>
               <i class="dropdown icon"></i>
               <div class="menu">
@@ -35,7 +35,7 @@
            <div id="points_input" class="field">
             <label>Points</label>
             <div class="ui selection dropdown">
-              <input type="hidden" id="points" value="{{ model.points }}">
+              <input type="hidden" id="points" value="{{model.points}}">
               <div class="text">Points</div>
               <i class="dropdown icon"></i>
               <div class="menu">
@@ -52,7 +52,7 @@
           <div id="priority_input" class="field">
             <label>Priority</label>
             <div class="ui selection dropdown">
-              <input type="hidden" id="priority" value="{{ model.priority }}">
+              <input type="hidden" id="priority" value="{{model.priority}}">
               <div class="text">Priority</div>
               <i class="dropdown icon"></i>
               <div class="menu">
@@ -68,7 +68,7 @@
         <div id="title_input" class="field">
           <label>Title</label>
           <div class="ui left labeled icon input">
-            <input type="text" id="title" value="{{ model.title }}" placeholder="Title">
+            <input type="text" id="title" value="{{model.title}}" placeholder="Title">
             <div class="ui corner label">
               <i class="icon asterisk"></i>
             </div>
@@ -79,7 +79,7 @@
           <div class="ui left labeled icon input">
             <textarea cols="40" rows="20" id="story" placeholder="When I Sign In as example@example.com
 Then Im on the home page, Then I should see Master Backbone within the tasks list
-And I should see purchase "Building Backbone Plugins ebook" within the tasks lists">{{ model.story }}</textarea>
+And I should see purchase "Building Backbone Plugins ebook" within the tasks lists">{{model.story}}</textarea>
             <div class="ui corner label">
               <i class="icon asterisk"></i>
             </div>
@@ -87,24 +87,24 @@ And I should see purchase "Building Backbone Plugins ebook" within the tasks lis
         </div>
         <div class="two fields">
           <div id="sprint_input" class="field">
-            <label>{{ t 'sprint.title.one' }}</label>
+            <label>{{t 'sprint.title.one'}}</label>
             <select id="sprint" class="select2">
-              {{# each sprints }}
-                <option value="{{ this.id }}">{{ this.name }}</option>
-              {{/ each }}
+              {{#each sprints}}
+                <option value="{{this.id}}">{{this.name}}</option>
+              {{/each}}
             </select>
           </div>
           <div id="users_input" class="field">
-            <label>{{ t 'user.title.other' }}</label>
+            <label>{{t 'user.title.other'}}</label>
             <select id="users" multiple>
-              {{# each users }}
-                <option value="{{ this.id }}">{{ this.name }}</option>
-              {{/ each }}
+              {{#each users}}
+                <option value="{{this.id}}">{{this.name}}</option>
+              {{/each}}
             </select>
           </div>
         </div>
-        <div class="ui blue submit button large right floated" type="submit">{{ t 'save' }}</div>
-        <a href="#tasks" class="ui right large floated button">{{ t 'back' }}</a>
+        <div class="ui blue submit button large right floated" type="submit">{{t 'save'}}</div>
+        <a href="#tasks" class="ui right large floated button">{{t 'back'}}</a>
       <form>
     </div>
   </div>

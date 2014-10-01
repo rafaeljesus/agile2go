@@ -1,5 +1,4 @@
 require 'bcrypt'
-
 class User
   include MongoMapper::Document
   include BCrypt
@@ -17,6 +16,8 @@ class User
   key :oauth_expires_at, Time
   timestamps!
 
+  many :projects
+
   validate :password_length
 
   def omniauth_user?
@@ -26,6 +27,14 @@ class User
   def password_length
     return if omniauth_user? || password.length >= 8
     errors.add(:password, 'password must be greather then 8')
+  end
+
+  def project_name_uniq?(name)
+    is_uniq = collection.find('projects.name' => name).count == 0
+    unless is_uniq
+      errors.add(:project_name, 'project name has already been taken')
+    end
+    return is_uniq
   end
 
   def password

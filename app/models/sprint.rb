@@ -1,6 +1,12 @@
-class Sprint < ActiveRecord::Base
-  belongs_to :project
-  has_many :tasks
+class Sprint
+  include MongoMapper::EmbeddedDocument
 
-  validates :name, :points, :project_id, presence: true
+  key :name, String, required: true
+  key :points, Integer, required: true, numeric: true
+  key :daily, Time
+  key :start_date, Date
+  key :end_date, Date
+  timestamps!
+
+  many :tasks
 end
