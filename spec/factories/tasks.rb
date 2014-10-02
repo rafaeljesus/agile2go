@@ -5,6 +5,5 @@ FactoryGirl.define do
     priority 5
     points 8
     status 'todo'
-    association :sprint
   end
 end

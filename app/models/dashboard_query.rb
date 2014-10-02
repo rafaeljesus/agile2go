@@ -7,7 +7,7 @@ class DashboardQuery
   def to_json
     {
       series: series,
-      categories: @relation.project_names
+      categories: Project.fields(:name).all
     }
   end
 

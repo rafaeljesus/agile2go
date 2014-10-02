@@ -2,23 +2,33 @@ require 'spec_helper'
 
 describe Project do
 
-  let(:user) { @user = FactoryGirl.create(:user) }
-
-  it "should reject duplicate name" do
-    project = FactoryGirl.build(:project)
-    user.projects.push(project)
-    user.save
-    project_with_duplicate_name = FactoryGirl.build(:project, name: project.name)
-    user.project_name_uniq?(project_with_duplicate_name.name)
-    expect(user.errors.messages[:project_name]).to eq(["project name has already been taken"])
+  it "should validate presence of name" do
+    project = FactoryGirl.build(:project, name: nil)
+    project.save
+    expect(project.errors.messages[:name]).to eq(["can't be blank"])
   end
 
-  it "should has many sprints" do
-    sprint = FactoryGirl.build(:sprint)
-    project = FactoryGirl.build(:project)
-    project.sprints.push(sprint)
-    user.projects.push(project)
-    user.save
-    expect(user.sprints_size).to eq(1)
+  it "should reject duplicate name" do
+    project = FactoryGirl.create(:project)
+    with_duplicate_name = FactoryGirl.build(:project, name: project.name)
+    with_duplicate_name.save
+    expect(with_duplicate_name.errors.messages[:name]).to eq(["has already been taken"])
+  end
+
+  describe "associations" do
+    it "should save a project with sprints" do
+      project = FactoryGirl.build(:project)
+      project.sprints.push FactoryGirl.build(:sprint)
+      project.save
+      expect(Project.first.sprints.length).to eq(1)
+    end
+
+    it "should save a project with one user" do
+      current_user = FactoryGirl.create(:user)
+      project = FactoryGirl.build(:project)
+      project.user = current_user
+      project.save
+      expect(User.first.first_name).to eq(project.user.first_name)
+    end
   end
 end

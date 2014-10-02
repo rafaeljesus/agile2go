@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    respond_with @project, root: false
+    respond_with @project
   end
 
   def create
@@ -35,6 +35,5 @@ class ProjectsController < ApplicationController
     params
       .require(:project)
       .permit(:name, :description, :company)
-      .merge(assignments_attributes: params[:assignments_attributes] || [])
   end
 end

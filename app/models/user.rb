@@ -29,37 +29,6 @@ class User
     errors.add(:password, 'password must be greather then 8')
   end
 
-  def project_name_uniq?(name)
-    is_uniq = collection.find('projects.name' => name).count == 0
-    unless is_uniq
-      errors.add(:project_name, 'project name has already been taken')
-    end
-    return is_uniq
-  end
-
-  def sprint_name_uniq?(name)
-    is_uniq = true
-    collection.find.each do |doc|
-      doc['projects'].each do |p_doc|
-        p_doc['sprints'].each do |s_doc|
-          if s_doc['name'] == name
-            errors.add(:sprint_name, 'sprint name has already been taken')
-            return false
-          end
-        end
-      end
-    end
-    is_uniq
-  end
-
-  def sprints_size
-    size = 0
-    projects.each do |p|
-      size += p.sprints.length
-    end
-    size
-  end
-
   def password
     return nil unless crypted_password.present?
     @password ||= Password.new(crypted_password)

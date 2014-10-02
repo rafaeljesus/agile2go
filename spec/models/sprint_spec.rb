@@ -2,19 +2,21 @@ require 'spec_helper'
 
 describe Sprint do
 
-  before do
-    @user = FactoryGirl.create(:user)
-    project = FactoryGirl.build(:project)
-    @sprint = FactoryGirl.build(:sprint)
-    project.sprints.push(@sprint)
-    @user.projects.push(project)
-    @user.save
+  let(:project) { FactoryGirl.create(:project) }
+
+  it "should validate presence of name" do
+    sprint = FactoryGirl.build(:sprint, name: nil)
+    project.sprints.push sprint
+    project.save
+    expect(project.sprint_name_blank?).to eq(true)
   end
 
   it "should reject duplicate name" do
-    sprint_with_duplicate_name = FactoryGirl.build(:sprint, name: @sprint.name)
-    @user.sprint_name_uniq?(sprint_with_duplicate_name.name)
-    expect(@user.errors.messages[:sprint_name]).to eq(["sprint name has already been taken"])
+    sprint = FactoryGirl.create(:sprint)
+    with_duplicate_name = FactoryGirl.build(:sprint, name: sprint.name)
+    project.sprints.push with_duplicate_name
+    project.save
+    expect(project.sprint_name_uniq?(with_duplicate_name.name)).to eq(false)
   end
 
 end

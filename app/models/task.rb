@@ -1,6 +1,6 @@
 class Task
   include MongoMapper::EmbeddedDocument
-  include Sync::Faye::Observer
+  # include Sync::Faye::Observer
 
   STATUSES = %w(todo ongoing test done)
 
@@ -11,7 +11,7 @@ class Task
   key :points, Integer, numeric: true
   timestamps!
 
-  after_update :publish_update
-  after_create :publish_create
-  after_destroy :publish_destroy
+  # after_update :publish_update
+  # after_create :publish_create
+  # after_destroy :publish_destroy
 end

@@ -46,11 +46,11 @@ describe User do
   end
 
   describe "associations" do
-    it "should save a user with embedeed projects" do
+    it "should save a user with projects" do
       user = FactoryGirl.build(:user)
       user.projects.push FactoryGirl.build(:project)
       user.save
-      expect(user.projects.length).to eq(1)
+      expect(User.first.projects.length).to eq(1)
     end
   end
 end

@@ -8,5 +8,6 @@ class Sprint
   key :end_date, Date
   timestamps!
 
+  belongs_to :project
   many :tasks
 end
