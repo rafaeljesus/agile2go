@@ -4,9 +4,17 @@ class Project
   key :name, String, required: true, unique: true
   key :company, String
   timestamps!
-
-  belongs_to :user
   many :sprints
+  belongs_to :user
+
+  validates_associated :sprints
+
+  def self.task_search(query)
+    collection
+      .find('sprints.tasks' => { '$or' => [{'title' => query}, {'story' => query}, {'status' => query}] })
+      .sort(created_at: :desc)
+      .to_a
+  end
 
   def sprint_name_uniq?(name)
     is_uniq = collection.find('sprints.name' => name).count == 0
@@ -16,25 +24,4 @@ class Project
     is_uniq
   end
 
-  def sprint_name_blank?
-    sprints.each do |s|
-      if s.name.nil?
-        errors.add(:sprint_name, "can't be blank")
-        return true
-      end
-    end
-    return false
-  end
-
-  def task_title_blank?
-    sprints.each do |s_doc|
-      s_doc.tasks.each do |t_doc|
-        if t_doc.title.nil?
-          errors.add(:task_title, "can't be blank")
-          return true
-        end
-      end
-    end
-    return false
-  end
 end

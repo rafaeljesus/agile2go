@@ -4,20 +4,20 @@ describe User do
   it "should validate presence of first_name" do
     user = FactoryGirl.build(:user, first_name: nil)
     user.save
-    expect(user.errors.messages[:first_name]).to eq(["can't be blank"])
+    expect(user.valid?).to be_falsy
   end
 
   it "should validate presence of last_name" do
     user = FactoryGirl.build(:user, last_name: nil)
     user.save
-    expect(user.errors.messages[:last_name]).to eq(["can't be blank"])
+    expect(user.valid?).to be_falsy
   end
 
   describe "email validations" do
     it "should validate presence of email" do
       user = FactoryGirl.build(:user, email: nil)
       user.save
-      expect(user.errors.messages[:email]).to eq(["can't be blank", "is invalid"])
+      expect(user.valid?).to be_falsy
     end
 
     it "should reject invalid email" do
@@ -25,7 +25,7 @@ describe User do
       emails.each do |email|
         user = FactoryGirl.build(:user, email: email)
         user.save
-        expect(user.errors.messages[:email]).to eq(["is invalid"])
+        expect(user.valid?).to be_falsy
       end
     end
 
@@ -33,7 +33,7 @@ describe User do
       user = FactoryGirl.create(:user)
       user_with_duplicate_email = FactoryGirl.build(:user, email: user.email)
       user_with_duplicate_email.save
-      expect(user_with_duplicate_email.errors.messages[:email]).to eq(["has already been taken"])
+      expect(user_with_duplicate_email.valid?).to be_falsy
     end
   end
 
@@ -41,7 +41,7 @@ describe User do
     it "should reject short passwords" do
       user = FactoryGirl.build(:user, password: 'a' * 7)
       user.save
-      expect(user.errors.messages[:password]).to eq(["password must be greather then 8"])
+      expect(user.valid?).to be_falsy
     end
   end
 

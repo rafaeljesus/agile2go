@@ -6,9 +6,16 @@ describe Sprint do
 
   it "should validate presence of name" do
     sprint = FactoryGirl.build(:sprint, name: nil)
-    project.sprints.push sprint
+    project.sprints << sprint
     project.save
-    expect(project.sprint_name_blank?).to eq(true)
+    expect(project.valid?).to be_falsy
+  end
+
+  it "should validate presence of points" do
+    sprint = FactoryGirl.build(:sprint, points: nil)
+    project.sprints << sprint
+    project.save
+    expect(project.valid?).to be_falsy
   end
 
   it "should reject duplicate name" do
@@ -16,7 +23,7 @@ describe Sprint do
     with_duplicate_name = FactoryGirl.build(:sprint, name: sprint.name)
     project.sprints.push with_duplicate_name
     project.save
-    expect(project.sprint_name_uniq?(with_duplicate_name.name)).to eq(false)
+    expect(project.sprint_name_uniq?(with_duplicate_name.name)).to be_falsy
   end
 
 end

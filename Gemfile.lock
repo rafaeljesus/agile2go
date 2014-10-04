@@ -308,10 +308,10 @@ DEPENDENCIES
   pg
   pry-byebug
   puma
-  rails (= 4.0.0)
+  rails
   rails_12factor
   rspec-rails (~> 3.0.0.beta)
-  sass-rails (~> 4.0.0)
+  sass-rails
   select2-rails
   semantic-ui-sass!
   thin

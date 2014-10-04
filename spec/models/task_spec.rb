@@ -10,6 +10,6 @@ describe Task do
     sprint.tasks.push task
     project.sprints.push sprint
     project.save
-    expect(project.task_title_blank?).to eq(true)
+    expect(project.valid?).to be_truthy
   end
 end
