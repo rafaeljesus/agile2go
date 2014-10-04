@@ -5,6 +5,6 @@ class Project
   key :company, String
   timestamps!
   many :sprints
-  belongs_to :user
+  many :users
 
 end

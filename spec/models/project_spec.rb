@@ -19,9 +19,9 @@ describe Project do
     it "should save a project with one user" do
       current_user = FactoryGirl.create(:user)
       project = FactoryGirl.build(:project)
-      project.user = current_user
+      project.users << current_user
       project.save
-      expect(User.first.first_name).to eq(project.user.first_name)
+      expect(project.users.length).to be(1)
     end
   end
 end

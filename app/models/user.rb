@@ -16,8 +16,6 @@ class User
   key :oauth_expires_at, Time
   timestamps!
 
-  many :projects
-
   validate :password_length
 
   def as_json(options = {})

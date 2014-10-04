@@ -51,12 +51,4 @@ describe User do
     end
   end
 
-  describe "associations" do
-    it "should save a user with projects" do
-      user = FactoryGirl.build(:user)
-      user.projects.push FactoryGirl.build(:project)
-      user.save
-      expect(User.first.projects.length).to eq(1)
-    end
-  end
 end
