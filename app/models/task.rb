@@ -1,17 +1,28 @@
 class Task
-  include MongoMapper::EmbeddedDocument
-  # include Sync::Faye::Observer
+  include MongoMapper::Document
 
   STATUSES = %w(todo ongoing test done)
 
   key :title, String, required: true
   key :story, String, required: true
-  key :status, String, inclusion: { in: STATUSES }
+  key :status, String, in: STATUSES
   key :priority, Integer, in: 1..5
   key :points, Integer, numeric: true
   timestamps!
+  belongs_to :sprint
 
-  # after_update :publish_update
-  # after_create :publish_create
-  # after_destroy :publish_destroy
+  def self.search(query)
+    collection
+      .find('$or' => [
+        {title: query},
+        {story: query},
+        {status: query},
+        {points: query},
+        {priority: query},
+        {sprint_id: query}
+      ])
+      .sort(created_at: :desc)
+      .to_a
+  end
+
 end

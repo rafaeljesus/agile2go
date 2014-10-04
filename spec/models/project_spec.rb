@@ -8,7 +8,7 @@ describe Project do
     expect(project.valid?).to be_falsy
   end
 
-  it "should reject duplicate name" do
+  it "should validate uniqueness if name" do
     project = FactoryGirl.create(:project)
     with_duplicate_name = FactoryGirl.build(:project, name: project.name)
     with_duplicate_name.save
@@ -16,13 +16,6 @@ describe Project do
   end
 
   describe "associations" do
-    it "should save a project with sprints" do
-      project = FactoryGirl.build(:project)
-      project.sprints << FactoryGirl.build(:sprint)
-      project.save
-      expect(Project.first.sprints.length).to be 1
-    end
-
     it "should save a project with one user" do
       current_user = FactoryGirl.create(:user)
       project = FactoryGirl.build(:project)
