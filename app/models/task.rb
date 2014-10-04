@@ -1,6 +1,5 @@
 class Task
   include MongoMapper::Document
-
   STATUSES = %w(todo ongoing test done)
 
   key :title, String, required: true
@@ -10,6 +9,8 @@ class Task
   key :points, Integer, numeric: true
   timestamps!
   belongs_to :sprint
+
+  scope :ordered, -> { sort(created_at: :desc)  }
 
   def self.search(query)
     collection

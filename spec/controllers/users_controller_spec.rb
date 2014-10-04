@@ -15,14 +15,25 @@ describe UsersController, type: :controller do
 
   it "should create a new user" do
     new_user = FactoryGirl.attributes_for(:user)
-    hash = { user: new_user, password: new_user[:password], password_confirmation: new_user[:password_confirmation] }
+    hash = {
+      user: new_user,
+      password: new_user[:password],
+      password_confirmation: new_user[:password_confirmation]
+    }
     xhr :post, :create, hash
     expect(response).to be_success
   end
 
   it "should update a password from existing user" do
     user = FactoryGirl.create(:user)
-    hash = { id: user.id, password: 'new_password', password_confirmation: 'new_password', 'user' => { id: user.id }}
+    hash = {
+      id: user.id,
+      password: 'new_password',
+      password_confirmation: 'new_password',
+      user: {
+        id: user.id
+      }
+    }
     xhr :put, :update, hash
     expect(response).to be_success
   end

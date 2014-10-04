@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    @project.update project_params
+    @project.update_attributes project_params
     respond_with @project
   end
 

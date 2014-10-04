@@ -17,7 +17,7 @@ class SprintsController < ApplicationController
   end
 
   def update
-    @sprint.update sprint_params
+    @sprint.update_attributes sprint_params
     respond_with @sprint, root: false
   end
 

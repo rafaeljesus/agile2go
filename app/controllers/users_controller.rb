@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update user_params
+    @user.update_attributes user_params
     respond_with @user
   end
 
@@ -33,6 +33,9 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email).merge(password: params[:password], password_confirmation: params[:password_confirmation])
+    params
+      .require(:user)
+      .permit(:first_name, :last_name, :email)
+      .merge(password: params[:password], password_confirmation: params[:password_confirmation])
   end
 end

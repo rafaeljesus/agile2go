@@ -20,6 +20,10 @@ class User
 
   validate :password_length
 
+  def as_json(options = {})
+    super(options.merge(except: [crypted_password]))
+  end
+
   def omniauth_user?
     !uid.nil? && !provider.nil?
   end

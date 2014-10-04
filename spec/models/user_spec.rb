@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe User do
+
   it "should validate presence of first_name" do
     user = FactoryGirl.build(:user, first_name: nil)
     user.save
@@ -29,11 +30,16 @@ describe User do
       end
     end
 
-    it "should reject duplicate email" do
+    it "should validate uniqueness of email" do
       user = FactoryGirl.create(:user)
       user_with_duplicate_email = FactoryGirl.build(:user, email: user.email)
       user_with_duplicate_email.save
       expect(user_with_duplicate_email.valid?).to be_falsy
+    end
+
+    it 'should not serialize encrypted_password' do
+      user = FactoryGirl.create(:user)
+      expect(user.to_json['encrypted_password']).to be_falsy
     end
   end
 
