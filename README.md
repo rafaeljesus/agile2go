@@ -1,10 +1,9 @@
 Agile2Go [![Build Status](https://travis-ci.org/rafaeljesus/agile2go.svg?branch=master)](https://travis-ci.org/rafaeljesus/agile2go) [![Test Coverage](https://codeclimate.com/github/rafaeljesus/agile2go/badges/coverage.svg)](https://codeclimate.com/github/rafaeljesus/agile2go) [![Code Climate](https://codeclimate.com/github/rafaeljesus/agile2go/badges/gpa.svg)](https://codeclimate.com/github/rafaeljesus/agile2go)
 ===============
 
-This is a WORK IN PROGRESS
+This is app is for my portfolio
 
-Agile2Go is a well tested real time single page app, perfect for small agile teams.
-Built with Backbone.js and Rails.
+Agile2Go is a well tested app, running on AWS, built with backbone.js, Rails as API and mongodb as database
 
 Setup
 -----
@@ -14,40 +13,21 @@ Setup
 * bundle
 * rake db:setup
 
-Deploy
-------
-
-Deploy at Heroku:
-
-* heroku create
-* git push heroku master
-* heroku run rake db:migrate
-* heroku restart
-* heroku run RACK_ENV=production foreman start
-
-Run Faye in Heroku:
-
-* see https://github.com/rafaeljesus/faye-ruby-server
-
-Run Faye locally:
-
-Running the app with Puma
+Run locally:
 
 ```
-$ puma faye/config.ru -p 9292
+$ foreman start -f Profile.development
 ```
 
-Or see other available options here https://github.com/faye/faye-websocket-ruby
+Or see other available options here instead of Puma https://github.com/faye/faye-websocket-ruby
 
 Development
 -----------
 
-* Template Engine: Handlebars
-* Testing Framework: RSpec, Capybara, Factory Girl, Jasmine
-* Front-end Framework: Semantic-ui (SASS), Backbone.js
-* Database: PostgresSQL
-* Server: Puma with 2 worker in cluster mode
-* Editor: VIM molokay theme
+* Testing: RSpec, Jasmine
+* Front-end: Semantic-ui, Backbone.js, Handlebars
+* Database: Mongodb
+* Server: Puma
 
 Tests
 ------
