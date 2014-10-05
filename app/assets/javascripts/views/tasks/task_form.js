@@ -2,6 +2,8 @@ App.Views.TaskForm = Support.CompositeView.extend(
   _.extend({}, App.Mixins.ModelObserver,
   _.extend({}, App.Mixins.BaseView, {
 
+  template: JST['tasks/form'],
+
   initialize: function(options) {
     _.bindAll(this, 'render', 'saved');
     this.model = options.model || this.newModel();
@@ -12,8 +14,6 @@ App.Views.TaskForm = Support.CompositeView.extend(
     this.observe();
     new App.HandlebarsHelpers().withDiffDate();
   },
-
-  template: JST['tasks/form'],
 
   serializeData: function() {
     return {

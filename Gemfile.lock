@@ -1,10 +1,3 @@
-GIT
-  remote: git://github.com/doabit/semantic-ui-sass.git
-  revision: d8084d26f5f7a80aff157d7eb357022ac9379963
-  specs:
-    semantic-ui-sass (0.16.1.0)
-      sass (~> 3.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -246,6 +239,8 @@ GEM
       sprockets-rails (~> 2.0)
     select2-rails (3.5.9.1)
       thor (~> 0.14)
+    semantic-ui-sass (0.16.1.0)
+      sass (~> 3.2)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -313,6 +308,6 @@ DEPENDENCIES
   rspec-rails (~> 3.0.0.beta)
   sass-rails
   select2-rails
-  semantic-ui-sass!
+  semantic-ui-sass
   thin
   uglifier (>= 1.3.0)

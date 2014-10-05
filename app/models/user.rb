@@ -25,6 +25,18 @@ class User
     super(options.merge(except: [:crypted_password, :oauth_token]))
   end
 
+  def password
+    return nil unless self.crypted_password.present?
+    @password ||= Password.new(crypted_password)
+  end
+
+  def password=(value)
+    return unless value.present?
+    @password = value
+    self.crypted_password = Password.create(value)
+  end
+
+  private
   def omniauth_user?
     !uid.nil? && !provider.nil?
   end
@@ -37,17 +49,6 @@ class User
 
   def password_present?
     !password.nil?
-  end
-
-  def password
-    return nil unless self.crypted_password.present?
-    @password ||= Password.new(crypted_password)
-  end
-
-  def password=(value)
-    return unless value.present?
-    @password = value
-    self.crypted_password = Password.create(value)
   end
 
 end
