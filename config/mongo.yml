@@ -20,6 +20,6 @@ test:
 production:
   <<: *defaults
   database: agile2go
-  uri: <%= ENV['MONGODB_URI'] %>
-  username: <%= ENV['MONGO_USERNAME'] %>
-  password: <%= ENV['MONGO_PASSWORD'] %>
+  # uri: <%= ENV['MONGODB_URI'] %>
+  # username: <%= ENV['MONGO_USERNAME'] %>
+  # password: <%= ENV['MONGO_PASSWORD'] %>
