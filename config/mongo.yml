@@ -21,6 +21,6 @@ test:
 production:
   <<: *defaults
   database: agile2go
-  uri: 'mongodb://agile2go.elasticbeanstalk.com/agile2go'
+  uri: 'mongodb://127.0.0.1/agile2go'
   username: <%= ENV['MONGO_USERNAME'] %>
   password: <%= ENV['MONGO_PASSWORD'] %>
