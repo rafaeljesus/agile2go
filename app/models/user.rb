@@ -6,8 +6,8 @@ class User
   EMAIL_REGEX = /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
 
   key :first_name, String, required: true
-  key :last_name, String, required: true
-  key :email, String, required: true, unique: true, format: EMAIL_REGEX
+  key :last_name, String
+  key :email, String, unique: true
   key :crypted_password, String
   key :provider, String
   key :uid, String
@@ -16,10 +16,13 @@ class User
   key :oauth_expires_at, Time
   timestamps!
 
-  validate :password_length
+  validates_confirmation_of :password, if: :password_present?
+  validates_presence_of :password, on: :create, unless: :omniauth_user?
+  validates_presence_of :email, on: :create, unless: :omniauth_user?
+  validate :password_length, unless: :omniauth_user?
 
   def as_json(options = {})
-    super(options.merge(except: [crypted_password]))
+    super(options.merge(except: [:crypted_password, :oauth_token]))
   end
 
   def omniauth_user?
@@ -27,12 +30,17 @@ class User
   end
 
   def password_length
-    return if omniauth_user? || password.length >= 8
-    errors.add(:password, 'password must be greather then 8')
+    if password && password.length < 8
+      errors.add(:password, 'password must be greather then 8')
+    end
+  end
+
+  def password_present?
+    !password.nil?
   end
 
   def password
-    return nil unless crypted_password.present?
+    return nil unless self.crypted_password.present?
     @password ||= Password.new(crypted_password)
   end
 

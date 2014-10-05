@@ -31,14 +31,6 @@
             <div class="ui corner label"><i class="icon asterisk"></i></div>
           </div>
         </div>
-        <div id="password_confirmation_input" class="field">
-          <label for="password-confirmation">{{ t 'user.password_confirmation' }}</label>
-          <div class="ui left labeled icon input">
-            <input id="password-confirmation"  placeholder="{{ t 'user.password_confirmation' }}" type="password">
-            <i class="lock icon"></i>
-            <div class="ui corner label"><i class="icon asterisk"></i></div>
-          </div>
-        </div>
         {{#unless current_user.id}}
         <div class="inline field">
           <div class="ui checkbox">

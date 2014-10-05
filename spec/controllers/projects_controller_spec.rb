@@ -14,7 +14,7 @@ describe ProjectsController, type: :controller do
   end
 
   it "should create a new project" do
-    project_hash = FactoryGirl.attributes_for(:project)
+    project_hash = FactoryGirl.attributes_for(:project, user_ids: [1])
     xhr :post, :create, { project: project_hash }
     expect(response).to be_success
   end

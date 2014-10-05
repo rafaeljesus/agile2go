@@ -8,12 +8,6 @@ describe User do
     expect(user.valid?).to be_falsy
   end
 
-  it "should validate presence of last_name" do
-    user = FactoryGirl.build(:user, last_name: nil)
-    user.save
-    expect(user.valid?).to be_falsy
-  end
-
   describe "email validations" do
     it "should validate presence of email" do
       user = FactoryGirl.build(:user, email: nil)

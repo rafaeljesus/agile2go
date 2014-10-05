@@ -2,15 +2,15 @@ App.Views.ProjectForm = Support.CompositeView.extend(
   _.extend({}, App.Mixins.ModelObserver,
   _.extend({}, App.Mixins.BaseView, {
 
+  template: JST['projects/form'],
+
   initialize: function(options) {
     _.bindAll(this, 'render', 'saved');
     this.users = options.users;
-    this.model = options.model || new App.Models.Project();
+    this.model = this.getModel(options);
     this.bindTo(this.users, 'add', this.render);
     this.observe();
   },
-
-  template: JST['projects/form'],
 
   serializeData: function() {
     return {
@@ -24,13 +24,13 @@ App.Views.ProjectForm = Support.CompositeView.extend(
   },
 
   onRender: function() {
-    this.renderAssignedUsers();
+    this.renderUsers();
     this.select2();
     return this;
   },
 
-  renderAssignedUsers: function() {
-    this.$('select').val(this.model.assignedUsers.ids());
+  renderUsers: function() {
+    this.$('select').val(this.model.users.ids());
   },
 
   save: function(e) {
@@ -47,11 +47,11 @@ App.Views.ProjectForm = Support.CompositeView.extend(
     , description = this.$('#description').val()
     , company     = this.$('#company').val();
     this.model.set({ name: name, description: description, company: company });
-    this.model.assignedUsers = this.users.findByIds(this.assignedUsersIds());
+    this.model.users = this.users.findByIds(this.getUsersIds());
   },
 
-  assignedUsersIds: function() {
-    return this.$('select').find('option:selected').map(function(n, select){
+  getUsersIds: function() {
+    return this.$('select').find('option:selected').map(function(n, select) {
       return $(select).val();
     });
   },
@@ -60,6 +60,10 @@ App.Views.ProjectForm = Support.CompositeView.extend(
      this.projectsPath();
      var message = I18n.t('flash.actions.update.notice', { model: 'Project' });
      this.successMessage(message);
+  },
+
+  getModel: function(options) {
+    return options.model || new App.Models.Project();
   },
 
   select2: function() {

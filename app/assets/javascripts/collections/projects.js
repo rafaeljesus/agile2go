@@ -3,9 +3,9 @@ App.Collections.Projects = Backbone.Collection.extend({
   model: App.Models.Project,
 
   parse: function(response) {
-    if (response.assignedUsers) {
-      this.assignedUsers = response.assignedUsers;
+    if (response.user_ids) {
+      this.user_ids = response.user_ids;
     }
-    return response.projects;
+    return response;
   }
 });

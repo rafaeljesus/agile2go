@@ -22,20 +22,9 @@ class Authentication
   end
 
   def create_from_omniauth
-    User.create! do |user|
-      user.provider = @omniauth[:provider]
-      user.uid = @omniauth[:uid]
-      user.first_name = @omniauth[:info][:first_name]
-      user.last_name = @omniauth[:info][:last_name]
-      user.email = @omniauth[:info][:email]
-      user.avatar = parse_image
-      user.oauth_token = @omniauth[:credentials][:token]
-    end
-  end
-
-  def parse_image
-    return @omniauth[:info][:image] unless @omniauth[:provider] == 'github'
-    @omniauth[:extra][:raw_info][:avatar_url]
+    user = OmniauthHash.new(@omniauth).to_user
+    user.save!
+    user
   end
 
 end

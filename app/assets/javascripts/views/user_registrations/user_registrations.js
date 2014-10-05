@@ -7,7 +7,7 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
   initialize: function(options) {
     _.bindAll(this, 'render', 'saved');
     this.current_user = options.current_user;
-    this.model = options.model || this.newModel();
+    this.model = this.getModel(options);
     this.observe();
   },
 
@@ -36,8 +36,7 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
     var name    = this.$("#name").val()
     , email     = this.$("#email").val()
     , password  = this.$("#password").val()
-    , password_confirmation = this.$("#password-confirmation").val()
-    , options = { name: name, email: email, password: password, password_confirmation: password_confirmation };
+    , options = { name: name, email: email, password: password };
     this.model.set(options);
   },
 
@@ -49,8 +48,8 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
      this.successMessage(message);
   },
 
-  newModel: function() {
-    return new App.Models.UserRegistration();
+  getModel: function(options) {
+    return options.model || new App.Models.UserRegistration();
   }
 
 })));

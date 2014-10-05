@@ -14,7 +14,7 @@ App.Models.Task = Backbone.Model.extend({
   },
 
   parseUsers: function() {
-    var assignedAttr = this.get('assignedUsers');
+    var assignedAttr = this.get('users');
     this.assignedUsers = new App.Collections.Users(assignedAttr);
   },
 

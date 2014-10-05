@@ -35,7 +35,7 @@ App.Views.TaskForm = Support.CompositeView.extend(
   },
 
   newModel: function() {
-    return new App.Models.Task({});
+    return new App.Models.Task();
   },
 
   renderAssignedSprint: function() {
