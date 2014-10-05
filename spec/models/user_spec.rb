@@ -15,15 +15,6 @@ describe User do
       expect(user.valid?).to be_falsy
     end
 
-    it "should reject invalid email" do
-      emails = %w(user@foo,com user_at_foo.org example.user@foo.)
-      emails.each do |email|
-        user = FactoryGirl.build(:user, email: email)
-        user.save
-        expect(user.valid?).to be_falsy
-      end
-    end
-
     it "should validate uniqueness of email" do
       user = FactoryGirl.create(:user)
       user_with_duplicate_email = FactoryGirl.build(:user, email: user.email)
