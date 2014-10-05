@@ -7,7 +7,6 @@ defaults: &defaults
     slave_ok: false
     ssl: false
     skip_version_check: true
-    safe: true
 
 development:
   <<: *defaults
@@ -22,6 +21,6 @@ test:
 production:
   <<: *defaults
   database: agile2go
-  uri: <%= ENV['MONGODB_URI'] %>
+  uri: 'mongodb://agile2go.elasticbeanstalk.com/agile2go'
   username: <%= ENV['MONGO_USERNAME'] %>
   password: <%= ENV['MONGO_PASSWORD'] %>
