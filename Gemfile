@@ -15,10 +15,8 @@ gem 'semantic-ui-sass'
 gem 'bcrypt-ruby', '~> 3.1.5'
 gem 'puma'
 gem 'foreman'
-gem 'cancan'
 gem 'i18n-js'
 gem 'i18n-js-pika', require: 'i18n-js'
-gem 'faye'
 gem 'thin'
 gem 'omniauth'
 gem 'omniauth-oauth2', '1.0.2'
@@ -28,10 +26,7 @@ gem 'omniauth-facebook', '1.4.0'
 gem 'omniauth-google'
 gem "codeclimate-test-reporter", group: :test, require: nil
 gem 'pry-byebug'
-
-group :production do
-  gem 'rails_12factor'
-end
+gem 'firebase'
 
 group :test do
   gem 'database_cleaner'

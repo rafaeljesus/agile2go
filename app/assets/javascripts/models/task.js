@@ -19,9 +19,9 @@ App.Models.Task = Backbone.Model.extend({
   },
 
   allUsers: function() {
-    var allUsers = this.sprint.project.assignedUsers;
-    allUsers.fetch();
-    return allUsers;
+    var users = this.sprint.project.users;
+    users.fetch();
+    return users;
   },
 
   user_assignments_attributes: function() {

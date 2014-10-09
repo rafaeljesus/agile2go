@@ -11,10 +11,6 @@ App.Models.Sprint = Backbone.Model.extend({
     this.project = new App.Models.Project(projectAttr);
   },
 
-  assignedUsers: function() {
-    return this.project.assignedUsers;
-  },
-
   toJSON: function() {
     var json = _.clone(this.attributes);
     json.project_id = (this.project || {}).id || undefined;

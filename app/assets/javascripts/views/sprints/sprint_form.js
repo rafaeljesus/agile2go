@@ -2,6 +2,8 @@ App.Views.SprintForm = Support.CompositeView.extend(
   _.extend({}, App.Mixins.ModelObserver,
   _.extend({}, App.Mixins.BaseView, {
 
+  template: JST['sprints/form'],
+
   initialize: function(options) {
     _.bindAll(this, 'render', 'saved');
     this.model = options.model || this.newModel();
@@ -9,8 +11,6 @@ App.Views.SprintForm = Support.CompositeView.extend(
     this.bindTo(this.projects, 'add', this.render);
     this.observe();
   },
-
-  template: JST['sprints/form'],
 
   serializeData: function() {
     return {
@@ -27,10 +27,6 @@ App.Views.SprintForm = Support.CompositeView.extend(
     this.renderAssignedProject();
     this.select2();
     return this;
-  },
-
-  newModel: function() {
-    return new App.Models.Sprint({});
   },
 
   renderAssignedProject: function() {
@@ -83,6 +79,10 @@ App.Views.SprintForm = Support.CompositeView.extend(
      this.sprintsPath();
      var message = I18n.t('flash.actions.create.notice', { model: 'Sprint' });
      this.successMessage(message);
+  },
+
+  newModel: function() {
+    return new App.Models.Sprint();
   },
 
   sprintsPath: function() {

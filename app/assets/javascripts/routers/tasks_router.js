@@ -6,7 +6,7 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
     this.current_user = options.current_user;
     this.collection = new App.Collections.Tasks();
     this.sprints = new App.Collections.Sprints();
-    // this.subscribe();
+    this.subscribe();
   },
 
   routes: {
@@ -21,7 +21,6 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
     this.collection.fetch();
     var view = new App.Views.TasksIndex({ collection: this.collection });
     this.swap(view);
-    // this.subscribe();
   },
 
   new: function() {
@@ -52,7 +51,7 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
   },
 
   subscribe: function() {
-    new BackboneSync.FayeSubscriber(this.collection, { channel: 'tasks' });
+    // new BackboneSync.FayeSubscriber(this.collection, { channel: 'tasks' });
   }
 
 }));

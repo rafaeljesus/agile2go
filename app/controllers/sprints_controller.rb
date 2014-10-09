@@ -7,18 +7,18 @@ class SprintsController < ApplicationController
   end
 
   def edit
-    respond_with @sprint, root: false
+    respond_with @sprint
   end
 
   def create
     @sprint = Sprint.new sprint_params
     @sprint.save
-    respond_with @sprint, root: false
+    respond_with @sprint
   end
 
   def update
     @sprint.update_attributes sprint_params
-    respond_with @sprint, root: false
+    respond_with @sprint
   end
 
   def destroy
@@ -32,6 +32,8 @@ class SprintsController < ApplicationController
   end
 
   def sprint_params
-    params.require(:sprint).permit(:name, :daily, :points, :start_date, :end_date, :project_id)
+    params
+      .require(:sprint)
+      .permit(:name, :daily, :points, :start_date, :end_date, :project_id)
   end
 end
