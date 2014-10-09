@@ -21,7 +21,7 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
     this.collection.fetch();
     var view = new App.Views.TasksIndex({ collection: this.collection });
     this.swap(view);
-    this.subscribe();
+    // this.subscribe();
   },
 
   new: function() {
