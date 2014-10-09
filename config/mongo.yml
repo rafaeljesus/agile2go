@@ -17,8 +17,8 @@ test:
 
 # set these environment variables on your prod server
 production:
-  <<: *defaults
-  database: agile2go
+  # <<: *defaults
+  # database: agile2go
   uri: <%= ENV['MONGODB_URI'] %>
-  username: <%= ENV['MONGO_USERNAME'] %>
-  password: <%= ENV['MONGO_PASSWORD'] %>
+  # username: <%= ENV['MONGO_USERNAME'] %>
+  # password: <%= ENV['MONGO_PASSWORD'] %>
