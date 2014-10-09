@@ -5,8 +5,6 @@ defaults: &defaults
     w: 1
     pool_size: 1
     slave_ok: false
-    ssl: false
-    skip_version_check: true
 
 development:
   <<: *defaults
