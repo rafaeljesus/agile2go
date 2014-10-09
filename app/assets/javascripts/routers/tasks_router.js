@@ -6,7 +6,7 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
     this.current_user = options.current_user;
     this.collection = new App.Collections.Tasks();
     this.sprints = new App.Collections.Sprints();
-    this.subscribe();
+    // this.subscribe();
   },
 
   routes: {
