@@ -19,6 +19,6 @@ test:
 production:
   # <<: *defaults
   # database: agile2go
-  uri: <%= ENV['MONGODB_URI'] %>
+  uri: mongodb://agile2go:root@ds041380.mongolab.com:41380/agile2go
   # username: <%= ENV['MONGO_USERNAME'] %>
   # password: <%= ENV['MONGO_PASSWORD'] %>
