@@ -30,7 +30,7 @@ App.Views.ProjectForm = Support.CompositeView.extend(
   },
 
   renderUsers: function() {
-    this.$('select').val(this.model.users.ids());
+    this.$('select').val(this.model.users.toIds());
   },
 
   save: function(e) {
