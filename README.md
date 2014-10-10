@@ -3,7 +3,7 @@ Agile2Go [![Build Status](https://travis-ci.org/rafaeljesus/agile2go.svg?branch=
 
 This is app is for my portfolio
 
-Agile2Go is a well tested app, running on AWS, built with backbone.js, Rails as API and mongodb as database
+Agile2Go is a well tested app, running on Elastic Beanstalk, built with backbone.js, Rails as API and Mongolab as DBAS
 
 Setup
 -----
@@ -18,8 +18,6 @@ Run locally:
 ```
 $ foreman start -f Profile.development
 ```
-
-Or see other available options here instead of Puma https://github.com/faye/faye-websocket-ruby
 
 Development
 -----------
