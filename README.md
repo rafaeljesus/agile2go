@@ -3,7 +3,7 @@ Agile2Go [![Build Status](https://travis-ci.org/rafaeljesus/agile2go.svg?branch=
 
 This is app is for my portfolio
 
-Agile2Go is a well tested app, running on Elastic Beanstalk, built with backbone.js, Rails as API and Mongolab as DBAS
+Agile2Go is a well tested app, running on Elastic Beanstalk, built with backbone.js, Rails as API and Mongolab as DaaS
 
 Setup
 -----
