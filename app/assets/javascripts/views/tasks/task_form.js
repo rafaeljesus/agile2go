@@ -8,7 +8,7 @@ App.Views.TaskForm = Support.CompositeView.extend(
     _.bindAll(this, 'render', 'saved');
     this.model = options.model || this.newModel();
     this.sprints = options.sprints;
-    this.users = this.model.allUsers();
+    this.users = this.model.findUsers();
     this.bindTo(this.sprints, 'add', this.render);
     this.bindTo(this.users, 'add', this.render);
     this.observe();
@@ -52,14 +52,14 @@ App.Views.TaskForm = Support.CompositeView.extend(
   },
 
   commit: function() {
-    var status = this.$('#status').val()
-    , priority = this.$('#priority').val()
-    , points   = this.$('#points').val()
-    , title    = this.$('#title').val()
-    , story    = this.$('#story').val()
-    , options  = { status: status, priority: priority, points: points, title: title, story: story }
-    ;
-    this.model.set(options);
+    var attributes = {
+      status: this.$('#status').val(),
+      priority: this.$('#priority').val(),
+      points: this.$('#points').val(),
+      title: this.$('#title').val(),
+      story: this.$('#story').val()
+    };
+    this.model.set(attributes);
     this.model.sprint = this.sprints.get({ id: this.selectedSprint() });
     this.model.users = this.users.findByIds(this.selectedUsersIds());
   },

@@ -5,15 +5,9 @@ App.Views.TasksIndex = Support.CompositeView.extend({
 
   initialize: function(options) {
     _.bindAll(this, 'render', 'renderItem', 'showSyncMessage');
-    this.bindTo(this.collection, 'change reset add', this.change);
+    // this.bindTo(this.collection, 'change reset add', this.change);
+    this.bindTo(this.collection, 'change reset add', this.render);
     this.registerHelpers();
-  },
-
-  registerHelpers: function() {
-    new App.HandlebarsHelpers()
-      .withDiffDate()
-      .withTimeago()
-      .withTruncate();
   },
 
   render: function() {
@@ -39,6 +33,13 @@ App.Views.TasksIndex = Support.CompositeView.extend({
     var item = new App.Views.CollectionItem(options);
     this.renderChild(item);
     this.$('#items').append(item.el);
+  },
+
+  registerHelpers: function() {
+    new App.HandlebarsHelpers()
+      .withDiffDate()
+      .withTimeago()
+      .withTruncate();
   },
 
   showSyncMessage: function(model) {

@@ -19,7 +19,7 @@ App.Models.Task = Backbone.Model.extend({
     this.users = new App.Collections.Users(ids);
   },
 
-  allUsers: function() {
+  findUsers: function() {
     var users = this.sprint.project.users;
     users.fetch();
     return users;

@@ -7,7 +7,7 @@ class TasksController < ApplicationController
   end
 
   def edit
-    respond_with @task, root: false
+    respond_with @task
   end
 
   def create
@@ -27,7 +27,7 @@ class TasksController < ApplicationController
   end
 
   def search
-    respond_with TaskSearch.search(params[:query])
+    respond_with TaskSearch.search params[:query]
   end
 
   private
@@ -36,8 +36,8 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task)
-      .permit(:title, :story, :status, :priority, :points, :sprint_id)
-      .merge(user_assignments_attributes: params[:user_assignments_attributes] || [])
+    params
+      .require(:task)
+      .permit(:title, :story, :status, :priority, :points, :sprint_id, user_ids: [])
   end
 end
