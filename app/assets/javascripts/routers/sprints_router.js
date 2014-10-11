@@ -33,7 +33,7 @@ App.Routers.Sprints = Support.SwappingRouter.extend(
     this.projects.fetch();
     var self = this;
     $.getJSON("/sprints/" + id + "/edit").then(function(resp) {
-      var model = new App.Models.Sprint(resp);
+      var model = new App.Models.Sprint(resp, { parse: true });
       var view = new App.Views.SprintForm({ model: model, projects: self.projects });
       self.swap(view);
     });

@@ -3,7 +3,7 @@ class Sprint
 
   key :name, String, required: true, unique: true
   key :points, Integer, required: true, numeric: true
-  key :daily, Time
+  key :daily, String
   key :start_date, Date
   key :end_date, Date
   timestamps!
