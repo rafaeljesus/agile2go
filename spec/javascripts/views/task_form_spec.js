@@ -1,4 +1,5 @@
-describe('App.Views.TaskForm', function(){
+describe('App.Views.TaskForm', function() {
+
   var view
   , model
   , sprints
@@ -6,17 +7,25 @@ describe('App.Views.TaskForm', function(){
   , e
   ;
 
-  beforeEach(function(){
-    var sprint = { id: 1, daily: '10:00', points: 40, start_date: '01/01/2014', end_date: '01/15/2014', project: { id: 1, name: 'projectNameFake' } };
+  beforeEach(function() {
+    var sprintJSON = [{
+      id: '54309a91793f766b0b000020',
+      name: 'sprint1',
+      daily: '10:00',
+      points: 40,
+      start_date: '01/01/2014',
+      end_date: '01/15/2014',
+      project_id: '54309a91793f766b0b000040'
+    }];
     this.server = sinon.fakeServer.create();
-    sprints = new App.Collections.Sprints([sprint]);
+    sprints = new App.Collections.Sprints(sprintJSON);
     view = new App.Views.TaskForm({ sprints: sprints });
     model = view.model;
     view.render();
     e = document.createEvent('KeyboardEvent');
   });
 
-  afterEach(function(){
+  afterEach(function() {
     view.$('#status').val('');
     view.$('#priority').val('');
     view.$('#points').val('');
@@ -26,7 +35,7 @@ describe('App.Views.TaskForm', function(){
     this.server.restore();
   });
 
-  var commit = function(){
+  var commit = function() {
     view.$('#status').val('Todo');
     view.$('#priority').val(5);
     view.$('#points').val(8);
@@ -36,21 +45,14 @@ describe('App.Views.TaskForm', function(){
     view.$('select').val(sprints.at(0).get('id')).trigger('change');
   };
 
-
-  it('should call onRender when instantiate', function(){
-    spyOn(view, 'onRender');
-    view.render();
-    expect(view.onRender).toHaveBeenCalled();
-  });
-
-  it('should not persists a empty model', function(){
+  it('should not persists a empty model', function() {
     spyOn(model, 'save');
     view.save(e);
     expect(model.save).not.toHaveBeenCalled();
     expect(model.isValid()).toBeFalsy();
   });
 
-  it('should not persists when title is empty', function(){
+  it('should not persists when title is empty', function() {
     spyOn(model, 'save');
     commit();
     view.$('#title').val('');
@@ -59,7 +61,7 @@ describe('App.Views.TaskForm', function(){
     expect(model.isValid()).toBeFalsy();
   });
 
-  it('should not persists when story is empty', function(){
+  it('should not persists when story is empty', function() {
     spyOn(model, 'save');
     commit();
     view.$('#story').val('');
@@ -68,14 +70,14 @@ describe('App.Views.TaskForm', function(){
     expect(model.isValid()).toBeFalsy();
   });
 
-  it('should commit model', function(){
+  it('should commit model', function() {
     commit();
     view.commit();
     expect(model.isValid()).toBeTruthy();
     expect(model.sprint).toEqual(view.model.sprint);
   });
 
-  it('should persists a model', function(){
+  it('should persists a model', function() {
     spyOn(model, 'save');
     commit();
     view.save(e);

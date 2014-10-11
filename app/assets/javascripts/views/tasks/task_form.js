@@ -12,7 +12,7 @@ App.Views.TaskForm = Support.CompositeView.extend(
     this.bindTo(this.sprints, 'add', this.render);
     this.bindTo(this.users, 'add', this.render);
     this.observe();
-    new App.HandlebarsHelpers().withDiffDate();
+    this.registerHelpers();
   },
 
   serializeData: function() {
@@ -28,22 +28,18 @@ App.Views.TaskForm = Support.CompositeView.extend(
   },
 
   onRender: function() {
-    this.renderAssignedSprint();
-    this.renderAssignedUsers();
+    this.renderSprint();
+    this.renderUsers();
     this.thirdComponents();
     return this;
   },
 
-  newModel: function() {
-    return new App.Models.Task();
-  },
-
-  renderAssignedSprint: function() {
+  renderSprint: function() {
     this.$('#sprint').val(this.model.sprint.id).trigger('change');
   },
 
-  renderAssignedUsers: function() {
-    this.$('#users').val(this.model.assignedUsers.ids());
+  renderUsers: function() {
+    this.$('#users').val(this.model.users.toIds());
   },
 
   save: function(e) {
@@ -65,15 +61,17 @@ App.Views.TaskForm = Support.CompositeView.extend(
     ;
     this.model.set(options);
     this.model.sprint = this.sprints.get({ id: this.selectedSprint() });
-    this.model.assignedUsers = this.users.findByIds(this.assignedUsersIds());
+    this.model.users = this.users.findByIds(this.selectedUsersIds());
   },
 
   selectedSprint: function() {
-    return _.first(this.$('#sprint').find('option:selected').map(this.setOptionValue));
+    var selected = this.$('#sprint').find('option:selected');
+    return _.first(selected.map(this.setOptionValue));
   },
 
-  assignedUsersIds : function() {
-    return this.$('#users').find('option:selected').map(this.setOptionValue);
+  selectedUsersIds: function() {
+    var selected = this.$('#sprint').find('option:selected');
+    return selected.map(this.setOptionValue);
   },
 
   setOptionValue: function(n, select) {
@@ -84,6 +82,14 @@ App.Views.TaskForm = Support.CompositeView.extend(
      window.location.hash = '#tasks';
      var message = I18n.t('flash.actions.create.notice', { model: 'Task' });
      this.successMessage(message);
+  },
+
+  newModel: function() {
+    return new App.Models.Task();
+  },
+
+  registerHelpers: function() {
+    new App.HandlebarsHelpers().withDiffDate();
   },
 
   thirdComponents: function() {

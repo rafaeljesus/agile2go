@@ -1,11 +1,12 @@
 var App = new (Backbone.View.extend({
+
   Models: {},
   Collections: {},
   Views: {},
   Routers: {},
   Mixins: {},
 
-  init: function(){
+  init: function() {
     new App.HandlebarsHelpers().withI18n();
     var current_user = new App.Models.CurrentUser({});
     // FIXME emit a user:loggedin event
@@ -22,7 +23,7 @@ var App = new (Backbone.View.extend({
     new ActiveNav();
   },
 
-  start: function(){
+  start: function() {
     if (!Backbone.history.started) {
       Backbone.history.start();
       Backbone.history.started = true;
@@ -31,6 +32,6 @@ var App = new (Backbone.View.extend({
 
 }))({ el: document.body });
 
-$(function(){
+$(function() {
   App.init();
 });

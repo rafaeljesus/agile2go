@@ -1,40 +1,60 @@
-describe('App.Models.Tasks#initialize', function(){
+describe('App.Models.Tasks#initialize', function() {
 
-  var newTask;
+  var model;
 
-  beforeEach(function(){
-    var attributes = { id: 1, title: 'Assigning a Tasks to others', priority: 5, points: 8, status: 'Todo', sprint: { id: 1 } };
-    newTask = new App.Models.Task(attributes);
+  beforeEach(function() {
+    var attributes = {
+      id: 1,
+      title: 'Assigning a Tasks to others',
+      priority: 5,
+      points: 8,
+      status: 'Todo',
+      sprint_id: 1,
+      user_ids: ['54309a91793f766b0b000019', '54309a91793f766b0b000020']
+    };
+    model = new App.Models.Task(attributes);
   });
 
-  it('should have one sprint', function(){
-    var sprint = newTask.sprint;
+  it('should has one sprint', function() {
+    var sprint = model.sprint;
     var typeCheck = sprint instanceof App.Models.Sprint;
     expect(typeCheck).toBeTruthy();
-    expect(sprint).toBeDefined();
   });
 
-  it('should validate when model have required attributes', function(){
-    expect(newTask.isValid()).toBeFalsy();
+  it('should has many users', function() {
+    var users = model.users;
+    var typeCheck = users instanceof App.Collections.Users;
+    expect(typeCheck).toBeTruthy();
   });
-});
 
-describe('App.Models.Task change:sprint', function(){
-  it('re-parse the sprint', function(){
-    var sprint = { sprint: { id: 1, name: 'sprintNameFake' } };
-    var task = new App.Models.Task(sprint);
-    expect(task.sprint).toBeDefined();
-    task.set({ sprint: { name: 'Create a new Task' } });
-    expect(task.sprint.get('name')).toEqual('Create a new Task');
-  });
-});
+  it('re-parse the sprint', function() {
+    var expectedId = '54309a91793f766b0b000021'
+      , sprintAttr = { sprint_id: '54309a91793f766b0b000020' }
+      , task = new App.Models.Task(sprintAttr);
 
-describe('App.Models.Task change:assignedUsers', function(){
-  it("re-parses the assignedUsers", function() {
-    var assignedUsers = { assignedUsers: [{ name: 'Rafael Jesus' }, { name: 'Sophia de Jesus' }] };
-    var task = new App.Models.Task(assignedUsers);
-    expect(task.assignedUsers.size()).toEqual(2);
-    task.set({ assignedUsers: [{ name: 'Sophia de Jesus' }] });
-    expect(task.assignedUsers.size()).toEqual(1);
+    task.sprint.set({ id: expectedId });
+    expect(task.sprint.get('id')).toEqual(expectedId);
   });
+
+  it("re-parses the users", function() {
+    var expectedId = '54309a91793f766b0b000022'
+      , attrs = { user_ids: ['54309a91793f766b0b000020', '54309a91793f766b0b000021'] }
+      , task = new App.Models.Task(attrs)
+      , newCollection = [{ id: expectedId }];
+
+    task.users.reset(newCollection);
+    var user = task.users.findWhere({ id: expectedId });
+    expect(user.id).toEqual(expectedId);
+  });
+
+  it('should call toUserIds method when toJSON is called', function() {
+    spyOn(model, 'toUserIds');
+    model.toJSON();
+    expect(model.toUserIds).toHaveBeenCalled();
+  });
+
+  it('should validate when model have required attributes', function() {
+    expect(model.isValid()).toBeFalsy();
+  });
+
 });

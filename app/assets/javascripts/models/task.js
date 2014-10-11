@@ -2,20 +2,21 @@ App.Models.Task = Backbone.Model.extend({
   urlRoot: '/tasks',
 
   initialize: function() {
-    this.on('change:sprint', this.parseSprint);
-    this.on('change:assignedUsers', this.parseUsers);
-    this.parseSprint();
-    this.parseUsers();
+    this.setSprint();
+    this.setUsers();
   },
 
-  parseSprint: function() {
-    var sprintAttr = this.get('sprint');
+  setSprint: function() {
+    var sprintAttr = { id: this.get('sprint_id') };
     this.sprint = new App.Models.Sprint(sprintAttr);
   },
 
-  parseUsers: function() {
-    var assignedAttr = this.get('users');
-    this.assignedUsers = new App.Collections.Users(assignedAttr);
+  setUsers: function() {
+    var userIds = this.get('user_ids') || [];
+    var ids = userIds.map(function(id) {
+      return { id: id };
+    });
+    this.users = new App.Collections.Users(ids);
   },
 
   allUsers: function() {
@@ -24,16 +25,16 @@ App.Models.Task = Backbone.Model.extend({
     return users;
   },
 
-  user_assignments_attributes: function() {
-    return this.assignedUsers.map(function(user) {
-      return { user_id: user.id }
+  toUserIds: function() {
+    return this.users.map(function(user) {
+      return user.id;
     });
   },
 
   toJSON: function() {
     var json = _.clone(this.attributes);
     json.sprint_id = (this.sprint || {}).id || {};
-    json.user_assignments_attributes = this.user_assignments_attributes();
+    json.user_ids= this.toUserIds();
     return json;
   },
 

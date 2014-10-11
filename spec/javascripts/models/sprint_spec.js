@@ -1,30 +1,40 @@
-describe('App.Models.Sprints#initialize', function(){
+describe('App.Models.Sprints#initialize', function() {
 
   var newSprint;
 
-  beforeEach(function(){
-    var attributes = { id: 1, daily: '10:00', points: 40, start_date: '01/01/2014', end_date: '01/15/2014', project: { id: 1, name: 'projectNameFake' } };
+  beforeEach(function() {
+    var attributes = {
+      id: 1,
+      daily: '10:00',
+      points: 40,
+      start_date: '01/01/2014',
+      end_date: '01/15/2014',
+      project_id: '54309a91793f766b0b000019'
+    };
     newSprint = new App.Models.Sprint(attributes);
   });
 
-  it('should have one project', function(){
+  it('should has one project', function() {
     var project = newSprint.project;
     var typeCheck = project instanceof App.Models.Project;
     expect(typeCheck).toBeTruthy();
     expect(project).toBeDefined();
   });
 
-  it('should validate when model have required attributes', function(){
+  it('should validate when model have required attributes', function() {
     expect(newSprint.isValid()).toBeFalsy();
   });
 });
 
-describe('App.Models.Sprint project:change', function(){
-  it('re-parse the project', function(){
-    var project = { project: { id: 1, name: 'projectNameFake' } };
-    var sprint = new App.Models.Sprint(project);
-    expect(sprint.project).toBeDefined();
-    sprint.set({ project: { name: 'Agile2Go' } });
-    expect(sprint.project.get('name')).toEqual('Agile2Go');
+describe('App.Models.Sprint project:association', function() {
+
+  it('re-parse the project', function() {
+    var expectedId = '54309a91793f766b0b000020'
+      , projectAttr = { project_id: '54309a91793f766b0b000019' }
+      , sprint = new App.Models.Sprint(projectAttr);
+
+    sprint.project.set({ id: expectedId });
+    expect(sprint.project.get('id')).toEqual(expectedId);
   });
+
 })

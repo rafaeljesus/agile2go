@@ -1,30 +1,32 @@
-describe('App.Views.UserRegistrations', function(){
+describe('App.Views.UserRegistrations', function() {
+
   var view
   , $el
   , model
   , server
   , e;
 
-  describe('When create a new account', function(){
-    beforeEach(function(){
+  describe('When create a new account', function() {
+
+    beforeEach(function() {
       server = sinon.fakeServer.create();
       server.respondWith("GET", "/current_user/12345", [ 200, {"Content-Type": "application/json"}, '[{ "name": "fakeUser" }]' ]);
-      var current_user = new App.Models.CurrentUser({});
-      view = new App.Views.UserRegistrations({});
+      var current_user = new App.Models.CurrentUser();
+      view = new App.Views.UserRegistrations({ current_user: current_user });
       model = view.model;
       $el = $(view.render().el);
       e = document.createEvent('KeyboardEvent');
     });
 
-    afterEach(function(){
+    afterEach(function() {
       server.restore();
     });
 
-    it('should render sign up form', function(){
+    it('should render sign up form', function() {
       expect($el).toHaveText(/Sign Up/);
     });
 
-    it('should create a new user', function(){
+    it('should create a new user', function() {
       spyOn(model, 'save');
       view.$('#name').val('User Fake');
       view.$('#email').val('fake@email.com');
@@ -34,7 +36,7 @@ describe('App.Views.UserRegistrations', function(){
       expect(model.save).toHaveBeenCalled();
     });
 
-    it('should not create a new user if sign up form is blank', function(){
+    it('should not create a new user if sign up form is blank', function() {
       spyOn(model, 'save');
       view.$('#name').val('');
       view.$('#email').val('');
@@ -46,7 +48,7 @@ describe('App.Views.UserRegistrations', function(){
     });
   });
 
-  describe('When edit a existing account', function(){
+  describe('When edit a existing account', function() {
     beforeEach(function(){
       server = sinon.fakeServer.create();
       server.respondWith("GET", "/current_user/12345", [ 200, {"Content-Type": "application/json"}, '[{ "name": "fakeUser" }]' ]);
@@ -59,15 +61,15 @@ describe('App.Views.UserRegistrations', function(){
       e = document.createEvent('KeyboardEvent');
     });
 
-    afterEach(function(){
+    afterEach(function() {
       server.restore();
     });
 
-    it('should render edit account form', function(){
+    it('should render edit account form', function() {
       expect($el).toHaveText(/Edit Account/);
     });
 
-    it('should name and email fields be disabled', function(){
+    it('should name and email fields be disabled', function() {
       expect($el.find('#name')).toBeDisabled();
       expect($el.find('#email')).toBeDisabled();
     });

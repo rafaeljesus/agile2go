@@ -2,11 +2,10 @@ App.Models.Sprint = Backbone.Model.extend({
   urlRoot: '/sprints',
 
   initialize: function() {
-    this.on('change:project', this.parseProject);
-    this.parseProject();
+    this.setProject();
   },
 
-  parseProject: function() {
+  setProject: function() {
     var projectAttr = { id:  this.get('project_id') };
     this.project = new App.Models.Project(projectAttr);
   },

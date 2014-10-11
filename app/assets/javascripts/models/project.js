@@ -2,13 +2,15 @@ App.Models.Project = Backbone.Model.extend({
   urlRoot: '/projects',
 
   initialize: function() {
-    this.on('change:users', this.parseUsers);
-    this.parseUsers();
+    this.setUsers();
   },
 
-  parseUsers: function() {
-    var assignedAttr = { user_ids: this.get('user_ids') };
-    this.users = new App.Collections.Users(assignedAttr);
+  setUsers: function() {
+    var userIds = this.get('user_ids') || [];
+    var ids = userIds.map(function(id) {
+      return { id: id };
+    });
+    this.users = new App.Collections.Users(ids);
   },
 
   toUserIds: function() {
