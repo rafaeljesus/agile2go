@@ -11,6 +11,7 @@
   <%= yield(:head) %>
 </head>
 <body>
+
   <div id="menu"></div>
   <br>
   <div id="messages"></div>
@@ -20,15 +21,22 @@
       <div id="container"></div>
     </div>
   </div>
+
   <%= render 'layouts/footer' %>
 
   <%= javascript_include_tag "application" %>
+
+  <!--<script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+  <script src="https://cdn.firebase.com/libs/backfire/0.3.0/backbone-firebase.min.js"></script>-->
+
   <script type="text/javascript">
     var I18n = I18n || {};
     I18n.defaultLocale = "<%= I18n.default_locale %>";
     I18n.locale = "<%= I18n.locale %>";
   </script>
+
   <div id="fb-root"></div>
+
   <%- unless test? %>
     <script>
       (function(d, s, id){
@@ -40,6 +48,8 @@
       }(document, 'script', 'facebook-jssdk'));
     </script>
   <%- end %>
+
   <%= yield %>
+
 </body>
 </html>

@@ -51,7 +51,7 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
   },
 
   subscribe: function() {
-    // new BackboneSync.FayeSubscriber(this.collection, { channel: 'tasks' });
+    // new App.TasksSync(this.collection);
   }
 
 }));

@@ -3,7 +3,8 @@ class TasksController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Task.ordered
+    @tasks = Task.ordered
+    respond_with @tasks
   end
 
   def edit
@@ -11,33 +12,36 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new task_params
-    @task.save
-    respond_with @task
+    task_form = TaskCreate.new(task_params)
+    task_form.save
+    respond_with task_form
   end
 
   def update
-    @task.update_attributes task_params
-    respond_with @task
+    task_form = TaskUpdate.new(@task, task_params)
+    task_form.save
+    respond_with task_form
   end
 
   def destroy
-    @task.destroy
-    respond_with @task
+    task_form = TaskDestroy.new(@task)
+    task_form.destroy
+    respond_with task_form
   end
 
   def search
-    respond_with TaskSearch.search params[:query]
+    tasks = TaskSearch.search(params[:query])
+    respond_with tasks
   end
 
   private
   def set_task
-    @task = Task.find params[:id]
+    @task = Task.find(params[:id])
   end
 
   def task_params
     params
       .require(:task)
-      .permit(:title, :story, :status, :priority, :points, :sprint_id, user_ids: [])
+      .permit(:title, :story, :status, :priority, :points, :sprint_id, :project_name, user_ids: [])
   end
 end

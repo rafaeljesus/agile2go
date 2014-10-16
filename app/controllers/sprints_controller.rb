@@ -3,7 +3,8 @@ class SprintsController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Sprint.all
+    @sprints = Sprint.all
+    respond_with @sprints
   end
 
   def edit

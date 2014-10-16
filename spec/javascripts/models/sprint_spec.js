@@ -6,6 +6,7 @@ describe('App.Models.Sprints#initialize', function() {
     var attributes = {
       id: 1,
       daily: '10:00',
+      name: 'sprint1',
       points: 40,
       start_date: '01/01/2014',
       end_date: '01/15/2014',
@@ -22,6 +23,7 @@ describe('App.Models.Sprints#initialize', function() {
   });
 
   it('should validate when model have required attributes', function() {
+    newSprint.attributes.name = undefined;
     expect(newSprint.isValid()).toBeFalsy();
   });
 });

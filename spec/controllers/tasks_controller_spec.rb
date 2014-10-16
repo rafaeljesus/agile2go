@@ -2,9 +2,11 @@ require 'spec_helper'
 
 describe TasksController, type: :controller do
 
-  before {
-    @task = FactoryGirl.create(:task)
-  }
+  before do
+    project = FactoryGirl.create(:project)
+    sprint = FactoryGirl.create(:sprint, project_id: project.id)
+    @task = FactoryGirl.create(:task, sprint_id: sprint.id)
+  end
 
   it "should return a tasks collection" do
     xhr :get, :index
@@ -17,8 +19,7 @@ describe TasksController, type: :controller do
   end
 
   it "should create a new task" do
-    task_hash = FactoryGirl.attributes_for(:task, sprint_id: 1)
-    xhr :post, :create, { task: task_hash }
+    xhr :post, :create, { task: @task.attributes }
     expect(response).to be_success
   end
 

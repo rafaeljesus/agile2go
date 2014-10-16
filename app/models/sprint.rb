@@ -9,4 +9,5 @@ class Sprint
   timestamps!
   many :tasks
   belongs_to :project
+
 end

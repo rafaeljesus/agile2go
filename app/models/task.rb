@@ -1,5 +1,6 @@
 class Task
   include MongoMapper::Document
+
   STATUSES = %w(todo ongoing test done)
 
   key :title, String, required: true
@@ -10,7 +11,7 @@ class Task
   timestamps!
   belongs_to :sprint
 
-  scope :ordered, -> { sort(created_at: :desc)  }
+  scope :ordered, -> { sort(created_at: :desc) }
 
   def self.search(query)
     collection
@@ -26,4 +27,19 @@ class Task
       .to_a
   end
 
+  def is_todo
+    status == 'todo'
+  end
+
+  def is_ongoing
+    status == 'ongoing'
+  end
+
+  def is_test
+    status == 'test'
+  end
+
+  def is_done
+    done == 'done'
+  end
 end

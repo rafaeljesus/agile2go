@@ -1,17 +1,14 @@
-this.BackboneSync = this.BackboneSync || {};
+App.TasksSync = (function() {
 
-BackboneSync.FayeSubscriber = (function() {
-
-   function FayeSubscriber(collection, options) {
+   function TasksSync(collection, options) {
      this.collection = collection;
-     this.client = new Faye.Client(fayejsPath + '/faye');
-     this.channel = options.channel;
+     this.firebase = new Firebase('https://scorching-heat-1523.firebaseio.com/');
      this.subscribe();
    }
 
-  FayeSubscriber.prototype = {
+  TasksSync.prototype = {
     subscribe: function() {
-      this.client.subscribe('/sync/' + this.channel, _.bind(this.receive, this));
+      this.firebase.subscribe('/sync/' + this.channel, _.bind(this.receive, this));
     },
 
     receive: function(message) {
@@ -46,6 +43,6 @@ BackboneSync.FayeSubscriber = (function() {
     }
   };
 
-  return FayeSubscriber;
+  return TasksSync;
 
 })();

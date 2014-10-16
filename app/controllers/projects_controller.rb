@@ -11,13 +11,13 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new project_params
-    @project.save
-    respond_with @project
+    project_form = ProjectCreate.new(project_params)
+    project_form.save
+    respond_with project_form
   end
 
   def update
-    @project.update_attributes project_params
+    @project.update_attributes(project_params)
     respond_with @project
   end
 

@@ -54,6 +54,7 @@ describe('App.Models.Tasks#initialize', function() {
   });
 
   it('should validate when model have required attributes', function() {
+    model.attributes.title = undefined;
     expect(model.isValid()).toBeFalsy();
   });
 

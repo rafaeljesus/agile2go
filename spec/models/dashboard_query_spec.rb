@@ -4,6 +4,12 @@ describe DashboardQuery do
 
   # after { FactoryGirl.reload }
 
+  it 'should update a dashboard' do
+    # project = FactoryGirl.create(:project)
+    # task = FactoryGirl.create(:task)
+    # Dashboard.update task
+  end
+
   it 'should count all tasks done of a given project' do
     # task = FactoryGirl.create :task
     # json = DashboardQuery.new.to_json
