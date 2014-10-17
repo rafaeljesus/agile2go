@@ -40,6 +40,6 @@ class Task
   end
 
   def is_done
-    done == 'done'
+    status == 'done'
   end
 end

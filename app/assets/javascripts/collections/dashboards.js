@@ -1,4 +1,4 @@
 App.Collections.Dashboards = Backbone.Collection.extend({
   url: '/dashboard',
-  model: App.Models.Dashboard,
+  model: App.Models.Dashboard
 });
