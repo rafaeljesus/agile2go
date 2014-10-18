@@ -6,7 +6,7 @@ App.Views.TaskForm = Support.CompositeView.extend(
 
   initialize: function(options) {
     _.bindAll(this, 'render', 'saved');
-    this.model = options.model || this.newModel();
+    this.model = this.getModel(options);
     this.sprints = options.sprints;
     this.users = this.model.findUsers();
     this.bindTo(this.sprints, 'add', this.render);
@@ -39,7 +39,8 @@ App.Views.TaskForm = Support.CompositeView.extend(
   },
 
   renderUsers: function() {
-    this.$('#users').val(this.model.users.toIds());
+    var userIds = this.model.users.toIds();
+    this.$('#users').val(userIds);
   },
 
   save: function(e) {
@@ -60,18 +61,18 @@ App.Views.TaskForm = Support.CompositeView.extend(
       story: this.$('#story').val()
     };
     this.model.set(attributes);
-    this.model.sprint = this.sprints.get({ id: this.selectedSprint() });
-    this.model.users = this.users.findByIds(this.selectedUsersIds());
+    this.model.sprint = this.sprints.get({ id: this.toSprintId() });
+    this.model.users = this.users.findByIds(this.toUsersIds());
   },
 
-  selectedSprint: function() {
-    var selected = this.$('#sprint').find('option:selected');
-    return _.first(selected.map(this.setOptionValue));
+  toSprintId: function() {
+    var selectedSprint = this.$('#sprint').find('option:selected');
+    return _.first(selectedSprint.map(this.setOptionValue));
   },
 
-  selectedUsersIds: function() {
-    var selected = this.$('#sprint').find('option:selected');
-    return selected.map(this.setOptionValue);
+  toUsersIds: function() {
+    var selectedUsers = this.$('#users').find('option:selected');
+    return selectedUsers.map(this.setOptionValue);
   },
 
   setOptionValue: function(n, select) {
@@ -84,8 +85,8 @@ App.Views.TaskForm = Support.CompositeView.extend(
      this.successMessage(message);
   },
 
-  newModel: function() {
-    return new App.Models.Task();
+  getModel: function(options) {
+    return options.model || new App.Models.Task();
   },
 
   registerHelpers: function() {

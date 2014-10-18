@@ -30,7 +30,8 @@ App.Views.ProjectForm = Support.CompositeView.extend(
   },
 
   renderUsers: function() {
-    this.$('select').val(this.model.users.toIds());
+    var userIds = this.model.users.toIds();
+    this.$('select').val(userIds);
   },
 
   save: function(e) {
@@ -43,15 +44,18 @@ App.Views.ProjectForm = Support.CompositeView.extend(
   },
 
   commit: function() {
-    var name      = this.$('#name').val()
-    , description = this.$('#description').val()
-    , company     = this.$('#company').val();
-    this.model.set({ name: name, description: description, company: company });
-    this.model.users = this.users.findByIds(this.getUsersIds());
+    var attributes = {
+      name: this.$('#name').val(),
+      description: this.$('#description').val(),
+      company: this.$('#company').val()
+    };
+    this.model.set(attributes);
+    this.model.users = this.users.findByIds(this.toUsersIds());
   },
 
-  getUsersIds: function() {
-    return this.$('select').find('option:selected').map(function(n, select) {
+  toUsersIds: function() {
+    var selectedUsers = this.$('select').find('option:selected');
+    return selectedUsers.map(function(n, select) {
       return $(select).val();
     });
   },

@@ -8,6 +8,8 @@ class Task
   key :status, String, in: STATUSES
   key :priority, Integer, in: 1..5
   key :points, Integer, numeric: true
+  key :user_ids, Array
+  many :users, in: :user_ids
   timestamps!
   belongs_to :sprint
 
