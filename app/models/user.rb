@@ -1,4 +1,5 @@
 require 'bcrypt'
+
 class User
   include MongoMapper::Document
   include BCrypt

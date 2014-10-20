@@ -12,7 +12,9 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
   },
 
   serializeData: function() {
-    return { current_user: this.model.toJSON() }
+    return {
+      current_user: this.model.toJSON()
+    }
   },
 
   events: {
@@ -21,7 +23,7 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
 
   onRender: function() {
     if (!this.model.get('id')) return;
-    this.$('#name').attr('disabled', 'disabled');
+    this.$('#first-name').attr('disabled', 'disabled');
     this.$('#email').attr('disabled', 'disabled');
   },
 
@@ -33,11 +35,13 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
   },
 
   commit: function() {
-    var name    = this.$("#name").val()
-    , email     = this.$("#email").val()
-    , password  = this.$("#password").val()
-    , options = { name: name, email: email, password: password };
-    this.model.set(options);
+    var attributes = {
+      first_name: this.$("#first-name").val(),
+      last_name: this.$("#last-name").val(),
+      email: this.$("#email").val(),
+      password: this.$("#password").val()
+    };
+    this.model.set(attributes);
   },
 
   saved: function(model, response, options) {

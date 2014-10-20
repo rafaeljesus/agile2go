@@ -8,7 +8,10 @@ App.Models.UserRegistration = Backbone.Model.extend({
 
   validate: function(attrs, options) {
     var errors;
-    if (!attrs.name) {
+    if (!attrs.first_name) {
+      (errors = errors || {}).name = ["can't be blank"];
+    };
+    if (!attrs.last_name) {
       (errors = errors || {}).name = ["can't be blank"];
     };
     if (!attrs.email) {

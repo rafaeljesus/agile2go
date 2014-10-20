@@ -2,15 +2,23 @@
   <div class="column">
     <div class="ui form segment">
       {{#if current_user.id}}
-      <h1>Edit Account</h1>
+        <h1>Edit Account</h1>
       {{else}}
-      <h1>{{ t 'sign_up' }}</h1>
+        <h1>{{ t 'sign_up' }}</h1>
       {{/if}}
       <form class="ui form segment">
-        <div id="name_input" class="field">
-          <label>{{ t 'user.name' }}</label>
+        <div id="first_name_input" class="field">
+          <label>First Name</label>
           <div class="ui left labeled icon input">
-            <input id="name" value="{{current_user.name}}" placeholder="{{ t 'user.name' }}" type="text">
+            <input id="first-name" value="{{current_user.first_name}}" placeholder="First Name" type="text">
+            <i class="user icon"></i>
+            <div class="ui corner label"><i class="icon asterisk"></i></div>
+          </div>
+        </div>
+        <div id="last_name_input" class="field">
+          <label>Last Name</label>
+          <div class="ui left labeled icon input">
+            <input id="last-name" value="{{current_user.last_name}}" placeholder="Last Name" type="text">
             <i class="user icon"></i>
             <div class="ui corner label"><i class="icon asterisk"></i></div>
           </div>

@@ -36,6 +36,6 @@ class UsersController < ApplicationController
     params
       .require(:user)
       .permit(:first_name, :last_name, :email)
-      .merge(password: params[:password], password_confirmation: params[:password_confirmation])
+      .merge(password: params[:password])
   end
 end
