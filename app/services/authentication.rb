@@ -17,8 +17,8 @@ class Authentication
   end
 
   def authenticate_from_omniauth
-    @omniauth[:uid] = @omniauth[:uid].to_s
-    User.where(@omniauth.slice(:provider, :uid)).first || create_from_omniauth
+    @omniauth['uid'] = @omniauth['uid'].to_s
+    User.where(@omniauth.slice('provider', 'uid')).first || create_from_omniauth
   end
 
   def create_from_omniauth

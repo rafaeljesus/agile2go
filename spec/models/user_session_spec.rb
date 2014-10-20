@@ -2,6 +2,11 @@ require 'spec_helper'
 
 describe UserSession do
 
+  before do
+    json = File.read("spec/fixtures/omniauth_hash.json")
+    @omniauth_hash = JSON.parse(json)
+  end
+
   it { expect(UserSession).to include(ActiveModel::Validations) }
   it { expect(UserSession).to include(ActiveModel::Conversion) }
 
@@ -23,37 +28,22 @@ describe UserSession do
 
   it 'when valid omniauth credentials then authenticate' do
     @session = UserSession.new({})
-    @session.from_omniauth(omniauth_hash)
+    @session.from_omniauth(@omniauth_hash)
     expect(@session.user_signed_in?).to be_truthy
   end
 
   it 'when user already logged in then destroy session' do
     @session = UserSession.new({})
-    @session.from_omniauth(omniauth_hash)
+    @session.from_omniauth(@omniauth_hash)
     @session.destroy
     expect(@session.user_signed_in?).to be_falsy
   end
 
   it 'when user already logged in then get current user' do
     @session = UserSession.new({})
-    @session.from_omniauth(omniauth_hash)
+    @session.from_omniauth(@omniauth_hash)
     current_user = @session.current_user
     expect(current_user).not_to be_nil
   end
 
-  def omniauth_hash
-    {
-      info: {
-        first_name: 'first_name omniauth test',
-        last_name: 'last_name omniauth test',
-        email: 'user@omniauth.com',
-        image: 'some_image_hash'
-      },
-      credentials: {
-        token: '12345678987654321'
-      },
-      provider: 'twitter',
-      uid: '100'
-    }
-  end
 end

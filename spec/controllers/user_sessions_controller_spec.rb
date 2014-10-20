@@ -16,8 +16,10 @@ describe UserSessionsController, type: :controller do
 
   it "should create new session and user from oauth" do
     user = FactoryGirl.create(:user)
-    request.env['omniauth.auth'] = omniauth_hash
-    xhr :post, :create_with_omniauth, omniauth_hash
+    json = File.read("spec/fixtures/omniauth_hash.json")
+    hash = JSON.parse(json)
+    request.env['omniauth.auth'] = hash
+    xhr :post, :create_with_omniauth, hash
     expect(response).to be_success
   end
 
@@ -29,22 +31,6 @@ describe UserSessionsController, type: :controller do
   it "should check if a user is already signed in" do
     xhr :get, :check
     expect(response).to be_success
-  end
-
-  def omniauth_hash
-    {
-      info: {
-        first_name: 'user omniauth test',
-        last_name: 'user omniauth test',
-        email: 'user@omniauth.com',
-        image: 'some_image_hash'
-      },
-      credentials: {
-        token: '12345678987654321'
-      },
-      provider: 'twitter',
-      uid: '100'
-    }
   end
 
 end

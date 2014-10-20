@@ -1,0 +1,13 @@
+{
+  "info": {
+    "first_name": "user omniauth test",
+    "last_name": "user omniauth test",
+    "email": "user@omniauth.com",
+    "image": "some_image_hash"
+  },
+  "credentials": {
+    "token": "12345678987654321"
+  },
+  "provider": "twitter",
+  "uid": "100"
+}
