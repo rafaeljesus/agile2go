@@ -12,10 +12,9 @@ class SyncDashboard
   end
 
   def update_dashboard
-    dashboard = Dashboard.find_by_project_name(project_name)
-    dashboard.increment(@modifier.to_increase)
-    binding.pry
-    dashboard.decrement(@modifier.to_decrease) unless on_create
+    query = { project_name: project_name }
+    Dashboard.increment(query, @modifier.to_increase)
+    Dashboard.decrement(query, @modifier.to_decrease) unless on_create
     self
   end
 
