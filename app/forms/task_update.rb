@@ -1,18 +1,16 @@
 class TaskUpdate
-  include SyncDashboard
 
   def initialize(task, params)
     @task = task
     @params = params
-    @event = :update
+    @sync_dashboard = SyncDashboard.new(@task, :update)
   end
 
   def save
-    return false unless @task.valid?
+    return unless @task.valid?
     @task.update_attributes(@params)
-    publish_event
-    update_dashboard
-    true
+    @sync_dashboard.publish_event
+    @sync_dashboard.update_dashboard
   end
 
   def self.model_name

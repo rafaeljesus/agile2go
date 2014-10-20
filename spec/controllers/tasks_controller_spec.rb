@@ -4,6 +4,7 @@ describe TasksController, type: :controller do
 
   before do
     project = FactoryGirl.create(:project)
+    Dashboard.create(project_name: project.name, todo_count: 1)
     sprint = FactoryGirl.create(:sprint, project_id: project.id)
     @task = FactoryGirl.create(:task, sprint_id: sprint.id)
   end
@@ -24,7 +25,7 @@ describe TasksController, type: :controller do
   end
 
   it "should update existing task" do
-    hash = { id: @task.id, task: { id: @task.id }}
+    hash = { id: @task.id, task: { id: @task.id, status: 'done' }}
     xhr :put, :update, hash
     expect(response).to be_success
   end

@@ -82,7 +82,7 @@ describe('App.Views.ProjectForm', function() {
 
   it('should getUsersIds match number of selected users', function() {
     commit();
-    expect(view.getUsersIds().length).toEqual(userCollection.length);
+    expect(view.toUsersIds().length).toEqual(userCollection.length);
   });
 
 });
