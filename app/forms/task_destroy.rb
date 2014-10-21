@@ -7,8 +7,9 @@ class TaskDestroy
 
   def destroy
     @task.destroy
-    @sync_dashboard.publish_event
-    @sync_dashboard.update_dashboard
+    @sync_dashboard
+      .publish_event
+      .update_dashboard
   end
 
   def self.model_name

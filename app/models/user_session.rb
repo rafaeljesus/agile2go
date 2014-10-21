@@ -11,8 +11,8 @@ class UserSession
     @session = session
   end
 
-  def authenticate(options = {})
-    auth = Authentication.new(nil, options)
+  def authenticate(credentials = {})
+    auth = Authentication.new(nil, credentials)
     store(auth.user)
   end
 

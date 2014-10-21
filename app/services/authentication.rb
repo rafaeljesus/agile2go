@@ -1,9 +1,9 @@
 class Authentication
 
-  def initialize(omniauth = nil, options)
+  def initialize(omniauth = nil, credentials)
     @omniauth = omniauth
-    @email = options[:email]
-    @password = options[:password]
+    @email = credentials[:email]
+    @password = credentials[:password]
   end
 
   def user
