@@ -18,15 +18,38 @@ class Task
   def self.search(query)
     collection
       .find('$or' => [
-        {title: query},
-        {story: query},
-        {status: query},
-        {points: query},
-        {priority: query},
-        {sprint_id: query}
+        { title: query },
+        { story: query },
+        { status: query },
+        { points: query },
+        { priority: query },
+        { sprint_id: query }
       ])
       .sort(created_at: :desc)
       .to_a
+  end
+
+  def increment
+    modify(1)
+  end
+
+  def decrement
+    modify(-1)
+  end
+
+  private
+  def modify(qty)
+    incs = {}
+    if is_todo
+      incs[:todo_count] = qty
+    elsif is_ongoing
+      incs[:ongoing_count] = qty
+    elsif is_test
+      incs[:test_count] = qty
+    elsif is_done
+      incs[:done_count] = qty
+    end
+    incs
   end
 
   def is_todo

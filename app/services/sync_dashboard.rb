@@ -1,9 +1,9 @@
 class SyncDashboard
 
   def initialize(task, event)
-    @task = task
+    @task =  task
+    @old_task = Task.find(task.id)
     @event = event
-    @modifier = Modifier.new(task)
   end
 
   def publish_event
@@ -13,8 +13,8 @@ class SyncDashboard
 
   def update_dashboard
     query = { project_name: project_name }
-    Dashboard.increment(query, @modifier.to_increase)
-    Dashboard.decrement(query, @modifier.to_decrease) unless on_create
+    Dashboard.increment(query, @task.increment) if increment?
+    Dashboard.decrement(query, @old_task.decrement) if decrement?
     self
   end
 
@@ -25,8 +25,17 @@ class SyncDashboard
     project.name
   end
 
-  def on_create
-    @event == :create
+  def decrement?
+    @event != :create && status_changed?
   end
+
+  def increment?
+    @event != :destroy
+  end
+
+  def status_changed?
+    @task.status != @old_task.status
+  end
+
 
 end

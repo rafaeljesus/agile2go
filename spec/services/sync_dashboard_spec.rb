@@ -17,13 +17,13 @@ describe SyncDashboard do
   end
 
   it 'when update event then increase status in dashboard' do
-    sync = SyncDashboard.new(@task, :create)
+    sync = SyncDashboard.new(@task, :update)
     sync.update_dashboard
     dashboard = Dashboard.find(@dashboard.id)
     expect(dashboard.todo_count).to eq(1)
   end
 
-  it 'when destroy event then increase status in dashboard' do
+  it 'when destroy event then decrease status in dashboard' do
     sync = SyncDashboard.new(@task, :destroy)
     sync.update_dashboard
     dashboard = Dashboard.find(@dashboard.id)
