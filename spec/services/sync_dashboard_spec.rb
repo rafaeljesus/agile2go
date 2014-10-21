@@ -29,4 +29,5 @@ describe SyncDashboard do
     dashboard = Dashboard.find(@dashboard.id)
     expect(dashboard.todo_count).to eq(0)
   end
+
 end

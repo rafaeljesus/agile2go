@@ -2,7 +2,7 @@ var OmniauthConnect = (function() {
 
   function OmniauthConnect(options){
     for (var attr in options) {
-      this[attr] = options[attr] || {}; 
+      this[attr] = options[attr] || {};
     }
   }
 
