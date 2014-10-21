@@ -3,12 +3,8 @@ require 'json'
 
 describe DashboardController, type: :controller do
 
-  before do
-    attributes = { project_name: 'Fake Name' }
-    Dashboard.create(attributes)
-  end
-
-  it 'should return a json for dashboard' do
+  it 'should return a json with default values' do
+    Dashboard.create({ project_name: 'Fake Name' })
     xhr :get, :index
     json = JSON.parse(response.body)[0]
     expect(json).to include({

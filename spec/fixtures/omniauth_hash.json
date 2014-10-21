@@ -9,5 +9,10 @@
     "token": "12345678987654321"
   },
   "provider": "twitter",
-  "uid": "100"
+  "uid": "100",
+  "extra": {
+    "raw_info": {
+      "avatar_url": "http://fakeimage.jpeg"
+    }
+  }
 }
