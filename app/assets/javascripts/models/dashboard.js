@@ -2,6 +2,7 @@ App.Models.Dashboard = Backbone.Model.extend({
   urlRoot: '/dashboard',
 
   initialize: function() {
+    this.setAttributes();
     this.on('change', this.setAttributes, this);
   },
 
@@ -17,6 +18,7 @@ App.Models.Dashboard = Backbone.Model.extend({
   },
 
   setAttributes: function() {
+    this.resetDefaults();
     var attributes = _.clone(this.attributes);
     delete attributes.chart;
     _.map(attributes, function(model, key) {
@@ -44,6 +46,18 @@ App.Models.Dashboard = Backbone.Model.extend({
 
   getSeries: function() {
     return this.get('chart').series;
+  },
+
+  resetDefaults: function() {
+    this.attributes.chart = {
+      categories: [],
+      series: [
+        { name: 'Todo', data: [] },
+        { name: 'Ongoing', data: [] },
+        { name: 'Test', data: [] },
+        { name: 'Done', data: [] }
+      ]
+    }
   },
 
   toJSON: function() {

@@ -1,4 +1,4 @@
-describe('App.Models.Tasks#initialize', function() {
+describe('App.Models.Tasks', function() {
 
   var model;
 
