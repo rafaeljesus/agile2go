@@ -3,9 +3,9 @@ describe('App.Views.TaskForm', function() {
   var view
   , model
   , sprints
+  , users
   , $el
-  , e
-  ;
+  , e;
 
   beforeEach(function() {
     var sprintJSON = [{
@@ -20,7 +20,8 @@ describe('App.Views.TaskForm', function() {
     this.server = sinon.fakeServer.create();
     sprints = new App.Collections.Sprints(sprintJSON);
     collection = new App.Collections.Tasks();
-    view = new App.Views.TaskForm({ sprints: sprints, collection: collection });
+    users = new App.Collections.Users();
+    view = new App.Views.TaskForm({ sprints: sprints, collection: collection, users: users });
     model = view.model;
     view.render();
     e = document.createEvent('KeyboardEvent');

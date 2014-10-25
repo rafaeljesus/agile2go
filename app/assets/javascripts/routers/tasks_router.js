@@ -6,6 +6,7 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
     this.current_user = options.current_user;
     this.collection = new App.Collections.Tasks();
     this.sprints = new App.Collections.Sprints();
+    this.users = new App.Collections.Users();
   },
 
   routes: {
@@ -17,7 +18,6 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
 
   index: function() {
     this.authorize();
-    this.collection.fetch();
     var view = new App.Views.TasksIndex({ collection: this.collection });
     this.swap(view);
   },
@@ -25,6 +25,7 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
   new: function() {
     this.authorize();
     this.sprints.fetch();
+    this.users.fetch();
     var options = { sprints: this.sprints, collection: this.collection }
     var view = new App.Views.TaskForm(options);
     this.swap(view);
@@ -33,12 +34,16 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
   edit: function(id) {
     this.authorize();
     this.sprints.fetch();
-    var self = this;
-    $.getJSON("/tasks/" + id + "/edit").then(function(resp) {
-      var model = new App.Models.Task(resp);
-      var view = new App.Views.TaskForm({ model: model, sprints: self.sprints });
-      self.swap(view);
-    });
+    this.users.fetch();
+    var model = this.collection.get({ id: id });
+    var options = {
+      model: new App.Models.Task(model.toJSON()),
+      sprints: this.sprints,
+      users: this.users,
+      collection: this.collection
+    }
+    var view = new App.Views.TaskForm(options);
+    this.swap(view);
   },
 
   search: function(query) {

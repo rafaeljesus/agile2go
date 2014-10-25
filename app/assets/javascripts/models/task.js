@@ -1,5 +1,5 @@
 App.Models.Task = Backbone.Model.extend({
-  urlRoot: '/tasks',
+  url: '/tasks',
 
   initialize: function() {
     this.setSprint();
@@ -36,6 +36,13 @@ App.Models.Task = Backbone.Model.extend({
     json.sprint_id = (this.sprint || {}).id || null;
     json.user_ids = this.toUserIds();
     return json;
+  },
+
+  save: function(callback) {
+    var json = { task: this.toJSON() }
+    $.post('/tasks', json).then(function(resp) {
+      callback(resp);
+    });
   },
 
   validate: function(attrs, options) {
