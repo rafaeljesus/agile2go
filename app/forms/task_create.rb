@@ -8,9 +8,7 @@ class TaskCreate
   def save
     return unless @task.valid?
     @task.save!
-    @sync_dashboard
-      .publish_event
-      .update_dashboard
+    @sync_dashboard.update_dashboard
   end
 
   def self.model_name

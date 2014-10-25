@@ -7,6 +7,7 @@ App.Views.TaskForm = Support.CompositeView.extend(
   initialize: function(options) {
     _.bindAll(this, 'render', 'saved');
     this.model = this.getModel(options);
+    this.collection = options.collection;
     this.sprints = options.sprints;
     this.users = this.model.findUsers();
     this.bindTo(this.sprints, 'add', this.render);
@@ -46,9 +47,7 @@ App.Views.TaskForm = Support.CompositeView.extend(
   save: function(e) {
     e.preventDefault();
     this.commit();
-    if (this.model.isValid()) {
-      this.model.save({}, { success: this.saved });
-    }
+    this.model.save({}, { success: this.saved });
     return false;
   },
 
@@ -59,10 +58,11 @@ App.Views.TaskForm = Support.CompositeView.extend(
       points: this.$('#points').val(),
       title: this.$('#title').val(),
       story: this.$('#story').val()
-    };
+    }
     this.model.set(attributes);
     this.model.sprint = this.sprints.get({ id: this.toSprintId() });
     this.model.users = this.users.findByIds(this.toUsersIds());
+    this.collection.add(this.model);
   },
 
   toSprintId: function() {

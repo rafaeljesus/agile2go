@@ -22,7 +22,6 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
   },
 
   onRender: function() {
-    if (!this.model.get('id')) return;
     this.$('#first-name').attr('disabled', 'disabled');
     this.$('#email').attr('disabled', 'disabled');
   },
@@ -30,7 +29,6 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
   save: function(e) {
     e.preventDefault();
     this.commit();
-    if (!this.model.isValid()) return false;
     this.model.save({}, { success: this.saved });
   },
 

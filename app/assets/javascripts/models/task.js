@@ -7,14 +7,14 @@ App.Models.Task = Backbone.Model.extend({
   },
 
   setSprint: function() {
-    var sprintAttr = { id: this.get('sprint_id') };
+    var sprintAttr = { id: this.get('sprint_id') }
     this.sprint = new App.Models.Sprint(sprintAttr);
   },
 
   setUsers: function() {
     var userIds = this.get('user_ids') || [];
     var ids = userIds.map(function(id) {
-      return { id: id };
+      return { id: id }
     });
     this.users = new App.Collections.Users(ids);
   },
@@ -33,7 +33,7 @@ App.Models.Task = Backbone.Model.extend({
 
   toJSON: function() {
     var json = _.clone(this.attributes);
-    json.sprint_id = (this.sprint || {}).id || undefined;
+    json.sprint_id = (this.sprint || {}).id || null;
     json.user_ids = this.toUserIds();
     return json;
   },
@@ -42,10 +42,10 @@ App.Models.Task = Backbone.Model.extend({
     var errors;
     if (!attrs.title) {
       (errors = errors || {}).title = ["can't be blank"];
-    };
+    }
     if (!attrs.story) {
       (errors = errors || {}).story = ["can't be blank"];
-    };
+    }
     if (errors) return errors;
   }
 

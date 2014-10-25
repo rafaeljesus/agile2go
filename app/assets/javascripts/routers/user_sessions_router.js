@@ -13,12 +13,14 @@ App.Routers.UserSessions = Support.SwappingRouter.extend(
 
   new: function() {
     this.checkUserSignedIn();
-    var view = new App.Views.UserSessionsNew({ current_user: this.current_user });
+    var options = { current_user: this.current_user }
+    var view = new App.Views.UserSessionsNew(options);
     this.swap(view);
   },
 
   destroy: function() {
-    var view = new App.Views.UserSessionsDestroy({ current_user: this.current_user });
+    var options = { current_user: this.current_user }
+    var view = new App.Views.UserSessionsDestroy(options);
     view.destroy();
     this.swap(view);
   }

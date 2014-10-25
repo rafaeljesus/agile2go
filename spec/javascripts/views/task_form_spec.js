@@ -19,7 +19,8 @@ describe('App.Views.TaskForm', function() {
     }];
     this.server = sinon.fakeServer.create();
     sprints = new App.Collections.Sprints(sprintJSON);
-    view = new App.Views.TaskForm({ sprints: sprints });
+    collection = new App.Collections.Tasks();
+    view = new App.Views.TaskForm({ sprints: sprints, collection: collection });
     model = view.model;
     view.render();
     e = document.createEvent('KeyboardEvent');
@@ -48,7 +49,7 @@ describe('App.Views.TaskForm', function() {
   it('should not persists a empty model', function() {
     spyOn(model, 'save');
     view.save(e);
-    expect(model.save).not.toHaveBeenCalled();
+    expect(model.save).toHaveBeenCalled();
     expect(model.isValid()).toBeFalsy();
   });
 
@@ -57,7 +58,7 @@ describe('App.Views.TaskForm', function() {
     commit();
     view.$('#title').val('');
     view.save(e);
-    expect(model.save).not.toHaveBeenCalled();
+    expect(model.save).toHaveBeenCalled();
     expect(model.isValid()).toBeFalsy();
   });
 
@@ -66,7 +67,7 @@ describe('App.Views.TaskForm', function() {
     commit();
     view.$('#story').val('');
     view.save(e);
-    expect(model.save).not.toHaveBeenCalled();
+    expect(model.save).toHaveBeenCalled();
     expect(model.isValid()).toBeFalsy();
   });
 

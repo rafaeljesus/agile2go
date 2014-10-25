@@ -39,8 +39,8 @@ describe('App.Views.ProjectForm', function() {
   it('should not persists a empty model', function() {
     spyOn(model, 'save');
     view.save(e);
-    expect(model.save).not.toHaveBeenCalled();
-    expect(model.isValid).toBeTruthy();
+    expect(model.save).toHaveBeenCalled();
+    expect(model.isValid()).toBeFalsy();
   });
 
   it('should persists a new model', function() {

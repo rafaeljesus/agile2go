@@ -37,9 +37,7 @@ App.Views.ProjectForm = Support.CompositeView.extend(
   save: function(e) {
     e.preventDefault();
     this.commit();
-    if (this.model.isValid()) {
-      this.model.save({}, { success: this.saved });
-    }
+    this.model.save({}, { success: this.saved });
     return false;
   },
 

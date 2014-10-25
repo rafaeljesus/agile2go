@@ -8,7 +8,7 @@ App.Models.Project = Backbone.Model.extend({
   setUsers: function() {
     var userIds = this.get('user_ids') || [];
     var ids = userIds.map(function(id) {
-      return { id: id };
+      return { id: id }
     });
     this.users = new App.Collections.Users(ids);
   },
@@ -29,13 +29,13 @@ App.Models.Project = Backbone.Model.extend({
     var errors;
     if (!attrs.name) {
       (errors = errors || {}).name = ["can't be blank"];
-    };
+    }
     if (!attrs.company) {
       (errors = errors || {}).company= ["can't be blank"];
-    };
+    }
     if (!attrs.description) {
       (errors = errors || {}).description= ["can't be blank"];
-    };
+    }
     if (errors) return errors;
   }
 

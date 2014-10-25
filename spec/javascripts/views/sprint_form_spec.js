@@ -3,8 +3,7 @@ describe('App.Views.SprintForm', function(){
   , model
   , projects
   , $el
-  , e
-  ;
+  , e;
 
   beforeEach(function(){
     projects = new App.Collections.Projects([{ id: 1, name: 'projectFake', company: 'companyFake', description: 'descriptionFake' }]);
@@ -42,7 +41,7 @@ describe('App.Views.SprintForm', function(){
   it('should not persists a empty model', function(){
     spyOn(model, 'save');
     view.save(e);
-    expect(model.save).not.toHaveBeenCalled();
+    expect(model.save).toHaveBeenCalled();
     expect(model.isValid()).toBeFalsy();
   });
 
@@ -51,7 +50,7 @@ describe('App.Views.SprintForm', function(){
     commit();
     view.$('#daily').val('invalid hour');
     view.save(e);
-    expect(model.save).not.toHaveBeenCalled();
+    expect(model.save).toHaveBeenCalled();
     expect(model.isValid()).toBeFalsy();
   });
 
@@ -60,7 +59,7 @@ describe('App.Views.SprintForm', function(){
     commit();
     view.$('#points').val('invalid points');
     view.save(e);
-    expect(model.save).not.toHaveBeenCalled();
+    expect(model.save).toHaveBeenCalled();
     expect(model.isValid()).toBeFalsy();
   });
 
@@ -69,7 +68,7 @@ describe('App.Views.SprintForm', function(){
     commit();
     view.$('#start-date').val('invalid date');
     view.save(e);
-    expect(model.save).not.toHaveBeenCalled();
+    expect(model.save).toHaveBeenCalled();
     expect(model.isValid()).toBeFalsy();
   });
 
@@ -78,7 +77,7 @@ describe('App.Views.SprintForm', function(){
     commit();
     view.$('#end-date').val('invalid date');
     view.save(e);
-    expect(model.save).not.toHaveBeenCalled();
+    expect(model.save).toHaveBeenCalled();
     expect(model.isValid()).toBeFalsy();
   });
 

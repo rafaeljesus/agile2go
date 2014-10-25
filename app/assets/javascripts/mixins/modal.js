@@ -5,11 +5,18 @@ App.Mixins.Modal = {
     'click .delete' : 'delete'
   },
 
-  showModal: function(e){
+  showModal: function(e) {
     e.preventDefault();
-    var $i = $(e.target);
-    var id = $i.closest('a').attr('id');
-    new App.Views.ConfirmModal({ model: this.model, $removable: $i.closest('.removable') }).render();
+    this.removable = $(e.target).closest('.removable');
+    new App.Views.ConfirmModal(this.data()).render();
+  },
+
+  data: function() {
+    return {
+      model: this.model,
+      collection: this.collection,
+      $removable: this.removable
+    }
   }
 
 };

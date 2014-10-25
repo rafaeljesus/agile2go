@@ -8,7 +8,7 @@ var App = new (Backbone.View.extend({
 
   init: function() {
     new App.HandlebarsHelpers().withI18n();
-    var current_user = new App.Models.CurrentUser({});
+    var current_user = new App.Models.CurrentUser();
     // FIXME emit a user:loggedin event
     var options = { current_user: current_user };
     new App.Views.Menu(options);

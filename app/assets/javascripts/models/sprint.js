@@ -6,7 +6,7 @@ App.Models.Sprint = Backbone.Model.extend({
   },
 
   setProject: function() {
-    var projectAttr = { id:  this.get('project_id') };
+    var projectAttr = { id:  this.get('project_id') }
     this.project = new App.Models.Project(projectAttr);
   },
 
@@ -27,19 +27,19 @@ App.Models.Sprint = Backbone.Model.extend({
     var errors;
     if (!attrs.name) {
       (errors = errors || {}).name = ["can't be blank"];
-    };
+    }
     if (!attrs.start_date || !moment(attrs.start_date).isValid()) {
       (errors = errors || {}).start_date = ["can't be blank"];
-    };
+    }
     if (!attrs.end_date || !moment(attrs.end_date).isValid()) {
       (errors = errors || {}).end_date = ["can't be blank"];
-    };
+    }
     if (attrs.daily && moment.duration(attrs.daily).hours() <= 0) {
       (errors = errors || {}).daily = ["invalid hour"];
-    };
+    }
     if (isNaN(attrs.points)) {
       (errors = errors || {}).points = ["must be a number"];
-    };
+    }
     if (errors) return errors;
   }
 

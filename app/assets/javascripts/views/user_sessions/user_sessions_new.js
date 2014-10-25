@@ -43,7 +43,6 @@ App.Views.UserSessionsNew = Support.CompositeView.extend(
   authenticate: function(e) {
     e.preventDefault();
     this.commit();
-    if (!this.model.isValid()) return;
     this.model.save({}, { success: this.authenticated });
   },
 
@@ -65,7 +64,7 @@ App.Views.UserSessionsNew = Support.CompositeView.extend(
   },
 
   authenticated: function(model, response, options) {
-    var attrs = { signed_in: true, id: model.attributes.session.user_id };
+    var attrs = { signed_in: true, id: model.attributes.session.user_id }
     this.authenticatedCallback(this, attrs);
   },
 

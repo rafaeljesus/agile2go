@@ -1,9 +1,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require underscore
+//= require firebase
 //= require backbone
+//= require backfire.min
 //= require backbone-support
-//= require backbone.domStorage
 //= require handlebars
 //= require moment
 //= require semantic-ui

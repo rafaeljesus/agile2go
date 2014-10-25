@@ -36,9 +36,7 @@ App.Views.SprintForm = Support.CompositeView.extend(
   save: function(e) {
     e.preventDefault();
     this.commit();
-    if (this.model.isValid()) {
-      this.model.save({}, { success: this.saved });
-    };
+    this.model.save({}, { success: this.saved });
     return false;
   },
 
@@ -49,7 +47,7 @@ App.Views.SprintForm = Support.CompositeView.extend(
       end_date: this.parseEndDate(),
       daily: this.$('#daily').val(),
       points: this.$('#points').val()
-    };
+    }
     this.model.set(attributes);
     this.model.project = this.projects.get({ id: this.assigneeId() });
   },

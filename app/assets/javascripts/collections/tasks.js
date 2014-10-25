@@ -1,4 +1,4 @@
-App.Collections.Tasks = Backbone.Collection.extend({
-  url: 'tasks',
-  model: App.Models.Task
+App.Collections.Tasks = Backbone.Firebase.Collection.extend({
+  model: App.Models.Task,
+  firebase: 'https://scorching-heat-1523.firebaseio.com/'
 });

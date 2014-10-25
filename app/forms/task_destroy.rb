@@ -2,14 +2,12 @@ class TaskDestroy
 
   def initialize(task)
     @task = task
-    @sync_dashboard = SyncDashboard.new(@task, :destroy)
+    @sync_dashboard = SyncDashboard.new(task, :destroy)
   end
 
   def destroy
     @task.destroy
-    @sync_dashboard
-      .publish_event
-      .update_dashboard
+    @sync_dashboard.update_dashboard
   end
 
   def self.model_name

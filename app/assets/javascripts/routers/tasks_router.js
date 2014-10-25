@@ -6,7 +6,6 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
     this.current_user = options.current_user;
     this.collection = new App.Collections.Tasks();
     this.sprints = new App.Collections.Sprints();
-    this.subscribe();
   },
 
   routes: {
@@ -26,7 +25,8 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
   new: function() {
     this.authorize();
     this.sprints.fetch();
-    var view = new App.Views.TaskForm({ sprints: this.sprints });
+    var options = { sprints: this.sprints, collection: this.collection }
+    var view = new App.Views.TaskForm(options);
     this.swap(view);
   },
 
@@ -48,10 +48,6 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
       var view = new App.Views.TasksIndex({ collection: collection });
       self.swap(view);
     });
-  },
-
-  subscribe: function() {
-    // new App.TasksSync(this.collection);
   }
 
 }));

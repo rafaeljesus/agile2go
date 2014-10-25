@@ -4,13 +4,24 @@ describe('App.Views.UserRegistrations', function() {
   , $el
   , model
   , server
+  , currentUserMock = {
+      signed_in: true,
+      user_id: "54459dcc793f7605f0000005",
+      provider: "twitter",
+      avatar: "http://pbs.twimg.com/profile_images/448956860473675777/S0iOEF00_normal.jpeg"
+    }
   , e;
 
   describe('When create a new account', function() {
 
     beforeEach(function() {
+      current_user = currentUserMock;
       server = sinon.fakeServer.create();
-      server.respondWith("GET", "/current_user/12345", [ 200, {"Content-Type": "application/json"}, '[{ "first_name": "fakeUser" }]' ]);
+      server.respondWith("GET", "/current_user/12345", [
+        200,
+        {"Content-Type": "application/json"},
+        JSON.stringify(current_user)
+      ]);
       var current_user = new App.Models.CurrentUser();
       view = new App.Views.UserRegistrations({ current_user: current_user });
       model = view.model;
@@ -43,16 +54,22 @@ describe('App.Views.UserRegistrations', function() {
       view.$('#email').val('');
       view.$('#password').val('');
       view.save(e);
-      expect(model.save).not.toHaveBeenCalled();
+      expect(model.save).toHaveBeenCalled();
       expect(model.isValid()).toBeFalsy();
     });
   });
 
   describe('When edit a existing account', function() {
-    beforeEach(function(){
+
+    beforeEach(function() {
+      current_user = currentUserMock;
       server = sinon.fakeServer.create();
-      server.respondWith("GET", "/current_user/12345", [ 200, {"Content-Type": "application/json"}, '[{ "name": "fakeUser" }]' ]);
-      var current_user = new App.Models.CurrentUser({ id: 1, first_name: 'first fake', last_name: 'last fake', email: 'fakeEmail' });
+      server.respondWith("GET", "/current_user/12345", [
+        200,
+        {"Content-Type": "application/json"},
+        JSON.stringify(current_user)
+      ]);
+      var current_user = new App.Models.CurrentUser(current_user);
       var model = new App.Models.UserRegistration({ user: { id: 1, first_name: 'first fake', last_name: 'last fake', email: 'fakeEmail' } }, { parse: true });
       var options = { model: model, current_user: current_user };
       view = new App.Views.UserRegistrations(options);

@@ -26,15 +26,22 @@ describe('App', function() {
     var server;
 
     beforeEach(function() {
+      var current_user = {
+        signed_in: true,
+        user_id: "54459dcc793f7605f0000005",
+        provider: "twitter",
+        avatar: "http://pbs.twimg.com/profile_images/448956860473675777/S0iOEF00_normal.jpeg"
+      }
       server = sinon.fakeServer.create();
-      server.respondWith('GET', '/current_user/1', [ 200, {"Content-Type": "application/json"}, JSON.stringify({ signed_in: true, id: 1 }) ]);
+      server.respondWith('GET', '/current_user/1', [
+        200,
+        {"Content-Type": "application/json"},
+        JSON.stringify(current_user)
+      ]);
     });
 
     afterEach(function() {
       server.restore();
-    });
-
-    it('instantiate a menu view', function() {
     });
 
     it('instantiate a site router', function() {

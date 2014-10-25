@@ -4,12 +4,23 @@ describe('App.Views.UserSessionsNew', function(){
   , model
   , server
   , $el
+  , currentUserMock = {
+      signed_in: true,
+      user_id: "54459dcc793f7605f0000005",
+      provider: "twitter",
+      avatar: "http://pbs.twimg.com/profile_images/448956860473675777/S0iOEF00_normal.jpeg"
+    }
   , e;
 
-  beforeEach(function(){
+  beforeEach(function() {
+    current_user = currentUserMock;
     server = sinon.fakeServer.create();
-    server.respondWith('GET', '/current_user/1', [ 200, {"Content-Type": "application/json"}, JSON.stringify({ signed_in: true, id: 1 }) ]);
-    var current_user = new App.Models.CurrentUser({});
+    server.respondWith('GET', '/current_user/1', [
+      200,
+      {"Content-Type": "application/json"},
+      JSON.stringify(current_user)
+    ]);
+    var current_user = new App.Models.CurrentUser();
     view = new App.Views.UserSessionsNew({ current_user: current_user });
     model = view.model;
     $el = $(view.render().el);
@@ -37,7 +48,7 @@ describe('App.Views.UserSessionsNew', function(){
     view.$('#email').val('');
     view.$('#password').val('');
     view.authenticate(e);
-    expect(model.save).not.toHaveBeenCalled();
+    expect(model.save).toHaveBeenCalled();
     expect(model.isValid()).toBeFalsy();
   });
 
@@ -46,7 +57,7 @@ describe('App.Views.UserSessionsNew', function(){
     view.$('#email').val('');
     view.$('#password').val('12345678');
     view.authenticate(e);
-    expect(model.save).not.toHaveBeenCalled();
+    expect(model.save).toHaveBeenCalled();
     expect(model.isValid()).toBeFalsy();
   });
 
@@ -55,7 +66,7 @@ describe('App.Views.UserSessionsNew', function(){
     view.$('#email').val('fake@email.com');
     view.$('#password').val('');
     view.authenticate(e);
-    expect(model.save).not.toHaveBeenCalled();
+    expect(model.save).toHaveBeenCalled();
     expect(model.isValid()).toBeFalsy();
   });
 

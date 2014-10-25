@@ -6,11 +6,6 @@ class SyncDashboard
     @event = event
   end
 
-  def publish_event
-    # Event.new(@task, @event).broadcast
-    self
-  end
-
   def update_dashboard
     query = { project_name: project_name }
     Dashboard.increment(query, @task.increment) if increment?
