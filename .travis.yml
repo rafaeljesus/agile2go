@@ -5,9 +5,7 @@ services:
   - mongodb
 before_script:
   - "export CODECLIMATE_REPO_TOKEN=48356d3a75c8091d36e9ceeb7f92f39ee4b4ba3057f098a06362254cd1347c4c"
-  - "export FAYE_REMOTE=http://faye-ruby-server.herokuapp.com"
   - sleep 15
   - mongo mydb_test --eval 'db.addUser("travis", "test");'
 script:
-  - bundle exec rake
   - bundle exec rake jasmine:ci
