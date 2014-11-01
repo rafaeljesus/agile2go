@@ -42,13 +42,16 @@ App.Views.ProjectForm = Support.CompositeView.extend(
   },
 
   commit: function() {
-    var attributes = {
+    this.model.set(this.toAttributes());
+    this.model.users = this.users.findByIds(this.toUsersIds());
+  },
+
+  toAttributes: function() {
+    return {
       name: this.$('#name').val(),
       description: this.$('#description').val(),
       company: this.$('#company').val()
     };
-    this.model.set(attributes);
-    this.model.users = this.users.findByIds(this.toUsersIds());
   },
 
   toUsersIds: function() {

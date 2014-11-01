@@ -24,13 +24,14 @@
 
   <%= render 'layouts/footer' %>
 
-  <%= javascript_include_tag "application" %>
-
   <script type="text/javascript">
+    var FIREBASE_URL = "<%= firebase_url %>"
     var I18n = I18n || {};
     I18n.defaultLocale = "<%= I18n.default_locale %>";
     I18n.locale = "<%= I18n.locale %>";
   </script>
+
+  <%= javascript_include_tag "application" %>
 
   <div id="fb-root"></div>
 

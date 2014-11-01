@@ -40,8 +40,13 @@ App.Models.Task = Backbone.Model.extend({
 
   save: function(callback) {
     var json = { task: this.toJSON() }
-    $.post('/tasks', json).then(function(resp) {
-      callback(resp);
+    $.ajax({
+      type: this.isNew() ? 'POST' : 'PUT',
+      data: json,
+      url: this.url + '/' + (this.isNew() ? '' : json.task.id)
+    }).done(function(res) {
+      var model = res ? res.task : json.task;
+      callback(model);
     });
   },
 

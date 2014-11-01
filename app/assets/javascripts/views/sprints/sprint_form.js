@@ -41,15 +41,18 @@ App.Views.SprintForm = Support.CompositeView.extend(
   },
 
   commit: function() {
-    var attributes = {
+    this.model.set(this.toAttributes());
+    this.model.project = this.projects.get({ id: this.assigneeId() });
+  },
+
+  toAttributes: function() {
+    return {
       name: this.$('#name').val(),
       start_date: this.parseStartDate(),
       end_date: this.parseEndDate(),
       daily: this.$('#daily').val(),
       points: this.$('#points').val()
     }
-    this.model.set(attributes);
-    this.model.project = this.projects.get({ id: this.assigneeId() });
   },
 
   parseStartDate: function() {

@@ -26,7 +26,11 @@ App.Routers.Tasks = Support.SwappingRouter.extend(
     this.authorize();
     this.sprints.fetch();
     this.users.fetch();
-    var options = { sprints: this.sprints, collection: this.collection }
+    var options = {
+      sprints: this.sprints,
+      users: this.users,
+      collection: this.collection
+    }
     var view = new App.Views.TaskForm(options);
     this.swap(view);
   },

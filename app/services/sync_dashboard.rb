@@ -8,9 +8,9 @@ class SyncDashboard
 
   def update_dashboard
     query = { project_name: project_name }
+    return unless status_changed?
     Dashboard.increment(query, @task.increment) if increment?
     Dashboard.decrement(query, @old_task.decrement) if decrement?
-    self
   end
 
   private
@@ -21,7 +21,7 @@ class SyncDashboard
   end
 
   def decrement?
-    @event != :create && status_changed?
+    @event != :create
   end
 
   def increment?
@@ -29,8 +29,7 @@ class SyncDashboard
   end
 
   def status_changed?
+    return true if @old_task.nil?
     @task.status != @old_task.status
   end
-
-
 end

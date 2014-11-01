@@ -15,10 +15,5 @@ test:
   database: agile2go_test
   w: 0
 
-# set these environment variables on your prod server
 production:
-  # <<: *defaults
-  # database: agile2go
-  uri: mongodb://agile2go:root@ds041380.mongolab.com:41380/agile2go
-  # username: <%= ENV['MONGO_USERNAME'] %>
-  # password: <%= ENV['MONGO_PASSWORD'] %>
+  uri: <%= ENV['MONGODB_URL'] %>

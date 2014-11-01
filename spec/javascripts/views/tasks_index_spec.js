@@ -6,7 +6,7 @@ describe('App.Views.TasksIndex', function() {
   , attributes;
 
   beforeEach(function() {
-    attributes = { id: 1, title: 'Assigning a Tasks to others', priority: 5, points: 8, status: 'Todo', sprint: { id: 1 } };
+    attributes = { id: 1, title: 'Assigning a Tasks to others', priority: 5, points: 8, status: 'Todo', sprint: { id: 1 } }
     collection = new App.Collections.Tasks();
     collection.reset(attributes);
     view = new App.Views.TasksIndex({ collection: collection });

@@ -48,17 +48,16 @@ App.Views.TaskForm = Support.CompositeView.extend(
     e.preventDefault();
     this.commit();
     this.model.save(this.saved);
-    this.collection.add(this.model);
     return false;
   },
 
   commit: function() {
-    this.model.set(this.toViewAttributes());
+    this.model.set(this.toAttributes());
     this.model.sprint = this.sprints.get({ id: this.toSprintId() });
     this.model.users = this.users.findByIds(this.toUsersIds());
   },
 
-  toViewAttributes: function() {
+  toAttributes: function() {
     return {
       status: this.$('#status').val(),
       priority: this.$('#priority').val(),
@@ -82,10 +81,11 @@ App.Views.TaskForm = Support.CompositeView.extend(
     return $(select).val();
   },
 
-  saved: function(model, response, options) {
-     window.location.hash = '#tasks';
-     var message = I18n.t('flash.actions.create.notice', { model: 'Task' });
-     this.successMessage(message);
+  saved: function(model) {
+    this.collection.add(model);
+    window.location.hash = '#tasks';
+    var message = I18n.t('flash.actions.create.notice', { model: 'Task' });
+    this.successMessage(message);
   },
 
   getModel: function(options) {
