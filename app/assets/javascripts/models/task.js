@@ -52,6 +52,9 @@ App.Models.Task = Backbone.Model.extend({
 
   validate: function(attrs, options) {
     var errors;
+    if (!attrs.status) {
+      (errors = errors || {}).status = ["can't be blank"];
+    }
     if (!attrs.title) {
       (errors = errors || {}).title = ["can't be blank"];
     }
