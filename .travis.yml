@@ -8,4 +8,4 @@ before_script:
   - sleep 15
   - mongo mydb_test --eval 'db.addUser("travis", "test");'
 script:
-  - bundle exec rake jasmine:ci
+  - bundle exec rake
