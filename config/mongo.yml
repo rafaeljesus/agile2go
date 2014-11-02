@@ -16,4 +16,4 @@ test:
   w: 0
 
 production:
-  uri: <%= ENV['MONGODB_URL'] %>
+  uri: <%= ENV['MONGOLAB_URL'] %>
