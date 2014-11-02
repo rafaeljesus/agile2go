@@ -7,23 +7,17 @@ App.Views.SprintSerialize = (function() {
   SprintSerialize.prototype.toAttributes = function() {
     return {
       name: this.view.$('#name').val(),
-      start_date: this.parseStartDate(),
-      end_date: this.parseEndDate(),
+      start_date: this.parseDate('#start-date'),
+      end_date: this.parseDate('#end-date'),
       daily: this.view.$('#daily').val(),
       points: this.view.$('#points').val()
     }
   };
 
-  SprintSerialize.prototype.parseStartDate = function() {
-    var start_date = this.view.$('#start-date').val();
+  SprintSerialize.prototype.parseDate = function(id) {
+    var start_date = this.view.$(id).val();
     if (start_date == '') return;
     return moment(start_date).format('YYYY-MM-DD');
-  },
-
-  SprintSerialize.prototype.parseEndDate = function() {
-    var end_date = this.view.$('#end-date').val();
-    if (end_date == '') return;
-    return moment(end_date).format('YYYY-MM-DD');
   },
 
   SprintSerialize.prototype.assigneeId = function() {
