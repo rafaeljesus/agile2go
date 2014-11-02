@@ -41,39 +41,12 @@ App.Views.SprintForm = Support.CompositeView.extend(
   },
 
   commit: function() {
-    this.model.set(this.toAttributes());
-    this.model.project = this.projects.get({ id: this.assigneeId() });
+    var form = new App.Views.SprintSerialize(this);
+    this.model.set(form.toAttributes());
+    this.model.project = this.projects.get({ id: form.assigneeId() });
   },
 
-  toAttributes: function() {
-    return {
-      name: this.$('#name').val(),
-      start_date: this.parseStartDate(),
-      end_date: this.parseEndDate(),
-      daily: this.$('#daily').val(),
-      points: this.$('#points').val()
-    }
-  },
-
-  parseStartDate: function() {
-    var start_date = this.$('#start-date').val();
-    if (start_date == '') return;
-    return moment(start_date).format('YYYY-MM-DD');
-  },
-
-  parseEndDate: function() {
-    var end_date = this.$('#end-date').val();
-    if (end_date == '') return;
-    return moment(end_date).format('YYYY-MM-DD');
-  },
-
-  assigneeId: function() {
-    return _.first(this.$('select').find('option:selected').map(function(n, select) {
-      return $(select).val();
-    }));
-  },
-
-  saved: function(model, response, options) {
+    saved: function(model, response, options) {
      this.sprintsPath();
      var message = I18n.t('flash.actions.create.notice', { model: 'Sprint' });
      this.successMessage(message);

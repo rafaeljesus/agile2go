@@ -42,23 +42,9 @@ App.Views.ProjectForm = Support.CompositeView.extend(
   },
 
   commit: function() {
-    this.model.set(this.toAttributes());
-    this.model.users = this.users.findByIds(this.toUsersIds());
-  },
-
-  toAttributes: function() {
-    return {
-      name: this.$('#name').val(),
-      description: this.$('#description').val(),
-      company: this.$('#company').val()
-    };
-  },
-
-  toUsersIds: function() {
-    var selectedUsers = this.$('select').find('option:selected');
-    return selectedUsers.map(function(n, select) {
-      return $(select).val();
-    });
+    var form = new App.Views.ProjectSerialize(this);
+    this.model.set(form.toAttributes());
+    this.model.users = this.users.findByIds(form.toUsersIds());
   },
 
   saved: function(model, response, options) {

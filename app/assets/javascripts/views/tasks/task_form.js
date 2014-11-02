@@ -52,33 +52,10 @@ App.Views.TaskForm = Support.CompositeView.extend(
   },
 
   commit: function() {
-    this.model.set(this.toAttributes());
-    this.model.sprint = this.sprints.get({ id: this.toSprintId() });
-    this.model.users = this.users.findByIds(this.toUsersIds());
-  },
-
-  toAttributes: function() {
-    return {
-      status: this.$('#status').val(),
-      priority: this.$('#priority').val(),
-      points: this.$('#points').val(),
-      title: this.$('#title').val(),
-      story: this.$('#story').val()
-    }
-  },
-
-  toSprintId: function() {
-    var selectedSprint = this.$('#sprint').find('option:selected');
-    return _.first(selectedSprint.map(this.setOptionValue));
-  },
-
-  toUsersIds: function() {
-    var selectedUsers = this.$('#users').find('option:selected');
-    return selectedUsers.map(this.setOptionValue);
-  },
-
-  setOptionValue: function(n, select) {
-    return $(select).val();
+    var form = new App.Views.TaskSerialize(this);
+    this.model.set(form.toAttributes());
+    this.model.sprint = this.sprints.get({ id: form.toSprintId() });
+    this.model.users = this.users.findByIds(form.toUsersIds());
   },
 
   saved: function(model) {
