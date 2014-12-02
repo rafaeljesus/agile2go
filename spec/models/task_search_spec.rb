@@ -33,14 +33,14 @@ describe Task do
   end
 
   it 'should return all tasks by sprint_id' do
-    task1 = FactoryGirl.create(:task, sprint_id: 1)
-    task2 = FactoryGirl.create(:task, sprint_id: 1)
+    FactoryGirl.create(:task, sprint_id: 1)
+    FactoryGirl.create(:task, sprint_id: 1)
     tasks = Task.search(1)
     expect(tasks.length).to be(2)
   end
 
   it 'should return empty when query does not match' do
-    task = FactoryGirl.create(:task)
+    FactoryGirl.create(:task)
     tasks = Task.search('unknown query')
     expect(tasks.length).to be(0)
   end

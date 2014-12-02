@@ -14,5 +14,4 @@ class TaskCreate
   def self.model_name
     ActiveModel::Name.new(self, nil, 'Task')
   end
-
 end

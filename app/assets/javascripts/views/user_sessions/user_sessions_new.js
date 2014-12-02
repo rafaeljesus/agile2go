@@ -52,14 +52,15 @@ App.Views.UserSessionsNew = Support.CompositeView.extend(
       url: e.target.href,
       provider: provider,
       authenticatedCallback: this.authenticatedCallback
-    };
+    }
     new OmniauthConnect(options).exec();
   },
 
   commit: function() {
-    var email = this.$("#email").val()
-    , password = this.$("#password").val()
-    , options = { email: email, password: password };
+    var options = {
+      email: this.$("#email").val(),
+      password: this.$("#password").val()
+    }
     this.model.set(options);
   },
 

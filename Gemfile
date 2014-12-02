@@ -27,6 +27,7 @@ gem 'omniauth-google'
 gem "codeclimate-test-reporter", group: :test, require: nil
 gem 'pry-byebug'
 gem 'firebase'
+gem 'newrelic_rpm'
 
 group :test do
   gem 'database_cleaner'

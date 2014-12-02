@@ -134,6 +134,7 @@ GEM
       plucky (~> 0.6.5)
     multi_json (1.10.1)
     multipart-post (2.0.0)
+    newrelic_rpm (3.9.7.266)
     oauth (0.4.7)
     oauth2 (0.6.1)
       faraday (~> 0.7)
@@ -271,6 +272,7 @@ DEPENDENCIES
   jquery-rails
   mocha
   mongo_mapper
+  newrelic_rpm
   omniauth
   omniauth-facebook (= 1.4.0)
   omniauth-github

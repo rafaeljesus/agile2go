@@ -28,18 +28,9 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
 
   save: function(e) {
     e.preventDefault();
-    this.commit();
+    var form = new App.Views.UserRegistrationsSerialize(this);
+    this.model.set(form.toAttributes());
     this.model.save({}, { success: this.saved });
-  },
-
-  commit: function() {
-    var attributes = {
-      first_name: this.$("#first-name").val(),
-      last_name: this.$("#last-name").val(),
-      email: this.$("#email").val(),
-      password: this.$("#password").val()
-    };
-    this.model.set(attributes);
   },
 
   saved: function(model, response, options) {

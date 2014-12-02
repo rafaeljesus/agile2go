@@ -47,5 +47,4 @@ class UserSession
       false
     end
   end
-
 end
