@@ -47,6 +47,11 @@ describe('App.Views.UserRegistrations', function() {
       expect(model.save).toHaveBeenCalled();
     });
 
+    it('should name and email fields be disabled', function() {
+      expect($el.find('#first-name')).not.toBeDisabled();
+      expect($el.find('#email')).not.toBeDisabled();
+    });
+
     it('should not create a new user if sign up form is blank', function() {
       spyOn(model, 'save');
       view.$('#first-name').val('');
@@ -64,11 +69,7 @@ describe('App.Views.UserRegistrations', function() {
     beforeEach(function() {
       current_user = currentUserMock;
       server = sinon.fakeServer.create();
-      server.respondWith("GET", "/current_user/12345", [
-        200,
-        {"Content-Type": "application/json"},
-        JSON.stringify(current_user)
-      ]);
+      server.respondWith("GET", "/current_user/12345", [200, {"Content-Type": "application/json"}, JSON.stringify(current_user)]);
       var current_user = new App.Models.CurrentUser(current_user);
       var model = new App.Models.UserRegistration({ user: { id: 1, first_name: 'first fake', last_name: 'last fake', email: 'fakeEmail' } }, { parse: true });
       var options = { model: model, current_user: current_user };

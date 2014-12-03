@@ -3,7 +3,8 @@ App.Models.CurrentUser = Backbone.Model.extend({
 
   initialize: function() {
     this.on('change', this.setSession, this);
-    this.attributes = this.getSession();
+    var userFromSession = this.getSession();
+    if (userFromSession) this.attributes = userFromSession;
     this._fetch();
   },
 
@@ -16,7 +17,7 @@ App.Models.CurrentUser = Backbone.Model.extend({
   },
 
   getSession: function() {
-    return JSON.parse(sessionStorage.getItem('currentUser')) || {};
+    return JSON.parse(sessionStorage.getItem('currentUser'));
   },
 
   removeSession: function() {

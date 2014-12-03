@@ -22,6 +22,7 @@ App.Views.UserRegistrations = Support.CompositeView.extend(
   },
 
   onRender: function() {
+    if (!this.current_user.signedIn()) return;
     this.$('#first-name').attr('disabled', 'disabled');
     this.$('#email').attr('disabled', 'disabled');
   },
