@@ -34,4 +34,7 @@ describe TasksController, type: :controller do
     xhr :delete, :destroy, id: @task.id
     expect(response).to be_success
   end
+
+  pending "should search a task by query"
+
 end

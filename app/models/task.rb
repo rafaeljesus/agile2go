@@ -16,17 +16,14 @@ class Task
   scope :ordered, -> { sort(created_at: :desc) }
 
   def self.search(query)
-    collection
-      .find('$or' => [
+    collection.find('$or' => [
         { title: query },
         { story: query },
         { status: query },
         { points: query },
         { priority: query },
         { sprint_id: query }
-      ])
-      .sort(created_at: :desc)
-      .to_a
+      ]).sort(created_at: :desc).to_a
   end
 
   def increment

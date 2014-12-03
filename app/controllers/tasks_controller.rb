@@ -30,7 +30,7 @@ class TasksController < ApplicationController
   end
 
   def search
-    tasks = TaskSearch.search(params[:query])
+    tasks = Task.search(params[:query])
     respond_with tasks
   end
 
