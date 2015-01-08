@@ -1,4 +1,4 @@
-Agile2Go [![Build Status](https://travis-ci.org/rafaeljesus/agile2go.svg?branch=master)](https://travis-ci.org/rafaeljesus/agile2go) [![Test Coverage](https://codeclimate.com/github/rafaeljesus/agile2go/badges/coverage.svg)](https://codeclimate.com/github/rafaeljesus/agile2go) [![Code Climate](https://codeclimate.com/github/rafaeljesus/agile2go/badges/gpa.svg)](https://codeclimate.com/github/rafaeljesus/agile2go)
+Agile2Go [![Circle CI](https://circleci.com/gh/rafaeljesus/agile2go.svg?style=svg)](https://circleci.com/gh/rafaeljesus/agile2go) [![Test Coverage](https://codeclimate.com/github/rafaeljesus/agile2go/badges/coverage.svg)](https://codeclimate.com/github/rafaeljesus/agile2go) [![Code Climate](https://codeclimate.com/github/rafaeljesus/agile2go/badges/gpa.svg)](https://codeclimate.com/github/rafaeljesus/agile2go)
 ===============
 
 This is app is for my portfolio
