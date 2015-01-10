@@ -3,11 +3,6 @@ ENV["RAILS_ENV"] ||= 'test'
 require 'codeclimate-test-reporter'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-if ENV['CIRCLE_ARTIFACTS']
-  require 'simplecov'
-  dir = File.join("..", "..", "..", ENV['CIRCLE_ARTIFACTS'], "coverage")
-  SimpleCov.coverage_dir(dir)
-end
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
