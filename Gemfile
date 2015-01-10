@@ -24,13 +24,14 @@ gem 'omniauth-twitter'
 gem 'omniauth-github'
 gem 'omniauth-facebook', '1.4.0'
 gem 'omniauth-google'
-gem "codeclimate-test-reporter", group: :test, require: nil
 gem 'pry-byebug'
 gem 'firebase'
 gem 'newrelic_rpm'
 
 group :test do
   gem 'database_cleaner'
+  gem 'simplecov', require: false
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 group :development, :test do
